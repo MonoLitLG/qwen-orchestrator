@@ -1,16 +1,98 @@
-# Qwen Orchestrator
+# Qwen Orchestrator — Multi-Agent AI Development Team for Qwen Code
 
-> Enterprise-grade multi-agent AI development orchestration extension for **Qwen Code CLI**
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Version: 0.0.1](https://img.shields.io/badge/version-0.0.1-green.svg)](package.json)
+[![Qwen Code Extension](https://img.shields.io/badge/Qwen%20Code-Extension-orange.svg)](https://github.com/QwenLM/qwen-code)
+[![Agents: 22](https://img.shields.io/badge/agents-22-blue.svg)](#agent-team-22-specialized-agents)
+[![Skills: 21](https://img.shields.io/badge/skills-21-purple.svg)](#skills-21-professional-skills)
+
+> 🤖 **The enterprise-grade multi-agent AI orchestration extension exclusively for [Qwen Code CLI](https://github.com/QwenLM/qwen-code)**
 >
-> **Author:** [Omar-Obando](https://github.com/Omar-Obando)  
-> **License:** MIT  
-> **Version:** 0.0.1
+> Turn your AI coding assistant into a full **software development department** — with 22 specialized agents, 21 professional skills, 6 slash commands, persistent memory, and MCP tool integration.
+>
+> **Author:** [Omar-Obando](https://github.com/Omar-Obando) · **License:** MIT · **Version:** 0.0.1
 
 ---
 
-## Overview
+## ⚡ What is Qwen Orchestrator?
 
-Qwen Orchestrator transforms Qwen Code into a **professional IT department** with **22 specialized AI agents**, **21 expert skills**, **6 slash commands**, **persistent memory**, and an optional **MCP tools server**. Every feature is delivered tested, reviewed, and complete — **no mockups, no placeholders, no unfinished CRUD operations**.
+**Qwen Orchestrator** is a powerful extension built exclusively for **[Qwen Code](https://github.com/QwenLM/qwen-code)** — the open-source AI coding CLI by Alibaba. It transforms a single AI coding assistant into a **coordinated team of 22 specialized AI agents** that work together like a professional software development department.
+
+### Why Qwen Orchestrator?
+
+Imagine having an entire engineering team at your fingertips: a **Commander** that orchestrates, a **Planner** that architects, **Frontend and Backend Developers** that code in parallel, a **Reviewer** that gatekeeps quality, a **QA Engineer** that tests, a **Cybersecurity Engineer** that audits vulnerabilities, a **DevOps Engineer** that deploys — and 14 more specialists, all coordinated automatically.
+
+**No other AI coding extension provides this level of professional multi-agent orchestration.**
+
+### Built Exclusively For
+
+<table>
+<tr>
+<td width="80" align="center">
+
+![Qwen Code](https://img.shields.io/badge/Qwen%20Code-CLI-orange?style=for-the-badge)
+
+</td>
+<td>
+
+**[Qwen Code](https://github.com/QwenLM/qwen-code)** by [QwenLM / Alibaba](https://github.com/QwenLM) — The open-source AI-powered coding assistant CLI that supports multiple LLM providers (Qwen, DeepSeek, OpenAI, Anthropic, local models). Qwen Orchestrator is a **community-built extension** and is not affiliated with or endorsed by Alibaba.
+
+</td>
+</tr>
+</table>
+
+> ⚠️ **This extension ONLY works with [Qwen Code CLI](https://github.com/QwenLM/qwen-code)**. It is NOT a standalone tool, NOT a VS Code extension, and NOT compatible with other AI coding assistants. If you don't have Qwen Code installed, [install it first](https://github.com/QwenLM/qwen-code#installation).
+
+---
+
+## 🎯 Overview
+
+Qwen Orchestrator transforms Qwen Code into a **professional IT department** with **22 specialized AI agents**, **21 expert skills**, **6 slash commands**, **persistent memory (Knowledge Graph)**, and an **MCP tools server**. Every feature is delivered tested, reviewed, and complete — **no mockups, no placeholders, no unfinished CRUD operations**.
+
+### Key Guarantees
+
+| Guarantee                   | How It's Enforced                                                              |
+| --------------------------- | ------------------------------------------------------------------------------ |
+| **No mockups/placeholders** | Agents are forbidden from writing stubs; anti-pattern skill detects violations |
+| **No model lock-in**        | All agents default to user's model; override per-agent is optional             |
+| **Loop protection**         | Monitor agent detects and breaks LLM loops automatically                       |
+| **N+1 prevention**          | SQL best-practices skill + Database Architect agent enforce eager loading      |
+| **SQL formatting**          | Uppercase keywords, one column per line, indented JOINs — enforced by skill    |
+| **Security first**          | OWASP Top 10 compliance via security-audit skill and Reviewer agent            |
+| **CRUD completeness**       | Tech Lead verifies every entity has Create/Read/Update/Delete/Restore          |
+| **Multi-language**          | Supports TypeScript, PHP, Python, Dart, Rust, Go, Java, C# — not just TS       |
+| **Context7 optional**       | Works without Context7; with it, agents get real-time documentation lookup     |
+| **Compaction recovery**     | State persists to `.qwen-orchestrator/` — survives context window compression  |
+
+### 🌟 Highlights
+
+- **22 Specialized Agents** — From Commander to Localization Engineer, each with dedicated tools and expertise
+- **21 Professional Skills** — TDD workflow, security audit, anti-pattern detection, SQL best practices, and 17 more
+- **6 Slash Commands** — `/orchestrator`, `/orchestrate`, `/plan`, `/review`, `/test`, `/deploy`
+- **Ask Before Building** — Agents ask clarifying questions via `AskUserQuestion` before starting work
+- **Persistent Memory** — Knowledge Graph via MCP Memory Server stores decisions across sessions
+- **Zero Model Lock-In** — Works with Qwen, DeepSeek, OpenAI, Anthropic, or any local model
+- **Multi-Language Support** — Not TypeScript-only: PHP (Laravel), Python (Django), Dart (Flutter), Rust, Go, Java, C#
+- **Framework Skills** — Built-in skills for Flutter Web, Laravel, NestJS, and Supabase
+- **Loop Protection** — Monitor agent detects and breaks LLM infinite loops automatically
+- **Inter-Agent Messaging** — Commander sends instructions to background agents mid-task via SendMessage
+- **Scheduled Tasks** — CronCreate for recurring quality audits, health checks, and progress reports
+- **Real-Time Monitoring** — Watch builds, containers, and logs via the Monitor tool
+- **UI/UX Integration** — Frontend Developer can leverage UI UX Pro Max, Designer Skills, and Taste Skill
+
+---
+
+## 📊 Quick Stats
+
+| Metric              | Count | Details                                                                                                                                                                                                                                                                                            |
+| ------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Agents**          | 22    | Commander, Planner, Frontend Dev, Backend Dev, Reviewer, QA, PM, Doc Researcher, Tech Lead, DB Architect, Product Owner, DevOps, Code Quality Guard, Monitor, SEO Specialist, Tech Selector, Cybersecurity Eng., Performance Eng., Release Manager, API Specialist, Mobile Eng., Localization Eng. |
+| **Skills**          | 21    | Code review, TDD, security audit, performance, debugging, deployment, Context7 docs, domain-driven design, API design, refactoring, compaction recovery, git workflow, database design, anti-pattern, multi-language, SQL, Flutter Web, Laravel, NestJS, Supabase                                  |
+| **Commands**        | 6     | `/orchestrator`, `/orchestrate`, `/plan`, `/review`, `/test`, `/deploy`                                                                                                                                                                                                                            |
+| **MCP Tools**       | 7     | Mission status, project validation, TODO generation, agent roster, Context7 resolve, CRUD check, checkpoint                                                                                                                                                                                        |
+| **MCP Servers**     | 2     | Orchestrator tools + Memory Knowledge Graph                                                                                                                                                                                                                                                        |
+| **Languages**       | 8+    | TypeScript, PHP, Python, Dart, Rust, Go, Java, C#                                                                                                                                                                                                                                                  |
+| **Qwen Code Tools** | 21    | Full tool suite — Edit, WriteFile, ReadFile, Grep, Glob, Shell, AskUserQuestion, Agent, Skill, SendMessage, Monitor, CronCreate, ExitPlanMode, and more                                                                                                                                            |
 
 ### Key Guarantees
 
@@ -67,7 +149,7 @@ Qwen Orchestrator transforms Qwen Code into a **professional IT department** wit
 ║  │User Stories  │ │  CI/CD       │ │  Syntax · Lint · Types    │    ║
 ║  └──────────────┘ └──────────────┘ └─────────────────────────────┘    ║
 ║                                                                        ║
-║  Skills: 17 | Agents: 15 | Commands: 6 | MCP Tools: 7 | Languages: 8+            ║
+║  Skills: 21 | Agents: 22 | Commands: 6 | MCP Tools: 7 | Languages: 8+           ║
 ╚══════════════════════════════════════════════════════════════════════════╝
 ```
 
@@ -665,4 +747,16 @@ The extension includes two MCP servers. To add more (like Context7), add them to
 
 ---
 
-Built with ❤️ for the Qwen Code community.
+## 🔑 Keywords & Topics
+
+`qwen-code` · `qwen-code-extension` · `multi-agent` · `ai-agents` · `orchestration` · `ai-coding` · `ai-development` · `tdd` · `code-review` · `devops` · `cicd` · `mcp` · `model-context-protocol` · `ai-orchestrator` · `software-engineering` · `ai-assistant` · `coding-agent` · `enterprise-ai` · `multi-agent-system` · `ai-coding-assistant` · `qwen` · `deepseek` · `openai` · `flutter` · `laravel` · `nestjs` · `supabase` · `typescript` · `python` · `php` · `rust` · `golang` · `java` · `csharp` · `sql` · `security-audit` · `owasp` · `test-driven-development` · `code-quality` · `frontend` · `backend` · `mobile` · `devops` · `database` · `api-design` · `i18n` · `localization` · `seo` · `performance` · `refactoring` · `anti-patterns`
+
+---
+
+<div align="center">
+
+**Built with ❤️ for the [Qwen Code](https://github.com/QwenLM/qwen-code) community**
+
+[⬆ Back to top](#qwen-orchestrator--multi-agent-ai-development-team-for-qwen-code)
+
+</div>
