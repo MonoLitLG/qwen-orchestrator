@@ -13,7 +13,7 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
-- **GSD_LEARNINGS.md removed - replaced with Qwen Code patterns
+- **GSD_LEARNINGS.md removed - replaced with Qwen Code patterns documentation
 
 ## [0.0.2] - 2025-01-10
 
