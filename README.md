@@ -6,11 +6,11 @@
 [![Version: 0.0.1](https://img.shields.io/badge/version-0.0.1-green.svg)](package.json)
 [![Qwen Code Extension](https://img.shields.io/badge/Qwen%20Code-Extension-orange.svg)](https://github.com/QwenLM/qwen-code)
 [![Agents: 22](https://img.shields.io/badge/agents-22-blue.svg)](#agent-team-22-specialized-agents)
-[![Skills: 22](https://img.shields.io/badge/skills-22-purple.svg)](#skills-22-professional-skills)
+[![Skills: 23](https://img.shields.io/badge/skills-23-purple.svg)](#skills-23-professional-skills)
 
 > 🤖 **The enterprise-grade multi-agent AI orchestration extension exclusively for [Qwen Code CLI](https://github.com/QwenLM/qwen-code)**
 >
-> Turn your AI coding assistant into a full **software development department** — with 22 specialized agents, 22 professional skills, 6 slash commands, persistent memory, and MCP tool integration.
+> Turn your AI coding assistant into a full **software development department** — with 22 specialized agents, 23 professional skills, 6 slash commands, persistent memory, and MCP tool integration.
 >
 > **Author:** [Omar-Obando](https://github.com/Omar-Obando) · **License:** MIT · **Version:** 0.0.1
 
@@ -44,12 +44,14 @@ Imagine having an entire engineering team at your fingertips: a **Commander** th
 </table>
 
 > ⚠️ **This extension ONLY works with [Qwen Code CLI](https://github.com/QwenLM/qwen-code)**. It is NOT a standalone tool, NOT a VS Code extension, and NOT compatible with other AI coding assistants. If you don't have Qwen Code installed, [install it first](https://github.com/QwenLM/qwen-code#installation).
+>
+> ⚠️ **IDE Compatibility Notice**: This extension has NOT been tested with Visual Studio, VS Code extensions, JetBrains IDEs, or any integrations outside of the Qwen Code CLI. It is designed exclusively for the Qwen Code terminal/CLI experience. Community testing and feedback on other integrations is welcome.
 
 ---
 
 ## 🎯 Overview
 
-Qwen Orchestrator transforms Qwen Code into a **professional IT department** with **22 specialized AI agents**, **22 expert skills**, **6 slash commands**, **persistent memory (Knowledge Graph)**, and an **MCP tools server**. Every feature is delivered tested, reviewed, and complete — **no mockups, no placeholders, no unfinished CRUD operations**.
+Qwen Orchestrator transforms Qwen Code into a **professional IT department** with **22 specialized AI agents**, **23 expert skills**, **6 slash commands**, **persistent memory (Knowledge Graph)**, and an **MCP tools server**. Every feature is delivered tested, reviewed, and complete — **no mockups, no placeholders, no unfinished CRUD operations**.
 
 ### Key Guarantees
 
@@ -69,9 +71,10 @@ Qwen Orchestrator transforms Qwen Code into a **professional IT department** wit
 ### 🌟 Highlights
 
 - **22 Specialized Agents** — From Commander to Localization Engineer, each with dedicated tools and expertise
-- **22 Professional Skills** — TDD workflow, security audit, anti-pattern detection, design system, SQL best practices, and 17 more
+- **23 Professional Skills** — TDD workflow, security audit, anti-pattern detection, design system, website redesign, SQL best practices, and 18 more
 - **6 Slash Commands** — `/orchestrator`, `/orchestrate`, `/plan`, `/review`, `/test`, `/deploy`
 - **Ask Before Building** — Agents ask clarifying questions via `AskUserQuestion` before starting work
+- **Website Redesign** — Redesign existing sites from URL (WebFetch) or screenshot (vision models)
 - **Persistent Memory** — Knowledge Graph via MCP Memory Server stores decisions across sessions
 - **Zero Model Lock-In** — Works with Qwen, DeepSeek, OpenAI, Anthropic, or any local model
 - **Multi-Language Support** — Not TypeScript-only: PHP (Laravel), Python (Django), Dart (Flutter), Rust, Go, Java, C#
@@ -89,7 +92,7 @@ Qwen Orchestrator transforms Qwen Code into a **professional IT department** wit
 | Metric              | Count | Details                                                                                                                                                                                                                                                                                            |
 | ------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Agents**          | 22    | Commander, Planner, Frontend Dev, Backend Dev, Reviewer, QA, PM, Doc Researcher, Tech Lead, DB Architect, Product Owner, DevOps, Code Quality Guard, Monitor, SEO Specialist, Tech Selector, Cybersecurity Eng., Performance Eng., Release Manager, API Specialist, Mobile Eng., Localization Eng. |
-| **Skills**          | 22    | Design system, code review, TDD, security audit, performance, debugging, deployment, Context7 docs, domain-driven, API design, refactoring, compaction recovery, git workflow, database design, anti-pattern, multi-language, SQL, Flutter Web, Laravel, NestJS, Supabase                          |
+| **Skills**          | 23    | Design system, website redesign, code review, TDD, security audit, performance, debugging, deployment, Context7 docs, domain-driven, API design, refactoring, compaction recovery, git workflow, database design, anti-pattern, multi-language, SQL, Flutter Web, Laravel, NestJS, Supabase        |
 | **Commands**        | 6     | `/orchestrator`, `/orchestrate`, `/plan`, `/review`, `/test`, `/deploy`                                                                                                                                                                                                                            |
 | **MCP Tools**       | 7     | Mission status, project validation, TODO generation, agent roster, Context7 resolve, CRUD check, checkpoint                                                                                                                                                                                        |
 | **MCP Servers**     | 2     | Orchestrator tools + Memory Knowledge Graph                                                                                                                                                                                                                                                        |
@@ -186,7 +189,7 @@ Qwen Orchestrator transforms Qwen Code into a **professional IT department** wit
 
 ---
 
-## Skills (22 Professional Skills)
+## Skills (23 Professional Skills)
 
 | #   | Skill                   | Purpose                                                                                |
 | --- | ----------------------- | -------------------------------------------------------------------------------------- |
@@ -208,10 +211,11 @@ Qwen Orchestrator transforms Qwen Code into a **professional IT department** wit
 | 16  | **Multi-Language**      | 8+ languages: TS, PHP, Python, Dart, Rust, Go, Java, C#                                |
 | 17  | **SQL Best Practices**  | Indentation, N+1 prevention, parameterized queries                                     |
 | 18  | **Design System**       | Multi-page architecture, color palettes, typography, spacing, Astro + Cloudflare Pages |
-| 19  | **Flutter Web**         | Responsive layouts, adaptive widgets, state management, forms                          |
-| 20  | **Laravel**             | Eloquent ORM, Form Requests, queues, API backend patterns                              |
-| 21  | **NestJS**              | Modules, guards, pipes, interceptors, request lifecycle                                |
-| 22  | **Supabase**            | RLS policies, Edge Functions, auth, auto-generated APIs                                |
+| 19  | **Website Redesign**    | Redesign from URL (WebFetch) or screenshot (vision models), full analysis workflow     |
+| 20  | **Flutter Web**         | Responsive layouts, adaptive widgets, state management, forms                          |
+| 21  | **Laravel**             | Eloquent ORM, Form Requests, queues, API backend patterns                              |
+| 22  | **NestJS**              | Modules, guards, pipes, interceptors, request lifecycle                                |
+| 23  | **Supabase**            | RLS policies, Edge Functions, auth, auto-generated APIs                                |
 
 ---
 
@@ -632,6 +636,7 @@ qwen-orchestrator/
 │   ├── multi-lang/           #   8+ language support
 │   ├── sql-best-practices/   #   SQL formatting & safety
 │   ├── design-system/        #   Color palettes, typography, spacing, multi-page
+│   ├── website-redesign/     #   Redesign from URL or screenshot
 │   ├── flutter-web/          #   Flutter Web patterns
 │   ├── laravel/              #   Laravel PHP patterns
 │   ├── nestjs/               #   NestJS TypeScript patterns
@@ -688,7 +693,7 @@ The Frontend Developer agent can leverage external UI/UX skill repos for design 
 qwen extensions install https://github.com/Omar-Obando/qwen-orchestrator
 ```
 
-This automatically registers all 22 agents, 22 skills, 6 commands, and the MCP Memory server.
+This automatically registers all 22 agents, 23 skills, 6 commands, and the MCP Memory server.
 
 ### Manual Install
 

@@ -14,13 +14,14 @@ Before writing a single line of code or touching any file, you MUST ensure 100% 
 
 Read the mission. Determine the project type:
 
-| Keywords                                      | Project Type    | Required Questions                 |
-| --------------------------------------------- | --------------- | ---------------------------------- |
-| "website", "site", "web page", business name  | **Website**     | Framework + Pages + Colors + Style |
-| "app", "application", "mobile app"            | **Application** | Platform + Framework + Features    |
-| "API", "backend", "server", "microservice"    | **API/Backend** | Language + Framework + Database    |
-| "fix", "bug", "error", "broken"               | **Bug Fix**     | Minimal — scope is usually clear   |
-| "refactor", "improve", "clean up", "optimize" | **Refactor**    | Scope + Boundaries + Goals         |
+| Keywords                                                                                 | Project Type    | Required Questions                                  |
+| ---------------------------------------------------------------------------------------- | --------------- | --------------------------------------------------- |
+| "redesign", "rebuild", "make like", "clone", "improve website", URL provided, screenshot | **Redesign**    | Priority + Framework + Style + Extract via WebFetch |
+| "website", "site", "web page", business name                                             | **Website**     | Framework + Pages + Colors + Style                  |
+| "app", "application", "mobile app"                                                       | **Application** | Platform + Framework + Features                     |
+| "API", "backend", "server", "microservice"                                               | **API/Backend** | Language + Framework + Database                     |
+| "fix", "bug", "error", "broken"                                                          | **Bug Fix**     | Minimal — scope is usually clear                    |
+| "refactor", "improve", "clean up", "optimize"                                            | **Refactor**    | Scope + Boundaries + Goals                          |
 
 ### Step 2: Ask Mandatory Questions
 
@@ -73,6 +74,52 @@ AskUserQuestion({
 ```
 
 **⚠️ CRITICAL**: When user asks for "a website" or "a site for X business", you MUST create a MULTI-PAGE website. NEVER create a single landing page. The `design-system` skill contains full page architecture rules.
+
+#### For REDESIGN Projects (URL or Screenshot):
+
+When the user provides a URL to redesign or a screenshot:
+
+1. **Extract** the full site via `WebFetch` (URL) or vision analysis (screenshot):
+
+   ```
+   WebFetch(url="https://example.com", prompt="Extract COMPLETE structure: layout, text, colors, typography, images, nav, CTAs, contact info, SEO metadata")
+   WebFetch(url="https://example.com/sitemap.xml", prompt="List all URLs")
+   ```
+
+2. **Ask** redesign questions:
+
+   ```
+   AskUserQuestion({
+     questions: [
+       { question: "What should the redesign prioritize?", header: "Priority",
+         options: [
+           { label: "Visual refresh", description: "Same structure, modern design" },
+           { label: "Full rebuild", description: "New layout, keep only content" },
+           { label: "Add features", description: "Redesign + add missing pages" },
+           { label: "Mobile-first", description: "Focus on responsive design" }
+         ]},
+       { question: "What framework?", header: "Framework",
+         options: [
+           { label: "Astro + Tailwind", description: "Zero JS, best for marketing sites (recommended)" },
+           { label: "Next.js + React", description: "SSR/SSG, for SaaS/e-commerce" },
+           { label: "HTML + Tailwind", description: "Simple, fast delivery" }
+         ]},
+       { question: "What design style?", header: "Style",
+         options: [
+           { label: "Modern Clean", description: "Minimalist, spacious, premium" },
+           { label: "Bold Dynamic", description: "Strong colors, animations" },
+           { label: "Classic Elegant", description: "Serif fonts, refined, timeless" }
+         ]}
+     ]
+   })
+   ```
+
+3. **Load** the `website-redesign` skill for the complete workflow
+
+4. **Create** a redesign analysis report at `.qwen-orchestrator/redesign-analysis.md`
+
+5. **Preserve** all business content (text, services, products, contact info)
+6. **Improve** layout, colors, typography, spacing, accessibility, SEO
 
 #### For NON-WEBSITE Projects:
 

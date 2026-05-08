@@ -377,6 +377,39 @@ AskUserQuestion({
 
 **Rules**: Max 4 questions per call. Ask early, not during implementation. For website projects, ALWAYS ask about framework, pages, and colors.
 
+## Website Redesign (URL or Screenshot)
+
+When the user provides a **URL** to redesign or a **screenshot** of an existing site:
+
+### URL-Based Redesign
+
+Use `WebFetch` to extract the full page structure:
+
+```
+# Extract complete page structure
+WebFetch(url="https://example.com", prompt="Extract COMPLETE structure: layout, all text, colors, typography, images, nav, CTAs, contact info, SEO metadata, JSON-LD schemas")
+
+# Discover all pages
+WebFetch(url="https://example.com/sitemap.xml", prompt="List all URLs")
+```
+
+### Screenshot-Based Redesign
+
+If the user provides a screenshot (image file) AND the model supports vision:
+
+- Analyze the screenshot for layout, colors, typography, component hierarchy, spacing
+- In Qwen Code: reference the file with `@screenshot.png`
+- In VS Code: paste the screenshot directly into the chat input
+- If the model does NOT support vision, ask the user to also provide the URL as a fallback
+
+### Redesign Rules
+
+- **PRESERVE** business content (text, services, products, contact info, brand name)
+- **IMPROVE** layout, colors, typography, spacing, accessibility, SEO, performance
+- **NEVER copy** the original site's code verbatim — always rebuild clean
+- **ALWAYS ask** about redesign priority, framework, and style via `AskUserQuestion`
+- **Load the `website-redesign` skill** for the full workflow, extraction checklist, and analysis report template
+
 ## UI/UX Skill Integration
 
 When building frontend interfaces, you should leverage external UI/UX skill repos when available in the user's environment. These skills provide design intelligence that goes beyond code — layout, color, typography, motion, and anti-pattern detection.

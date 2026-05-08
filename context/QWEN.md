@@ -614,6 +614,28 @@ Root (every page): Organization + WebSite + WebPage
 
 **Required files**: `robots.txt` (with sitemap reference), `sitemap.xml` (all indexable URLs with lastmod), `favicon.ico`, `404.html`.
 
+### Website Redesign Skill (URL or Screenshot)
+
+The `website-redesign` skill (`skills/website-redesign/SKILL.md`) enables agents to redesign existing websites:
+
+**Method 1: URL-Based (WebFetch)** — Extract full page structure from a live URL:
+
+```
+WebFetch(url="https://example.com", prompt="Extract COMPLETE structure: layout, text, colors, typography, images, nav, CTAs, contact info, SEO metadata")
+WebFetch(url="https://example.com/sitemap.xml", prompt="List all URLs")
+```
+
+**Method 2: Screenshot-Based (Vision Models)** — Analyze a screenshot when the model supports vision (`"capabilities": { "vision": true }`). In Qwen Code: reference file with `@screenshot.png`. In VS Code: paste screenshot directly into chat.
+
+**Redesign rules**:
+
+- PRESERVE all business content (text, services, products, contact info)
+- IMPROVE layout, colors, typography, spacing, accessibility, SEO, performance
+- NEVER copy original code verbatim — always rebuild clean
+- ALWAYS ask about redesign priority, framework, and style via AskUserQuestion
+- ALWAYS create a redesign analysis report at `.qwen-orchestrator/redesign-analysis.md`
+- ALWAYS add missing pages (404, Privacy, Terms) and SEO improvements
+
 ---
 
 ## Compaction Recovery Protocol
