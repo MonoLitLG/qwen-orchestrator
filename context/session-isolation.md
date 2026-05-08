@@ -145,6 +145,7 @@ cd /path/to/marketing-agency-panama
 Each project has completely independent sessions!
 
 **Path Safety Examples**:
+
 - Windows: `C:\Users\user\Documents\project` → `C__Users_user_Documents_project`
 - Unix: `/home/user/projects/project` → `_home_user_projects_project`
 - Mac: `/Users/user/Sites/site` → `_Users_user_Sites_site`

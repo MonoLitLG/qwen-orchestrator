@@ -63,12 +63,16 @@ export async function handleSessionStart(
     const sessionDirs = createSessionDirectory(state.sessionId, projectPath);
 
     // Ensure state is written
-    writeSessionState(state.sessionId, {
-      ...state,
-      active: true,
-      projectPath: state.projectPath ?? undefined,
-      mission: state.mission ?? undefined,
-    }, projectPath);
+    writeSessionState(
+      state.sessionId,
+      {
+        ...state,
+        active: true,
+        projectPath: state.projectPath ?? undefined,
+        mission: state.mission ?? undefined,
+      },
+      projectPath
+    );
 
     return {
       success: true,
@@ -84,7 +88,8 @@ export async function handleSessionStart(
     };
   } catch (error: unknown) {
     console.error('Session start hook failed:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    const errorMessage =
+      error instanceof Error ? error.message : 'Unknown error';
     return {
       success: false,
       sessionId: '',
@@ -107,9 +112,7 @@ export async function handleSessionStart(
 /**
  * Get the current session info from the hook
  */
-export async function getCurrentSessionInfo(
-  projectPath?: string
-): Promise<{
+export async function getCurrentSessionInfo(projectPath?: string): Promise<{
   sessionId: string | null;
   sessionDir: string | null;
   state: SessionState | null;

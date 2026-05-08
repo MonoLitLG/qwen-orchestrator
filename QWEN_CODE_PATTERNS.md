@@ -18,17 +18,17 @@ Qwen Code uses MCP to enable communication between the IDE and external tools:
 
 Qwen Code provides hooks that trigger on specific events:
 
-| Hook Event | Triggered When | Use Case |
-|------------|----------------|----------|
-| `session:start` | New session initialization | Create session directories, initialize state |
-| `session:end` | Session completion | Cleanup, save final state, send notifications |
-| `file:read` | File read operations | Redirect to session directory, fallback to root |
-| `file:write` | File write operations | Ensure writes go to session directory |
-| `context:inject` | Context data injection | Write context to session directory |
-| `PreToolUse` | Before tool execution | Validate, modify, or block tool calls |
-| `PostToolUse` | After successful tool execution | Log, transform, or enhance responses |
-| `SubagentStart` | When subagent starts | Initialize subagent state, track progress |
-| `SubagentStop` | When subagent stops | Cleanup, save results, notify parent |
+| Hook Event       | Triggered When                  | Use Case                                        |
+| ---------------- | ------------------------------- | ----------------------------------------------- |
+| `session:start`  | New session initialization      | Create session directories, initialize state    |
+| `session:end`    | Session completion              | Cleanup, save final state, send notifications   |
+| `file:read`      | File read operations            | Redirect to session directory, fallback to root |
+| `file:write`     | File write operations           | Ensure writes go to session directory           |
+| `context:inject` | Context data injection          | Write context to session directory              |
+| `PreToolUse`     | Before tool execution           | Validate, modify, or block tool calls           |
+| `PostToolUse`    | After successful tool execution | Log, transform, or enhance responses            |
+| `SubagentStart`  | When subagent starts            | Initialize subagent state, track progress       |
+| `SubagentStop`   | When subagent stops             | Cleanup, save results, notify parent            |
 
 ### 3. Session-Based Isolation
 
@@ -68,7 +68,10 @@ const createSessionTool: Tool = {
   inputSchema: {
     type: 'object',
     properties: {
-      projectPath: { type: 'string', description: 'Project path for isolation' },
+      projectPath: {
+        type: 'string',
+        description: 'Project path for isolation',
+      },
       mission: { type: 'string', description: 'Mission description' },
     },
   },
@@ -78,18 +81,21 @@ const createSessionTool: Tool = {
 ## Key Files to Study
 
 ### `qwen-code/AGENTS.md`
+
 - Comprehensive agent documentation
 - Agent delegation patterns
 - Task management and subagent monitoring
 - Hook configuration examples
 
 ### `qwen-code/CONTRIBUTING.md`
+
 - Development workflow
 - Testing guidelines
 - Code quality standards
 - Release process
 
 ### `examples/` Directory
+
 - **agent/**: Extension agent definitions
 - **commands/**: Extension command definitions
 - **context/**: Context injection patterns
@@ -107,10 +113,10 @@ export async function handleSessionStart(
 ): Promise<SessionState> {
   const projectPath = event.cwd || process.cwd();
   const sessionId = generateSessionId();
-  
+
   // Create session directory structure
   const sessionDirs = createSessionDirectory(sessionId, projectPath);
-  
+
   // Write initial state
   const state: SessionState = {
     sessionId,
@@ -118,10 +124,10 @@ export async function handleSessionStart(
     active: true,
     projectPath,
   };
-  
+
   writeSessionState(sessionId, state, projectPath);
   writeCurrentSessionId(sessionId, projectPath);
-  
+
   return state;
 }
 ```
@@ -135,12 +141,12 @@ export async function handleFileRead(
 ): Promise<FileReadResult> {
   const projectPath = event.cwd || process.cwd();
   const currentSession = readCurrentSessionId(projectPath);
-  
+
   if (currentSession) {
     // Check session directory first
     const sessionDir = getSessionDir(currentSession, projectPath);
     const sessionFilePath = join(sessionDir, event.path);
-    
+
     if (existsSync(sessionFilePath)) {
       return {
         content: readFileSync(sessionFilePath, 'utf8'),
@@ -148,7 +154,7 @@ export async function handleFileRead(
       };
     }
   }
-  
+
   // Fall back to root
   return {
     content: readFileSync(event.path, 'utf8'),
@@ -166,17 +172,17 @@ export async function handleContextInject(
 ): Promise<void> {
   const projectPath = event.cwd || process.cwd();
   const currentSession = readCurrentSessionId(projectPath);
-  
+
   if (currentSession) {
     const sessionDir = getSessionDir(currentSession, projectPath);
     const contextDir = join(sessionDir, 'context');
-    
+
     mkdirSync(contextDir, { recursive: true });
-    
+
     // Write context data
     const contextFile = join(contextDir, `${event.key}.json`);
     writeFileSync(contextFile, JSON.stringify(event.data, null, 2));
-    
+
     // Update session state
     const state = getSessionState(currentSession, projectPath);
     if (state) {
@@ -271,13 +277,13 @@ export async function handleCreateSession(
   params: CreateSessionParams
 ): Promise<SessionState> {
   const { projectPath, mission, forceNew } = params;
-  
+
   // Default to extension directory if no project path
   const targetPath = projectPath || ORCHESTRATOR_DIR;
-  
+
   // Initialize session
   const state = await initializeSession(targetPath, mission, forceNew);
-  
+
   return state;
 }
 
@@ -286,15 +292,15 @@ export async function handleGetCurrentSession(
 ): Promise<CurrentSessionInfo | null> {
   const { projectPath } = params;
   const sessionId = readCurrentSessionId(projectPath);
-  
+
   if (!sessionId) {
     return null;
   }
-  
+
   const projectDir = projectPath || ORCHESTRATOR_DIR;
   const sessionDir = getSessionDir(sessionId, projectDir);
   const state = getSessionState(sessionId, projectDir);
-  
+
   return {
     sessionId,
     sessionDir,
@@ -325,7 +331,9 @@ export async function handleGetCurrentSession(
           {
             "type": "command",
             "command": "node",
-            "args": ["${extensionRoot}/mcp-server/dist/hooks/session-handler.js"],
+            "args": [
+              "${extensionRoot}/mcp-server/dist/hooks/session-handler.js"
+            ],
             "cwd": "${extensionRoot}",
             "shell": "cmd.exe",
             "name": "Session Handler",
@@ -341,7 +349,9 @@ export async function handleGetCurrentSession(
           {
             "type": "command",
             "command": "node",
-            "args": ["${extensionRoot}/mcp-server/dist/hooks/file-interceptor.js"],
+            "args": [
+              "${extensionRoot}/mcp-server/dist/hooks/file-interceptor.js"
+            ],
             "cwd": "${extensionRoot}",
             "shell": "cmd.exe",
             "name": "File Interceptor",
@@ -357,7 +367,9 @@ export async function handleGetCurrentSession(
           {
             "type": "command",
             "command": "node",
-            "args": ["${extensionRoot}/mcp-server/dist/hooks/file-interceptor.js"],
+            "args": [
+              "${extensionRoot}/mcp-server/dist/hooks/file-interceptor.js"
+            ],
             "cwd": "${extensionRoot}",
             "shell": "cmd.exe",
             "name": "File Interceptor (Write)",
@@ -373,7 +385,9 @@ export async function handleGetCurrentSession(
           {
             "type": "command",
             "command": "node",
-            "args": ["${extensionRoot}/mcp-server/dist/hooks/context-redirector.js"],
+            "args": [
+              "${extensionRoot}/mcp-server/dist/hooks/context-redirector.js"
+            ],
             "cwd": "${extensionRoot}",
             "shell": "cmd.exe",
             "name": "Context Redirector",
@@ -397,23 +411,27 @@ Project paths are converted to safe folder names:
 ## Best Practices
 
 ### 1. Session Isolation
+
 - Always use workspace-aware functions with `projectPath` parameter
 - Never write directly to `.qwen-orchestrator/` root
 - Use `redirect_to_session` for file paths
 
 ### 2. Hook Design
+
 - Keep hooks lightweight and fast
 - Log to session directory for debugging
 - Handle errors gracefully with fallbacks
 - Use async operations for non-blocking hooks
 
 ### 3. MCP Server Structure
+
 - Group related tools together
 - Use consistent naming conventions
 - Provide clear descriptions and schemas
 - Handle edge cases and errors
 
 ### 4. State Management
+
 - Store state in session directories
 - Use JSON for state files (human-readable)
 - Create atomic writes with temp files

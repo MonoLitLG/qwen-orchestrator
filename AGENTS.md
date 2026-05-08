@@ -966,6 +966,7 @@ Like Qwen Code, the orchestrator uses **workspace-based isolation**. Each projec
 1. Run `/orchestrator` command
 2. Workspace directory is created automatically
 3. Sessions are isolated per project folder
+
 ## Completion Requirements
 
 NEVER declare completion without providing ALL of:

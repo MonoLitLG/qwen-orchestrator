@@ -158,10 +158,7 @@ export function writeCurrentSessionId(
 /**
  * Get the session directory path for a given session ID and project path
  */
-export function getSessionDir(
-  sessionId: string,
-  projectPath?: string
-): string {
+export function getSessionDir(sessionId: string, projectPath?: string): string {
   const sessionsDir = projectPath
     ? getWorkspaceSessionsDir(projectPath)
     : getSessionsDir();
@@ -171,9 +168,7 @@ export function getSessionDir(
 /**
  * Get all session directories for a project (or all if no projectPath)
  */
-export async function listSessionDirs(
-  projectPath?: string
-): Promise<string[]> {
+export async function listSessionDirs(projectPath?: string): Promise<string[]> {
   const sessionsDir = projectPath
     ? getWorkspaceSessionsDir(projectPath)
     : getSessionsDir();
@@ -354,7 +349,11 @@ export async function initializeSession(
   const existingSessionId = readCurrentSessionId(projectPath);
 
   // If forceNew and there's an existing session, archive it first
-  if (forceNew && existingSessionId && sessionExists(existingSessionId, projectPath)) {
+  if (
+    forceNew &&
+    existingSessionId &&
+    sessionExists(existingSessionId, projectPath)
+  ) {
     const existingState = getSessionState(existingSessionId, projectPath);
     if (existingState) {
       existingState.active = false;
@@ -367,7 +366,11 @@ export async function initializeSession(
   }
 
   // Create new session if: forceNew, or no existing session, or existing is invalid
-  if (forceNew || !existingSessionId || !sessionExists(existingSessionId, projectPath)) {
+  if (
+    forceNew ||
+    !existingSessionId ||
+    !sessionExists(existingSessionId, projectPath)
+  ) {
     const sessionId = generateSessionId();
     const sessionDirs = createSessionDirectory(sessionId, projectPath);
 
@@ -460,9 +463,7 @@ export async function listSessionFiles(
 /**
  * Check if session isolation is properly configured for a project
  */
-export function checkSessionIsolation(
-  projectPath?: string
-): {
+export function checkSessionIsolation(projectPath?: string): {
   valid: boolean;
   issues: string[];
 } {
@@ -477,7 +478,13 @@ export function checkSessionIsolation(
   }
 
   // Check if current-session file exists
-  if (!existsSync(projectPath ? getWorkspaceCurrentSessionFile(projectPath) : getCurrentSessionFile())) {
+  if (
+    !existsSync(
+      projectPath
+        ? getWorkspaceCurrentSessionFile(projectPath)
+        : getCurrentSessionFile()
+    )
+  ) {
     issues.push('Current session file does not exist');
   }
 

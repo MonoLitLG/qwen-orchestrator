@@ -36,12 +36,14 @@ export function registerSessionTools(server: McpServer) {
     'create_session',
     {
       description:
-        "Create a new isolated session directory for a project and set it as the current session. Each project folder gets its own workspace with isolated sessions.",
+        'Create a new isolated session directory for a project and set it as the current session. Each project folder gets its own workspace with isolated sessions.',
       inputSchema: z.object({
         projectPath: z
           .string()
           .optional()
-          .describe('Project path to associate with this session (uses workspace isolation)'),
+          .describe(
+            'Project path to associate with this session (uses workspace isolation)'
+          ),
         mission: z
           .string()
           .optional()
@@ -57,7 +59,8 @@ export function registerSessionTools(server: McpServer) {
       projectPath?: string;
       mission?: string;
     }) => {
-      const { initializeSession, getWorkspaceDir } = await import('./session-manager.js');
+      const { initializeSession, getWorkspaceDir } =
+        await import('./session-manager.js');
 
       // Use projectPath if provided, otherwise default to orchestrator dir
       const targetPath = projectPath || getCurrentWorkingDirectory();
@@ -109,7 +112,9 @@ export function registerSessionTools(server: McpServer) {
         projectPath: z
           .string()
           .optional()
-          .describe('Project path to check (uses current directory if not provided)'),
+          .describe(
+            'Project path to check (uses current directory if not provided)'
+          ),
       }).shape,
     },
     async ({ projectPath }: { projectPath?: string }) => {
@@ -180,7 +185,13 @@ export function registerSessionTools(server: McpServer) {
           .describe('Project path (uses current directory if not provided)'),
       }).shape,
     },
-    async ({ sessionId, projectPath }: { sessionId: string; projectPath?: string }) => {
+    async ({
+      sessionId,
+      projectPath,
+    }: {
+      sessionId: string;
+      projectPath?: string;
+    }) => {
       const { archiveSession, getSessionDir } =
         await import('./session-manager.js');
 
@@ -225,7 +236,9 @@ export function registerSessionTools(server: McpServer) {
         projectPath: z
           .string()
           .optional()
-          .describe('Optional project path (uses current directory if not provided)'),
+          .describe(
+            'Optional project path (uses current directory if not provided)'
+          ),
       }).shape,
     },
     async ({
@@ -242,7 +255,11 @@ export function registerSessionTools(server: McpServer) {
 
       const targetPath = projectPath || getCurrentWorkingDirectory();
       const sid = sessionId || readCurrentSessionId(targetPath);
-      const sessionAwarePath = getSessionAwarePath(sid || '', filePath, targetPath);
+      const sessionAwarePath = getSessionAwarePath(
+        sid || '',
+        filePath,
+        targetPath
+      );
 
       return {
         content: [
@@ -277,11 +294,14 @@ export function registerSessionTools(server: McpServer) {
         projectPath: z
           .string()
           .optional()
-          .describe('Project path to check (uses current directory if not provided)'),
+          .describe(
+            'Project path to check (uses current directory if not provided)'
+          ),
       }).shape,
     },
     async ({ projectPath }: { projectPath?: string }) => {
-      const { checkSessionIsolation, getWorkspaceDir } = await import('./session-manager.js');
+      const { checkSessionIsolation, getWorkspaceDir } =
+        await import('./session-manager.js');
 
       const targetPath = projectPath || getCurrentWorkingDirectory();
       const result = checkSessionIsolation(targetPath);
