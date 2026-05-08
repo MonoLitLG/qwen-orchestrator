@@ -47,6 +47,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install MCP server dependencies
+        run: cd mcp-server && npm ci
+
       - name: Check TypeScript version
         run: npx tsc --version
 
@@ -67,6 +70,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Install MCP server dependencies
+        run: cd mcp-server && npm ci
 
       - name: Build MCP server
         run: npm run build:mcp
@@ -146,6 +152,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Install MCP server dependencies
+        run: cd mcp-server && npm ci
 
       - name: Build MCP server
         run: npm run build:mcp
