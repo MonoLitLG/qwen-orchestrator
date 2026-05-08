@@ -49,10 +49,6 @@ coverage/
 # Misc artifacts
 nul
 
-# Lock files
-package-lock.json
-pnpm-lock.yaml
-
 # Public assets (usually not committed)
 public/
 
