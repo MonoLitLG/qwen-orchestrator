@@ -11,10 +11,6 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Qwen Code Patterns documentation** - Comprehensive guide to MCP servers, hooks, and session management patterns
 - **QWEN_CODE_PATTERNS.md** - Documentation covering MCP architecture, hook system, and best practices
 
-### Changed
-
-- **GSD_LEARNINGS.md removed - replaced with Qwen Code patterns documentation
-
 ## [0.0.2] - 2025-01-10
 
 ### Added
