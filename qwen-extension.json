@@ -1,8 +1,8 @@
 {
   "name": "qwen-orchestrator",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "displayName": "Qwen Orchestrator — Professional AI Dev Team",
-  "description": "Multi-agent orchestration for Qwen Code. 22 agents, 26 skills (website-redesign, design-system, project-conventions, code-review, anti-pattern + 21 more), 6 commands, multi-page website enforcement, professional color palettes, read-before-write rule, quality gates, convention compliance, N+1 prevention, multi-language support. Session isolation with MCP hooks. By Omar-Obando.",
+  "description": "Multi-agent orchestration for Qwen Code. 22 agents, 26 skills, 6 commands, 11 MCP orchestration tools (claim_task, heartbeat, get_stale_tasks, set_validation_commands, validate_task, report_progress/completion/blockage, log_event, check_dependencies, get_task_state). Single-task focus, heartbeat monitoring, continuation protocol, stale agent detection, delivery validation. Session isolation with MCP hooks. By Omar-Obando.",
   "author": "Omar-Obando",
   "license": "MIT",
   "repository": {
@@ -23,7 +23,13 @@
     "sql-best-practices",
     "security-first",
     "session-isolation",
-    "hooks"
+    "hooks",
+    "heartbeat",
+    "stale-detection",
+    "continuation-protocol",
+    "single-task",
+    "validation",
+    "delivery-check"
   ],
   "mcpServers": {
     "qwen-orchestrator": {

@@ -11,6 +11,7 @@
 import {
   createSessionDirectory,
   initializeSession,
+  type SessionState,
   writeSessionState,
 } from '../session-manager.js';
 
@@ -56,10 +57,10 @@ export async function handleSessionStart(
     const { projectPath, mission } = payload;
 
     // Initialize or create new session
-    const state = initializeSession(projectPath, mission);
+    const state = await initializeSession(projectPath, mission);
 
     // Get session directories
-    const sessionDirs = createSessionDirectory(state.sessionId);
+    const sessionDirs = createSessionDirectory(state.sessionId, projectPath);
 
     // Ensure state is written
     writeSessionState(state.sessionId, {
@@ -67,7 +68,7 @@ export async function handleSessionStart(
       active: true,
       projectPath: state.projectPath ?? undefined,
       mission: state.mission ?? undefined,
-    });
+    }, projectPath);
 
     return {
       success: true,
@@ -81,8 +82,9 @@ export async function handleSessionStart(
         mission: state.mission,
       },
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Session start hook failed:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return {
       success: false,
       sessionId: '',
@@ -97,7 +99,7 @@ export async function handleSessionStart(
         createdAt: new Date().toISOString(),
         active: false,
       },
-      error: error.message || 'Unknown error',
+      error: errorMessage,
     };
   }
 }
@@ -105,15 +107,17 @@ export async function handleSessionStart(
 /**
  * Get the current session info from the hook
  */
-export async function getCurrentSessionInfo(): Promise<{
+export async function getCurrentSessionInfo(
+  projectPath?: string
+): Promise<{
   sessionId: string | null;
   sessionDir: string | null;
-  state: any | null;
+  state: SessionState | null;
 }> {
   const { readCurrentSessionId, getSessionState, getSessionDir } =
     await import('../session-manager.js');
 
-  const sessionId = readCurrentSessionId();
+  const sessionId = readCurrentSessionId(projectPath);
   if (!sessionId) {
     return {
       sessionId: null,
@@ -122,8 +126,8 @@ export async function getCurrentSessionInfo(): Promise<{
     };
   }
 
-  const sessionDir = getSessionDir(sessionId);
-  const state = getSessionState(sessionId);
+  const sessionDir = getSessionDir(sessionId, projectPath);
+  const state = getSessionState(sessionId, projectPath);
 
   return {
     sessionId,

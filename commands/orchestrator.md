@@ -355,6 +355,40 @@ All MCP tool calls are automatically logged to `$SESSION_DIR/events.json`. The C
 - After each agent reports completion, verify with `get_task_state` that status is `"completed"`
 - Check `events.json` periodically for blocked tasks
 - Use `log_event` for all major decisions (tech stack, architecture, scope changes)
+- **Call `get_stale_tasks()` every 3 minutes** to detect stuck agents
+- **Create continuation tasks** when agents stop — NEVER lose progress
+
+#### Single-Task Focus Rule (CRITICAL)
+
+Each delegated agent receives exactly ONE atomic task. Tasks must be scoped to:
+
+- **Single file**: "Implement the login handler in `src/auth/login.ts`"
+- **Single feature**: "Add the password reset endpoint"
+- **Single fix**: "Fix the N+1 query in `src/api/users.ts`"
+
+```
+❌ WRONG: "Implement the entire authentication system (login, register, forgot password, 2FA)"
+✅ RIGHT: Decompose into 4 separate agent calls, each with ONE of those features
+```
+
+#### Heartbeat Enforcement
+
+Agents MUST call `heartbeat(taskId, agent)` every 30-60 seconds. The Commander monitors:
+
+| Check Interval   | What to Check                   | Action on Failure                         |
+| ---------------- | ------------------------------- | ----------------------------------------- |
+| 60s after launch | First heartbeat received        | If none, agent may be stuck — investigate |
+| Every 2 min      | All active tasks have heartbeat | Create continuation task for stale ones   |
+| At phase end     | All tasks completed or blocked  | Abort blocked tasks, create continuations |
+
+#### Continuation Protocol
+
+When an agent stops (detected via `get_stale_tasks`):
+
+1. Read stale task progress: `summary`, `progressPercent`, `filesChanged`
+2. Create new task with `continuesFrom: "<stale-task-id>"`
+3. New agent prompt includes: what was done, what remains, exact resume point
+4. Fresh agent claims continuation task and picks up seamlessly
 
 ---
 
@@ -366,6 +400,67 @@ All MCP tool calls are automatically logged to `$SESSION_DIR/events.json`. The C
 4. **Zero regressions** — no broken tests, no type errors, no lint failures
 5. **Quality Gate** — Code Quality Guard runs ALL framework-specific checks (lint, syntax, type, build). Tasks cannot be set to `status: "completed"` until quality checks pass
 6. **Convention Compliance** — If working on an existing project, verify new code matches existing patterns (imports, naming, directory structure, query style)
+
+---
+
+## Phase 4.5: VALIDATE (MANDATORY for ALL deliverables)
+
+**This phase is a HARD STOP. No deliverable may proceed to DELIVER without passing validation.**
+
+### For Frontend/UI Deliverables
+
+1. **File Existence Check** — EVERY page must have accompanying CSS AND JS:
+
+   ```
+   Commander calls validate_task AFTER each frontend agent reports completion.
+   If validation fails → agent is sent back to fix the issue.
+   ```
+
+2. **Structural Sanity** — Reviewer/QA auto-rejects if:
+   - HTML page has no `<style>` tag AND no external CSS file
+   - Page references a CSS/JS file that doesn't exist
+   - CSS file is empty (0 bytes or only comments)
+   - JS file is empty (0 bytes or only comments)
+   - Page renders as plain unstyled text
+
+3. **Validation Commands Pattern** (Commander MUST set these when delegating frontend tasks):
+
+   ```
+   set_validation_commands({
+     taskId: "<task-id>",
+     commands: [
+       "ls <expected-css-file>",    // CSS MUST exist
+       "ls <expected-js-file>",     // JS MUST exist
+       "<framework-build-command>"  // Build MUST pass
+     ]
+   })
+   ```
+
+4. **Enforcement**: If `validate_task` returns ANY failed command:
+   - DO NOT proceed to Phase 5
+   - Send the agent back with: "Validation failed: [specific failures]. Fix and re-validate."
+   - Repeat until ALL validation commands pass
+
+### For Backend/API Deliverables
+
+1. **Build passes**: `npm run build`, `cargo build`, `go build ./...`, etc.
+2. **Tests pass**: `npm test`, `cargo test`, `go test ./...`, etc.
+3. **No type errors**: `tsc --noEmit` for TypeScript, `mypy` for Python, etc.
+
+### Hard Stop Rule
+
+```
+❌ BANNED:
+- Proceeding to DELIVER when validation has failures
+- Calling report_completion when CSS/JS files are missing
+- Accepting "it should work" without running actual validation commands
+- Skipping validate_task because "the build passed"
+
+✅ REQUIRED:
+- validate_task MUST show ALL PASS before any task moves to DELIVER
+- Commander MUST call validate_task on every frontend task completion
+- If validation fails → agent MUST fix → re-validate → THEN report_completion
+```
 
 ---
 

@@ -1,4 +1,4 @@
-# AGENTS.md
+﻿# AGENTS.md
 
 ## ⚠️ MANDATORY RULE #1: READ BEFORE WRITE
 
@@ -909,6 +909,63 @@ AskUserQuestion({
 
 ---
 
+## Workspace Isolation (Session-Based)
+
+Like Qwen Code, the orchestrator uses **workspace-based isolation**. Each project folder gets its own isolated session space:
+
+```
+.qwen-orchestrator/
+├── workspaces/              # NEW: Per-project workspace directories
+│   ├── <safe-project-path-1>__sessions/
+│   │   └── <session-id>/    # Per-session state for project
+│   │       ├── session-state.json
+│   │       ├── progress/
+│   │       ├── checkpoints/
+│   │       └── docs/
+│   └── ...
+├── archived-sessions/       # Archived completed sessions
+└── current-session          # Active session ID (for orchestrator folder)
+```
+
+### Key Points
+
+- **Each project folder has its own workspace** - Sessions are isolated per project, not shared across folders
+- **Session isolation** - Each session has its own state, progress, and checkpoints
+- **Backward compatible** - Existing sessions continue to work; new projects get workspace isolation
+- **Project path safe naming** - Windows paths: `C:\Users\...` → `C__Users_...`, Unix paths: `/home/...` → `_home_...`, Mac paths: `/Users/...` → `_Users_...`
+
+### MCP Tools for Session Management
+
+| Tool                      | Purpose                                     | When to Use                          |
+| ------------------------- | ------------------------------------------- | ------------------------------------ |
+| `create_session`          | Create new session directory and set active | At start of every `/orchestrator`    |
+| `get_current_session`     | Get current session ID and path             | Verify active session before writes  |
+| `redirect_to_session`     | Get session-aware path for a file           | Before reading/writing session files |
+| `archive_session`         | Archive a completed session                 | When mission is complete             |
+| `check_session_isolation` | Verify session isolation configuration      | Debugging session issues             |
+
+### Session Lifecycle
+
+1. **Start**: `/orchestrator` command triggers `create_session`
+2. **Workspace created**: `.qwen-orchestrator/workspaces/<safe-project-path>/sessions/`
+3. **Session state**: Stored in `session-state.json` with metadata
+4. **Progress tracking**: Mission snapshots stored in `progress/`
+5. **Checkpoints**: State snapshots for recovery stored in `checkpoints/`
+6. **Archive**: Completed sessions moved to `archived-sessions/`
+
+### Migration Guide
+
+#### For Existing Users
+
+- **No action required** - Existing sessions continue to work
+- **New projects** - Automatically get workspace isolation
+- **Legacy sessions** - Can be archived or migrated manually
+
+#### For New Projects
+
+1. Run `/orchestrator` command
+2. Workspace directory is created automatically
+3. Sessions are isolated per project folder
 ## Completion Requirements
 
 NEVER declare completion without providing ALL of:

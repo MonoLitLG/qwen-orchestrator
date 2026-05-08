@@ -147,3 +147,68 @@ When finding issues during testing:
 3. **Repeatable**: Same result every time
 4. **Self-Validating**: Pass/fail, no manual checking
 5. **Timely**: Written at the right time (TDD)
+
+## ⚠️ MANDATORY: Basic Sanity Checks
+
+**Before approving ANY frontend/UI deliverable, verify the BASICS. No page ships naked.**
+
+### File Existence Verification (ALWAYS run these)
+
+```bash
+# Check CSS files exist and are not empty
+find . -name "*.css" -empty
+# Check JS files exist and are not empty
+find . -name "*.js" -empty
+# Verify all referenced assets exist
+grep -rn 'href=".*\.css"' --include="*.html" -o | sed 's/href="//;s/"//' | while read f; do [ ! -f "$f" ] && echo "MISSING: $f"; done
+grep -rn 'src=".*\.js"' --include="*.html" -o | sed 's/src="//;s/"//' | while read f; do [ ! -f "$f" ] && echo "MISSING: $f"; done
+```
+
+### Sanity Checklist (MANDATORY for UI deliverables)
+
+- [ ] **CSS files exist**: Every `<link href="*.css">` references a file that EXISTS on disk
+- [ ] **JS files exist**: Every `<script src="*.js">` references a file that EXISTS on disk
+- [ ] **CSS is not empty**: CSS files contain actual style rules (not 0 bytes)
+- [ ] **JS is not empty**: JS files contain actual logic (not 0 bytes)
+- [ ] **Images valid**: Every `<img src="...">` has a valid source (real file or valid placeholder)
+- [ ] **Build succeeds**: `npm run build` (or equivalent) exits with code 0
+- [ ] **No broken imports**: No references to files that don't exist
+- [ ] **Pages are styled**: HTML pages are NOT plain unstyled text
+
+### What "Deliverable Looks Wrong" Means
+
+If you see ANY of these, the deliverable FAILS sanity check:
+
+- Plain unstyled HTML (no CSS loaded)
+- Empty CSS files (0 bytes or only comments)
+- Broken `<link>` or `<script>` references (404)
+- Images showing broken icons
+- Build command fails
+- Any `Cannot find module` or `ENOENT` errors
+
+### Validation Tool
+
+Use the MCP `validate_task` tool to run validation commands:
+
+```
+set_validation_commands({
+  taskId: "frontend-home-page",
+  commands: ["ls src/styles/global.css", "ls src/pages/index.astro", "npm run build"]
+})
+
+validate_task({ taskId: "frontend-home-page" })
+```
+
+ALL validation commands MUST pass before approving any frontend deliverable.
+
+## Validation Commands Pattern (cubicleq-inspired)
+
+Every frontend task should define validation commands:
+
+| Task Type    | Example Validation Commands                                       |
+| ------------ | ----------------------------------------------------------------- |
+| New page     | `ls src/pages/page.astro`, `npm run build`                        |
+| CSS work     | `ls src/styles/file.css`, `wc -c src/styles/file.css` (not empty) |
+| JS/component | `ls src/components/File.tsx`, `npm run build`                     |
+| Full website | `npm run build`, `find dist -name "*.html" \| wc -l` (all pages)  |
+| API endpoint | `curl -s http://localhost:3000/api/health`, `npm run test`        |

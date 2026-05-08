@@ -505,6 +505,116 @@ Before reporting task complete:
 - [ ] Lighthouse Accessibility score ≥ 95
 - [ ] Bundle size within budget (no chunk > 50KB)
 
+## ⚠️ MANDATORY: Self-Validation Before Delivery
+
+**BEFORE calling report_completion, you MUST verify your deliverables are complete. No naked pages.**
+
+### Delivery Checklist (EVERY frontend task)
+
+Run these checks yourself BEFORE reporting completion:
+
+```bash
+# 1. Verify all files you reference actually exist
+ls -la src/styles/global.css
+ls -la src/scripts/app.js
+# Run for EVERY file you reference in <link>, <script>, <img> tags
+
+# 2. Verify CSS is not empty
+wc -c src/styles/*.css  # Must be > 0 bytes
+
+# 3. Verify JS is not empty
+wc -c src/scripts/*.js  # Must be > 0 bytes
+
+# 4. BUILD THE PROJECT — this catches broken imports
+npm run build   # or: astro build, npx next build, etc.
+
+# 5. If build fails, FIX IT before reporting completion
+```
+
+### Self-Validation Steps (MANDATORY)
+
+1. **List your files**: Use `ls` or `Glob` to confirm every file you created exists
+2. **Check file contents**: Use `ReadFile` to confirm CSS/JS files have actual content (not empty)
+3. **Run build**: Execute the build command and verify it succeeds
+4. **Fix broken refs**: If build says "file not found" — CREATE the missing file or FIX the reference
+5. **Re-verify**: After fixes, rebuild to confirm zero errors
+
+### What NOT To Deliver
+
+```
+❌ NEVER deliver:
+- An HTML page that links to a CSS file you didn't create
+- An HTML page that references a JS file you didn't create
+- Empty CSS files (0 bytes of actual styles)
+- Empty JS files (0 bytes of actual logic)
+- <img> tags pointing to non-existent files without alt text fallback
+- Pages that look like plain unstyled HTML text
+
+✅ ALWAYS deliver:
+- Complete file sets (HTML + CSS + JS + assets, all present)
+- Non-empty CSS with actual design rules
+- Non-empty JS with actual interactivity logic
+- Build that passes with zero errors
+```
+
+### ⛔ HARD STOP: Self-Validation Before Completion
+
+**You CANNOT call `report_completion` until ALL of the following pass. This is not optional.**
+
+```
+STOP — Run these checks IN ORDER. If ANY fails, STOP and FIX before proceeding.
+
+Step 1: FILE EXISTENCE
+   - ls <your-css-file>       → MUST exist
+   - ls <your-js-file>        → MUST exist
+   - ls <your-page-file>      → MUST exist
+   If MISSING → CREATE the file, do NOT skip it.
+
+Step 2: FILE CONTENT CHECK
+   - cat <css-file> | wc -c   → MUST be > 100 bytes (not empty/comments-only)
+   - cat <js-file> | wc -c    → MUST be > 50 bytes (not empty/comments-only)
+   If EMPTY → ADD actual styles/logic, do NOT deliver an empty file.
+
+Step 3: BUILD
+   - npm run build (or framework equivalent) → MUST pass with 0 errors
+   If FAILS → FIX the errors and rebuild.
+
+Step 4: MCP VALIDATION
+   - Call set_validation_commands({ taskId, commands: [...] })
+   - Call validate_task({ taskId })
+   - ALL validation commands MUST show exitCode: 0
+   If ANY FAILS → FIX and re-validate.
+
+ONLY AFTER Steps 1-4 ALL PASS → call report_completion.
+```
+
+**If you call `report_completion` with missing CSS, missing JS, or empty files, you have FAILED your task.**
+
+### MCP Validation Tools
+
+Use these MCP tools to set up and run validation:
+
+```
+// Step 1: Define what "done" looks like
+set_validation_commands({
+  taskId: "home-page",
+  commands: [
+    "ls src/pages/index.astro",
+    "ls src/styles/global.css",
+    "npm run build"
+  ]
+})
+
+// Step 2: Run validation
+validate_task({ taskId: "home-page" })
+
+// Step 3: Check results — ALL must show exitCode: 0
+// If any fail → FIX → re-run validate_task
+// Only when ALL pass → report_completion
+```
+
+**ALL validation commands MUST pass before calling `report_completion`. NO EXCEPTIONS.**
+
 ## Delivery Format
 
 When reporting completion:

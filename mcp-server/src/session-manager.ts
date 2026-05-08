@@ -3,6 +3,7 @@
  *
  * Provides session management utilities for the Qwen Orchestrator.
  * Ensures each session has isolated state in .qwen-orchestrator/sessions/<session-id>/
+ * Supports workspace-based isolation: each project folder has its own workspace.
  *
  * @author Omar-Obando
  * @license MIT
@@ -15,14 +16,33 @@ import {
   statSync,
   writeFileSync,
 } from 'fs';
-import { dirname, join } from 'path';
+import { dirname, join, relative } from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Base directory for orchestrator state
+// Base directory for orchestrator state (extension installation folder)
 const ORCHESTRATOR_DIR = join(__dirname, '..', '..', '..');
+
+/**
+ * Get workspace directory for a given project path
+ * Each project folder gets its own workspace directory
+ */
+export function getWorkspaceDir(projectPath: string): string {
+  // Normalize the project path to create a unique workspace folder name
+  // Use relative path from orchestrator dir, or absolute path if outside
+  try {
+    const relPath = relative(ORCHESTRATOR_DIR, projectPath);
+    // Replace path separators with underscores to create a safe folder name
+    const safeName = relPath.replace(/[\\/]+/g, '__');
+    return join(ORCHESTRATOR_DIR, '.qwen-orchestrator', 'workspaces', safeName);
+  } catch {
+    // If relative path fails (e.g., different drives on Windows), use absolute path
+    const safeName = projectPath.replace(/[\\/]+/g, '__').replace(/[:]+/g, '-');
+    return join(ORCHESTRATOR_DIR, '.qwen-orchestrator', 'workspaces', safeName);
+  }
+}
 
 /**
  * Session directory structure
@@ -74,6 +94,20 @@ export function getArchivedSessionsDir(): string {
 }
 
 /**
+ * Get the workspace sessions directory for a given project path
+ */
+export function getWorkspaceSessionsDir(projectPath: string): string {
+  return join(getWorkspaceDir(projectPath), 'sessions');
+}
+
+/**
+ * Get the workspace current session file for a given project path
+ */
+export function getWorkspaceCurrentSessionFile(projectPath: string): string {
+  return join(getWorkspaceDir(projectPath), 'current-session');
+}
+
+/**
  * Generate a unique session ID
  * Format: YYYY-MM-DDTHH-MM-SS-<random>
  */
@@ -84,11 +118,13 @@ export function generateSessionId(): string {
 }
 
 /**
- * Read the current session ID from file
+ * Read the current session ID from workspace file
  * Returns null if no current session exists
  */
-export function readCurrentSessionId(): string | null {
-  const currentSessionFile = getCurrentSessionFile();
+export function readCurrentSessionId(projectPath?: string): string | null {
+  const currentSessionFile = projectPath
+    ? getWorkspaceCurrentSessionFile(projectPath)
+    : getCurrentSessionFile();
   if (!existsSync(currentSessionFile)) {
     return null;
   }
@@ -101,10 +137,15 @@ export function readCurrentSessionId(): string | null {
 }
 
 /**
- * Write the current session ID to file
+ * Write the current session ID to workspace file
  */
-export function writeCurrentSessionId(sessionId: string): void {
-  const currentSessionFile = getCurrentSessionFile();
+export function writeCurrentSessionId(
+  sessionId: string,
+  projectPath?: string
+): void {
+  const currentSessionFile = projectPath
+    ? getWorkspaceCurrentSessionFile(projectPath)
+    : getCurrentSessionFile();
   const dir = dirname(currentSessionFile);
 
   if (!existsSync(dir)) {
@@ -115,17 +156,27 @@ export function writeCurrentSessionId(sessionId: string): void {
 }
 
 /**
- * Get the session directory path for a given session ID
+ * Get the session directory path for a given session ID and project path
  */
-export function getSessionDir(sessionId: string): string {
-  return join(getSessionsDir(), sessionId);
+export function getSessionDir(
+  sessionId: string,
+  projectPath?: string
+): string {
+  const sessionsDir = projectPath
+    ? getWorkspaceSessionsDir(projectPath)
+    : getSessionsDir();
+  return join(sessionsDir, sessionId);
 }
 
 /**
- * Get all session directories
+ * Get all session directories for a project (or all if no projectPath)
  */
-export async function listSessionDirs(): Promise<string[]> {
-  const sessionsDir = getSessionsDir();
+export async function listSessionDirs(
+  projectPath?: string
+): Promise<string[]> {
+  const sessionsDir = projectPath
+    ? getWorkspaceSessionsDir(projectPath)
+    : getSessionsDir();
   if (!existsSync(sessionsDir)) {
     return [];
   }
@@ -157,8 +208,11 @@ export async function listSessionDirs(): Promise<string[]> {
 /**
  * Create a new session directory structure
  */
-export function createSessionDirectory(sessionId: string): SessionDirectories {
-  const sessionDir = getSessionDir(sessionId);
+export function createSessionDirectory(
+  sessionId: string,
+  projectPath?: string
+): SessionDirectories {
+  const sessionDir = getSessionDir(sessionId, projectPath);
   const progressDir = join(sessionDir, 'progress');
   const checkpointsDir = join(sessionDir, 'checkpoints');
   const docsDir = join(sessionDir, 'docs');
@@ -178,17 +232,23 @@ export function createSessionDirectory(sessionId: string): SessionDirectories {
 }
 
 /**
- * Check if a session directory exists
+ * Check if a session directory exists for a project
  */
-export function sessionExists(sessionId: string): boolean {
-  return existsSync(getSessionDir(sessionId));
+export function sessionExists(
+  sessionId: string,
+  projectPath?: string
+): boolean {
+  return existsSync(getSessionDir(sessionId, projectPath));
 }
 
 /**
  * Get session state from session directory
  */
-export function getSessionState(sessionId: string): SessionState | null {
-  const sessionDir = getSessionDir(sessionId);
+export function getSessionState(
+  sessionId: string,
+  projectPath?: string
+): SessionState | null {
+  const sessionDir = getSessionDir(sessionId, projectPath);
   const stateFile = join(sessionDir, 'session-state.json');
 
   if (!existsSync(stateFile)) {
@@ -209,9 +269,10 @@ export function getSessionState(sessionId: string): SessionState | null {
  */
 export function writeSessionState(
   sessionId: string,
-  state: SessionState
+  state: SessionState,
+  projectPath?: string
 ): void {
-  const sessionDir = getSessionDir(sessionId);
+  const sessionDir = getSessionDir(sessionId, projectPath);
   const stateFile = join(sessionDir, 'session-state.json');
 
   writeFileSync(stateFile, JSON.stringify(state, null, 2), 'utf8');
@@ -220,8 +281,11 @@ export function writeSessionState(
 /**
  * Archive a session
  */
-export function archiveSession(sessionId: string): boolean {
-  const sessionDir = getSessionDir(sessionId);
+export async function archiveSession(
+  sessionId: string,
+  projectPath?: string
+): Promise<boolean> {
+  const sessionDir = getSessionDir(sessionId, projectPath);
   const archivedDir = getArchivedSessionsDir();
   const archivedSessionDir = join(archivedDir, sessionId);
 
@@ -234,18 +298,16 @@ export function archiveSession(sessionId: string): boolean {
 
   // Move session directory to archived
   try {
-    // Use fs.rename for atomic move within same filesystem
-    // Fall back to copy+delete if rename fails (different filesystems)
-    import('fs').then(({ rename }) => {
-      rename(sessionDir, archivedSessionDir, (err) => {
-        if (err) {
-          // Fall back to copy+delete
-          console.warn('Rename failed, using copy+delete fallback');
-          // Implementation would continue here
-        }
-      });
+    const { rename, cpSync, rmSync } = await import('fs');
+    rename(sessionDir, archivedSessionDir, (err) => {
+      if (err) {
+        // Fall back to copy+delete
+        console.warn('Rename failed, using copy+delete fallback');
+        // Use cpSync for synchronous copy
+        cpSync(sessionDir, archivedSessionDir, { recursive: true });
+        rmSync(sessionDir, { recursive: true, force: true });
+      }
     });
-
     return true;
   } catch (error) {
     console.error('Failed to archive session:', error);
@@ -256,17 +318,19 @@ export function archiveSession(sessionId: string): boolean {
 /**
  * Delete a session directory
  */
-export function deleteSession(sessionId: string): boolean {
-  const sessionDir = getSessionDir(sessionId);
+export async function deleteSession(
+  sessionId: string,
+  projectPath?: string
+): Promise<boolean> {
+  const sessionDir = getSessionDir(sessionId, projectPath);
 
   if (!existsSync(sessionDir)) {
     return false;
   }
 
   try {
-    import('fs').then(({ rmSync }) => {
-      rmSync(sessionDir, { recursive: true, force: true });
-    });
+    const { rmSync } = await import('fs');
+    rmSync(sessionDir, { recursive: true, force: true });
     return true;
   } catch (error) {
     console.error('Failed to delete session:', error);
@@ -275,19 +339,37 @@ export function deleteSession(sessionId: string): boolean {
 }
 
 /**
- * Initialize or retrieve the current session
- * If no current session exists, creates a new one
+ * Initialize or retrieve the current session.
+ * Each project folder gets its own isolated session space.
+ *
+ * @param projectPath - Project path to associate with this session (uses workspace isolation)
+ * @param mission - Optional mission description for the session
+ * @param forceNew - When true, ALWAYS creates a new session and archives the previous one
  */
-export function initializeSession(
-  projectPath?: string,
-  mission?: string
-): SessionState {
-  let sessionId = readCurrentSessionId();
+export async function initializeSession(
+  projectPath: string = ORCHESTRATOR_DIR,
+  mission?: string,
+  forceNew: boolean = false
+): Promise<SessionState> {
+  const existingSessionId = readCurrentSessionId(projectPath);
 
-  // If no current session or invalid session, create new one
-  if (!sessionId || !sessionExists(sessionId)) {
-    sessionId = generateSessionId();
-    const sessionDirs = createSessionDirectory(sessionId);
+  // If forceNew and there's an existing session, archive it first
+  if (forceNew && existingSessionId && sessionExists(existingSessionId, projectPath)) {
+    const existingState = getSessionState(existingSessionId, projectPath);
+    if (existingState) {
+      existingState.active = false;
+      writeSessionState(existingSessionId, existingState, projectPath);
+    }
+    await archiveSession(existingSessionId, projectPath);
+    console.warn(
+      `Archived previous session: ${existingSessionId} (mission: ${existingState?.mission ?? 'unknown'})`
+    );
+  }
+
+  // Create new session if: forceNew, or no existing session, or existing is invalid
+  if (forceNew || !existingSessionId || !sessionExists(existingSessionId, projectPath)) {
+    const sessionId = generateSessionId();
+    const sessionDirs = createSessionDirectory(sessionId, projectPath);
 
     const state: SessionState = {
       sessionId,
@@ -297,16 +379,20 @@ export function initializeSession(
       mission,
     };
 
-    writeSessionState(sessionId, state);
-    writeCurrentSessionId(sessionId);
+    writeSessionState(sessionId, state, projectPath);
+    writeCurrentSessionId(sessionId, projectPath);
 
     console.warn(`Created new session: ${sessionId}`);
     console.warn(`Session directory: ${sessionDirs.root}`);
+    console.warn(`Workspace directory: ${getWorkspaceDir(projectPath)}`);
+
+    return state;
   }
 
-  const state = getSessionState(sessionId);
+  // Reuse existing session (only when forceNew is false)
+  const state = getSessionState(existingSessionId, projectPath);
   if (!state) {
-    throw new Error(`Session ${sessionId} has no state file`);
+    throw new Error(`Session ${existingSessionId} has no state file`);
   }
 
   return state;
@@ -318,9 +404,10 @@ export function initializeSession(
  */
 export function getSessionAwarePath(
   sessionId: string,
-  filePath: string
+  filePath: string,
+  projectPath?: string
 ): string {
-  const sessionDir = getSessionDir(sessionId);
+  const sessionDir = getSessionDir(sessionId, projectPath);
   const sessionFilePath = join(sessionDir, filePath);
 
   // Check if file exists in session directory
@@ -339,10 +426,13 @@ export function getSessionAwarePath(
 }
 
 /**
- * Get all session files for a given session
+ * Get all session files for a given session and project
  */
-export async function listSessionFiles(sessionId: string): Promise<string[]> {
-  const sessionDir = getSessionDir(sessionId);
+export async function listSessionFiles(
+  sessionId: string,
+  projectPath?: string
+): Promise<string[]> {
+  const sessionDir = getSessionDir(sessionId, projectPath);
   if (!existsSync(sessionDir)) {
     return [];
   }
@@ -368,14 +458,18 @@ export async function listSessionFiles(sessionId: string): Promise<string[]> {
 }
 
 /**
- * Check if session isolation is properly configured
+ * Check if session isolation is properly configured for a project
  */
-export function checkSessionIsolation(): {
+export function checkSessionIsolation(
+  projectPath?: string
+): {
   valid: boolean;
   issues: string[];
 } {
   const issues: string[] = [];
-  const sessionsDir = getSessionsDir();
+  const sessionsDir = projectPath
+    ? getWorkspaceSessionsDir(projectPath)
+    : getSessionsDir();
 
   // Check if sessions directory exists
   if (!existsSync(sessionsDir)) {
@@ -383,7 +477,7 @@ export function checkSessionIsolation(): {
   }
 
   // Check if current-session file exists
-  if (!existsSync(getCurrentSessionFile())) {
+  if (!existsSync(projectPath ? getWorkspaceCurrentSessionFile(projectPath) : getCurrentSessionFile())) {
     issues.push('Current session file does not exist');
   }
 

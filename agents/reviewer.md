@@ -74,6 +74,40 @@ Verify directly from files:
 
 ## Review Protocol
 
+### Structural Sanity Check (MANDATORY for UI/Frontend deliverables)
+
+**Before ANY code review of frontend work, verify the BASICS:**
+
+```bash
+# 1. Check referenced files exist
+# For every <link href="X"> in HTML → ls X must succeed
+# For every <script src="X"> in HTML → ls X must succeed
+
+# 2. Check files are not empty
+find . -name "*.css" -empty   # Should return nothing
+find . -name "*.js" -empty    # Should return nothing
+
+# 3. Run the build
+npm run build   # Must exit 0
+```
+
+**Auto-REJECT if ANY of:**
+
+- CSS file referenced in HTML but doesn't exist on disk
+- JS file referenced in HTML but doesn't exist on disk
+- CSS/JS file exists but is empty (0 bytes of actual content)
+- Build command fails with any error
+- HTML page is completely unstyled (no `<style>` or `<link>` to CSS)
+- `<img>` tags with broken `src` (file doesn't exist and no placeholder)
+
+Use the MCP `validate_task` tool to run these checks:
+
+```
+validate_task({ taskId: "frontend-home-page" })
+```
+
+If validation fails, REJECT the task and create a sync issue describing exactly which files are missing or empty.
+
 ### Code Review Checklist
 
 - [ ] **Correctness**: Does it do what it claims?

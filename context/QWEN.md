@@ -1,4 +1,4 @@
-# Qwen Orchestrator — Development Best Practices (v0.0.1)
+# Qwen Orchestrator — Development Best Practices (v0.0.3)
 
 This document is injected into every Qwen Orchestrator session. It provides the foundational knowledge and rules that guide all 22 agents.
 
@@ -277,27 +277,38 @@ The Qwen Orchestrator uses MCP (Model Context Protocol) hooks to automatically m
 | `archive_session`         | Archive a completed session                 | When mission is complete             |
 | `check_session_isolation` | Verify session isolation configuration      | Debugging session issues             |
 
-### MCP Tools for Task Orchestration (NEW — v0.0.2)
+### MCP Tools for Task Orchestration (v0.0.3)
 
-Cubicleq-inspired tools for structured task reporting, state machine management, and audit logging.
+Cubicleq-inspired tools for structured task reporting, state machine management, heartbeat monitoring, and audit logging.
 
-**Task State Machine**: `pending → in_progress → completed | blocked → in_progress | failed`
+**Task State Machine**: `pending → claimed → in_progress → completed | blocked → in_progress | failed`
+
+**Timeout Constants**:
+
+- `HEARTBEAT_STALE_TIMEOUT`: 7 minutes — must exceed max 5min shell timeout
+- `LAUNCH_SILENCE_TIMEOUT`: 90 seconds — agent stuck if no initial heartbeat
+- `MCP_TOOL_TIMEOUT`: 15 minutes — max time for any MCP tool call
 
 **State Files** (per session in `$SESSION_DIR/`):
 
-- `tasks.json` — Array of task records with status, agent, timestamps
+- `tasks.json` — Array of task records with status, agent, timestamps, claimedBy, continuesFrom
 - `events.json` — Append-only audit trail of all agent actions
 
-| Tool                 | Purpose                                       | Required Params                |
-| -------------------- | --------------------------------------------- | ------------------------------ |
-| `report_progress`    | Heartbeat — task started or milestone reached | taskId, agent, summary         |
-| `report_completion`  | Task done with files changed + test results   | taskId, agent, summary         |
-| `report_blockage`    | Task stuck, needs Commander intervention      | taskId, agent, reason          |
-| `log_event`          | Audit trail for decisions, scope changes      | agent, event_type, description |
-| `check_dependencies` | Validate task graph (cycles + missing refs)   | tasks[] with id + dependsOn    |
-| `get_task_state`     | Read task state(s) with computed durations    | taskId (optional)              |
+| Tool                      | Purpose                                      | Required Params                |
+| ------------------------- | -------------------------------------------- | ------------------------------ |
+| `claim_task`              | Atomically claim a pending task              | taskId, agent                  |
+| `heartbeat`               | Keep-alive signal (every 30-60s)             | taskId, agent, message?        |
+| `report_progress`         | Task started or milestone reached            | taskId, agent, summary         |
+| `report_completion`       | Task done with files changed + test results  | taskId, agent, summary         |
+| `report_blockage`         | Task stuck, needs Commander intervention     | taskId, agent, reason          |
+| `log_event`               | Audit trail for decisions, scope changes     | agent, event_type, description |
+| `check_dependencies`      | Validate task graph (cycles + missing refs)  | tasks[] with id + dependsOn    |
+| `get_task_state`          | Read task state(s) with computed durations   | taskId (optional)              |
+| `get_stale_tasks`         | Find tasks with no heartbeat (stale agents)  | staleTimeoutMs?                |
+| `set_validation_commands` | Define shell commands to verify deliverables | taskId, commands[]             |
+| `validate_task`           | Run validation commands, store results       | taskId                         |
 
-**Usage**: Agents MUST call `report_progress` when starting, `report_completion` when done, `report_blockage` when stuck, and `log_event` for all major decisions.
+**Usage**: Agents MUST call `claim_task` before starting, `heartbeat` every 30-60s, `report_progress` at milestones, `report_completion` when done, `report_blockage` when stuck. Commander MUST call `get_stale_tasks` every 3 minutes to detect stuck agents. Frontend agents MUST call `set_validation_commands` before work and `validate_task` BEFORE `report_completion` — no naked deliverables.
 
 ### Session Directory Structure
 

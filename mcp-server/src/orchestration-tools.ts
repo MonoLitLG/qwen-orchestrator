@@ -2,21 +2,29 @@
  * Orchestration Tools for MCP Server
  *
  * Provides cubicleq-inspired orchestration tools via the Model Context Protocol.
- * Tools: report_progress, report_completion, report_blockage,
- *        log_event, check_dependencies, get_task_state
+ * Tools: claim_task, heartbeat, report_progress, report_completion,
+ *        report_blockage, log_event, check_dependencies, get_task_state,
+ *        get_stale_tasks, set_validation_commands, validate_task
  *
- * Task State Machine: pending → in_progress → completed | blocked | failed
+ * Task State Machine: pending → claimed → in_progress → completed | blocked | failed
  *   - blocked → in_progress (unblocked)
  *   - failed is terminal
+ *   - claimed is atomic — only one agent can claim a task
  *
  * State files per session:
  *   $SESSION_DIR/tasks.json   — array of task objects
  *   $SESSION_DIR/events.json  — append-only event log
  *
+ * Timeout constants (inspired by cubicleq, tuned for 5-min shell operations):
+ *   - HEARTBEAT_STALE_TIMEOUT: 7 minutes — must exceed max shell timeout (5min) + buffer
+ *   - LAUNCH_SILENCE_TIMEOUT: 90 seconds — agent considered stuck if no initial heartbeat
+ *   - MCP_TOOL_TIMEOUT: 15 minutes — must exceed HEARTBEAT_STALE_TIMEOUT
+ *
  * @author Omar-Obando
  * @license MIT
  */
 
+import { execSync } from 'child_process';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { z } from 'zod';
@@ -24,17 +32,40 @@ import { z } from 'zod';
 import { getSessionDir, readCurrentSessionId } from './session-manager.js';
 
 // ---------------------------------------------------------------------------
+// Timeout Constants (cubicleq-inspired)
+// ---------------------------------------------------------------------------
+
+/** How long before a task with no heartbeat is considered stale (7 minutes — must exceed max shell timeout of 5min) */
+export const HEARTBEAT_STALE_TIMEOUT_MS = 7 * 60 * 1000;
+
+/** How long before an agent that hasn't sent initial heartbeat is considered stuck (90 seconds) */
+export const LAUNCH_SILENCE_TIMEOUT_MS = 90 * 1000;
+
+/** Maximum time for any MCP tool call (15 minutes — must exceed HEARTBEAT_STALE_TIMEOUT) */
+export const MCP_TOOL_TIMEOUT_MS = 15 * 60 * 1000;
+
+// ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
 /** Valid states in the task state machine */
-type TaskState = 'pending' | 'in_progress' | 'completed' | 'blocked' | 'failed';
+type TaskState =
+  | 'pending'
+  | 'claimed'
+  | 'in_progress'
+  | 'completed'
+  | 'blocked'
+  | 'failed';
 
 /** Task record stored in tasks.json */
 interface TaskRecord {
   taskId: string;
   status: TaskState;
   agent: string;
+  /** Agent that claimed the task (atomic ownership) */
+  claimedBy: string | null;
+  /** UTC timestamp when the task was claimed */
+  claimedAt: string | null;
   summary: string;
   progressPercent: number;
   createdAt: string;
@@ -45,6 +76,19 @@ interface TaskRecord {
   blockedAt: string | null;
   blockReason: string | null;
   suggestedFix: string | null;
+  /** For continuation: the previous task ID this continues from */
+  continuesFrom: string | null;
+  /** Progress notes left by the previous agent for continuation */
+  handoffNotes: string | null;
+  /** Shell commands to run after task completion to validate deliverables */
+  validationCommands: string[];
+  /** Results of running validationCommands: { command, exitCode, stdout, stderr } */
+  validationResults: Array<{
+    command: string;
+    exitCode: number;
+    stdout: string;
+    stderr: string;
+  }> | null;
 }
 
 /** Event record stored in events.json */
@@ -125,6 +169,8 @@ function findOrCreateTask(
     taskId,
     status: 'pending',
     agent: '',
+    claimedBy: null,
+    claimedAt: null,
     summary: '',
     progressPercent: 0,
     createdAt: now,
@@ -135,6 +181,10 @@ function findOrCreateTask(
     blockedAt: null,
     blockReason: null,
     suggestedFix: null,
+    continuesFrom: null,
+    handoffNotes: null,
+    validationCommands: [],
+    validationResults: null,
   };
   tasks.push(created);
   return { task: created, created: true };
@@ -570,6 +620,382 @@ export function registerOrchestrationTools(server: any): void {
         success: true,
         taskCount: tasks.length,
         tasks: allTasks,
+      });
+    }
+  );
+
+  // =========================================================================
+  // Tool 7: claim_task — Atomically claim a pending task
+  // =========================================================================
+  server.tool(
+    'claim_task',
+    `Atomically claim a pending task for an agent. Only one agent can claim a given task. ` +
+      `Sets status to 'claimed' and records the claiming agent and timestamp. ` +
+      `Returns the full task record with computed fields on success, or an error if already claimed.`,
+    {
+      taskId: z.string().describe('ID of the task to claim'),
+      agent: z.string().describe('Name of the agent claiming this task'),
+    },
+    async ({ taskId, agent }: { taskId: string; agent: string }) => {
+      const sessionResult = requireSession();
+      if ('error' in sessionResult) return sessionResult.error;
+
+      const { sessionDir } = sessionResult;
+      const tasks = readTasks(sessionDir);
+      const task = tasks.find((t) => t.taskId === taskId);
+
+      if (!task) {
+        return makeResult({
+          success: false,
+          error: `Task ${taskId} not found`,
+        });
+      }
+
+      if (task.status !== 'pending') {
+        return makeResult({
+          success: false,
+          error: `Task ${taskId} is '${task.status}', not 'pending'. Only pending tasks can be claimed.`,
+          currentStatus: task.status,
+          claimedBy: task.claimedBy,
+        });
+      }
+
+      // Atomic claim
+      task.status = 'claimed';
+      task.claimedBy = agent;
+      task.claimedAt = new Date().toISOString();
+      task.lastHeartbeat = new Date().toISOString();
+
+      writeTasks(sessionDir, tasks);
+      appendEvent(sessionDir, {
+        timestamp: new Date().toISOString(),
+        agent,
+        eventType: 'task_claimed',
+        description: `Task ${taskId} claimed by ${agent}`,
+        metadata: { taskId },
+      });
+
+      return makeResult({
+        success: true,
+        task,
+        computed: computeFields(task),
+        message: `Task ${taskId} claimed by ${agent}. You MUST call heartbeat periodically and report_progress when starting work.`,
+      });
+    }
+  );
+
+  // =========================================================================
+  // Tool 8: heartbeat — Lightweight keep-alive signal
+  // =========================================================================
+  server.tool(
+    'heartbeat',
+    `Send a lightweight heartbeat to signal the agent is still alive and working. ` +
+      `Call this every 30-60 seconds during long-running operations to prevent being marked as stale. ` +
+      `If no heartbeat is received within ${HEARTBEAT_STALE_TIMEOUT_MS / 1000}s, the task is considered stale. ` +
+      `Optionally include a brief status message.`,
+    {
+      taskId: z.string().describe('ID of the task to send heartbeat for'),
+      agent: z.string().describe('Name of the agent sending the heartbeat'),
+      message: z
+        .string()
+        .optional()
+        .describe(
+          'Optional brief status message (e.g., "still analyzing file", "writing tests")'
+        ),
+    },
+    async ({
+      taskId,
+      agent,
+      message,
+    }: {
+      taskId: string;
+      agent: string;
+      message?: string;
+    }) => {
+      const sessionResult = requireSession();
+      if ('error' in sessionResult) return sessionResult.error;
+
+      const { sessionDir } = sessionResult;
+      const tasks = readTasks(sessionDir);
+      const task = tasks.find((t) => t.taskId === taskId);
+
+      if (!task) {
+        return makeResult({
+          success: false,
+          error: `Task ${taskId} not found`,
+        });
+      }
+
+      // Verify the claiming agent matches
+      if (task.claimedBy && task.claimedBy !== agent) {
+        return makeResult({
+          success: false,
+          error: `Task ${taskId} is claimed by '${task.claimedBy}', not '${agent}'. Only the claiming agent can heartbeat.`,
+        });
+      }
+
+      // Update heartbeat timestamp
+      task.lastHeartbeat = new Date().toISOString();
+      if (message) {
+        task.summary = message;
+      }
+
+      // If task was blocked, unblock it on heartbeat
+      if (task.status === 'blocked') {
+        task.status = 'in_progress';
+        task.blockedAt = null;
+      }
+
+      // If task was claimed but not yet in_progress, promote it
+      if (task.status === 'claimed') {
+        task.status = 'in_progress';
+      }
+
+      writeTasks(sessionDir, tasks);
+
+      // Lightweight event log for audit trail
+      appendEvent(sessionDir, {
+        timestamp: new Date().toISOString(),
+        agent,
+        eventType: 'heartbeat',
+        description: message ?? `Heartbeat from ${agent}`,
+        metadata: { taskId },
+      });
+
+      return makeResult({
+        success: true,
+        taskId,
+        status: task.status,
+        lastHeartbeat: task.lastHeartbeat,
+        message: `Heartbeat recorded. Task ${taskId} is ${task.status}.`,
+      });
+    }
+  );
+
+  // =========================================================================
+  // Tool 9: get_stale_tasks — Find tasks that haven't had a heartbeat
+  // =========================================================================
+  server.tool(
+    'get_stale_tasks',
+    `Find tasks whose last heartbeat is older than the stale timeout (${HEARTBEAT_STALE_TIMEOUT_MS / 1000}s). ` +
+      `These tasks may belong to agents that have stopped, timed out, or crashed. ` +
+      `The commander should use this to detect stuck agents and create continuation tasks. ` +
+      `Returns stale tasks with their computed durations since last heartbeat.`,
+    {
+      staleTimeoutMs: z
+        .number()
+        .optional()
+        .describe(
+          `Custom stale timeout in milliseconds (default: ${HEARTBEAT_STALE_TIMEOUT_MS} = 7 minutes)`
+        ),
+    },
+    async ({ staleTimeoutMs }: { staleTimeoutMs?: number }) => {
+      const sessionResult = requireSession();
+      if ('error' in sessionResult) return sessionResult.error;
+
+      const { sessionDir } = sessionResult;
+      const tasks = readTasks(sessionDir);
+      const timeout = staleTimeoutMs ?? HEARTBEAT_STALE_TIMEOUT_MS;
+      const now = Date.now();
+
+      const staleTasks = tasks
+        .filter((t) => {
+          // Only check active tasks (claimed, in_progress, or blocked)
+          if (!['claimed', 'in_progress', 'blocked'].includes(t.status)) {
+            return false;
+          }
+          // Check if heartbeat is stale
+          if (!t.lastHeartbeat) return true; // No heartbeat ever = stale
+          const elapsed = now - new Date(t.lastHeartbeat).getTime();
+          return elapsed > timeout;
+        })
+        .map((t) => {
+          const elapsed = t.lastHeartbeat
+            ? now - new Date(t.lastHeartbeat).getTime()
+            : null;
+          return {
+            task: t,
+            computed: computeFields(t),
+            staleFor: elapsed ? formatDuration(elapsed) : 'never',
+            staleForMs: elapsed,
+          };
+        });
+
+      return makeResult({
+        success: true,
+        staleCount: staleTasks.length,
+        staleTimeoutMs: timeout,
+        staleTasks,
+        recommendation:
+          staleTasks.length > 0
+            ? `Found ${staleTasks.length} stale task(s). Create continuation tasks with continuesFrom pointing to these stale task IDs. Mark stale tasks as failed.`
+            : 'No stale tasks detected. All agents are reporting heartbeats.',
+      });
+    }
+  );
+
+  // =========================================================================
+  // Tool 10: set_validation_commands — Define validation commands for a task
+  // =========================================================================
+  server.tool(
+    'set_validation_commands',
+    `Set validation commands for a task. These commands will be run by validate_task ` +
+      `to verify the deliverable is complete. Example: ["ls src/styles/global.css", "npm run build"]. ` +
+      `Commands should be shell commands that return exit code 0 on success.`,
+    {
+      taskId: z.string().describe('ID of the task'),
+      commands: z
+        .array(z.string())
+        .describe(
+          'Array of shell commands to run for validation. Each must return exit code 0.'
+        ),
+    },
+    async ({ taskId, commands }: { taskId: string; commands: string[] }) => {
+      const sessionResult = requireSession();
+      if ('error' in sessionResult) return sessionResult.error;
+
+      const { sessionDir } = sessionResult;
+      const tasks = readTasks(sessionDir);
+      const task = tasks.find((t) => t.taskId === taskId);
+
+      if (!task) {
+        return makeResult({
+          success: false,
+          error: `Task ${taskId} not found`,
+        });
+      }
+
+      task.validationCommands = commands;
+      writeTasks(sessionDir, tasks);
+
+      appendEvent(sessionDir, {
+        timestamp: new Date().toISOString(),
+        agent: task.agent || 'unknown',
+        eventType: 'validation_commands_set',
+        description: `Set ${commands.length} validation command(s) for task ${taskId}`,
+        metadata: { taskId, commandCount: commands.length },
+      });
+
+      return makeResult({
+        success: true,
+        taskId,
+        validationCommands: task.validationCommands,
+        message: `Set ${commands.length} validation command(s) for task ${taskId}. Run validate_task to execute them.`,
+      });
+    }
+  );
+
+  // =========================================================================
+  // Tool 11: validate_task — Run validation commands for a task
+  // =========================================================================
+  server.tool(
+    'validate_task',
+    `Run validation commands for a task and return results. ` +
+      `Each command runs with a 5-minute timeout. ` +
+      `All commands must pass (exit code 0) for validation to succeed. ` +
+      `Results are stored in task.validationResults. ` +
+      `Call this BEFORE report_completion to verify deliverables.`,
+    {
+      taskId: z.string().describe('ID of the task to validate'),
+    },
+    async ({ taskId }: { taskId: string }) => {
+      const sessionResult = requireSession();
+      if ('error' in sessionResult) return sessionResult.error;
+
+      const { sessionDir } = sessionResult;
+      const tasks = readTasks(sessionDir);
+      const task = tasks.find((t) => t.taskId === taskId);
+
+      if (!task) {
+        return makeResult({
+          success: false,
+          error: `Task ${taskId} not found`,
+        });
+      }
+
+      if (task.validationCommands.length === 0) {
+        return makeResult({
+          success: true,
+          taskId,
+          warning:
+            'No validation commands defined for this task. Set them with set_validation_commands first.',
+          validationResults: [],
+        });
+      }
+
+      // Run each validation command
+      const results: Array<{
+        command: string;
+        exitCode: number;
+        stdout: string;
+        stderr: string;
+      }> = [];
+
+      for (const cmd of task.validationCommands) {
+        try {
+          const stdout = execSync(cmd, {
+            timeout: 5 * 60 * 1000, // 5 min timeout per command
+            encoding: 'utf8',
+            maxBuffer: 1024 * 1024,
+          }).trim();
+          results.push({
+            command: cmd,
+            exitCode: 0,
+            stdout,
+            stderr: '',
+          });
+        } catch (err: unknown) {
+          const error = err as {
+            status?: number;
+            stdout?: string;
+            stderr?: string;
+          };
+          results.push({
+            command: cmd,
+            exitCode: error.status ?? 1,
+            stdout: (error.stdout ?? '').toString().trim(),
+            stderr: (error.stderr ?? '').toString().trim(),
+          });
+        }
+      }
+
+      // Store results
+      task.validationResults = results;
+      writeTasks(sessionDir, tasks);
+
+      const allPassed = results.every((r) => r.exitCode === 0);
+      const failedCount = results.filter((r) => r.exitCode !== 0).length;
+
+      appendEvent(sessionDir, {
+        timestamp: new Date().toISOString(),
+        agent: task.agent || 'unknown',
+        eventType: allPassed ? 'validation_passed' : 'validation_failed',
+        description: `Validation ${allPassed ? 'PASSED' : 'FAILED'} for task ${taskId}: ${results.length - failedCount}/${results.length} commands passed`,
+        metadata: {
+          taskId,
+          allPassed,
+          passedCount: results.length - failedCount,
+          failedCount,
+        },
+      });
+
+      return makeResult({
+        success: allPassed,
+        taskId,
+        allPassed,
+        totalCommands: results.length,
+        passedCommands: results.length - failedCount,
+        failedCommands: failedCount,
+        results: results.map((r) => ({
+          command: r.command,
+          passed: r.exitCode === 0,
+          exitCode: r.exitCode,
+          stdout: r.stdout.slice(0, 500), // Truncate for readability
+          stderr: r.stderr.slice(0, 500),
+        })),
+        recommendation: allPassed
+          ? 'All validation commands passed. Safe to call report_completion.'
+          : `${failedCount} command(s) failed. Fix the issues and re-run validate_task before reporting completion.`,
       });
     }
   );

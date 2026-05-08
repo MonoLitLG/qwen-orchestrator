@@ -2,17 +2,33 @@
  * Session Management Tools for MCP Server
  *
  * Provides session isolation tools via the Model Context Protocol.
+ * Each project folder gets its own isolated session space.
  *
  * @author Omar-Obando
  * @license MIT
  */
 
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
+
+// Helper function to get current working directory safely
+function getCurrentWorkingDirectory(): string {
+  try {
+    // Try to use process.cwd() which is available in Node.js environment
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const cwd = (globalThis as any).process?.cwd?.();
+    if (cwd) return cwd;
+  } catch {
+    // Ignore errors
+  }
+  // Fallback to current directory
+  return '.';
+}
 
 // These will be registered on the server in index.ts
 // This file exports the tool registration functions
 
-export function registerSessionTools(server: any) {
+export function registerSessionTools(server: McpServer) {
   // ---------------------------------------------------------------------------
   // Tool: Create Session
   // ---------------------------------------------------------------------------
@@ -20,12 +36,12 @@ export function registerSessionTools(server: any) {
     'create_session',
     {
       description:
-        "Create a new isolated session directory and set it as the current session. All state files will be written to this session's directory.",
+        "Create a new isolated session directory for a project and set it as the current session. Each project folder gets its own workspace with isolated sessions.",
       inputSchema: z.object({
         projectPath: z
           .string()
           .optional()
-          .describe('Optional project path to associate with this session'),
+          .describe('Project path to associate with this session (uses workspace isolation)'),
         mission: z
           .string()
           .optional()
@@ -41,9 +57,14 @@ export function registerSessionTools(server: any) {
       projectPath?: string;
       mission?: string;
     }) => {
-      const { initializeSession } = await import('./session-manager.js');
+      const { initializeSession, getWorkspaceDir } = await import('./session-manager.js');
 
-      const state = initializeSession(projectPath, mission);
+      // Use projectPath if provided, otherwise default to orchestrator dir
+      const targetPath = projectPath || getCurrentWorkingDirectory();
+
+      // ALWAYS force a new session — archive the previous one automatically.
+      // This prevents session reuse across different /orchestrator invocations.
+      const state = await initializeSession(targetPath, mission, true);
 
       return {
         content: [
@@ -57,13 +78,15 @@ export function registerSessionTools(server: any) {
                 active: state.active,
                 projectPath: state.projectPath,
                 mission: state.mission,
-                sessionDir: `.qwen-orchestrator/sessions/${state.sessionId}`,
+                workspaceDir: getWorkspaceDir(targetPath),
+                sessionDir: `.qwen-orchestrator/workspaces/${state.projectPath?.replace(/[\\/]+/g, '__').replace(/[:]+/g, '-')}__sessions/${state.sessionId}`,
                 directories: {
-                  root: `.qwen-orchestrator/sessions/${state.sessionId}`,
-                  progress: `.qwen-orchestrator/sessions/${state.sessionId}/progress`,
-                  checkpoints: `.qwen-orchestrator/sessions/${state.sessionId}/checkpoints`,
-                  docs: `.qwen-orchestrator/sessions/${state.sessionId}/docs`,
+                  root: `.qwen-orchestrator/workspaces/${state.projectPath?.replace(/[\\/]+/g, '__').replace(/[:]+/g, '-')}__sessions/${state.sessionId}`,
+                  progress: `.qwen-orchestrator/workspaces/${state.projectPath?.replace(/[\\/]+/g, '__').replace(/[:]+/g, '-')}__sessions/${state.sessionId}/progress`,
+                  checkpoints: `.qwen-orchestrator/workspaces/${state.projectPath?.replace(/[\\/]+/g, '__').replace(/[:]+/g, '-')}__sessions/${state.sessionId}/checkpoints`,
+                  docs: `.qwen-orchestrator/workspaces/${state.projectPath?.replace(/[\\/]+/g, '__').replace(/[:]+/g, '-')}__sessions/${state.sessionId}/docs`,
                 },
+                note: 'Previous session was automatically archived. This is a fresh session with workspace isolation.',
               },
               null,
               2
@@ -81,14 +104,20 @@ export function registerSessionTools(server: any) {
     'get_current_session',
     {
       description:
-        'Get the current active session ID and path. Returns session state if available.',
-      inputSchema: z.object({}).shape,
+        'Get the current active session ID and path for a project. Returns session state if available.',
+      inputSchema: z.object({
+        projectPath: z
+          .string()
+          .optional()
+          .describe('Project path to check (uses current directory if not provided)'),
+      }).shape,
     },
-    async () => {
+    async ({ projectPath }: { projectPath?: string }) => {
       const { readCurrentSessionId, getSessionState, getSessionDir } =
         await import('./session-manager.js');
 
-      const sessionId = readCurrentSessionId();
+      const targetPath = projectPath || getCurrentWorkingDirectory();
+      const sessionId = readCurrentSessionId(targetPath);
 
       if (!sessionId) {
         return {
@@ -100,6 +129,7 @@ export function registerSessionTools(server: any) {
                   success: false,
                   sessionId: null,
                   sessionDir: null,
+                  workspaceDir: getWorkspaceDir(targetPath),
                   error: 'No active session found. Call create_session first.',
                 },
                 null,
@@ -110,8 +140,8 @@ export function registerSessionTools(server: any) {
         };
       }
 
-      const sessionDir = getSessionDir(sessionId);
-      const state = getSessionState(sessionId);
+      const sessionDir = getSessionDir(sessionId, targetPath);
+      const state = getSessionState(sessionId, targetPath);
 
       return {
         content: [
@@ -122,6 +152,7 @@ export function registerSessionTools(server: any) {
                 success: true,
                 sessionId,
                 sessionDir,
+                workspaceDir: getWorkspaceDir(targetPath),
                 state,
               },
               null,
@@ -143,13 +174,18 @@ export function registerSessionTools(server: any) {
         'Archive a completed session. Moves the session directory to the archived-sessions folder.',
       inputSchema: z.object({
         sessionId: z.string().describe('Session ID to archive'),
+        projectPath: z
+          .string()
+          .optional()
+          .describe('Project path (uses current directory if not provided)'),
       }).shape,
     },
-    async ({ sessionId }: { sessionId: string }) => {
+    async ({ sessionId, projectPath }: { sessionId: string; projectPath?: string }) => {
       const { archiveSession, getSessionDir } =
         await import('./session-manager.js');
 
-      const archived = archiveSession(sessionId);
+      const targetPath = projectPath || getCurrentWorkingDirectory();
+      const archived = archiveSession(sessionId, targetPath);
 
       return {
         content: [
@@ -159,8 +195,9 @@ export function registerSessionTools(server: any) {
               {
                 success: archived,
                 sessionId,
-                sessionDir: getSessionDir(sessionId),
+                sessionDir: getSessionDir(sessionId, targetPath),
                 archivedDir: '.qwen-orchestrator/archived-sessions',
+                workspaceDir: getWorkspaceDir(targetPath),
               },
               null,
               2
@@ -185,20 +222,27 @@ export function registerSessionTools(server: any) {
           .string()
           .optional()
           .describe('Optional session ID (uses current if not provided)'),
+        projectPath: z
+          .string()
+          .optional()
+          .describe('Optional project path (uses current directory if not provided)'),
       }).shape,
     },
     async ({
       filePath,
       sessionId,
+      projectPath,
     }: {
       filePath: string;
       sessionId?: string;
+      projectPath?: string;
     }) => {
       const { getSessionAwarePath, readCurrentSessionId } =
         await import('./session-manager.js');
 
-      const sid = sessionId || readCurrentSessionId();
-      const sessionAwarePath = getSessionAwarePath(sid || '', filePath);
+      const targetPath = projectPath || getCurrentWorkingDirectory();
+      const sid = sessionId || readCurrentSessionId(targetPath);
+      const sessionAwarePath = getSessionAwarePath(sid || '', filePath, targetPath);
 
       return {
         content: [
@@ -209,6 +253,7 @@ export function registerSessionTools(server: any) {
                 success: true,
                 filePath,
                 sessionId: sid,
+                projectPath: targetPath,
                 sessionAwarePath,
               },
               null,
@@ -227,13 +272,19 @@ export function registerSessionTools(server: any) {
     'check_session_isolation',
     {
       description:
-        'Check if session isolation is properly configured. Returns any issues found.',
-      inputSchema: z.object({}).shape,
+        'Check if session isolation is properly configured for a project. Returns any issues found.',
+      inputSchema: z.object({
+        projectPath: z
+          .string()
+          .optional()
+          .describe('Project path to check (uses current directory if not provided)'),
+      }).shape,
     },
-    async () => {
-      const { checkSessionIsolation } = await import('./session-manager.js');
+    async ({ projectPath }: { projectPath?: string }) => {
+      const { checkSessionIsolation, getWorkspaceDir } = await import('./session-manager.js');
 
-      const result = checkSessionIsolation();
+      const targetPath = projectPath || getCurrentWorkingDirectory();
+      const result = checkSessionIsolation(targetPath);
 
       return {
         content: [
@@ -243,8 +294,9 @@ export function registerSessionTools(server: any) {
               {
                 valid: result.valid,
                 issues: result.issues,
-                sessionsDir: '.qwen-orchestrator/sessions',
-                currentSessionFile: '.qwen-orchestrator/current-session',
+                workspaceDir: getWorkspaceDir(targetPath),
+                sessionsDir: `.qwen-orchestrator/workspaces/${targetPath.replace(/[\\/]+/g, '__').replace(/[:]+/g, '-')}`,
+                currentSessionFile: `.qwen-orchestrator/workspaces/${targetPath.replace(/[\\/]+/g, '__').replace(/[:]+/g, '-')}/current-session`,
               },
               null,
               2
@@ -254,4 +306,10 @@ export function registerSessionTools(server: any) {
       };
     }
   );
+}
+
+function getWorkspaceDir(path: string): string {
+  // Simple helper to compute workspace dir for display
+  const safeName = path.replace(/[\\/]+/g, '__').replace(/[:]+/g, '-');
+  return `.qwen-orchestrator/workspaces/${safeName}`;
 }

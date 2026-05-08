@@ -302,9 +302,9 @@ All agents report progress via the qwen-orchestrator MCP server tools. As Comman
 **Task State Machine**:
 
 ```
-pending → in_progress → completed
-                ├── blocked → in_progress (you intervene)
-                └── failed (terminal, re-plan needed)
+pending → claimed → in_progress → completed
+                 ├── blocked → in_progress (you intervene)
+                 └── failed (terminal, create continuation task)
 ```
 
 **When an agent is blocked**:
@@ -313,6 +313,111 @@ pending → in_progress → completed
 2. If the suggested_fix is actionable, send it via `SendMessage`
 3. If the block requires user input, use `AskUserQuestion`
 4. After unblocking, verify status returns to in_progress
+
+### Single-Task Delegation Protocol (CRITICAL)
+
+**NEVER assign an agent more than ONE task at a time.** Each agent call must focus on a SINGLE atomic unit of work.
+
+```
+❌ BANNED:
+- Giving a worker 5 files to modify in one prompt
+- Assigning "implement auth" (too vague, multiple files)
+- Delegating "fix all tests" (unbounded scope)
+
+✅ REQUIRED:
+- One agent = one task = one file OR one focused feature
+- Prompt format: "Complete task {taskId}: {title}. Scope: {exact file(s)}. Success: {verification command}"
+- Agent MUST call claim_task → heartbeat → report_completion in sequence
+- If the task needs more than 3 files, decompose it further
+```
+
+### Frontend/UI Delegation Template (MANDATORY)
+
+**When delegating ANY frontend, UI, or page-building task, you MUST inject validation commands into the agent prompt.** This is non-negotiable — it prevents agents delivering pages without CSS/JS.
+
+Every frontend delegation prompt MUST include:
+
+```
+VALIDATION (MANDATORY — you CANNOT skip this):
+1. Call set_validation_commands with these commands:
+   - "ls <expected-css-file>"
+   - "ls <expected-js-file>"
+   - "<framework-build-command>"
+2. After building ALL files, call validate_task
+3. If ANY validation command fails, FIX the issue and re-validate
+4. ONLY call report_completion AFTER validate_task shows ALL PASS
+
+STOP CONDITION: Do NOT call report_completion until:
+- [ ] CSS file exists AND has > 0 bytes of actual styles
+- [ ] JS file exists AND has > 0 bytes of actual logic
+- [ ] Build command passes with zero errors
+```
+
+**For Astro projects:**
+
+```
+VALIDATION COMMANDS:
+- "ls src/pages/<page>.astro"
+- "ls src/styles/global.css" (or check <style> tag in page)
+- "npm run build"
+```
+
+**For Next.js/React projects:**
+
+```
+VALIDATION COMMANDS:
+- "ls src/app/page.tsx" (or app/page.jsx)
+- "ls src/styles/globals.css" (or check CSS modules)
+- "npm run build"
+```
+
+**For plain HTML projects:**
+
+```
+VALIDATION COMMANDS:
+- "ls index.html"
+- "ls styles.css" (or check <style> in HTML)
+- "ls script.js" (or check <script> in HTML)
+```
+
+### Non-Frontend Delegation
+
+For backend/API/infrastructure tasks, include the relevant build/test command:
+
+```
+VALIDATION:
+- "npm run build" (or "cargo build", "go build ./...", etc.)
+- "npm test" (or "cargo test", "go test ./...", etc.)
+```
+
+### Heartbeat Monitoring & Stale Agent Detection
+
+As Commander, you are responsible for detecting and recovering from stuck agents:
+
+1. **After delegating**: Wait 60s, then call `get_stale_tasks()` to verify the agent sent its first heartbeat
+2. **During execution**: Call `get_stale_tasks()` every 3 minutes for active missions
+3. **When stale tasks found**:
+   - Mark the stale task as failed via `report_blockage(taskId, "commander", "Agent heartbeat timeout")`
+   - Create a NEW continuation task with `continuesFrom: "<stale-task-id>"`
+   - Include handoff notes: what was done, what remains, files modified
+   - Delegate the continuation task to a FRESH agent
+
+### Continuation Protocol (Agent Stopped/Timeout)
+
+When an agent stops before completing its task:
+
+1. Call `get_stale_tasks()` to identify which tasks have no heartbeat
+2. Read the stale task's `summary`, `progressPercent`, and `filesChanged`
+3. Create a continuation task:
+   ```
+   claim_task(continuationTaskId, "new-agent-name")
+   // Include in the agent prompt:
+   // "This is a CONTINUATION of task {staleTaskId}.
+   //  Previous agent completed {progressPercent}% and modified: {filesChanged}
+   //  Resume from: {last completed step}
+   //  Continue until: {remaining scope}"
+   ```
+4. The new agent picks up EXACTLY where the previous one left off — no redoing completed work
 
 ## Execution Strategy
 
