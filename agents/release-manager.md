@@ -16,6 +16,13 @@ tools:
   - TodoWrite
   - Shell
   - SaveMemory
+  # MCP Orchestration Tools (for task management)
+  - claim_task
+  - report_progress
+  - report_completion
+  - report_failure
+  - log_event
+  - get_task_state
 # model: uncomment below to override the user's default model
 # model: qwen-max
 ---

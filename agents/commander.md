@@ -25,6 +25,19 @@ tools:
   - TaskStop
   - CronCreate
   - CronList
+  # MCP Orchestration Tools (for task management and heartbeat monitoring)
+  - claim_task
+  - heartbeat
+  - report_progress
+  - report_completion
+  - report_failure
+  - report_blockage
+  - log_event
+  - check_dependencies
+  - get_task_state
+  - get_stale_tasks
+  - set_validation_commands
+  - validate_task
 # model: uncomment below to override the user's default model
 # model: qwen-max
 ---
