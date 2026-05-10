@@ -3,13 +3,43 @@ name: security-audit
 description: >
   Security auditing skill following OWASP Top 10 and SANS Top 25. Use when
   reviewing code for vulnerabilities, handling user input, or implementing
-  authentication/authorization systems.
+  authentication/authorization systems. Based on OWASP Top 10, SANS Top 25, CISSP, and security certification standards.
 license: MIT
 ---
 
 # Security Audit Skill — Vulnerability Detection
 
-This skill provides systematic security review following industry-standard frameworks.
+This skill provides systematic security review following industry-standard frameworks. Based on OWASP Top 10, SANS Top 25, CISSP, and security certification standards.
+
+## When to Use
+
+**Use this skill when:**
+- Performing security audits following OWASP Top 10 checklist
+- Reviewing code for common vulnerabilities (SQL injection, XSS, CSRF)
+- Implementing authentication and authorization systems
+- Handling user input and sanitization
+- Reviewing API security implementations
+- Setting up security headers and CSP
+- Implementing rate limiting and DDoS protection
+- Reviewing encryption and cryptographic implementations
+- Setting up security monitoring and logging
+- Implementing secure error handling
+- Reviewing third-party dependency security
+- Setting up security CI/CD gates
+- Implementing secrets management
+- Reviewing security configurations
+- Setting up security training for teams
+- Implementing security testing in CI/CD
+- Creating security documentation and runbooks
+- Building security incident response plans
+- Implementing security compliance frameworks (GDPR, HIPAA, PCI-DSS)
+
+**Do NOT use this skill when:**
+- Writing application business logic (use developer skill)
+- Designing database schema (use database design skill)
+- Creating UI components (use frontend design skill)
+- Performing general code review (use code-review skill)
+- Implementing features without security considerations
 
 ## OWASP Top 10 (2025) Checklist
 

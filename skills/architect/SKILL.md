@@ -94,3 +94,16 @@ This skill provides comprehensive architecture design guidance with evidence-bas
 - [ ] Security implications evaluated
 - [ ] Testability ensured
 - [ ] Documentation planned
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill for complete business modules with all sub-modules)
+- Designing database schemas (use database-design skill for normalization, indexing, and query optimization)
+- Reviewing code for quality issues (use code-review skill for comprehensive code audits)
+- Writing API endpoint implementations (use api-design skill for REST/GraphQL endpoint patterns)
+- Performing security audits (use security-auditor skill for vulnerability analysis and threat modeling)
+- **Analyzing deployment configurations** (use deployment skill for CI/CD pipelines and infrastructure)
+- **Writing SQL queries** (use sql-best-practices skill for query optimization and N+1 prevention)
+- **Reviewing git workflows** (use git-workflow skill for branching strategies and commit conventions)
+- **Redesigning existing websites** (use website-redesign skill for UI/UX improvements from URLs/screenshots)

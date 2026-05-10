@@ -819,3 +819,15 @@ read_graph({})
 - [ ] Lighthouse Performance > 85, Accessibility > 90
 - [ ] No `print()` statements in production code
 - [ ] Error tracking configured (Sentry, Firebase Crashlytics)
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing backend API logic (use nestjs, laravel, or domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Designing multi-page website layouts (use design-system skill)
+- Reviewing git workflows (use git-workflow skill)

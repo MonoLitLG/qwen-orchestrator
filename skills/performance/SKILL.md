@@ -116,3 +116,14 @@ describe('Performance', () => {
 - Denormalizing too early
 - Micro-optimizing cold paths
 - Ignoring GC pressure from excessive allocations
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Designing multi-page website layouts (use design-system skill)
+- Reviewing git workflows (use git-workflow skill)
+- Analyzing deployment configurations (use deployment skill)

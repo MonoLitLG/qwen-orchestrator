@@ -14,6 +14,7 @@ import { join } from 'path';
 import {
   getSessionDir,
   readCurrentSessionId,
+  type SessionState,
   writeSessionState,
 } from '../session-manager.js';
 
@@ -21,7 +22,7 @@ import {
  * Context injection payload
  */
 export interface ContextInjectionPayload {
-  context: Record<string, any>;
+  context: Record<string, unknown>;
   sessionId?: string;
 }
 
@@ -77,15 +78,13 @@ export async function redirectContextToSession(
     };
 
     // Merge with existing state
-    const existingState = await getSessionState(sessionId);
+    const existingStateRaw = await getSessionState(sessionId);
+    const existingState = existingStateRaw as Partial<SessionState> | null;
     if (existingState) {
       writeSessionState(sessionId, {
-        ...existingState,
-        sessionId,
-        createdAt: existingState.createdAt,
-        active: existingState.active ?? true,
-        lastContextUpdate: state.lastContextUpdate,
-        contextKeys: state.contextKeys,
+        sessionId: existingState.sessionId ?? sessionId,
+        createdAt: (existingState.createdAt as string) ?? new Date().toISOString(),
+        active: (existingState.active as boolean) ?? true,
       });
     } else {
       writeSessionState(sessionId, {
@@ -116,7 +115,7 @@ export async function redirectContextToSession(
  */
 export async function readContextFromSession(sessionId?: string): Promise<{
   success: boolean;
-  context: Record<string, any>;
+  context: Record<string, unknown>;
   sessionDir: string;
   error?: string;
 }> {
@@ -146,7 +145,7 @@ export async function readContextFromSession(sessionId?: string): Promise<{
     const fs = await import('fs');
     const entries = fs.readdirSync(contextDir, { withFileTypes: true });
 
-    const context: Record<string, any> = {};
+    const context: Record<string, unknown> = {};
 
     for (const entry of entries) {
       if (entry.isFile() && entry.name.endsWith('.json')) {
@@ -176,7 +175,7 @@ export async function readContextFromSession(sessionId?: string): Promise<{
 /**
  * Get session state helper
  */
-async function getSessionState(sessionId: string): Promise<any> {
+async function getSessionState(sessionId: string): Promise<unknown> {
   const { getSessionState: get } = await import('../session-manager.js');
   return get(sessionId);
 }

@@ -1,0 +1,32 @@
+{
+  "name": "endpoint-name",
+  "method": "GET|POST|PUT|DELETE",
+  "path": "/api/v1/module-name/endpoint-name",
+  "description": "Brief description of what this endpoint does",
+  "module": "module-name",
+  "request": {
+    "params": {},
+    "query": {},
+    "body": {}
+  },
+  "response": {
+    "success": {},
+    "error": {}
+  },
+  "authentication": {
+    "required": true,
+    "scopes": []
+  },
+  "authorization": {
+    "required": true,
+    "permissions": []
+  },
+  "validation": {
+    "required": true,
+    "rules": []
+  },
+  "documentation": {
+    "openapi": true,
+    "example": true
+  }
+}

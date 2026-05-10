@@ -232,3 +232,15 @@ WHERE
 ORDER BY
     u.name ASC;
 ```
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Designing multi-page website layouts (use design-system skill)
+- Reviewing git workflows (use git-workflow skill)

@@ -100,4 +100,17 @@ This skill provides a systematic, evidence-based code review methodology that ca
 **Evidence**: [Code snippet showing the issue]
 **Recommendation**: [Specific fix suggestion]
 **Confidence**: HIGH | MEDIUM | LOW
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Designing database schemas (use database-design skill for normalization and indexing)
+- Writing API endpoint implementations (use api-design skill for REST/GraphQL endpoint patterns)
+- Performing security audits (use security-auditor skill for comprehensive vulnerability analysis)
+- **Analyzing deployment configurations** (use deployment skill for CI/CD pipelines and infrastructure)
+- **Writing SQL queries** (use sql-best-practices skill for query optimization and N+1 prevention)
+- **Reviewing git workflows** (use git-workflow skill for branching strategies and commit conventions)
+- **Designing multi-page website layouts** (use design-system skill for professional UI/UX and spacing)
+- **Implementing new features** (use domain-driven skill for complete business modules)
+- **Refactoring existing code** (use refactoring skill for safe behavior-preserving transformations)
 ```

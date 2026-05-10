@@ -742,3 +742,15 @@ After this skill completes:
 2. **TDD**: Use `test-driven-development` skill for tests
 3. **Implementation**: Use `team-implementer` agent for code
 4. **Security**: Use `security-auditor` agent for security review
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Designing multi-page website layouts (use design-system skill)

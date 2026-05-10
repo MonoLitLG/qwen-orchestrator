@@ -851,3 +851,15 @@ Use `design-taste-frontend` for premium layout, or `minimalist-ui` for clean aes
 ```
 
 Key commands: `/ui-design:color-palette`, `/ui-design:type-system`, `/ui-design:design-screen`
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Reviewing git workflows (use git-workflow skill)
+- Designing database schemas (use database-design skill)

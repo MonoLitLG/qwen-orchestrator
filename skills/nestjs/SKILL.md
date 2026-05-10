@@ -674,3 +674,15 @@ describe('Products (e2e)', () => {
 | Direct repository access in controllers | Skips business logic layer     | Always go through service layer                          |
 | Not using request-scoped injection      | Memory leaks with shared state | Use REQUEST scope for per-request data                   |
 | Throwing generic exceptions             | No useful error info           | Use NestJS built-in exceptions (NotFoundException, etc.) |
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Designing multi-page website layouts (use design-system skill)
+- Reviewing git workflows (use git-workflow skill)

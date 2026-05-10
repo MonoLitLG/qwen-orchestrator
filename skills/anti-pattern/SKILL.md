@@ -188,3 +188,17 @@ Before ANY deliverable is marked complete:
 - [ ] no page without canonical URL
 - [ ] No missing `<html lang="xx">` attribute
 - [ ] No page with more than one `<h1>`
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Performing general code quality reviews (use code-review skill for broader analysis)
+- Designing database schemas (use database-design skill for schema planning)
+- Writing application business logic (use domain-driven skill for complete modules)
+- Reviewing API endpoint implementations (use api-design skill for endpoint patterns)
+- Performing security audits (use security-auditor skill for vulnerability analysis)
+- Analyzing deployment configurations (use deployment skill for CI/CD pipelines)
+- Reviewing git workflows or version control (use git-workflow skill for branching/commits)
+- Writing SQL queries (use sql-best-practices skill for query optimization)
+- **Designing multi-page website layouts** (use design-system skill for professional UI/UX)
+- **Reviewing existing code for refactoring needs** (use refactoring skill for safe transformations)

@@ -683,3 +683,15 @@ CREATE TRIGGER set_updated_at
 | Not handling auth token refresh                  | Stale sessions, broken experience | Use `onAuthStateChange` to detect           |
 | Creating policies with too-broad USING clauses   | Data leakage between users        | Always scope with `auth.uid()`              |
 | Storing files without organizing by user/tenant  | Security and cleanup issues       | Use `{userId}/filename` path structure      |
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Designing multi-page website layouts (use design-system skill)

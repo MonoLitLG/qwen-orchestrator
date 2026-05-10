@@ -148,3 +148,16 @@ Every endpoint must document:
 4. Response schema (success + all error codes)
 5. Query parameters (filter, sort, include, pagination)
 6. Rate limit information
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Designing database schemas (use database-design skill for table structures and relationships)
+- Writing application business logic (use domain-driven skill for complete business modules)
+- Reviewing existing code for quality issues (use code-review skill for comprehensive audits)
+- Performing security audits on APIs (use security-auditor skill for vulnerability analysis)
+- Writing SQL queries for data access (use sql-best-practices skill for query optimization)
+- **Designing multi-page website layouts** (use design-system skill for professional UI/UX and spacing)
+- **Analyzing deployment configurations** (use deployment skill for CI/CD and infrastructure)
+- **Reviewing git workflows** (use git-workflow skill for branching and commit conventions)
+- **Implementing third-party integrations** (use third-party-integrations skill for external services)

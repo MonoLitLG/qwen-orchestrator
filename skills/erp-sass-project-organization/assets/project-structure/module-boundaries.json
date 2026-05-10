@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "description": "Module separation rules and boundaries",
+  "rules": {
+    "module-boundary": {
+      "enforce": true,
+      "description": "Each module should represent a single business domain",
+      "violation": "Module contains multiple business domains"
+    },
+    "dependency-direction": {
+      "enforce": true,
+      "description": "Dependencies should point inward (toward domain)",
+      "violation": "Infrastructure layer depends on presentation layer"
+    },
+    "circular-dependencies": {
+      "enforce": true,
+      "description": "No circular dependencies between modules",
+      "violation": "Module A imports Module B which imports Module A"
+    }
+  },
+  "module-contract": {
+    "required": [
+      "api/README.md",
+      "api/interfaces.ts",
+      "lib/README.md",
+      "tests/README.md"
+    ],
+    "optional": [
+      "ui/README.md",
+      "config/README.md"
+    ]
+  },
+  "allowed-dependencies": {
+    "presentation": ["application", "shared"],
+    "application": ["domain", "shared"],
+    "domain": ["shared"],
+    "infrastructure": ["domain", "application", "shared"]
+  }
+}

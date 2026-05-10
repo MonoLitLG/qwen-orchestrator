@@ -122,3 +122,15 @@ describe('calculateTotal', () => {
 4. **One Assertion Per Concept**: Group related assertions, separate unrelated
 5. **Deterministic**: Same test, same result, every time
 6. **Fast Feedback**: Unit tests < 10ms, Integration < 1s, E2E < 30s
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Working on existing code without tests (use debugging skill to understand first)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Designing multi-page website layouts (use design-system skill)
+- Reviewing git workflows (use git-workflow skill)

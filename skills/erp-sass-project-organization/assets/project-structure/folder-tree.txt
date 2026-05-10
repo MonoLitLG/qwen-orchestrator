@@ -1,0 +1,109 @@
+project/
+├── apps/                           # Applications
+│   ├── web/                        # Web frontend
+│   │   ├── src/
+│   │   │   ├── features/          # Feature-sliced code
+│   │   │   │   ├── inventory/
+│   │   │   │   │   ├── ui/        # Inventory UI components
+│   │   │   │   │   ├── lib/       # Inventory business logic
+│   │   │   │   │   ├── api/       # Inventory API calls
+│   │   │   │   │   └── config/    # Inventory config
+│   │   │   │   └── sales/
+│   │   │   ├── shared/            # Shared across features
+│   │   │   │   ├── ui/            # Shared UI components
+│   │   │   │   ├── utils/         # Shared utilities
+│   │   │   │   └── hooks/         # Custom hooks
+│   │   │   └── app/               # App-level code
+│   │   │       ├── layout/        # Layout components
+│   │   │       ├── routes/        # Route definitions
+│   │   │       └── store/         # State management
+│   │   └── package.json
+│   ├── api/                        # API gateway
+│   │   ├── src/
+│   │   │   ├── modules/           # API modules
+│   │   │   │   ├── inventory/
+│   │   │   │   │   ├── controllers/
+│   │   │   │   │   ├── services/
+│   │   │   │   │   └── validators/
+│   │   │   │   └── sales/
+│   │   │   └── shared/
+│   │   │       ├── middleware/
+│   │   │       ├── interceptors/
+│   │   │       └── filters/
+│   │   └── package.json
+│   └── admin/                      # Admin panel
+│       └── ...
+├── packages/                       # Shared packages
+│   ├── ui/                         # UI component library
+│   │   ├── src/
+│   │   │   ├── components/        # Reusable components
+│   │   │   ├── hooks/             # Shared hooks
+│   │   │   └── theme/             # Theme configuration
+│   │   └── package.json
+│   ├── utils/                      # Utility functions
+│   │   ├── src/
+│   │   │   ├── formatting/        # Formatting helpers
+│   │   │   ├── validation/        # Validation helpers
+│   │   │   └── constants/         # Shared constants
+│   │   └── package.json
+│   └── types/                      # TypeScript definitions
+│       └── ...
+├── modules/                        # Business modules (ERP)
+│   ├── inventory/                  # Inventory module
+│   │   ├── src/
+│   │   │   ├── domain/            # Domain layer
+│   │   │   │   ├── entities/
+│   │   │   │   ├── value-objects/
+│   │   │   │   ├── repositories/
+│   │   │   │   └── services/
+│   │   │   ├── application/       # Application layer
+│   │   │   │   ├── use-cases/
+│   │   │   │   └── dtos/
+│   │   │   └── infrastructure/    # Infrastructure layer
+│   │   │       ├── adapters/
+│   │   │       ├── persistence/
+│   │   │       └── external/
+│   │   └── package.json
+│   ├── sales/                      # Sales module
+│   │   └── ...
+│   └── accounting/                 # Accounting module
+│       └── ...
+├── shared/                         # Cross-cutting concerns
+│   ├── auth/                       # Authentication
+│   │   ├── domain/
+│   │   ├── application/
+│   │   └── infrastructure/
+│   ├── logging/                    # Logging infrastructure
+│   ├── config/                     # Configuration management
+│   └── middleware/                 # Request middleware
+├── scripts/                        # Automation scripts
+│   ├── project-setup.bat
+│   ├── analyze-structure.ps1
+│   ├── module-validator.ps1
+│   └── documentation-check.ps1
+├── docs/                           # Documentation
+│   ├── architecture/
+│   │   ├── decisions/            # ADRs
+│   │   └── patterns/
+│   ├── api/                        # API documentation
+│   └── README.md
+├── tests/                          # E2E tests
+│   ├── integration/
+│   └── e2e/
+├── .eslintrc.json
+├── .prettierrc.json
+├── tsconfig.json
+└── package.json
+
+# Module Structure (inside each module)
+module/
+├── src/
+│   ├── domain/         # Core business logic
+│   │   ├── entities/   # Business entities
+│   │   └── services/   # Domain services
+│   ├── application/    # Use cases
+│   │   └── use-cases/  # Business use cases
+│   └── infrastructure/ # Technical details
+│       ├── adapters/   # External adapters
+│       └── persistence/# Database access
+└── package.json

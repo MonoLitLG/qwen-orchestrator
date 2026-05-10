@@ -1,0 +1,76 @@
+digraph erp_saas_layout {
+    // Graph settings
+    rankdir=TB;
+    node [shape=box, style="filled,rounded", fontname="Arial"];
+    edge [fontname="Arial", fontsize=10];
+    
+    // Applications Layer
+    "Apps" [label="apps/", shape=box, style="filled,rounded", fillcolor="#e3f2fd", width=2];
+    "Web App" [label="apps/web/", fillcolor="#bbdefb"];
+    "Mobile App" [label="apps/mobile/", fillcolor="#bbdefb"];
+    "API Gateway" [label="apps/api/", fillcolor="#bbdefb"];
+    "Admin Panel" [label="apps/admin/", fillcolor="#bbdefb"];
+    
+    // Applications connections
+    "Apps" -> "Web App";
+    "Apps" -> "Mobile App";
+    "Apps" -> "API Gateway";
+    "Apps" -> "Admin Panel";
+    
+    // Packages Layer
+    "Packages" [label="packages/", shape=box, style="filled,rounded", fillcolor="#e8f5e9", width=2];
+    "UI Components" [label="packages/ui/", fillcolor="#c8e6c9"];
+    "Utils" [label="packages/utils/", fillcolor="#c8e6c9"];
+    "Types" [label="packages/types/", fillcolor="#c8e6c9"];
+    "Config" [label="packages/config/", fillcolor="#c8e6c9"];
+    
+    "Packages" -> "UI Components";
+    "Packages" -> "Utils";
+    "Packages" -> "Types";
+    "Packages" -> "Config";
+    
+    // Modules Layer (ERP-specific)
+    "Modules" [label="modules/", shape=box, style="filled,rounded", fillcolor="#fff9c4", width=2];
+    "Inventory" [label="modules/inventory/", fillcolor="#f0f4c3"];
+    "Sales" [label="modules/sales/", fillcolor="#f0f4c3"];
+    "Accounting" [label="modules/accounting/", fillcolor="#f0f4c3"];
+    "Customers" [label="modules/customers/", fillcolor="#f0f4c3"];
+    "Products" [label="modules/products/", fillcolor="#f0f4c3"];
+    
+    "Modules" -> "Inventory";
+    "Modules" -> "Sales";
+    "Modules" -> "Accounting";
+    "Modules" -> "Customers";
+    "Modules" -> "Products";
+    
+    // Shared Layer
+    "Shared" [label="shared/", shape=box, style="filled,rounded", fillcolor="#fce4ec", width=2];
+    "Auth" [label="shared/auth/", fillcolor="#f8bbd0"];
+    "Logging" [label="shared/logging/", fillcolor="#f8bbd0"];
+    "Config" [label="shared/config/", fillcolor="#f8bbd0"];
+    "Middleware" [label="shared/middleware/", fillcolor="#f8bbd0"];
+    
+    "Shared" -> "Auth";
+    "Shared" -> "Logging";
+    "Shared" -> "Config";
+    "Shared" -> "Middleware";
+    
+    // Cross-layer dependencies (dashed)
+    "Web App" -> "UI Components" [style="dashed", label="uses"];
+    "API Gateway" -> "Inventory" [style="dashed", label="calls"];
+    "API Gateway" -> "Sales" [style="dashed", label="calls"];
+    "API Gateway" -> "Accounting" [style="dashed", label="calls"];
+    "Inventory" -> "Logging" [style="dashed", label="uses"];
+    "Sales" -> "Auth" [style="dashed", label="uses"];
+    
+    // Legend
+    "Legend" [shape=none, margin=0, label=< 
+        <table border="1" cellborder="0" cellspacing="0">
+            <tr><td><b>Layer</b></td><td><b>Purpose</b></td></tr>
+            <tr><td>apps/</td><td>Applications (web, mobile, api)</td></tr>
+            <tr><td>packages/</td><td>Shared packages & libraries</td></tr>
+            <tr><td>modules/</td><td>Business domain modules</td></tr>
+            <tr><td>shared/</td><td>Cross-cutting concerns</td></tr>
+        </table>
+    >];
+}

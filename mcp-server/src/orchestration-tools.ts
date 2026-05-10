@@ -281,7 +281,6 @@ function detectCycles(tasks: DependencyTask[]): string[][] {
 // Tool Registration
 // ---------------------------------------------------------------------------
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function registerOrchestrationTools(server: any): void {
   // -------------------------------------------------------------------------
   // Tool 1: report_progress (heartbeat)
@@ -386,7 +385,7 @@ export function registerOrchestrationTools(server: any): void {
       // Run validation commands if defined (QA/Audit enforcement)
       let validationPassed = true;
       if (task.validationCommands && task.validationCommands.length > 0) {
-        const { execSync } = require('child_process');
+        // execSync is imported at the top of the file
         const results: Array<{ command: string; exitCode: number; stdout: string; stderr: string }> = [];
         
         for (const cmd of task.validationCommands) {
@@ -1053,7 +1052,7 @@ export function registerOrchestrationTools(server: any): void {
             stdout,
             stderr: '',
           });
-        } catch (err: unknown) {
+        } catch (err: any) {
           const error = err as {
             status?: number;
             stdout?: string;

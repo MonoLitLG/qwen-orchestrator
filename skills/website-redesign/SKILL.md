@@ -576,3 +576,15 @@ For **Next.js apps**: recommend Vercel (native support, automatic previews).
 - ALWAYS recommend Astro for marketing/content site redesigns
 - ALWAYS use SVG icons (Lucide/Heroicons/Phosphor), zero emojis
 - ALWAYS ensure 80px+ section spacing and 128px footer top padding
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing new application logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Reviewing git workflows (use git-workflow skill)

@@ -1,0 +1,29 @@
+{
+  "name": "module-name",
+  "version": "1.0.0",
+  "description": "Brief description of what this module does",
+  "type": "module",
+  "domain": "business-domain",
+  "boundedContext": "context-name",
+  "dependencies": [],
+  "contracts": {
+    "inputs": [],
+    "outputs": []
+  },
+  "layers": {
+    "domain": true,
+    "application": true,
+    "infrastructure": true
+  },
+  "documentation": {
+    "readme": true,
+    "api": true,
+    "decisions": true,
+    "testing": true
+  },
+  "testing": {
+    "unit": true,
+    "integration": true,
+    "e2e": false
+  }
+}

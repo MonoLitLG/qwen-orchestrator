@@ -137,4 +137,16 @@ ALTER TABLE bookings ADD CONSTRAINT excl_no_overlap
 -- Partial unique index for soft delete
 CREATE UNIQUE INDEX uq_products_sku_active
   ON products(sku) WHERE deleted_at IS NULL;
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Writing SQL queries for specific databases (use sql-best-practices skill)
+- Designing multi-page website layouts (use design-system skill)
+- Reviewing git workflows (use git-workflow skill)
 ```

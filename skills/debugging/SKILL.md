@@ -142,3 +142,14 @@ console.log('[DEBUG] Transform:', { input, output, duration });
 3. **NEVER skip the test** — write a failing test that reproduces the bug
 4. **NEVER fix symptoms** — find the root cause
 5. **NEVER assume** — verify every assumption with evidence
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Designing new features from scratch (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Designing multi-page website layouts (use design-system skill)
+- Reviewing git workflows (use git-workflow skill)
+- Writing deployment configurations (use deployment skill)

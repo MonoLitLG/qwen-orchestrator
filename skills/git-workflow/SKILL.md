@@ -137,3 +137,15 @@ Fixes JIRA-125
 - [ ] Self-reviewed the code
 - [ ] Documentation updated
 ```
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Designing multi-page website layouts (use design-system skill)

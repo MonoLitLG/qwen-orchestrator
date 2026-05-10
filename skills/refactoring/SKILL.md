@@ -136,3 +136,15 @@ After refactoring:
 - NEVER skip running tests between steps
 - NEVER leave dead code after refactoring
 - NEVER change behavior during refactoring
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing new application logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for security issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Designing multi-page website layouts (use design-system skill)
+- Reviewing git workflows (use git-workflow skill)

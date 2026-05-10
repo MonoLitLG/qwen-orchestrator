@@ -153,3 +153,15 @@ MAJOR.MINOR.PATCH
 3. **Immutable**: Replace, don't modify
 4. **Auditable**: Changes tracked in git history
 5. **Testable**: Validate infrastructure changes before applying
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Designing multi-page website layouts (use design-system skill)
+- Reviewing git workflows (use git-workflow skill)

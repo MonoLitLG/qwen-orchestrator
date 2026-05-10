@@ -180,3 +180,15 @@ After discovery, write findings to `$SESSION_DIR/context.md` under a "Project Co
 - ❌ Using a different auth mechanism than the project already has
 - ❌ Ignoring existing base classes, traits, or mixins
 - ❌ Not reading existing code before writing new code
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Starting a new greenfield project (no conventions to follow)
+- Writing application business logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Designing multi-page website layouts (use design-system skill)

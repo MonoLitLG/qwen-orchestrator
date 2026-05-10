@@ -649,3 +649,15 @@ After this skill:
 | Facebook  | [Messenger Platform](https://developers.facebook.com/docs/messenger-platform/) | Messenger Platform    |
 | Instagram | [Graph API](https://developers.facebook.com/docs/instagram-api/)               | Instagram Graph API   |
 | LINE      | [Messaging API](https://developers.line.biz/en/docs/messaging-api/)            | LINE Messaging API    |
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing backend API logic (use nestjs, laravel, or domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Designing multi-page website layouts (use design-system skill)
+- Reviewing git workflows (use git-workflow skill)

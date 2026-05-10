@@ -127,3 +127,15 @@ If Context7 is unavailable:
 | TailwindCSS | /tailwindlabs/tailwindcss |
 | Zod         | /colinhacks/zod           |
 | Vitest      | /vitest-dev/vitest        |
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- You already know the library API well (save time by not querying)
+- Writing application business logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Writing SQL queries (use sql-best-practices skill)

@@ -194,3 +194,17 @@ Must persist: Scope changes, risk register, progress metrics
 - NEVER modify files from archived sessions — each session's data is IMMUTABLE after that session ends
 - ALWAYS read `.qwen-orchestrator/current-session` first to determine the active session directory
 - ALWAYS write state to `$SESSION_DIR/` (not the flat `.qwen-orchestrator/` root)
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill for complete business modules)
+- Designing database schemas (use database-design skill for normalization and indexing)
+- Writing API endpoint implementations (use api-design skill for REST/GraphQL endpoint patterns)
+- Reviewing code for quality issues (use code-review skill for comprehensive audits)
+- Performing security audits (use security-auditor skill for vulnerability analysis)
+- **Analyzing deployment configurations** (use deployment skill for CI/CD pipelines and infrastructure)
+- **Writing SQL queries** (use sql-best-practices skill for query optimization and N+1 prevention)
+- **Designing multi-page website layouts** (use design-system skill for professional UI/UX and spacing)
+- **Planning funnels or integrations** (use multi-channel-funnels or third-party-integrations skills)
+- **Refactoring existing code** (use refactoring skill for safe behavior-preserving transformations)

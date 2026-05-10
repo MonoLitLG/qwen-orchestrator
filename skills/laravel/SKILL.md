@@ -587,3 +587,15 @@ $response->assertForbidden();
 | Not using database transactions    | Data inconsistency           | Wrap related operations in `DB::transaction` |
 | Returning models directly from API | Exposes internal structure   | Use API Resources for transformation         |
 | Catching all exceptions silently   | Hidden bugs                  | Log and handle specifically                  |
+
+## When NOT to Use
+
+**Do NOT use this skill when:**
+- Writing application business logic (use domain-driven skill)
+- Designing database schemas (use database-design skill)
+- Writing API endpoint implementations (use api-design skill)
+- Reviewing code for quality issues (use code-review skill)
+- Performing security audits (use security-auditor skill)
+- Analyzing deployment configurations (use deployment skill)
+- Writing SQL queries (use sql-best-practices skill)
+- Designing multi-page website layouts (use design-system skill)
