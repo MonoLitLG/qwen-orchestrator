@@ -131,6 +131,7 @@ If Context7 is unavailable:
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - You already know the library API well (save time by not querying)
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)

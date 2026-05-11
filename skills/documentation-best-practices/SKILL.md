@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for creating and maintaining project 
 ## When to Use
 
 **Use this skill when:**
+
 - Creating project documentation for new projects
 - Writing README files for repositories
 - Documenting APIs (REST, GraphQL, gRPC)
@@ -35,6 +36,7 @@ This skill provides comprehensive guidance for creating and maintaining project 
 - Creating documentation compliance documentation
 
 **Do NOT use this skill when:**
+
 - Writing code implementation (use developer skill)
 - Designing system architecture (use architecture-patterns skill)
 - Writing tests (use testing-strategy skill)
@@ -46,7 +48,7 @@ This skill provides comprehensive guidance for creating and maintaining project 
 
 Every project, module, and package needs a README.
 
-```markdown
+````markdown
 # Project Name
 
 **Version:** 1.0.0  
@@ -75,6 +77,7 @@ npm run dev
 # Run tests
 npm test
 ```
+````
 
 ## Project Structure
 
@@ -88,11 +91,11 @@ project/
 
 ## Configuration
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| debug | boolean | false | Enable debug mode |
-| port | number | 3000 | Server port |
-| logLevel | string | info | Logging level |
+| Option   | Type    | Default | Description       |
+| -------- | ------- | ------- | ----------------- |
+| debug    | boolean | false   | Enable debug mode |
+| port     | number  | 3000    | Server port       |
+| logLevel | string  | info    | Logging level     |
 
 ## API Reference
 
@@ -105,7 +108,8 @@ See [Contributing Guide](CONTRIBUTING.md) for details.
 ## License
 
 MIT
-```
+
+````
 
 ### 2. API Documentation
 
@@ -116,8 +120,10 @@ Document all public APIs.
 
 ## Base URL
 
-```
+````
+
 https://api.example.com/v1
+
 ```
 
 ## Authentication
@@ -125,8 +131,10 @@ https://api.example.com/v1
 All endpoints require authentication via Bearer token.
 
 ```
+
 Authorization: Bearer <token>
-```
+
+````
 
 ## Endpoints
 
@@ -157,13 +165,14 @@ Retrieve a list of users.
     "totalPages": 5
   }
 }
-```
+````
 
 ### POST /api/v1/users
 
 Create a new user.
 
 **Request Body:**
+
 ```json
 {
   "name": "string (required)",
@@ -174,6 +183,7 @@ Create a new user.
 ```
 
 **Response:**
+
 ```json
 {
   "id": "uuid",
@@ -186,15 +196,16 @@ Create a new user.
 
 ## Error Responses
 
-| Status | Code | Description |
-|--------|------|-------------|
-| 400 | INVALID_INPUT | Request validation failed |
-| 401 | UNAUTHORIZED | Authentication required |
-| 403 | FORBIDDEN | Insufficient permissions |
-| 404 | NOT_FOUND | Resource not found |
-| 422 | VALIDATION_ERROR | Business rule violation |
-| 500 | SERVER_ERROR | Internal server error |
-```
+| Status | Code             | Description               |
+| ------ | ---------------- | ------------------------- |
+| 400    | INVALID_INPUT    | Request validation failed |
+| 401    | UNAUTHORIZED     | Authentication required   |
+| 403    | FORBIDDEN        | Insufficient permissions  |
+| 404    | NOT_FOUND        | Resource not found        |
+| 422    | VALIDATION_ERROR | Business rule violation   |
+| 500    | SERVER_ERROR     | Internal server error     |
+
+````
 
 ### 3. Architecture Decision Records (ADRs)
 
@@ -203,7 +214,7 @@ Document architecture decisions.
 ```markdown
 # ADR-001: Database Technology Selection
 
-**Date:** 2024-01-15  
+**Date:** 2024-01-15
 **Status:** Accepted
 
 ## Context
@@ -294,7 +305,7 @@ We need to choose a database for our ERP system. The system requires:
 
 - [PostgreSQL Documentation](https://www.postgresql.org/docs/)
 - [Database Selection Study](https://example.com/study)
-```
+````
 
 ### 4. Module Documentation
 
@@ -359,30 +370,32 @@ Brief description of the module's purpose and business value.
 
 ```markdown
 # Headers (PascalCase)
+
 ## Section Headers
+
 ### Subsections
 
 - Bullet lists
 - Numbered lists
 
-```code blocks```
+`code blocks`
 
-| Tables | Are | Good |
-|--------|-----|------|
-| Use    | them| for  |
-| Data   | tables |   |
+| Tables | Are    | Good |
+| ------ | ------ | ---- |
+| Use    | them   | for  |
+| Data   | tables |      |
 
 > Quotes for emphasis
 ```
 
 ### File Naming
 
-| File Type | Convention | Example |
-|-----------|------------|---------|
-| README | README.md | README.md |
-| API Docs | API.md | API.md |
-| ADR | ADR-001.md | ADR-001.md |
-| Testing | TESTING.md | TESTING.md |
+| File Type    | Convention      | Example         |
+| ------------ | --------------- | --------------- |
+| README       | README.md       | README.md       |
+| API Docs     | API.md          | API.md          |
+| ADR          | ADR-001.md      | ADR-001.md      |
+| Testing      | TESTING.md      | TESTING.md      |
 | Contributing | CONTRIBUTING.md | CONTRIBUTING.md |
 
 ### Documentation Locations
@@ -434,46 +447,50 @@ docs/
 
 ### Static Site Generators
 
-| Tool | Purpose |
-|------|---------|
-| Docusaurus | React-based docs site |
-| MkDocs | Python-based docs site |
-| Sphinx | Python API docs |
-| JSDoc | JavaScript API docs |
+| Tool       | Purpose                |
+| ---------- | ---------------------- |
+| Docusaurus | React-based docs site  |
+| MkDocs     | Python-based docs site |
+| Sphinx     | Python API docs        |
+| JSDoc      | JavaScript API docs    |
 
 ### API Documentation
 
-| Tool | Purpose |
-|------|---------|
-| Swagger/OpenAPI | REST API docs |
-| Postman | API testing & docs |
-| GraphQL Schema | GraphQL docs |
+| Tool            | Purpose            |
+| --------------- | ------------------ |
+| Swagger/OpenAPI | REST API docs      |
+| Postman         | API testing & docs |
+| GraphQL Schema  | GraphQL docs       |
 
 ### Documentation Automation
 
-| Tool | Purpose |
-|------|---------|
-| TypeDoc | TypeScript API docs |
-| Swagger UI | Interactive API docs |
+| Tool          | Purpose              |
+| ------------- | -------------------- |
+| TypeDoc       | TypeScript API docs  |
+| Swagger UI    | Interactive API docs |
 | Read the Docs | Hosted documentation |
 
 ## Common Anti-Patterns
 
 ### ❌ Bad: Outdated Documentation
 
-```markdown
+````markdown
 # ❌ BAD: Outdated example
+
 ```typescript
 // This example is outdated
 const result = oldFunction();
 ```
+````
 
 # ✅ GOOD: Updated example
+
 ```typescript
 // Current example
 const result = newFunction();
 ```
-```
+
+````
 
 ### ❌ Bad: No Examples
 
@@ -486,8 +503,9 @@ The function processes data:
 
 ```typescript
 const result = processor.process(data);
-```
-```
+````
+
+````
 
 ### ❌ Bad: Too Much Detail
 
@@ -501,17 +519,19 @@ const result = processor.process(data);
 
 # ✅ GOOD: Appropriate detail
 The function reads and parses a JSON file.
-```
+````
 
 ### ❌ Bad: Missing Status
 
 ```markdown
 # ❌ BAD: No status
+
 # Project Name
 
 Some description...
 
 # ✅ GOOD: With status
+
 # Project Name
 
 **Version:** 1.0.0  
@@ -527,6 +547,7 @@ Some description...
 ## Documentation Quality Checklist
 
 ### README Files
+
 - [ ] Clear project description
 - [ ] Quick start instructions
 - [ ] Project structure overview
@@ -536,6 +557,7 @@ Some description...
 - [ ] License information
 
 ### API Documentation
+
 - [ ] Base URL specified
 - [ ] Authentication explained
 - [ ] All endpoints documented
@@ -544,6 +566,7 @@ Some description...
 - [ ] Rate limiting information
 
 ### ADRs
+
 - [ ] Clear context
 - [ ] Options considered
 - [ ] Decision documented
@@ -552,6 +575,7 @@ Some description...
 - [ ] Next steps defined
 
 ### Module Documentation
+
 - [ ] Module purpose clear
 - [ ] Domain model documented
 - [ ] API endpoints listed
@@ -562,12 +586,14 @@ Some description...
 ## Real-World Impact
 
 **Before this skill:**
+
 - No documentation
 - Outdated docs
 - Hard to onboard
 - Unknown APIs
 
 **After this skill:**
+
 - Comprehensive documentation
 - Up-to-date docs
 - Easy onboarding

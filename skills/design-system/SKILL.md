@@ -855,6 +855,7 @@ Key commands: `/ui-design:color-palette`, `/ui-design:type-system`, `/ui-design:
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Writing API endpoint implementations (use api-design skill)
 - Reviewing code for quality issues (use code-review skill)

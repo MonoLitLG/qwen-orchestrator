@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for designing and implementing test a
 ## When to Use
 
 **Use this skill when:**
+
 - Designing test automation frameworks
 - Implementing page object patterns
 - Creating test reporting and dashboards
@@ -39,6 +40,7 @@ This skill provides comprehensive guidance for designing and implementing test a
 - Implementing test quality gates
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -156,9 +158,7 @@ class UserBuilder {
 }
 
 // Usage
-const user = await new UserBuilder()
-  .withRole('admin')
-  .create();
+const user = await new UserBuilder().withRole('admin').create();
 ```
 
 ### Test Data Isolation
@@ -276,6 +276,7 @@ forceExit: false
 ## Real-World Impact
 
 **Before this skill:**
+
 - Ad-hoc test automation
 - Flaky tests
 - Poor test coverage
@@ -283,6 +284,7 @@ forceExit: false
 - Manual test execution
 
 **After this skill:**
+
 - Well-designed test framework
 - Reliable, fast tests
 - Comprehensive coverage

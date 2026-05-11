@@ -184,6 +184,7 @@ After discovery, write findings to `$SESSION_DIR/context.md` under a "Project Co
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Starting a new greenfield project (no conventions to follow)
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)

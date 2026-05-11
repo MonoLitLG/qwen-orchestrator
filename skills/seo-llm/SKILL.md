@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for optimizing content for **LLM-powe
 ## When to Use
 
 **Use this skill when:**
+
 - Optimizing content for ChatGPT search results
 - Optimizing content for Perplexity AI search
 - Optimizing content for Gemini search
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for optimizing content for **LLM-powe
 - Creating content that ranks in AI-powered knowledge graphs
 
 **Do NOT use this skill when:**
+
 - Optimizing for traditional search engines (Google, Bing, Yahoo) - use traditional SEO skills
 - Designing database schema (use database-design skill)
 - Creating UI components (use frontend-design skill)
@@ -52,14 +54,14 @@ This skill provides comprehensive guidance for optimizing content for **LLM-powe
 
 ### AI Search Engine Landscape
 
-| Search Engine | Key Optimization Factor | Best For |
-|---------------|------------------------|----------|
-| **ChatGPT** | Authority, recency, relevance | Conversational search, Q&A |
-| **Perplexity** | Authority, citations, depth | Research, detailed answers |
-| **Gemini** | Rich results, structured data | Visual search, multimodal |
-| **Claude** | Source attribution, credibility | Trust-based search |
-| **Bing AI** | Microsoft ecosystem integration | Enterprise search |
-| **Qwen** | Alibaba ecosystem, Chinese market | Chinese language search |
+| Search Engine  | Key Optimization Factor           | Best For                   |
+| -------------- | --------------------------------- | -------------------------- |
+| **ChatGPT**    | Authority, recency, relevance     | Conversational search, Q&A |
+| **Perplexity** | Authority, citations, depth       | Research, detailed answers |
+| **Gemini**     | Rich results, structured data     | Visual search, multimodal  |
+| **Claude**     | Source attribution, credibility   | Trust-based search         |
+| **Bing AI**    | Microsoft ecosystem integration   | Enterprise search          |
+| **Qwen**       | Alibaba ecosystem, Chinese market | Chinese language search    |
 
 ### RAG Optimization
 
@@ -97,11 +99,11 @@ results = advanced_rag(query, chunks)
 # Optimized prompt for AI search
 def create_search_optimized_prompt(topic: str, intent: str = "informational") -> str:
     """Create a prompt optimized for AI search results."""
-    
+
     prompts = {
         "informational": f"""
         You are an expert on {topic}. Provide a comprehensive, well-structured answer.
-        
+
         Requirements:
         1. Start with a clear, direct answer
         2. Provide detailed explanations with examples
@@ -109,37 +111,37 @@ def create_search_optimized_prompt(topic: str, intent: str = "informational") ->
         4. Cite authoritative sources
         5. Use bullet points for key information
         6. End with a concise summary
-        
+
         Topic: {topic}
         """,
-        
+
         "comparative": f"""
         Compare and contrast {topic} with relevant alternatives.
-        
+
         Requirements:
         1. Create a comparison table
         2. List pros and cons for each option
         3. Provide use case recommendations
         4. Include pricing and availability
         5. Cite sources for all claims
-        
+
         Topic: {topic}
         """,
-        
+
         "how_to": f"""
         Provide a step-by-step guide for {topic}.
-        
+
         Requirements:
         1. Number each step clearly
         2. Include prerequisites
         3. Provide code examples where relevant
         4. Include common pitfalls and how to avoid them
         5. End with expected outcomes
-        
+
         Topic: {topic}
         """
     }
-    
+
     return prompts.get(intent, prompts["informational"])
 ```
 
@@ -151,7 +153,7 @@ def create_search_optimized_prompt(topic: str, intent: str = "informational") ->
 # ChatGPT SEO Optimization
 def optimize_for_chatgpt(content: str) -> dict:
     """Optimize content for ChatGPT search."""
-    
+
     return {
         "authority_signals": [
             "Cite authoritative sources",
@@ -189,7 +191,7 @@ chatgpt_optimization = optimize_for_chatgpt("How to use React hooks")
 # Perplexity Authority Optimization
 def optimize_for_perplexity(content: str) -> dict:
     """Optimize content for Perplexity search."""
-    
+
     return {
         "authority_signals": [
             "Cite multiple authoritative sources",
@@ -227,7 +229,7 @@ perplexity_optimization = optimize_for_perplexity("Machine learning algorithms")
 # Gemini Rich Results Optimization
 def optimize_for_gemini(content: str) -> dict:
     """Optimize content for Gemini search."""
-    
+
     return {
         "rich_signals": [
             "Include structured data (JSON-LD)",
@@ -289,7 +291,7 @@ def create_json_ld_for_gemini():
 # Claude Source Attribution Optimization
 def optimize_for_claude(content: str) -> dict:
     """Optimize content for Claude search."""
-    
+
     return {
         "credibility_signals": [
             "Cite peer-reviewed sources",
@@ -329,7 +331,7 @@ claude_optimization = optimize_for_claude("Climate change impacts")
 # Entity-Based SEO
 def optimize_for_entities(topic: str) -> dict:
     """Optimize content for AI search entity recognition."""
-    
+
     return {
         "primary_entity": topic,
         "related_entities": [
@@ -359,63 +361,63 @@ entity_optimization = optimize_for_entities("machine learning")
 
 ### Conversational Search Optimization
 
-```python
+````python
 # Conversational Search Optimization
 def optimize_for_conversational_search(query_type: str) -> str:
     """Optimize content for conversational AI search."""
-    
+
     conversational_patterns = {
         "question": f"""
         Q: How do I get started with this?
-        
+
         A: Getting started with this is straightforward. Follow these steps:
-        
+
         1. **Understand the basics** - Learn the fundamental concepts
         2. **Set up your environment** - Install required tools
         3. **Create your first project** - Build something simple
         4. **Expand your knowledge** - Learn advanced concepts
-        
+
         For more information, see the comprehensive guide.
         """,
-        
+
         "comparison": f"""
         Q: What's the difference between option A and option B?
-        
+
         A: Here's a comparison of option A and option B:
-        
+
         | Aspect | Option A | Option B |
         |--------|----------|----------|
         | Ease of use | High | Medium |
         | Performance | High | High |
         | Learning curve | Steep | Gentle |
-        
+
         Choose Option A if you prioritize performance. Choose Option B if you prefer ease of use.
         """,
-        
+
         "tutorial": f"""
         Q: Can you show me how to do this?
-        
+
         A: Sure! Here's a step-by-step tutorial:
-        
+
         **Step 1:** Prepare your environment
         ```python
         # Install required packages
         pip install package-name
         ```
-        
+
         **Step 2:** Implement the solution
         ```python
         # Your code here
         result = process_data()
         ```
-        
+
         **Step 3:** Verify the results
         Check that the output matches expected values.
         """
     }
-    
+
     return conversational_patterns.get(query_type, conversational_patterns["question"])
-```
+````
 
 ## Best Practices
 
@@ -425,16 +427,16 @@ def optimize_for_conversational_search(query_type: str) -> str:
 # ✅ GOOD: Answer-focused content
 def create_answer_focused_content(question: str) -> str:
     """Create content optimized for AI search answers."""
-    
+
     return f"""
     **Question: {question}**
-    
+
     **Direct Answer:** [Provide a clear, concise answer in the first paragraph]
-    
+
     **Detailed Explanation:** [Expand on the answer with detailed information]
-    
+
     **Examples:** [Include relevant examples]
-    
+
     **Key Takeaways:** [Summarize the main points]
     """
 
@@ -450,7 +452,7 @@ def create_information_dump():
 # ✅ GOOD: Semantic search optimization
 def optimize_for_semantic_search(topic: str) -> dict:
     """Optimize content for semantic search engines."""
-    
+
     return {
         "semantic_keywords": [
             f"what is {topic}",
@@ -478,7 +480,7 @@ def optimize_for_semantic_search(topic: str) -> dict:
 # ✅ GOOD: Schema markup for AI search
 def create_schema_markup(topic: str) -> dict:
     """Create schema markup for AI search visibility."""
-    
+
     return {
         "@context": "https://schema.org",
         "@type": "Article",
@@ -499,7 +501,7 @@ def create_schema_markup(topic: str) -> dict:
 # ✅ GOOD: Voice search optimization
 def optimize_for_voice_search(topic: str) -> dict:
     """Optimize content for voice-activated AI search."""
-    
+
     return {
         "natural_language_phrases": [
             f"what is {topic}",
@@ -531,6 +533,7 @@ def bad_keyword_stuffing():
 ```
 
 **Problems:**
+
 - AI search penalizes over-optimization
 - Poor user experience
 - May trigger spam detection
@@ -543,10 +546,10 @@ def good_natural_language(topic: str):
     """GOOD: Natural language content."""
     return f"""
     {topic} is a powerful technology that enables...
-    
+
     ## What is {topic}?
     {topic} stands for...
-    
+
     ## How to Use {topic}
     Here's how you can get started with {topic}...
     """
@@ -569,11 +572,11 @@ def good_answer_format(question: str) -> str:
     """GOOD: Clear answer format."""
     return f"""
     **Question: {question}**
-    
+
     **Answer:** [Direct answer here]
-    
+
     **Explanation:** [Detailed explanation]
-    
+
     **Examples:** [Relevant examples]
     """
 ```
@@ -581,12 +584,14 @@ def good_answer_format(question: str) -> str:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Content not optimized for AI search
 - Low visibility in AI search results
 - Poor performance in ChatGPT, Perplexity, Gemini, Claude searches
 - Missing RAG optimization
 
 **After this skill:**
+
 - Content optimized for all AI search engines
 - High visibility in AI search results
 - Optimized for ChatGPT SEO, Perplexity Authority, Gemini Rich Results, Claude Source Attribution

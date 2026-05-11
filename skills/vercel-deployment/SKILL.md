@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for deploying applications to Vercel,
 ## When to Use
 
 **Use this skill when:**
+
 - Deploying Next.js applications to Vercel
 - Configuring serverless functions for Vercel Functions
 - Setting up edge computing with Vercel Edge Functions
@@ -29,6 +30,7 @@ This skill provides comprehensive guidance for deploying applications to Vercel,
 - Configuring build environment variables
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use **developer skill** or specific framework skill)
 - Designing database schema (use **database-design** skill)
 - Creating UI components (use **frontend-design** skill)
@@ -53,6 +55,7 @@ module.exports = {
 ```
 
 **Characteristics:**
+
 - Minimal lambda size (~49KB)
 - Optimized cold start performance
 - No runtime dependencies
@@ -75,6 +78,7 @@ export default edgeFunction({
 ```
 
 **Characteristics:**
+
 - Runs on Cloudflare Workers runtime
 - Global distribution
 - Low latency
@@ -172,7 +176,7 @@ export default function MyImage() {
 // Edge function with caching
 export default async function request(request: Request) {
   const url = new URL(request.url);
-  
+
   if (url.pathname === '/api/data') {
     return new Response(JSON.stringify({ data: 'cached' }), {
       headers: {
@@ -180,7 +184,7 @@ export default async function request(request: Request) {
       },
     });
   }
-  
+
   return new Response('Not Found', { status: 404 });
 }
 ```
@@ -248,18 +252,18 @@ export default edgeFunction({
 // middleware.js
 export default async function handler(request) {
   const url = new URL(request.url);
-  
+
   // Skip static assets
   if (url.pathname.startsWith('/_next') || url.pathname.includes('.')) {
     return null;
   }
-  
+
   // Check authentication
   const token = request.headers.get('Authorization');
   if (!token && url.pathname !== '/login') {
     return new Response('Unauthorized', { status: 401 });
   }
-  
+
   return null; // Continue to next handler
 }
 ```
@@ -270,7 +274,7 @@ export default async function handler(request) {
 // api/middleware.ts
 export default async function handler(request) {
   const url = new URL(request.url);
-  
+
   switch (url.pathname) {
     case '/api/users':
       return handleUsers(request);
@@ -305,6 +309,7 @@ export default async function handler(req, res) {
 ```
 
 **Problems:**
+
 - Slow cold starts
 - High memory usage
 - Expensive execution
@@ -358,12 +363,14 @@ export default async function handler(request) {
 ## Real-World Impact
 
 **Before this skill:**
+
 - Slow deployments
 - Poor caching
 - High latency
 - Expensive Lambda functions
 
 **After this skill:**
+
 - Fast deployments
 - Optimal caching
 - Low latency

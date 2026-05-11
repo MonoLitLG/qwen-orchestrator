@@ -678,6 +678,7 @@ describe('Products (e2e)', () => {
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing SQL queries (use sql-best-practices skill)

@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for **deploying and managing applicat
 ## When to Use
 
 **Use this skill when:**
+
 - Deploying applications to Kubernetes clusters
 - Implementing deployment strategies (rolling, blue-green, canary)
 - Configuring pod security policies and Pod Security Admission
@@ -39,6 +40,7 @@ This skill provides comprehensive guidance for **deploying and managing applicat
 - Scanning images with Trivy before deployment
 
 **Do NOT use this skill when:**
+
 - Containerizing applications (use docker-containerization skill)
 - Setting up cloud infrastructure (use terraform-iac skill)
 - Configuring CI/CD pipelines (use devops-pipeline skill)
@@ -54,24 +56,24 @@ This skill provides comprehensive guidance for **deploying and managing applicat
 
 ### Workload Types
 
-| Type | Use Case | State | Scaling |
-|------|----------|-------|---------|
-| **Deployment** | Stateless applications | Stateless | Horizontal |
-| **StatefulSet** | Databases, message queues | Stateful | Ordered |
-| **DaemonSet** | Logging, monitoring agents | Node-bound | 1 per node |
-| **Job** | One-time batch processing | Ephemeral | Fixed |
-| **CronJob** | Scheduled batch processing | Ephemeral | Scheduled |
-| **ReplicationController** | Legacy pod replication | Stateless | Horizontal |
+| Type                      | Use Case                   | State      | Scaling    |
+| ------------------------- | -------------------------- | ---------- | ---------- |
+| **Deployment**            | Stateless applications     | Stateless  | Horizontal |
+| **StatefulSet**           | Databases, message queues  | Stateful   | Ordered    |
+| **DaemonSet**             | Logging, monitoring agents | Node-bound | 1 per node |
+| **Job**                   | One-time batch processing  | Ephemeral  | Fixed      |
+| **CronJob**               | Scheduled batch processing | Ephemeral  | Scheduled  |
+| **ReplicationController** | Legacy pod replication     | Stateless  | Horizontal |
 
 ### Deployment Strategies
 
-| Strategy | Downtime | Risk | Rollback | Use Case |
-|----------|----------|------|----------|----------|
-| **Rolling Update** | Zero | Low | Automatic | Most applications |
-| **Blue-Green** | Zero | Medium | Instant | High-traffic apps |
-| **Canary** | Zero | Low | Gradual | Risky deployments |
-| **Recreate** | Full | High | Manual | Database migrations |
-| **Shadow** | Zero | Lowest | N/A | Testing with production traffic |
+| Strategy           | Downtime | Risk   | Rollback  | Use Case                        |
+| ------------------ | -------- | ------ | --------- | ------------------------------- |
+| **Rolling Update** | Zero     | Low    | Automatic | Most applications               |
+| **Blue-Green**     | Zero     | Medium | Instant   | High-traffic apps               |
+| **Canary**         | Zero     | Low    | Gradual   | Risky deployments               |
+| **Recreate**       | Full     | High   | Manual    | Database migrations             |
+| **Shadow**         | Zero     | Lowest | N/A       | Testing with production traffic |
 
 ### Resource Management Hierarchy
 
@@ -104,8 +106,8 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 1        # Max pods unavailable during update
-      maxSurge: 1              # Max extra pods during update
+      maxUnavailable: 1 # Max pods unavailable during update
+      maxSurge: 1 # Max extra pods during update
   template:
     metadata:
       labels:
@@ -113,29 +115,29 @@ spec:
         version: v1
     spec:
       containers:
-      - name: web-app
-        image: myregistry/web-app:v1.2.0
-        ports:
-        - containerPort: 8080
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 8080
-          initialDelaySeconds: 15
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        - name: web-app
+          image: myregistry/web-app:v1.2.0
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              cpu: '100m'
+              memory: '128Mi'
+            limits:
+              cpu: '500m'
+              memory: '512Mi'
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
 ```
 
 ### Blue-Green Deployment
@@ -155,8 +157,8 @@ spec:
         track: blue
     spec:
       containers:
-      - name: web-app
-        image: myregistry/web-app:v1.1.0
+        - name: web-app
+          image: myregistry/web-app:v1.1.0
 ---
 # Green (new version)
 apiVersion: apps/v1
@@ -172,8 +174,8 @@ spec:
         track: green
     spec:
       containers:
-      - name: web-app
-        image: myregistry/web-app:v1.2.0
+        - name: web-app
+          image: myregistry/web-app:v1.2.0
 ---
 # Service switches between blue and green
 apiVersion: v1
@@ -183,10 +185,10 @@ metadata:
 spec:
   selector:
     app: web-app
-    track: green  # Change to 'blue' to rollback
+    track: green # Change to 'blue' to rollback
   ports:
-  - port: 80
-    targetPort: 8080
+    - port: 80
+      targetPort: 8080
   type: ClusterIP
 ```
 
@@ -198,7 +200,7 @@ kind: Deployment
 metadata:
   name: web-app-stable
 spec:
-  replicas: 9  # 90% traffic
+  replicas: 9 # 90% traffic
   template:
     metadata:
       labels:
@@ -206,15 +208,15 @@ spec:
         version: stable
     spec:
       containers:
-      - name: web-app
-        image: myregistry/web-app:v1.1.0
+        - name: web-app
+          image: myregistry/web-app:v1.1.0
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web-app-canary
 spec:
-  replicas: 1  # 10% traffic
+  replicas: 1 # 10% traffic
   template:
     metadata:
       labels:
@@ -222,8 +224,8 @@ spec:
         version: canary
     spec:
       containers:
-      - name: web-app
-        image: myregistry/web-app:v1.2.0
+        - name: web-app
+          image: myregistry/web-app:v1.2.0
 ---
 # Service distributes traffic based on replica count
 apiVersion: v1
@@ -234,8 +236,8 @@ spec:
   selector:
     app: web-app
   ports:
-  - port: 80
-    targetPort: 8080
+    - port: 80
+      targetPort: 8080
 ```
 
 ## Pod Security and RBAC
@@ -263,7 +265,7 @@ kind: ServiceAccount
 metadata:
   name: app-service-account
   namespace: production
-automountServiceAccountToken: false  # Disable by default
+automountServiceAccountToken: false # Disable by default
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -271,12 +273,12 @@ metadata:
   name: pod-reader
   namespace: production
 rules:
-- apiGroups: [""]
-  resources: ["pods"]
-  verbs: ["get", "watch", "list"]
-- apiGroups: ["apps"]
-  resources: ["deployments"]
-  verbs: ["get", "watch", "list"]
+  - apiGroups: ['']
+    resources: ['pods']
+    verbs: ['get', 'watch', 'list']
+  - apiGroups: ['apps']
+    resources: ['deployments']
+    verbs: ['get', 'watch', 'list']
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -284,9 +286,9 @@ metadata:
   name: read-pods
   namespace: production
 subjects:
-- kind: ServiceAccount
-  name: app-service-account
-  namespace: production
+  - kind: ServiceAccount
+    name: app-service-account
+    namespace: production
 roleRef:
   kind: Role
   name: pod-reader
@@ -311,20 +313,20 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       containers:
-      - name: app
-        image: myregistry/app:latest
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop:
-              - ALL
-        volumeMounts:
-        - name: tmp
-          mountPath: /tmp
+        - name: app
+          image: myregistry/app:latest
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
       volumes:
-      - name: tmp
-        emptyDir: {}
+        - name: tmp
+          emptyDir: {}
 ```
 
 ## Resource Management and Autoscaling
@@ -345,41 +347,41 @@ spec:
   minReplicas: 2
   maxReplicas: 10
   metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 80
-  - type: Pods
-    pods:
-      metric:
-        name: requests-per-second
-      target:
-        type: AverageValue
-        averageValue: "1000"
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+    - type: Pods
+      pods:
+        metric:
+          name: requests-per-second
+        target:
+          type: AverageValue
+          averageValue: '1000'
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 300
       policies:
-      - type: Percent
-        value: 10
-        periodSeconds: 60
+        - type: Percent
+          value: 10
+          periodSeconds: 60
     scaleUp:
       stabilizationWindowSeconds: 60
       policies:
-      - type: Percent
-        value: 100
-        periodSeconds: 60
-      - type: Pods
-        value: 4
-        periodSeconds: 60
+        - type: Percent
+          value: 100
+          periodSeconds: 60
+        - type: Pods
+          value: 4
+          periodSeconds: 60
       selectPolicy: Max
 ```
 
@@ -393,13 +395,13 @@ metadata:
   namespace: production
 spec:
   hard:
-    requests.cpu: "10"
+    requests.cpu: '10'
     requests.memory: 20Gi
-    limits.cpu: "20"
+    limits.cpu: '20'
     limits.memory: 40Gi
-    pods: "50"
-    services: "20"
-    persistentvolumeclaims: "10"
+    pods: '50'
+    services: '20'
+    persistentvolumeclaims: '10'
 ---
 apiVersion: v1
 kind: LimitRange
@@ -408,19 +410,19 @@ metadata:
   namespace: production
 spec:
   limits:
-  - default:
-      cpu: "500m"
-      memory: "512Mi"
-    defaultRequest:
-      cpu: "100m"
-      memory: "128Mi"
-    max:
-      cpu: "2"
-      memory: "4Gi"
-    min:
-      cpu: "50m"
-      memory: "64Mi"
-    type: Container
+    - default:
+        cpu: '500m'
+        memory: '512Mi'
+      defaultRequest:
+        cpu: '100m'
+        memory: '128Mi'
+      max:
+        cpu: '2'
+        memory: '4Gi'
+      min:
+        cpu: '50m'
+        memory: '64Mi'
+      type: Container
 ```
 
 ## Ingress Configuration
@@ -435,34 +437,34 @@ metadata:
   namespace: production
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/rate-limit: "100"
-    nginx.ingress.kubernetes.io/rate-limit-window: "1m"
-    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/rate-limit: '100'
+    nginx.ingress.kubernetes.io/rate-limit-window: '1m'
+    nginx.ingress.kubernetes.io/proxy-body-size: '50m'
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
-  - hosts:
-    - app.example.com
-    secretName: app-tls-secret
+    - hosts:
+        - app.example.com
+      secretName: app-tls-secret
   rules:
-  - host: app.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: web-app-service
-            port:
-              number: 80
-      - path: /api
-        pathType: Prefix
-        backend:
-          service:
-            name: api-service
-            port:
-              number: 8080
+    - host: app.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-app-service
+                port:
+                  number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api-service
+                port:
+                  number: 8080
 ```
 
 ### Ingress with Canary (NGINX)
@@ -473,20 +475,20 @@ kind: Ingress
 metadata:
   name: web-app-canary-ingress
   annotations:
-    nginx.ingress.kubernetes.io/canary: "true"
-    nginx.ingress.kubernetes.io/canary-weight: "10"  # 10% traffic
+    nginx.ingress.kubernetes.io/canary: 'true'
+    nginx.ingress.kubernetes.io/canary-weight: '10' # 10% traffic
 spec:
   rules:
-  - host: app.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: web-app-canary
-            port:
-              number: 80
+    - host: app.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web-app-canary
+                port:
+                  number: 80
 ```
 
 ## Service Mesh (Istio)
@@ -500,22 +502,22 @@ metadata:
   name: web-app-vs
 spec:
   hosts:
-  - web-app
+    - web-app
   http:
-  - route:
-    - destination:
-        host: web-app
-        subset: v1
-      weight: 90
-    - destination:
-        host: web-app
-        subset: v2
-      weight: 10
-    timeout: 5s
-    retries:
-      attempts: 3
-      perTryTimeout: 2s
-      retryOn: gateway-error,connect-failure,refused-stream
+    - route:
+        - destination:
+            host: web-app
+            subset: v1
+          weight: 90
+        - destination:
+            host: web-app
+            subset: v2
+          weight: 10
+      timeout: 5s
+      retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: gateway-error,connect-failure,refused-stream
 ---
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
@@ -537,12 +539,12 @@ spec:
       baseEjectionTime: 30s
       maxEjectionPercent: 50
   subsets:
-  - name: v1
-    labels:
-      version: v1
-  - name: v2
-    labels:
-      version: v2
+    - name: v1
+      labels:
+        version: v1
+    - name: v2
+      labels:
+        version: v2
 ```
 
 ## Secrets and Config Maps
@@ -557,9 +559,9 @@ metadata:
   namespace: production
 type: Opaque
 stringData:
-  database-url: "postgresql://user:password@db:5432/app"
-  api-key: "sk-xxxxxxxxxxxxxxxx"
-  jwt-secret: "super-secret-jwt-key"
+  database-url: 'postgresql://user:password@db:5432/app'
+  api-key: 'sk-xxxxxxxxxxxxxxxx'
+  jwt-secret: 'super-secret-jwt-key'
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -569,28 +571,28 @@ spec:
   template:
     spec:
       containers:
-      - name: app
-        image: myregistry/app:latest
-        env:
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: database-url
-        - name: API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: api-key
-        # Mount secrets as files (more secure than env vars)
-        volumeMounts:
-        - name: secret-volume
-          mountPath: /etc/secrets
-          readOnly: true
+        - name: app
+          image: myregistry/app:latest
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: database-url
+            - name: API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: api-key
+          # Mount secrets as files (more secure than env vars)
+          volumeMounts:
+            - name: secret-volume
+              mountPath: /etc/secrets
+              readOnly: true
       volumes:
-      - name: secret-volume
-        secret:
-          secretName: app-secrets
+        - name: secret-volume
+          secret:
+            secretName: app-secrets
 ```
 
 ### Config Maps
@@ -602,15 +604,15 @@ metadata:
   name: app-config
   namespace: production
 data:
-  APP_ENV: "production"
-  LOG_LEVEL: "info"
-  CACHE_TTL: "3600"
+  APP_ENV: 'production'
+  LOG_LEVEL: 'info'
+  CACHE_TTL: '3600'
   # Configuration file
   app.conf: |
     [server]
     port = 8080
     workers = 4
-    
+
     [database]
     pool_size = 10
     timeout = 30
@@ -623,21 +625,21 @@ spec:
   template:
     spec:
       containers:
-      - name: app
-        image: myregistry/app:latest
-        envFrom:
-        - configMapRef:
-            name: app-config
-        volumeMounts:
-        - name: config-volume
-          mountPath: /etc/app
+        - name: app
+          image: myregistry/app:latest
+          envFrom:
+            - configMapRef:
+                name: app-config
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/app
       volumes:
-      - name: config-volume
-        configMap:
-          name: app-config
-          items:
-          - key: app.conf
-            path: app.conf
+        - name: config-volume
+          configMap:
+            name: app-config
+            items:
+              - key: app.conf
+                path: app.conf
 ```
 
 ## Stateful Sets for Databases
@@ -655,8 +657,8 @@ spec:
   selector:
     app: postgres
   ports:
-  - port: 5432
-    name: postgres
+    - port: 5432
+      name: postgres
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -679,61 +681,61 @@ spec:
         runAsUser: 999
         fsGroup: 999
       containers:
-      - name: postgres
-        image: postgres:16-alpine
-        ports:
-        - containerPort: 5432
-          name: postgres
-        env:
-        - name: POSTGRES_DB
-          value: "app"
-        - name: POSTGRES_USER
-          valueFrom:
-            secretKeyRef:
-              name: postgres-secret
-              key: username
-        - name: POSTGRES_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: postgres-secret
-              key: password
-        - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata
+        - name: postgres
+          image: postgres:16-alpine
+          ports:
+            - containerPort: 5432
+              name: postgres
+          env:
+            - name: POSTGRES_DB
+              value: 'app'
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          resources:
+            requests:
+              cpu: '500m'
+              memory: '1Gi'
+            limits:
+              cpu: '2'
+              memory: '4Gi'
+          livenessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -U
+                - postgres
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+                - pg_isready
+                - -U
+                - postgres
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-data
+      spec:
+        accessModes: ['ReadWriteOnce']
+        storageClassName: fast-ssd
         resources:
           requests:
-            cpu: "500m"
-            memory: "1Gi"
-          limits:
-            cpu: "2"
-            memory: "4Gi"
-        livenessProbe:
-          exec:
-            command:
-            - pg_isready
-            - -U
-            - postgres
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        readinessProbe:
-          exec:
-            command:
-            - pg_isready
-            - -U
-            - postgres
-          initialDelaySeconds: 5
-          periodSeconds: 5
-        volumeMounts:
-        - name: postgres-data
-          mountPath: /var/lib/postgresql/data
-  volumeClaimTemplates:
-  - metadata:
-      name: postgres-data
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      storageClassName: fast-ssd
-      resources:
-        requests:
-          storage: 50Gi
+            storage: 50Gi
 ```
 
 ## Daemon Sets for Monitoring
@@ -758,35 +760,35 @@ spec:
         app: fluentd
     spec:
       tolerations:
-      - operator: Exists  # Run on all nodes including master
+        - operator: Exists # Run on all nodes including master
       serviceAccountName: fluentd
       containers:
-      - name: fluentd
-        image: fluent/fluentd:v1.16-1
-        resources:
-          limits:
-            memory: 512Mi
-          requests:
-            cpu: 100m
-            memory: 200Mi
-        volumeMounts:
-        - name: varlog
-          mountPath: /var/log
-        - name: varlibdockercontainers
-          mountPath: /var/lib/docker/containers
-          readOnly: true
-        - name: fluentd-config
-          mountPath: /fluentd/etc
+        - name: fluentd
+          image: fluent/fluentd:v1.16-1
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
+          volumeMounts:
+            - name: varlog
+              mountPath: /var/log
+            - name: varlibdockercontainers
+              mountPath: /var/lib/docker/containers
+              readOnly: true
+            - name: fluentd-config
+              mountPath: /fluentd/etc
       volumes:
-      - name: varlog
-        hostPath:
-          path: /var/log
-      - name: varlibdockercontainers
-        hostPath:
-          path: /var/lib/docker/containers
-      - name: fluentd-config
-        configMap:
-          name: fluentd-config
+        - name: varlog
+          hostPath:
+            path: /var/log
+        - name: varlibdockercontainers
+          hostPath:
+            path: /var/lib/docker/containers
+        - name: fluentd-config
+          configMap:
+            name: fluentd-config
 ```
 
 ## Jobs and CronJobs
@@ -807,21 +809,21 @@ spec:
     spec:
       restartPolicy: Never
       containers:
-      - name: migrator
-        image: myregistry/migrator:latest
-        env:
-        - name: DATABASE_URL
-          valueFrom:
-            secretKeyRef:
-              name: db-secret
-              key: connection-string
-        resources:
-          requests:
-            cpu: "500m"
-            memory: "1Gi"
-          limits:
-            cpu: "2"
-            memory: "4Gi"
+        - name: migrator
+          image: myregistry/migrator:latest
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: connection-string
+          resources:
+            requests:
+              cpu: '500m'
+              memory: '1Gi'
+            limits:
+              cpu: '2'
+              memory: '4Gi'
   backoffLimit: 4
   activeDeadlineSeconds: 3600
   completionMode: NonIndexed
@@ -834,22 +836,22 @@ metadata:
   name: daily-report
   namespace: production
 spec:
-  schedule: "0 2 * * *"  # Daily at 2 AM
+  schedule: '0 2 * * *' # Daily at 2 AM
   jobTemplate:
     spec:
       template:
         spec:
           restartPolicy: OnFailure
           containers:
-          - name: reporter
-            image: myregistry/reporter:latest
-            resources:
-              requests:
-                cpu: "200m"
-                memory: "256Mi"
-              limits:
-                cpu: "1"
-                memory: "1Gi"
+            - name: reporter
+              image: myregistry/reporter:latest
+              resources:
+                requests:
+                  cpu: '200m'
+                  memory: '256Mi'
+                limits:
+                  cpu: '1'
+                  memory: '1Gi'
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
@@ -868,8 +870,8 @@ metadata:
 spec:
   podSelector: {}
   policyTypes:
-  - Ingress
-  - Egress
+    - Ingress
+    - Egress
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -881,15 +883,15 @@ spec:
     matchLabels:
       app: api
   policyTypes:
-  - Ingress
+    - Ingress
   ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          app: web
-    ports:
-    - protocol: TCP
-      port: 8080
+    - from:
+        - podSelector:
+            matchLabels:
+              app: web
+      ports:
+        - protocol: TCP
+          port: 8080
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -901,20 +903,20 @@ spec:
     matchLabels:
       app: api
   policyTypes:
-  - Egress
+    - Egress
   egress:
-  - to:
-    - podSelector:
-        matchLabels:
-          app: postgres
-    ports:
-    - protocol: TCP
-      port: 5432
-  - to:
-    - namespaceSelector: {}
-    ports:
-    - protocol: UDP
-      port: 53  # DNS
+    - to:
+        - podSelector:
+            matchLabels:
+              app: postgres
+      ports:
+        - protocol: TCP
+          port: 5432
+    - to:
+        - namespaceSelector: {}
+      ports:
+        - protocol: UDP
+          port: 53 # DNS
 ```
 
 ## Node Affinity and Scheduling
@@ -934,53 +936,53 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-            - matchExpressions:
-              - key: node-type
-                operator: In
-                values:
-                - gpu
+              - matchExpressions:
+                  - key: node-type
+                    operator: In
+                    values:
+                      - gpu
           preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-              - key: zone
-                operator: In
-                values:
-                - us-east-1a
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: zone
+                    operator: In
+                    values:
+                      - us-east-1a
         # Pod Anti-Affinity: Spread pods across nodes
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - web-app
-            topologyKey: kubernetes.io/hostname
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - web-app
+              topologyKey: kubernetes.io/hostname
       # Tolerations: Allow scheduling on tainted nodes
       tolerations:
-      - key: "workload-type"
-        operator: "Equal"
-        value: "compute-intensive"
-        effect: "NoSchedule"
-      - key: "dedicated"
-        operator: "Equal"
-        value: "ml-workloads"
-        effect: "NoExecute"
+        - key: 'workload-type'
+          operator: 'Equal'
+          value: 'compute-intensive'
+          effect: 'NoSchedule'
+        - key: 'dedicated'
+          operator: 'Equal'
+          value: 'ml-workloads'
+          effect: 'NoExecute'
       # Pod Priority
       priorityClassName: high-priority
       containers:
-      - name: ml-model
-        image: myregistry/ml-model:latest
-        resources:
-          requests:
-            cpu: "4"
-            memory: "16Gi"
-            nvidia.com/gpu: 1
-          limits:
-            cpu: "4"
-            memory: "16Gi"
-            nvidia.com/gpu: 1
+        - name: ml-model
+          image: myregistry/ml-model:latest
+          resources:
+            requests:
+              cpu: '4'
+              memory: '16Gi'
+              nvidia.com/gpu: 1
+            limits:
+              cpu: '4'
+              memory: '16Gi'
+              nvidia.com/gpu: 1
 ```
 
 ### Pod Disruption Budget
@@ -992,7 +994,7 @@ metadata:
   name: web-app-pdb
   namespace: production
 spec:
-  minAvailable: 2           # At least 2 pods always available
+  minAvailable: 2 # At least 2 pods always available
   # OR use maxUnavailable: 1
   selector:
     matchLabels:
@@ -1008,10 +1010,10 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: fast-ssd
-provisioner: ebs.csi.aws.com  # AWS EBS CSI driver
+provisioner: ebs.csi.aws.com # AWS EBS CSI driver
 parameters:
   type: io2
-  iopsPerGB: "5000"
+  iopsPerGB: '5000'
   fsType: ext4
 reclaimPolicy: Retain
 volumeBindingMode: WaitForFirstConsumer
@@ -1024,7 +1026,7 @@ metadata:
   namespace: production
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   storageClassName: fast-ssd
   resources:
     requests:
@@ -1040,15 +1042,15 @@ spec:
   template:
     spec:
       containers:
-      - name: app
-        image: myregistry/app:latest
-        volumeMounts:
-        - name: data
-          mountPath: /app/data
+        - name: app
+          image: myregistry/app:latest
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
       volumes:
-      - name: data
-        persistentVolumeClaim:
-          claimName: app-data
+        - name: data
+          persistentVolumeClaim:
+            claimName: app-data
 ```
 
 ## Helm Chart Structure
@@ -1082,14 +1084,14 @@ name: web-app
 description: Production-ready web application chart
 type: application
 version: 1.2.0
-appVersion: "2.0.0"
+appVersion: '2.0.0'
 maintainers:
-- name: platform-team
-  email: platform@example.com
+  - name: platform-team
+    email: platform@example.com
 keywords:
-- web
-- microservice
-- production
+  - web
+  - microservice
+  - production
 ```
 
 ### values.yaml
@@ -1100,16 +1102,16 @@ replicaCount: 3
 image:
   repository: myregistry/web-app
   pullPolicy: IfNotPresent
-  tag: "2.0.0"
+  tag: '2.0.0'
 
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: ''
+fullnameOverride: ''
 
 serviceAccount:
   create: true
   annotations: {}
-  name: ""
+  name: ''
 
 podAnnotations: {}
 
@@ -1124,7 +1126,7 @@ securityContext:
   readOnlyRootFilesystem: true
   capabilities:
     drop:
-    - ALL
+      - ALL
 
 service:
   type: ClusterIP
@@ -1136,14 +1138,14 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
   hosts:
-  - host: app.example.com
-    paths:
-    - path: /
-      pathType: Prefix
+    - host: app.example.com
+      paths:
+        - path: /
+          pathType: Prefix
   tls:
-  - secretName: app-tls-secret
-    hosts:
-    - app.example.com
+    - secretName: app-tls-secret
+      hosts:
+        - app.example.com
 
 resources:
   limits:
@@ -1196,9 +1198,9 @@ spec:
       selfHeal: true
       allowEmpty: false
     syncOptions:
-    - CreateNamespace=true
-    - PrunePropagationPolicy=foreground
-    - PruneLast=true
+      - CreateNamespace=true
+      - PrunePropagationPolicy=foreground
+      - PruneLast=true
     retry:
       limit: 5
       backoff:
@@ -1216,39 +1218,39 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- ../../base
+  - ../../base
 
 namespace: production
 
 namePrefix: prod-
 
 replicas:
-- name: web-app
-  count: 5
+  - name: web-app
+    count: 5
 
 configMapGenerator:
-- name: app-config
-  literals:
-  - LOG_LEVEL=info
-  - METRICS_ENABLED=true
+  - name: app-config
+    literals:
+      - LOG_LEVEL=info
+      - METRICS_ENABLED=true
 
 patches:
-- target:
-    kind: Deployment
-    name: web-app
-  patch: |-
-    - op: add
-      path: /spec/template/spec/affinity
-      value:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - web-app
-            topologyKey: kubernetes.io/hostname
+  - target:
+      kind: Deployment
+      name: web-app
+    patch: |-
+      - op: add
+        path: /spec/template/spec/affinity
+        value:
+          podAntiAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - web-app
+              topologyKey: kubernetes.io/hostname
 ```
 
 ## Monitoring and Logging
@@ -1269,12 +1271,12 @@ spec:
       app: web-app
   namespaceSelector:
     matchNames:
-    - production
+      - production
   endpoints:
-  - port: metrics
-    interval: 15s
-    path: /metrics
-    scrapeTimeout: 10s
+    - port: metrics
+      interval: 15s
+      path: /metrics
+      scrapeTimeout: 10s
 ```
 
 ## Security Best Practices
@@ -1300,33 +1302,33 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       containers:
-      - name: app
-        image: myregistry/app:v1.2.0  # Specific tag, not latest
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
-          capabilities:
-            drop:
-            - ALL
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
-          limits:
-            cpu: "500m"
-            memory: "512Mi"
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 8080
-          initialDelaySeconds: 15
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /ready
-            port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        - name: app
+          image: myregistry/app:v1.2.0 # Specific tag, not latest
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+          resources:
+            requests:
+              cpu: '100m'
+              memory: '128Mi'
+            limits:
+              cpu: '500m'
+              memory: '512Mi'
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
 ```
 
 ### Security Anti-Patterns
@@ -1376,6 +1378,7 @@ Before deploying to production:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Manual deployments with downtime
 - No resource management leading to node exhaustion
 - Running containers as root with full privileges
@@ -1386,6 +1389,7 @@ Before deploying to production:
 - No monitoring or logging infrastructure
 
 **After this skill:**
+
 - Zero-downtime deployments with rolling updates
 - Proper resource management with HPA/VPA
 - Non-root containers with minimal privileges

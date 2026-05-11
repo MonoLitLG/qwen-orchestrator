@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for implementing offline-first applic
 ## When to Use
 
 **Use this skill when:**
+
 - Implementing offline-first applications
 - Managing local storage (IndexedDB, localStorage)
 - Implementing data synchronization
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for implementing offline-first applic
 - Creating offline-first testing
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -172,25 +174,25 @@ class OfflineSync {
   async sync() {
     // Get pending changes
     const pendingChanges = await this.db.getAll('pendingChanges');
-    
+
     for (const change of pendingChanges) {
       try {
         // Attempt to sync
         const result = await this.apiClient.sync(change);
-        
+
         // Mark as synced
         await this.db.delete('pendingChanges', change.id);
-        
+
         // Update local cache
         await this.db.put('cache', result);
       } catch (error) {
         // Handle error
         console.error('Sync failed:', error);
-        
+
         // Retry later
         if (this.shouldRetry(error)) {
           await this.db.update('pendingChanges', change.id, {
-            retryCount: (change.retryCount || 0) + 1
+            retryCount: (change.retryCount || 0) + 1,
           });
         }
       }
@@ -203,7 +205,7 @@ class OfflineSync {
       record,
       action,
       timestamp: Date.now(),
-      retryCount: 0
+      retryCount: 0,
     });
   }
 }
@@ -221,16 +223,16 @@ class OfflineSync {
 </div>
 
 <script>
-// Monitor network status
-window.addEventListener('online', () => {
-  document.getElementById('offlineIndicator').style.display = 'none';
-  // Trigger sync
-  offlineSync.sync();
-});
+  // Monitor network status
+  window.addEventListener('online', () => {
+    document.getElementById('offlineIndicator').style.display = 'none';
+    // Trigger sync
+    offlineSync.sync();
+  });
 
-window.addEventListener('offline', () => {
-  document.getElementById('offlineIndicator').style.display = 'block';
-});
+  window.addEventListener('offline', () => {
+    document.getElementById('offlineIndicator').style.display = 'block';
+  });
 </script>
 ```
 
@@ -244,17 +246,17 @@ window.addEventListener('offline', () => {
 </div>
 
 <script>
-// Display pending actions
-function displayQueue() {
-  const queueList = document.getElementById('queueList');
-  queueList.innerHTML = '';
-  
-  offlineSync.getPendingActions().forEach(action => {
-    const li = document.createElement('li');
-    li.textContent = `${action.type}: ${action.description}`;
-    queueList.appendChild(li);
-  });
-}
+  // Display pending actions
+  function displayQueue() {
+    const queueList = document.getElementById('queueList');
+    queueList.innerHTML = '';
+
+    offlineSync.getPendingActions().forEach((action) => {
+      const li = document.createElement('li');
+      li.textContent = `${action.type}: ${action.description}`;
+      queueList.appendChild(li);
+    });
+  }
 </script>
 ```
 
@@ -266,11 +268,12 @@ function displayQueue() {
 // ✅ Good: Service worker registration
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(registration => {
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then((registration) => {
         console.log('SW registered:', registration);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log('SW registration failed:', error);
       });
   });
@@ -283,38 +286,34 @@ if ('serviceWorker' in navigator) {
 // ✅ Good: Service worker cache strategy
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open('app-cache')
-      .then(cache => {
-        return cache.addAll([
-          '/',
-          '/styles/main.css',
-          '/scripts/app.js',
-          '/images/logo.png'
-        ]);
-      })
+    caches.open('app-cache').then((cache) => {
+      return cache.addAll([
+        '/',
+        '/styles/main.css',
+        '/scripts/app.js',
+        '/images/logo.png',
+      ]);
+    })
   );
 });
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request)
-      .then(cachedResponse => {
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-        
-        return fetch(event.request)
-          .then(response => {
-            // Cache the response
-            const responseClone = response.clone();
-            caches.open('app-cache')
-              .then(cache => {
-                cache.put(event.request, responseClone);
-              });
-            
-            return response;
-          });
-      })
+    caches.match(event.request).then((cachedResponse) => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+
+      return fetch(event.request).then((response) => {
+        // Cache the response
+        const responseClone = response.clone();
+        caches.open('app-cache').then((cache) => {
+          cache.put(event.request, responseClone);
+        });
+
+        return response;
+      });
+    })
   );
 });
 ```
@@ -322,6 +321,7 @@ self.addEventListener('fetch', (event) => {
 ## Real-World Impact
 
 **Before this skill:**
+
 - Applications fail when offline
 - No data persistence
 - Poor user experience
@@ -329,6 +329,7 @@ self.addEventListener('fetch', (event) => {
 - Manual sync required
 
 **After this skill:**
+
 - Applications work offline
 - Automatic data persistence
 - Excellent user experience

@@ -19,16 +19,16 @@ Comprehensive guide for developing applications that work across Windows, Linux,
 
 ## What It Covers
 
-| Section | Topics |
-|---------|--------|
-| Platform Detection | Node.js, Python, Shell, PowerShell detection patterns |
-| Shell Commands | ls, cd, cp, rm, mkdir, grep equivalents across platforms |
-| Path Handling | path.join, pathlib, cross-platform patterns |
-| Line Endings | CRLF vs LF, .gitconfig, .gitattributes configuration |
-| File Permissions | chmod, icacls, cross-platform solutions |
-| Package Managers | npm/pnpm, pip, apt, brew, chocolatey |
-| CI/CD | GitHub Actions matrix builds for all platforms |
-| Testing | Platform detection in tests, skip patterns |
+| Section            | Topics                                                   |
+| ------------------ | -------------------------------------------------------- |
+| Platform Detection | Node.js, Python, Shell, PowerShell detection patterns    |
+| Shell Commands     | ls, cd, cp, rm, mkdir, grep equivalents across platforms |
+| Path Handling      | path.join, pathlib, cross-platform patterns              |
+| Line Endings       | CRLF vs LF, .gitconfig, .gitattributes configuration     |
+| File Permissions   | chmod, icacls, cross-platform solutions                  |
+| Package Managers   | npm/pnpm, pip, apt, brew, chocolatey                     |
+| CI/CD              | GitHub Actions matrix builds for all platforms           |
+| Testing            | Platform detection in tests, skip patterns               |
 
 ## Quick Start
 

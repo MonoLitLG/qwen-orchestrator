@@ -197,6 +197,7 @@ Before marking a module complete:
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Writing API endpoint implementations (use api-design skill)
 - Reviewing code for quality issues (use code-review skill)
 - Performing security audits (use security-auditor skill)

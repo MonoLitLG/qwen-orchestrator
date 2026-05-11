@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for threat modeling and security anal
 ## When to Use
 
 **Use this skill when:**
+
 - Performing threat modeling for systems
 - Identifying security threats and vulnerabilities
 - Analyzing attack vectors and attack paths
@@ -39,11 +40,13 @@ This skill provides comprehensive guidance for threat modeling and security anal
 ## What It Covers
 
 ### Threat Modeling Frameworks
+
 - **STRIDE** - Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege
 - **DREAD** - Damage, Reproducibility, Exploitability, Affected Users, Discoverability
 - **Attack Trees** - Threat visualization
 
 ### Threat Modeling Process
+
 - **Scope Definition** - System boundaries
 - **Asset Identification** - What to protect
 - **Threat Identification** - Using STRIDE
@@ -51,6 +54,7 @@ This skill provides comprehensive guidance for threat modeling and security anal
 - **Mitigation** - Security controls
 
 ### Tools
+
 - **OWASP Threat Dragon** - Open-source tool
 - **Microsoft Threat Modeling Tool** - Windows tool
 - **ThreatModeler** - Cloud-based tool
@@ -71,6 +75,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - STRIDE threat modeling examples
 - DREAD risk assessment examples
 - Attack tree templates

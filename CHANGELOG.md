@@ -46,15 +46,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Statistics
 
-| Category | Skills Before | Skills After | New Skills |
-|----------|---------------|--------------|------------|
-| Containerization & Orchestration | 0 | 2 | 2 |
-| Infrastructure as Code | 0 | 1 | 1 |
-| CI/CD Automation | 0 | 1 | 1 |
-| Caching & Performance | 0 | 1 | 1 |
-| API Design | 0 | 1 | 1 |
-| Multi-Platform Development | 0 | 1 | 1 |
-| **Total** | **75** | **82** | **7** |
+| Category                         | Skills Before | Skills After | New Skills |
+| -------------------------------- | ------------- | ------------ | ---------- |
+| Containerization & Orchestration | 0             | 2            | 2          |
+| Infrastructure as Code           | 0             | 1            | 1          |
+| CI/CD Automation                 | 0             | 1            | 1          |
+| Caching & Performance            | 0             | 1            | 1          |
+| API Design                       | 0             | 1            | 1          |
+| Multi-Platform Development       | 0             | 1            | 1          |
+| **Total**                        | **75**        | **82**       | **7**      |
 
 ## [0.0.3] - 2025-01-10
 

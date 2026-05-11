@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for requirements engineering, includi
 ## When to Use
 
 **Use this skill when:**
+
 - Gathering requirements from stakeholders
 - Creating use cases and user stories
 - Defining acceptance criteria for features
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for requirements engineering, includi
 - Managing requirements in agile environments
 
 **Do NOT use this skill when:**
+
 - Writing implementation code (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -154,14 +156,14 @@ Priority: [High/Medium/Low]
 
 ### INVEST Principle
 
-| Criterion | Description |
-|-----------|-------------|
-| **I**ndependent | Story is self-contained |
-| **N**egotiable | Details can be discussed |
-| **V**aluable | Delivers business value |
-| **E**stimable | Team can estimate effort |
-| **S**mall | Can be completed in sprint |
-| **T**estable | Acceptance criteria defined |
+| Criterion       | Description                 |
+| --------------- | --------------------------- |
+| **I**ndependent | Story is self-contained     |
+| **N**egotiable  | Details can be discussed    |
+| **V**aluable    | Delivers business value     |
+| **E**stimable   | Team can estimate effort    |
+| **S**mall       | Can be completed in sprint  |
+| **T**estable    | Acceptance criteria defined |
 
 ## Acceptance Criteria Guidelines
 
@@ -222,12 +224,12 @@ Acceptance Criteria:
 
 ### MoSCoW Method
 
-| Priority | Meaning | Action |
-|----------|---------|--------|
-| **M**ust have | Critical for MVP | Must implement |
-| **S**hould have | Important but not critical | Implement if time |
-| **C**ould have | Nice to have | Implement if extra time |
-| **W**on't have | Not in current scope | Defer to future |
+| Priority        | Meaning                    | Action                  |
+| --------------- | -------------------------- | ----------------------- |
+| **M**ust have   | Critical for MVP           | Must implement          |
+| **S**hould have | Important but not critical | Implement if time       |
+| **C**ould have  | Nice to have               | Implement if extra time |
+| **W**on't have  | Not in current scope       | Defer to future         |
 
 ### Value vs Effort Matrix
 
@@ -283,6 +285,7 @@ Where:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Requirements gathered ad-hoc
 - Incomplete or inconsistent specifications
 - Changes cause rework
@@ -290,6 +293,7 @@ Where:
 - Testing misses requirements
 
 **After this skill:**
+
 - Complete, consistent requirements
 - Clear acceptance criteria
 - Traceable requirements

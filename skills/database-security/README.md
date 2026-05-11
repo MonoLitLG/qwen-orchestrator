@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for implementing database security co
 ## When to Use
 
 **Use this skill when:**
+
 - Implementing database encryption
 - Setting up access control and RBAC
 - Creating audit logging for databases
@@ -39,21 +40,25 @@ This skill provides comprehensive guidance for implementing database security co
 ## What It Covers
 
 ### Encryption
+
 - **Encryption at Rest** - Database, table, column level
 - **Encryption in Transit** - TLS, SSL certificates
 - **Key Management** - KMS, rotation, access control
 
 ### Access Control
+
 - **RBAC** - Roles and permissions
 - **Row-Level Security** - Per-row access control
 - **Column-Level Security** - Data masking, encryption
 
 ### Audit Logging
+
 - **Audit Trail** - Change tracking
 - **Log Retention** - Compliance-based retention
 - **Log Monitoring** - Real-time alerts
 
 ### Compliance
+
 - **GDPR** - Data protection requirements
 - **HIPAA** - Healthcare data protection
 - **PCI-DSS** - Payment card data protection
@@ -74,6 +79,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Encryption examples
 - Access control patterns
 - Audit logging examples

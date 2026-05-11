@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for implementing complete CRUD (Creat
 ## When to Use
 
 **Use this skill when:**
+
 - Implementing complete CRUD operations for resources
 - Designing Create, Read, Update, Delete endpoints
 - Adding validation to CRUD operations
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for implementing complete CRUD (Creat
 - Adding CRUD sorting
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -305,6 +307,7 @@ Body: {
 ## Real-World Impact
 
 **Before this skill:**
+
 - Incomplete CRUD operations
 - Missing validation
 - Poor error handling
@@ -312,6 +315,7 @@ Body: {
 - Inconsistent API
 
 **After this skill:**
+
 - Complete CRUD operations
 - Proper validation and error handling
 - Soft delete with restore

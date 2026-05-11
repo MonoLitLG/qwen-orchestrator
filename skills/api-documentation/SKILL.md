@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for creating comprehensive API docume
 ## When to Use
 
 **Use this skill when:**
+
 - Creating API documentation
 - Implementing OpenAPI specifications
 - Writing Swagger documentation
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for creating comprehensive API docume
 - Implementing API documentation updates
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -359,6 +361,7 @@ scalar DateTime
 ## Real-World Impact
 
 **Before this skill:**
+
 - Incomplete API documentation
 - Missing examples
 - Poor API discoverability
@@ -366,6 +369,7 @@ scalar DateTime
 - Support overhead
 
 **After this skill:**
+
 - Comprehensive API documentation
 - Clear examples
 - Easy API discoverability

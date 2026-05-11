@@ -89,15 +89,15 @@ Qwen Orchestrator transforms Qwen Code into a **professional IT department** wit
 
 ## 📊 Quick Stats
 
-| Metric              | Count | Details                                                                                                                                                                                                                                                                                            |
-| ------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Metric              | Count | Details                                                                                                                                                                                                                                                                                                                       |
+| ------------------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Agents**          | 24    | Commander, Planner, Frontend Dev, Backend Dev, Reviewer, QA, PM, Doc Researcher, Tech Lead, DB Architect, Product Owner, DevOps, Code Quality Guard, Monitor, SEO Specialist, Tech Selector, Cybersecurity Eng., Performance Eng., Release Manager, API Specialist, Mobile Eng., Localization Eng., Documenter, Skill Creator |
-| **Skills**          | 82    | Docker, Kubernetes, Terraform, GitHub Actions, Redis, GraphQL, Multi-Platform, TDD, security audit, anti-pattern, design system, website redesign, SQL, and 75 more                                                                                         |
-| **Commands**        | 6     | `/orchestrator`, `/orchestrate`, `/plan`, `/review`, `/test`, `/deploy`                                                                                                                                                                                                                            |
-| **MCP Tools**       | 7     | Mission status, project validation, TODO generation, agent roster, Context7 resolve, CRUD check, checkpoint                                                                                                                                                                                        |
-| **MCP Servers**     | 2     | Orchestrator tools + Memory Knowledge Graph                                                                                                                                                                                                                                                        |
-| **Languages**       | 8+    | TypeScript, PHP, Python, Dart, Rust, Go, Java, C#                                                                                                                                                                                                                                                  |
-| **Qwen Code Tools** | 21    | Full tool suite — Edit, WriteFile, ReadFile, Grep, Glob, Shell, AskUserQuestion, Agent, Skill, SendMessage, Monitor, CronCreate, ExitPlanMode, and more                                                                                                                                            |
+| **Skills**          | 82    | Docker, Kubernetes, Terraform, GitHub Actions, Redis, GraphQL, Multi-Platform, TDD, security audit, anti-pattern, design system, website redesign, SQL, and 75 more                                                                                                                                                           |
+| **Commands**        | 6     | `/orchestrator`, `/orchestrate`, `/plan`, `/review`, `/test`, `/deploy`                                                                                                                                                                                                                                                       |
+| **MCP Tools**       | 7     | Mission status, project validation, TODO generation, agent roster, Context7 resolve, CRUD check, checkpoint                                                                                                                                                                                                                   |
+| **MCP Servers**     | 2     | Orchestrator tools + Memory Knowledge Graph                                                                                                                                                                                                                                                                                   |
+| **Languages**       | 8+    | TypeScript, PHP, Python, Dart, Rust, Go, Java, C#                                                                                                                                                                                                                                                                             |
+| **Qwen Code Tools** | 21    | Full tool suite — Edit, WriteFile, ReadFile, Grep, Glob, Shell, AskUserQuestion, Agent, Skill, SendMessage, Monitor, CronCreate, ExitPlanMode, and more                                                                                                                                                                       |
 
 ### Key Guarantees
 
@@ -193,190 +193,190 @@ Qwen Orchestrator transforms Qwen Code into a **professional IT department** wit
 
 ### 🐳 Containerization & Orchestration (v0.0.5)
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 1   | **Docker Containerization** | Multi-stage builds, security hardening, image optimization, Docker Compose         |
-| 2   | **Kubernetes Orchestration** | Deployments, HPA, service mesh, ingress, GitOps with ArgoCD/Flux                   |
+| #   | Skill                        | Purpose                                                                    |
+| --- | ---------------------------- | -------------------------------------------------------------------------- |
+| 1   | **Docker Containerization**  | Multi-stage builds, security hardening, image optimization, Docker Compose |
+| 2   | **Kubernetes Orchestration** | Deployments, HPA, service mesh, ingress, GitOps with ArgoCD/Flux           |
 
 ### 🏗️ Infrastructure as Code (v0.0.5)
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 3   | **Terraform IaC**       | Modules, state management, workspaces, Sentinel policies, Terratest                   |
+| #   | Skill             | Purpose                                                             |
+| --- | ----------------- | ------------------------------------------------------------------- |
+| 3   | **Terraform IaC** | Modules, state management, workspaces, Sentinel policies, Terratest |
 
 ### 🔄 CI/CD Automation (v0.0.5)
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 4   | **GitHub Actions CI/CD** | Workflows, matrices, environments, caching, composite actions, security              |
+| #   | Skill                    | Purpose                                                                 |
+| --- | ------------------------ | ----------------------------------------------------------------------- |
+| 4   | **GitHub Actions CI/CD** | Workflows, matrices, environments, caching, composite actions, security |
 
 ### 💾 Caching & Performance (v0.0.5)
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 5   | **Redis Caching**       | Data structures, caching patterns, session management, pub/sub, Lua scripting          |
+| #   | Skill             | Purpose                                                                       |
+| --- | ----------------- | ----------------------------------------------------------------------------- |
+| 5   | **Redis Caching** | Data structures, caching patterns, session management, pub/sub, Lua scripting |
 
 ### 🔌 API Design (v0.0.5)
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 6   | **GraphQL API Design**  | Schema design, resolvers, DataLoader, pagination, Apollo Federation                    |
+| #   | Skill                  | Purpose                                                             |
+| --- | ---------------------- | ------------------------------------------------------------------- |
+| 6   | **GraphQL API Design** | Schema design, resolvers, DataLoader, pagination, Apollo Federation |
 
 ### 🖥️ Multi-Platform Development (v0.0.5)
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 7   | **Multi-Platform Dev**  | Cross-platform commands, path handling, line endings, permissions, package managers    |
+| #   | Skill                  | Purpose                                                                             |
+| --- | ---------------------- | ----------------------------------------------------------------------------------- |
+| 7   | **Multi-Platform Dev** | Cross-platform commands, path handling, line endings, permissions, package managers |
 
 ### 🤖 LLM & Agents
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 8   | **LangGraph**           | Agent workflows, state management, multi-agent systems                                 |
-| 9   | **LangChain**           | LLM chains, agents, tools, memory, RAG                                                 |
-| 10  | **Qwen Agent**          | Qwen-specific agent development and integration                                        |
-| 11  | **LLM Integrations**    | Multi-provider LLM integration (OpenAI, Anthropic, Google, etc.)                       |
+| #   | Skill                | Purpose                                                          |
+| --- | -------------------- | ---------------------------------------------------------------- |
+| 8   | **LangGraph**        | Agent workflows, state management, multi-agent systems           |
+| 9   | **LangChain**        | LLM chains, agents, tools, memory, RAG                           |
+| 10  | **Qwen Agent**       | Qwen-specific agent development and integration                  |
+| 11  | **LLM Integrations** | Multi-provider LLM integration (OpenAI, Anthropic, Google, etc.) |
 
 ### 🚀 Cloud Platforms
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 12  | **Vercel Deployment**   | Serverless functions, edge computing, Next.js optimization                             |
-| 13  | **Cloudflare Pages**    | Edge functions, global distribution, caching                                           |
-| 14  | **Cloudflare Workers**  | Edge computing, request/response manipulation                                          |
-| 15  | **AWS Serverless**      | Lambda, API Gateway, SAM, event-driven architectures                                   |
+| #   | Skill                  | Purpose                                                    |
+| --- | ---------------------- | ---------------------------------------------------------- |
+| 12  | **Vercel Deployment**  | Serverless functions, edge computing, Next.js optimization |
+| 13  | **Cloudflare Pages**   | Edge functions, global distribution, caching               |
+| 14  | **Cloudflare Workers** | Edge computing, request/response manipulation              |
+| 15  | **AWS Serverless**     | Lambda, API Gateway, SAM, event-driven architectures       |
 
 ### 🔍 LLM SEO
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 16  | **SEO LLM**             | Optimization for ChatGPT, Perplexity, Gemini, Claude, Bing AI, Qwen                    |
-| 17  | **Technical SEO**       | Site speed, mobile optimization, structured data, Core Web Vitals                      |
+| #   | Skill             | Purpose                                                             |
+| --- | ----------------- | ------------------------------------------------------------------- |
+| 16  | **SEO LLM**       | Optimization for ChatGPT, Perplexity, Gemini, Claude, Bing AI, Qwen |
+| 17  | **Technical SEO** | Site speed, mobile optimization, structured data, Core Web Vitals   |
 
 ### 🎓 Leadership & Architecture
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 18  | **Strategic Leadership** | Team management, decision-making, stakeholder alignment                               |
-| 19  | **Requirements Engineering** | Use cases, user stories, acceptance criteria                                       |
-| 20  | **Microservices Architecture** | Domain-driven design, service boundaries, event-driven communication             |
-| 21  | **Technology Evaluation** | Framework/DB selection, pros/cons analysis                                           |
+| #   | Skill                          | Purpose                                                              |
+| --- | ------------------------------ | -------------------------------------------------------------------- |
+| 18  | **Strategic Leadership**       | Team management, decision-making, stakeholder alignment              |
+| 19  | **Requirements Engineering**   | Use cases, user stories, acceptance criteria                         |
+| 20  | **Microservices Architecture** | Domain-driven design, service boundaries, event-driven communication |
+| 21  | **Technology Evaluation**      | Framework/DB selection, pros/cons analysis                           |
 
 ### 📋 Product & Team Management
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 22  | **Product Owner**       | Backlog management, user stories, sprint planning                                      |
-| 23  | **Scrum Master**        | Ceremony facilitation, team coaching, impediment removal                               |
+| #   | Skill             | Purpose                                                  |
+| --- | ----------------- | -------------------------------------------------------- |
+| 22  | **Product Owner** | Backlog management, user stories, sprint planning        |
+| 23  | **Scrum Master**  | Ceremony facilitation, team coaching, impediment removal |
 
 ### 🔧 Software Development
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 24  | **Testing Strategy**    | Test pyramid, coverage targets, automation                                             |
-| 25  | **Security Auditor**    | OWASP Top 10, vulnerability assessment, compliance                                     |
-| 26  | **DevOps Pipeline**     | CI/CD design, deployment strategies, IaC                                               |
-| 27  | **Architecture Patterns** | Layered, DDD, microservices, event-driven, CQRS                                     |
-| 28  | **Documentation**       | README, API docs, ADRs, knowledge base                                                 |
-| 29  | **Debugging**           | Systematic investigation, hypothesis-driven debugging                                  |
-| 30  | **Refactoring**         | Code smell detection, safe transformations                                             |
+| #   | Skill                     | Purpose                                               |
+| --- | ------------------------- | ----------------------------------------------------- |
+| 24  | **Testing Strategy**      | Test pyramid, coverage targets, automation            |
+| 25  | **Security Auditor**      | OWASP Top 10, vulnerability assessment, compliance    |
+| 26  | **DevOps Pipeline**       | CI/CD design, deployment strategies, IaC              |
+| 27  | **Architecture Patterns** | Layered, DDD, microservices, event-driven, CQRS       |
+| 28  | **Documentation**         | README, API docs, ADRs, knowledge base                |
+| 29  | **Debugging**             | Systematic investigation, hypothesis-driven debugging |
+| 30  | **Refactoring**           | Code smell detection, safe transformations            |
 
 ### 🛡️ Security & Quality
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 31  | **Security Code Review** | OWASP Top 10, vulnerability patterns, secure coding                                  |
-| 32  | **Threat Modeling**     | STRIDE, DREAD, attack trees, threat identification                                     |
-| 33  | **Test Automation**     | Framework design, page object patterns, parallel execution                             |
-| 34  | **Load Testing**        | Load, stress, endurance, spike testing                                                 |
-| 35  | **Code Review**         | OWASP + SOLID + Clean Code systematic review                                           |
+| #   | Skill                    | Purpose                                                    |
+| --- | ------------------------ | ---------------------------------------------------------- |
+| 31  | **Security Code Review** | OWASP Top 10, vulnerability patterns, secure coding        |
+| 32  | **Threat Modeling**      | STRIDE, DREAD, attack trees, threat identification         |
+| 33  | **Test Automation**      | Framework design, page object patterns, parallel execution |
+| 34  | **Load Testing**         | Load, stress, endurance, spike testing                     |
+| 35  | **Code Review**          | OWASP + SOLID + Clean Code systematic review               |
 
 ### 💾 Database & Data
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 36  | **Database Design**     | Schema design, relationships, indexing strategies                                      |
-| 37  | **Database Security**   | Encryption, access control, audit logging, compliance                                  |
-| 38  | **SQL Best Practices**  | Query optimization, indexing, N+1 prevention                                           |
-| 39  | **SQL Query Assistant** | Query assistance, best practices, optimization                                         |
+| #   | Skill                   | Purpose                                               |
+| --- | ----------------------- | ----------------------------------------------------- |
+| 36  | **Database Design**     | Schema design, relationships, indexing strategies     |
+| 37  | **Database Security**   | Encryption, access control, audit logging, compliance |
+| 38  | **SQL Best Practices**  | Query optimization, indexing, N+1 prevention          |
+| 39  | **SQL Query Assistant** | Query assistance, best practices, optimization        |
 
 ### 📱 Frontend & Mobile
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 40  | **Accessibility**       | WCAG 2.1 AA, semantic HTML, ARIA, keyboard navigation                                  |
-| 41  | **Design System**       | Color palettes, typography, spacing, component architecture                            |
-| 42  | **Website Redesign**    | URL/screenshot-based redesign, analysis workflow                                       |
-| 43  | **Flutter Web**         | Responsive layouts, adaptive widgets, state management                                 |
-| 44  | **Mobile Performance**  | App optimization, startup time, memory usage                                           |
-| 45  | **Offline-First**       | Local storage, sync, conflict resolution                                               |
+| #   | Skill                  | Purpose                                                     |
+| --- | ---------------------- | ----------------------------------------------------------- |
+| 40  | **Accessibility**      | WCAG 2.1 AA, semantic HTML, ARIA, keyboard navigation       |
+| 41  | **Design System**      | Color palettes, typography, spacing, component architecture |
+| 42  | **Website Redesign**   | URL/screenshot-based redesign, analysis workflow            |
+| 43  | **Flutter Web**        | Responsive layouts, adaptive widgets, state management      |
+| 44  | **Mobile Performance** | App optimization, startup time, memory usage                |
+| 45  | **Offline-First**      | Local storage, sync, conflict resolution                    |
 
 ### 🌐 Backend & APIs
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 46  | **API Design**          | RESTful standards, response envelopes, pagination                                      |
-| 47  | **API Documentation**   | OpenAPI specification, Swagger, GraphQL schemas                                        |
-| 48  | **Third-Party Integration** | Stripe, PayPal, AWS, Google, Twilio                                               |
-| 49  | **Laravel**             | Eloquent ORM, Form Requests, queues, API patterns                                      |
-| 50  | **NestJS**              | Modules, guards, pipes, interceptors, request lifecycle                                |
-| 51  | **Supabase**            | RLS policies, Edge Functions, auth, auto-generated APIs                                |
+| #   | Skill                       | Purpose                                                 |
+| --- | --------------------------- | ------------------------------------------------------- |
+| 46  | **API Design**              | RESTful standards, response envelopes, pagination       |
+| 47  | **API Documentation**       | OpenAPI specification, Swagger, GraphQL schemas         |
+| 48  | **Third-Party Integration** | Stripe, PayPal, AWS, Google, Twilio                     |
+| 49  | **Laravel**                 | Eloquent ORM, Form Requests, queues, API patterns       |
+| 50  | **NestJS**                  | Modules, guards, pipes, interceptors, request lifecycle |
+| 51  | **Supabase**                | RLS policies, Edge Functions, auth, auto-generated APIs |
 
 ### 🔄 DevOps & Infrastructure
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 52  | **Disaster Recovery**   | Backup strategies, restore procedures, failover, RTO/RPO                               |
-| 53  | **Release Workflow**    | SemVer, changelogs, staging, production, rollback                                      |
-| 54  | **Git Workflow**        | Branching strategies, commit conventions, PR templates                                 |
-| 55  | **Deployment**          | CI/CD, Docker, release management                                                      |
+| #   | Skill                 | Purpose                                                  |
+| --- | --------------------- | -------------------------------------------------------- |
+| 52  | **Disaster Recovery** | Backup strategies, restore procedures, failover, RTO/RPO |
+| 53  | **Release Workflow**  | SemVer, changelogs, staging, production, rollback        |
+| 54  | **Git Workflow**      | Branching strategies, commit conventions, PR templates   |
+| 55  | **Deployment**        | CI/CD, Docker, release management                        |
 
 ### 🧠 LLM-Specific
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 56  | **Anti-Hallucination**  | Source verification, evidence-based claims, validation                                 |
-| 57  | **Loop Detection**      | LLM loop detection, tool call loops, escape routes                                     |
-| 58  | **Context7 Docs**       | Live documentation lookup via Context7 MCP                                             |
-| 59  | **Compaction Recovery** | Context preservation across session compaction                                         |
+| #   | Skill                   | Purpose                                                |
+| --- | ----------------------- | ------------------------------------------------------ |
+| 56  | **Anti-Hallucination**  | Source verification, evidence-based claims, validation |
+| 57  | **Loop Detection**      | LLM loop detection, tool call loops, escape routes     |
+| 58  | **Context7 Docs**       | Live documentation lookup via Context7 MCP             |
+| 59  | **Compaction Recovery** | Context preservation across session compaction         |
 
 ### 📊 Project & Team
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 60  | **Agile Project Management** | Scrum ceremonies, backlog grooming, sprint planning                              |
-| 61  | **User Story Mapping**  | Story mapping, epic breakdown, timeline visualization                                  |
-| 62  | **CRUD Completeness**   | Create, Read, Update, Delete patterns, validation                                      |
-| 63  | **Project Conventions** | Project structure, coding standards, conventions                                       |
-| 64  | **ERP/SaaS Organization** | Large project organization, module structure                                        |
+| #   | Skill                        | Purpose                                               |
+| --- | ---------------------------- | ----------------------------------------------------- |
+| 60  | **Agile Project Management** | Scrum ceremonies, backlog grooming, sprint planning   |
+| 61  | **User Story Mapping**       | Story mapping, epic breakdown, timeline visualization |
+| 62  | **CRUD Completeness**        | Create, Read, Update, Delete patterns, validation     |
+| 63  | **Project Conventions**      | Project structure, coding standards, conventions      |
+| 64  | **ERP/SaaS Organization**    | Large project organization, module structure          |
 
 ### 🌍 Localization & Internationalization
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 65  | **Translation Workflow** | Translation memory, machine translation, TMS                                         |
-| 66  | **Multi-Language**      | i18n, l10n patterns, RTL support                                                       |
+| #   | Skill                    | Purpose                                      |
+| --- | ------------------------ | -------------------------------------------- |
+| 65  | **Translation Workflow** | Translation memory, machine translation, TMS |
+| 66  | **Multi-Language**       | i18n, l10n patterns, RTL support             |
 
 ### 🔧 Additional Skills
 
-| #   | Skill                   | Purpose                                                                                |
-| --- | ----------------------- | -------------------------------------------------------------------------------------- |
-| 67  | **Domain-Driven**       | DDD patterns, bounded contexts, aggregates, value objects                              |
-| 68  | **Performance**         | Profiling, optimization, benchmarks                                                    |
-| 69  | **TDD Workflow**        | Test-Driven Development (Red/Green/Refactor)                                           |
-| 70  | **Security Audit**      | OWASP Top 10 vulnerability detection                                                   |
-| 71  | **Agent Task Coordinator** | Agent coordination, MCP protocol                                                   |
-| 72  | **Skill Creation**      | Skill authoring, documentation, testing                                                |
-| 73  | **Multi-Channel Funnels** | Marketing funnels, conversion optimization                                           |
-| 74  | **Performance**         | Speed optimization, caching, CDN                                                       |
-| 75  | **Architecture**        | System design, patterns, trade-offs                                                    |
-| 76  | **Code Quality**        | Linting, formatting, type checking                                                     |
-| 77  | **Monitoring**          | Observability, logging, alerting                                                       |
-| 78  | **Compliance**          | GDPR, HIPAA, SOC 2, PCI-DSS                                                            |
-| 79  | **Documentation**       | Technical writing, API docs, user guides                                               |
-| 80  | **Testing**             | Unit, integration, E2E testing                                                         |
-| 81  | **Debugging**           | Systematic debugging, log analysis                                                     |
-| 82  | **Refactoring**         | Code improvement, technical debt reduction                                             |
+| #   | Skill                      | Purpose                                                   |
+| --- | -------------------------- | --------------------------------------------------------- |
+| 67  | **Domain-Driven**          | DDD patterns, bounded contexts, aggregates, value objects |
+| 68  | **Performance**            | Profiling, optimization, benchmarks                       |
+| 69  | **TDD Workflow**           | Test-Driven Development (Red/Green/Refactor)              |
+| 70  | **Security Audit**         | OWASP Top 10 vulnerability detection                      |
+| 71  | **Agent Task Coordinator** | Agent coordination, MCP protocol                          |
+| 72  | **Skill Creation**         | Skill authoring, documentation, testing                   |
+| 73  | **Multi-Channel Funnels**  | Marketing funnels, conversion optimization                |
+| 74  | **Performance**            | Speed optimization, caching, CDN                          |
+| 75  | **Architecture**           | System design, patterns, trade-offs                       |
+| 76  | **Code Quality**           | Linting, formatting, type checking                        |
+| 77  | **Monitoring**             | Observability, logging, alerting                          |
+| 78  | **Compliance**             | GDPR, HIPAA, SOC 2, PCI-DSS                               |
+| 79  | **Documentation**          | Technical writing, API docs, user guides                  |
+| 80  | **Testing**                | Unit, integration, E2E testing                            |
+| 81  | **Debugging**              | Systematic debugging, log analysis                        |
+| 82  | **Refactoring**            | Code improvement, technical debt reduction                |
 
 ---
 

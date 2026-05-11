@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for **implementing Redis caching stra
 ## When to Use
 
 **Use this skill when:**
+
 - Implementing cache-aside, write-through, write-behind, or write-around caching patterns
 - Managing Redis sessions for web applications
 - Using Redis pub/sub for real-time messaging
@@ -41,6 +42,7 @@ This skill provides comprehensive guidance for **implementing Redis caching stra
 - Using Redisson, Lettuce, Jedis, ioredis, node-redis, or redis-py clients
 
 **Do NOT use this skill when:**
+
 - Building a relational database schema (use database-design skill)
 - Implementing application business logic (use backend-developer skill)
 - Setting up message queues like RabbitMQ or Kafka (use microservices-architecture skill)
@@ -55,44 +57,44 @@ This skill provides comprehensive guidance for **implementing Redis caching stra
 
 ### Redis Data Structures
 
-| Structure | Use Case | Time Complexity | Memory Efficiency |
-|-----------|----------|----------------|-------------------|
-| **String** | Counter, cache, rate limiting | O(1) | High |
-| **Hash** | Object storage, user profiles | O(1) | High (sparse optimization) |
-| **List** | Queue, stack, feed | O(1) push/pop | Medium |
-| **Set** | Tags, unique members, intersections | O(1) add/remove | High |
-| **Sorted Set** | Leaderboards, rankings, priority queue | O(log N) | Medium |
-| **Stream** | Message queue, event sourcing | O(1) add | Low (append-only) |
-| **Bitmap** | Feature flags, presence tracking | O(1) | Very High |
-| **HyperLogLog** | Unique visitor counting | O(1) | Very High (12KB per key) |
-| **Geospatial** | Location-based queries | O(log N) | Medium |
+| Structure       | Use Case                               | Time Complexity | Memory Efficiency          |
+| --------------- | -------------------------------------- | --------------- | -------------------------- |
+| **String**      | Counter, cache, rate limiting          | O(1)            | High                       |
+| **Hash**        | Object storage, user profiles          | O(1)            | High (sparse optimization) |
+| **List**        | Queue, stack, feed                     | O(1) push/pop   | Medium                     |
+| **Set**         | Tags, unique members, intersections    | O(1) add/remove | High                       |
+| **Sorted Set**  | Leaderboards, rankings, priority queue | O(log N)        | Medium                     |
+| **Stream**      | Message queue, event sourcing          | O(1) add        | Low (append-only)          |
+| **Bitmap**      | Feature flags, presence tracking       | O(1)            | Very High                  |
+| **HyperLogLog** | Unique visitor counting                | O(1)            | Very High (12KB per key)   |
+| **Geospatial**  | Location-based queries                 | O(log N)        | Medium                     |
 
 ### Caching Patterns
 
-| Pattern | Write Strategy | Read Strategy | Best For |
-|---------|---------------|---------------|----------|
-| **Cache-Aside** | App writes to DB, invalidates cache | App reads cache first, falls back to DB | Most common, simple |
-| **Write-Through** | App writes to cache and DB synchronously | App reads from cache | Data consistency critical |
-| **Write-Behind** | App writes to cache, async write to DB | App reads from cache | Write performance critical |
-| **Write-Around** | App writes directly to DB | App reads cache, falls back to DB, writes back | Reduce cache pollution |
+| Pattern           | Write Strategy                           | Read Strategy                                  | Best For                   |
+| ----------------- | ---------------------------------------- | ---------------------------------------------- | -------------------------- |
+| **Cache-Aside**   | App writes to DB, invalidates cache      | App reads cache first, falls back to DB        | Most common, simple        |
+| **Write-Through** | App writes to cache and DB synchronously | App reads from cache                           | Data consistency critical  |
+| **Write-Behind**  | App writes to cache, async write to DB   | App reads from cache                           | Write performance critical |
+| **Write-Around**  | App writes directly to DB                | App reads cache, falls back to DB, writes back | Reduce cache pollution     |
 
 ### Persistence Options
 
-| Option | Mechanism | Durability | Performance | Recovery Time |
-|--------|-----------|------------|-------------|---------------|
-| **RDB** | Point-in-time snapshots | Lower (can lose data since last snapshot) | Higher | Faster |
-| **AOF** | Append-only command log | Higher (can configure fsync frequency) | Lower | Slower (replay) |
-| **RDB + AOF** | Both mechanisms | Highest | Medium | Medium |
+| Option        | Mechanism               | Durability                                | Performance | Recovery Time   |
+| ------------- | ----------------------- | ----------------------------------------- | ----------- | --------------- |
+| **RDB**       | Point-in-time snapshots | Lower (can lose data since last snapshot) | Higher      | Faster          |
+| **AOF**       | Append-only command log | Higher (can configure fsync frequency)    | Lower       | Slower (replay) |
+| **RDB + AOF** | Both mechanisms         | Highest                                   | Medium      | Medium          |
 
 ### Client Libraries by Language
 
-| Language | Recommended Client | Alternative | Features |
-|----------|-------------------|-------------|----------|
-| **Node.js** | ioredis | node-redis | Clustering, Sentinel, Lua |
-| **Python** | redis-py | redis.asyncio | Pipelines, Pub/Sub, Streams |
-| **Java** | Lettuce | Jedis, Redisson | Reactive, clustering, Sentinel |
-| **Go** | go-redis | redigo | Pipelines, pub/sub, scripting |
-| **Ruby** | redis-rb | redis-namespace | Connection pooling, scripting |
+| Language    | Recommended Client | Alternative     | Features                       |
+| ----------- | ------------------ | --------------- | ------------------------------ |
+| **Node.js** | ioredis            | node-redis      | Clustering, Sentinel, Lua      |
+| **Python**  | redis-py           | redis.asyncio   | Pipelines, Pub/Sub, Streams    |
+| **Java**    | Lettuce            | Jedis, Redisson | Reactive, clustering, Sentinel |
+| **Go**      | go-redis           | redigo          | Pipelines, pub/sub, scripting  |
+| **Ruby**    | redis-rb           | redis-namespace | Connection pooling, scripting  |
 
 ## Caching Pattern Implementations
 
@@ -109,20 +111,20 @@ redis_client = redis.Redis(host='localhost', port=6379, decode_responses=True)
 
 def get_user(user_id: int) -> dict:
     cache_key = f"user:{user_id}"
-    
+
     # 1. Try cache first
     cached = redis_client.get(cache_key)
     if cached:
         return json.loads(cached)
-    
+
     # 2. Cache miss - load from database
     user = database.query("SELECT * FROM users WHERE id = %s", (user_id,))
     if not user:
         return None
-    
+
     # 3. Store in cache with TTL
     redis_client.setex(cache_key, 3600, json.dumps(user))  # 1 hour TTL
-    
+
     return user
 
 def update_user(user_id: int, user_data: dict):
@@ -131,7 +133,7 @@ def update_user(user_id: int, user_data: dict):
         "UPDATE users SET name = %s, email = %s WHERE id = %s",
         (user_data['name'], user_data['email'], user_id)
     )
-    
+
     # 2. Invalidate cache
     redis_client.delete(f"user:{user_id}")
 ```
@@ -142,29 +144,29 @@ const Redis = require('ioredis');
 const redis = new Redis({ host: 'localhost', port: 6379 });
 
 async function getProduct(productId) {
-    const cacheKey = `product:${productId}`;
-    
-    // Try cache first
-    let cached = await redis.get(cacheKey);
-    if (cached) {
-        return JSON.parse(cached);
-    }
-    
-    // Cache miss - load from database
-    const product = await db.products.findById(productId);
-    if (!product) {
-        return null;
-    }
-    
-    // Store in cache with TTL
-    await redis.setex(cacheKey, 3600, JSON.stringify(product));
-    
-    return product;
+  const cacheKey = `product:${productId}`;
+
+  // Try cache first
+  let cached = await redis.get(cacheKey);
+  if (cached) {
+    return JSON.parse(cached);
+  }
+
+  // Cache miss - load from database
+  const product = await db.products.findById(productId);
+  if (!product) {
+    return null;
+  }
+
+  // Store in cache with TTL
+  await redis.setex(cacheKey, 3600, JSON.stringify(product));
+
+  return product;
 }
 
 async function updateProduct(productId, productData) {
-    await db.products.update(productId, productData);
-    await redis.del(`product:${productId}`);  // Invalidate cache
+  await db.products.update(productId, productData);
+  await redis.del(`product:${productId}`); // Invalidate cache
 }
 ```
 
@@ -176,13 +178,13 @@ Application writes to both cache and database synchronously.
 # Python - Write-Through Pattern
 def save_user(user_id: int, user_data: dict):
     cache_key = f"user:{user_id}"
-    
+
     # Write to both cache and database
     serialized = json.dumps(user_data)
-    
+
     # 1. Write to cache
     redis_client.setex(cache_key, 3600, serialized)
-    
+
     # 2. Write to database (synchronous)
     database.execute(
         "INSERT INTO users (id, name, email) VALUES (%s, %s, %s) "
@@ -195,12 +197,12 @@ def save_user(user_id: int, user_data: dict):
 ```javascript
 // Node.js - Write-Through Pattern
 async function saveProduct(productId, productData) {
-    const cacheKey = `product:${productId}`;
-    const serialized = JSON.stringify(productData);
-    
-    // Write to both cache and database
-    await redis.setex(cacheKey, 3600, serialized);
-    await db.products.upsert(productId, productData);
+  const cacheKey = `product:${productId}`;
+  const serialized = JSON.stringify(productData);
+
+  // Write to both cache and database
+  await redis.setex(cacheKey, 3600, serialized);
+  await db.products.upsert(productId, productData);
 }
 ```
 
@@ -222,7 +224,7 @@ def background_writer():
         try:
             item = write_queue.get(timeout=1)
             batch.append(item)
-            
+
             # Flush batch every 100 items or every second
             if len(batch) >= 100:
                 database.batch_update(batch)
@@ -237,10 +239,10 @@ threading.Thread(target=background_writer, daemon=True).start()
 
 def update_user_async(user_id: int, user_data: dict):
     cache_key = f"user:{user_id}"
-    
+
     # 1. Write to cache immediately
     redis_client.setex(cache_key, 3600, json.dumps(user_data))
-    
+
     # 2. Queue for async database write
     write_queue.put((user_id, user_data))
 ```
@@ -257,22 +259,22 @@ def update_user(user_id: int, user_data: dict):
         "UPDATE users SET name = %s, email = %s WHERE id = %s",
         (user_data['name'], user_data['email'], user_id)
     )
-    
+
     # Delete from cache if it exists (will be re-populated on next read)
     redis_client.delete(f"user:{user_id}")
 
 def get_user(user_id: int) -> dict:
     cache_key = f"user:{user_id}"
-    
+
     cached = redis_client.get(cache_key)
     if cached:
         return json.loads(cached)
-    
+
     # Load from database and populate cache
     user = database.query("SELECT * FROM users WHERE id = %s", (user_id,))
     if user:
         redis_client.setex(cache_key, 3600, json.dumps(user))
-    
+
     return user
 ```
 
@@ -462,34 +464,34 @@ SESSION_TTL = 3600  # 1 hour
 def create_session(user_id: int, user_data: dict) -> str:
     session_id = str(uuid.uuid4())
     session_key = f"{SESSION_PREFIX}{session_id}"
-    
+
     session_data = {
         "user_id": user_id,
         "data": user_data,
         "created_at": datetime.utcnow().isoformat(),
         "expires_at": (datetime.utcnow() + timedelta(seconds=SESSION_TTL)).isoformat()
     }
-    
+
     redis_client.setex(
         session_key,
         SESSION_TTL,
         json.dumps(session_data)
     )
-    
+
     return session_id
 
 def get_session(session_id: str) -> dict:
     session_key = f"{SESSION_PREFIX}{session_id}"
     data = redis_client.get(session_key)
-    
+
     if not data:
         return None
-    
+
     session = json.loads(data)
-    
+
     # Refresh TTL on access
     redis_client.expire(session_key, SESSION_TTL)
-    
+
     return session
 
 def delete_session(session_id: str):
@@ -509,18 +511,20 @@ const Redis = require('ioredis');
 const redis = new Redis({ host: 'localhost', port: 6379 });
 const app = express();
 
-app.use(session({
+app.use(
+  session({
     store: new RedisStore({ client: redis }),
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: true,      // HTTPS only
-        httpOnly: true,    // No JavaScript access
-        maxAge: 3600000,   // 1 hour
-        sameSite: 'strict'
-    }
-}));
+      secure: true, // HTTPS only
+      httpOnly: true, // No JavaScript access
+      maxAge: 3600000, // 1 hour
+      sameSite: 'strict',
+    },
+  })
+);
 ```
 
 ## Pub/Sub Messaging
@@ -545,14 +549,14 @@ class MessageSubscriber:
         self.pubsub = redis_client.pubsub()
         self.pubsub.subscribe(*channels)
         self.running = True
-    
+
     def listen(self):
         while self.running:
             message = self.pubsub.get_message(ignore_subscribe_messages=True)
             if message:
                 print(f"Received on {message['channel']}: {message['data']}")
                 # Process message...
-    
+
     def stop(self):
         self.running = False
         self.pubsub.unsubscribe()
@@ -576,12 +580,12 @@ const subscriber = new Redis();
 
 // Subscribe to channels
 subscriber.subscribe('news:tech', 'news:science', (err, count) => {
-    console.log(`Subscribed to ${count} channels`);
+  console.log(`Subscribed to ${count} channels`);
 });
 
 // Handle messages
 subscriber.on('message', (channel, message) => {
-    console.log(`${channel}: ${message}`);
+  console.log(`${channel}: ${message}`);
 });
 
 // Publish messages
@@ -590,7 +594,7 @@ publisher.publish('news:science', 'New quantum computing breakthrough');
 
 // Pattern matching
 subscriber.psubscribe('news:*', (err, count) => {
-    console.log(`Subscribed to pattern: news:*`);
+  console.log(`Subscribed to pattern: news:*`);
 });
 ```
 
@@ -707,13 +711,13 @@ end
 def get_with_stampede_protection(key: str, ttl: int = 3600):
     cache_key = f"cache:{key}"
     lock_key = f"lock:cache:{key}"
-    
+
     check_and_lock = redis_client.register_script(lua_cache_script)
     result = check_and_lock(keys=[cache_key, lock_key], args=[ttl, 10])
-    
+
     if result and result != b'':
         return json.loads(result)  # Cache hit
-    
+
     if result == b'':
         # We won the lock, regenerate cache
         try:
@@ -835,18 +839,21 @@ redis_cluster.cluster_nodes()
 // Node.js - Redis Cluster with ioredis
 const Redis = require('ioredis');
 
-const cluster = new Redis.Cluster([
+const cluster = new Redis.Cluster(
+  [
     { host: 'cluster-node-1', port: 7000 },
     { host: 'cluster-node-2', port: 7001 },
     { host: 'cluster-node-3', port: 7002 },
-], {
+  ],
+  {
     slots: {
-        // Optional: pre-define slot mapping
+      // Optional: pre-define slot mapping
     },
-    scaleReads: 'slave',  // Read from replicas
+    scaleReads: 'slave', // Read from replicas
     retryAttempts: 3,
     retryDelay: 100,
-});
+  }
+);
 
 cluster.on('error', (err) => console.error('Cluster error:', err));
 ```
@@ -878,22 +885,25 @@ value = slave.get('key')
 // Node.js - Redis Sentinel with ioredis
 const Redis = require('ioredis');
 
-const sentinel = new Redis.Sentinel([
+const sentinel = new Redis.Sentinel(
+  [
     { host: 'sentinel-1', port: 26379 },
     { host: 'sentinel-2', port: 26379 },
     { host: 'sentinel-3', port: 26379 },
-], {
+  ],
+  {
     name: 'mymaster',
     sentinelRetryStrategy: (times) => Math.min(times * 50, 2000),
-});
+  }
+);
 
 // Auto-discover master
 const master = new Redis({
-    sentinels: [
-        { host: 'sentinel-1', port: 26379 },
-        { host: 'sentinel-2', port: 26379 },
-    ],
-    name: 'mymaster',
+  sentinels: [
+    { host: 'sentinel-1', port: 26379 },
+    { host: 'sentinel-2', port: 26379 },
+  ],
+  name: 'mymaster',
 });
 ```
 
@@ -908,7 +918,7 @@ services:
     image: redis:7-alpine
     command: redis-server /usr/local/etc/redis/redis.conf
     ports:
-      - "6379:6379"
+      - '6379:6379'
     volumes:
       - ./redis-master.conf:/usr/local/etc/redis/redis.conf
       - redis-master-data:/data
@@ -917,7 +927,7 @@ services:
     image: redis:7-alpine
     command: redis-server /usr/local/etc/redis/redis.conf
     ports:
-      - "6380:6379"
+      - '6380:6379'
     volumes:
       - ./redis-replica-1.conf:/usr/local/etc/redis/redis.conf
       - redis-replica-1-data:/data
@@ -928,7 +938,7 @@ services:
     image: redis:7-alpine
     command: redis-server /usr/local/etc/redis/redis.conf
     ports:
-      - "6381:6379"
+      - '6381:6379'
     volumes:
       - ./redis-replica-2.conf:/usr/local/etc/redis/redis.conf
       - redis-replica-2-data:/data
@@ -939,7 +949,7 @@ services:
     image: redis:7-alpine
     command: redis-sentinel /usr/local/etc/redis/sentinel.conf
     ports:
-      - "26379:26379"
+      - '26379:26379'
     volumes:
       - ./sentinel-1.conf:/usr/local/etc/redis/sentinel.conf
     depends_on:
@@ -1055,16 +1065,16 @@ maxmemory-samples 10             # LRU approximation accuracy (higher = more acc
 
 ### Eviction Policies
 
-| Policy | Behavior | Use Case |
-|--------|----------|----------|
-| **volatile-lru** | LRU on keys with TTL | Mixed cache + persistent data |
-| **allkeys-lru** | LRU on all keys | Pure cache |
-| **volatile-lfu** | LFU on keys with TTL | Frequency-based cache |
-| **allkeys-lfu** | LFU on all keys | Frequency-based pure cache |
-| **volatile-random** | Random on keys with TTL | Simple random eviction |
-| **allkeys-random** | Random on all keys | Simple random eviction |
-| **volatile-ttl** | Earliest TTL expiration | TTL-priority eviction |
-| **noeviction** | Never evict, return error | Data store (not cache) |
+| Policy              | Behavior                  | Use Case                      |
+| ------------------- | ------------------------- | ----------------------------- |
+| **volatile-lru**    | LRU on keys with TTL      | Mixed cache + persistent data |
+| **allkeys-lru**     | LRU on all keys           | Pure cache                    |
+| **volatile-lfu**    | LFU on keys with TTL      | Frequency-based cache         |
+| **allkeys-lfu**     | LFU on all keys           | Frequency-based pure cache    |
+| **volatile-random** | Random on keys with TTL   | Simple random eviction        |
+| **allkeys-random**  | Random on all keys        | Simple random eviction        |
+| **volatile-ttl**    | Earliest TTL expiration   | TTL-priority eviction         |
+| **noeviction**      | Never evict, return error | Data store (not cache)        |
 
 ```python
 # Check memory usage
@@ -1139,16 +1149,16 @@ const Redis = require('ioredis');
 
 // ioredis has built-in connection pooling
 const redis = new Redis({
-    host: 'localhost',
-    port: 6379,
-    maxRetriesPerRequest: 3,
-    lazyConnect: true,
-    enableReadyCheck: true,
-    connectTimeout: 10000,
-    retryStrategy: (times) => {
-        if (times > 3) return null;  // Give up after 3 retries
-        return Math.min(times * 50, 2000);
-    }
+  host: 'localhost',
+  port: 6379,
+  maxRetriesPerRequest: 3,
+  lazyConnect: true,
+  enableReadyCheck: true,
+  connectTimeout: 10000,
+  retryStrategy: (times) => {
+    if (times > 3) return null; // Give up after 3 retries
+    return Math.min(times * 50, 2000);
+  },
 });
 
 // Connection events
@@ -1198,12 +1208,12 @@ redis_client.set("1001", "John")           # No type indicator
 
 ### Value Size Guidelines
 
-| Value Size | Recommendation |
-|------------|----------------|
-| < 1KB | Ideal for Redis |
-| 1KB - 10KB | Acceptable |
-| 10KB - 100KB | Consider compression or splitting |
-| > 100KB | Avoid - use database or object storage |
+| Value Size   | Recommendation                         |
+| ------------ | -------------------------------------- |
+| < 1KB        | Ideal for Redis                        |
+| 1KB - 10KB   | Acceptable                             |
+| 10KB - 100KB | Consider compression or splitting      |
+| > 100KB      | Avoid - use database or object storage |
 
 ### Anti-Patterns to Avoid
 
@@ -1258,19 +1268,19 @@ class RateLimiter:
     def __init__(self, redis_client, key_prefix="rate_limit"):
         self.redis = redis_client
         self.key_prefix = key_prefix
-    
+
     def is_allowed(self, identifier: str, max_requests: int, window_seconds: int) -> bool:
         key = f"{self.key_prefix}:{identifier}"
         current = self.redis.get(key)
-        
+
         if current is None:
             self.redis.setex(key, window_seconds, 1)
             return True
-        
+
         if int(current) < max_requests:
             self.redis.incr(key)
             return True
-        
+
         return False
 
 # Usage
@@ -1290,10 +1300,10 @@ from datetime import datetime
 def track_page_view(user_id: int, page: str):
     now = datetime.utcnow().timestamp()
     key = f"analytics:page_views:{page}"
-    
+
     # Add to sorted set with timestamp as score
     redis_client.zadd(key, {f"{user_id}:{now}": now})
-    
+
     # Clean up old entries (older than 30 days)
     cutoff = now - (30 * 86400)
     redis_client.zremrangebyscore(key, 0, cutoff)
@@ -1301,14 +1311,14 @@ def track_page_view(user_id: int, page: str):
 def get_daily_page_views(page: str, days: int = 7) -> dict:
     key = f"analytics:page_views:{page}"
     now = datetime.utcnow().timestamp()
-    
+
     views = {}
     for day in range(days):
         day_start = now - ((days - day) * 86400)
         day_end = day_start + 86400
         count = redis_client.zcount(key, day_start, day_end)
         views[f"day_{day}"] = count
-    
+
     return views
 ```
 
@@ -1338,6 +1348,7 @@ Before deploying Redis to production:
 ## Real-World Impact
 
 **Before this skill:**
+
 - No caching layer, direct database queries
 - Slow response times (200-500ms)
 - Database overload under traffic spikes
@@ -1346,6 +1357,7 @@ Before deploying Redis to production:
 - No rate limiting
 
 **After this skill:**
+
 - Multi-layer caching strategy
 - Fast response times (1-10ms for cached data)
 - Reduced database load by 80-95%

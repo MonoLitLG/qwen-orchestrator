@@ -233,10 +233,25 @@ export const createOrder = (overrides = {}): Order => {
 ```typescript
 // test-data/scenarios.ts
 export const orderScenarios = {
-  valid: { status: 'pending', items: [/* ... */] },
+  valid: {
+    status: 'pending',
+    items: [
+      /* ... */
+    ],
+  },
   empty: { status: 'pending', items: [] },
-  cancelled: { status: 'cancelled', items: [/* ... */] },
-  completed: { status: 'completed', items: [/* ... */] },
+  cancelled: {
+    status: 'cancelled',
+    items: [
+      /* ... */
+    ],
+  },
+  completed: {
+    status: 'completed',
+    items: [
+      /* ... */
+    ],
+  },
 };
 ```
 
@@ -258,23 +273,23 @@ export const orderScenarios = {
 
 ### Mocking Tools
 
-| Tool | Purpose |
-|------|---------|
-| Vitest | Testing framework |
-| ts-mockito | Object mocking |
-| nock | HTTP mocking |
-| jest-date-mock | Time mocking |
+| Tool           | Purpose           |
+| -------------- | ----------------- |
+| Vitest         | Testing framework |
+| ts-mockito     | Object mocking    |
+| nock           | HTTP mocking      |
+| jest-date-mock | Time mocking      |
 
 ## Test Coverage
 
 ### Coverage Targets
 
-| Layer | Target Coverage |
-|-------|-----------------|
-| Domain | 90%+ |
-| Application | 85%+ |
-| Infrastructure | 80%+ |
-| Presentation | 70%+ |
+| Layer          | Target Coverage |
+| -------------- | --------------- |
+| Domain         | 90%+            |
+| Application    | 85%+            |
+| Infrastructure | 80%+            |
+| Presentation   | 70%+            |
 
 ### Coverage Reports
 
@@ -379,12 +394,20 @@ it('should process order', () => {
 
 ```typescript
 // ❌ BAD: Tests depend on each other
-it('should create user', () => { /* ... */ });
-it('should update user', () => { /* uses user from prev test */ });
+it('should create user', () => {
+  /* ... */
+});
+it('should update user', () => {
+  /* uses user from prev test */
+});
 
 // ✅ GOOD: Independent tests
-it('should create user', () => { /* ... */ });
-it('should update user', () => { /* ... */ });
+it('should create user', () => {
+  /* ... */
+});
+it('should update user', () => {
+  /* ... */
+});
 ```
 
 ## References

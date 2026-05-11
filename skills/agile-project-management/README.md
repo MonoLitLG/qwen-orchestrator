@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for managing agile projects following
 ## When to Use
 
 **Use this skill when:**
+
 - Managing agile projects using Scrum
 - Facilitating Scrum ceremonies (standups, planning, reviews, retrospectives)
 - Conducting backlog grooming and refinement
@@ -38,18 +39,21 @@ This skill provides comprehensive guidance for managing agile projects following
 ## What It Covers
 
 ### Scrum Framework
+
 - **Ceremonies** - Planning, standups, reviews, retrospectives
 - **Roles** - Product Owner, Scrum Master, Development Team
 - **Artifacts** - Product backlog, sprint backlog, increment
 - **Events** - Sprint, daily standup, planning, review, retrospective
 
 ### Kanban Methodology
+
 - **Board design** - Columns, WIP limits
 - **Flow management** - Cycle time, lead time
 - **Metrics** - Throughput, WIP, efficiency
 - **Continuous improvement** - Kaizen, feedback loops
 
 ### Agile Metrics
+
 - **Velocity tracking** - Sprint velocity, trends
 - **Burndown charts** - Sprint progress
 - **Cycle time** - Work item duration
@@ -71,6 +75,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Sprint planning templates
 - Backlog grooming sessions
 - Velocity tracking examples

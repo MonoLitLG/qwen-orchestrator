@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for developing and deploying AWS serv
 ## When to Use
 
 **Use this skill when:**
+
 - Developing AWS Lambda functions
 - Configuring API Gateway endpoints
 - Using SAM for infrastructure as code
@@ -21,21 +22,25 @@ This skill provides comprehensive guidance for developing and deploying AWS serv
 ## What It Covers
 
 ### AWS SAM Template
+
 - Basic SAM templates
 - Advanced SAM templates
 
 ### Lambda Best Practices
+
 - Cold start optimization
 - Minimal dependencies
 - Error handling
 - Async handling
 
 ### API Gateway Configuration
+
 - REST API
 - HTTP API
 - Authorization
 
 ### Event-Driven Architecture
+
 - S3 Event
 - SQS Event
 - EventBridge Event
@@ -54,6 +59,7 @@ sam local start-api
 ## Examples
 
 See `examples/` for:
+
 - SAM template examples
 - Lambda function examples
 - API Gateway examples

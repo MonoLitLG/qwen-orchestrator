@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for detecting and preventing infinite
 ## When to Use
 
 **Use this skill when:**
+
 - Identifying potential infinite loops in code
 - Detecting loop patterns in algorithms
 - Implementing loop exit strategies
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for detecting and preventing infinite
 - Implementing loop health checks
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -251,38 +253,39 @@ def retry_with_backoff(max_retries=5, base_delay=1):
 def process_items(items, max_iterations=1000, timeout=30):
     """
     Process items with safety mechanisms.
-    
+
     Args:
         items: List of items to process
         max_iterations: Maximum number of iterations (default: 1000)
         timeout: Maximum duration in seconds (default: 30)
-    
+
     Returns:
         Processed items list
-    
+
     Raises:
         RuntimeError: If max iterations reached
         TimeoutError: If timeout exceeded
     """
     start_time = time.time()
     count = 0
-    
+
     for item in items:
         count += 1
         if count >= max_iterations:
             raise RuntimeError("Max iterations reached")
         if time.time() - start_time > timeout:
             raise TimeoutError("Loop timed out")
-        
+
         # Process item
         process(item)
-    
+
     return items
 ```
 
 ## Real-World Impact
 
 **Before this skill:**
+
 - Infinite loops causing crashes
 - Resource exhaustion
 - No loop monitoring
@@ -290,6 +293,7 @@ def process_items(items, max_iterations=1000, timeout=30):
 - Production outages
 
 **After this skill:**
+
 - Safe loops with exit strategies
 - Proper resource management
 - Loop monitoring and alerts

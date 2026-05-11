@@ -580,6 +580,7 @@ For **Next.js apps**: recommend Vercel (native support, automatic previews).
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Writing new application logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint implementations (use api-design skill)

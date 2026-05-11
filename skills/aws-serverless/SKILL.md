@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for developing and deploying AWS serv
 ## When to Use
 
 **Use this skill when:**
+
 - Developing AWS Lambda functions for event-driven architectures
 - Configuring API Gateway endpoints with proper authorization and integration
 - Using SAM for infrastructure as code and serverless deployments
@@ -24,6 +25,7 @@ This skill provides comprehensive guidance for developing and deploying AWS serv
 - Managing serverless costs and resource optimization
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use **developer skill**)
 - Designing database schema (use **database-design** skill)
 - Creating UI components (use **frontend-design** skill)
@@ -59,7 +61,7 @@ Resources:
 Outputs:
   ApiUrl:
     Description: API Gateway endpoint URL
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello"
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello'
 ```
 
 ### Advanced SAM Template
@@ -129,7 +131,7 @@ Resources:
   UploadBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "${AWS::StackName}-uploads"
+      BucketName: !Sub '${AWS::StackName}-uploads'
 
   NotificationQueue:
     Type: AWS::SQS::Queue
@@ -137,7 +139,7 @@ Resources:
 Outputs:
   UsersApiUrl:
     Description: Users API endpoint URL
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/users"
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/users'
 ```
 
 ## Lambda Best Practices
@@ -153,7 +155,7 @@ exports.handler = async (event) => {
   if (!cachedData) {
     cachedData = await initializeExpensiveResource();
   }
-  
+
   // Handler logic
   return {
     statusCode: 200,
@@ -215,7 +217,7 @@ exports.handler = async (event) => {
   // Use async/await for clarity
   const data = await fetchData();
   const processed = await processData(data);
-  
+
   return {
     statusCode: 200,
     body: JSON.stringify(processed),
@@ -334,7 +336,7 @@ Resources:
           Properties:
             ApiId: !Ref UsersApi
             Name: MyAuthorizer
-            AuthorizerUri: !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${MyAuthorizer.Arn}/invocations"
+            AuthorizerUri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${MyAuthorizer.Arn}/invocations'
             IdentitySource: method.request.header.Authorization
 ```
 
@@ -347,7 +349,7 @@ Resources:
   UploadBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "${AWS::StackName}-uploads"
+      BucketName: !Sub '${AWS::StackName}-uploads'
 
   ProcessUploadFunction:
     Type: AWS::Serverless::Function
@@ -431,6 +433,7 @@ exports.handler = async (event) => {
 ```
 
 **Problems:**
+
 - Slow cold starts
 - High memory usage
 - Expensive execution
@@ -492,12 +495,14 @@ exports.handler = async (event) => {
 ## Real-World Impact
 
 **Before this skill:**
+
 - Slow cold starts
 - High latency
 - Poor error handling
 - Expensive execution
 
 **After this skill:**
+
 - Fast cold starts
 - Low latency
 - Robust error handling

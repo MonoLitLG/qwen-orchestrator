@@ -198,6 +198,7 @@ Must persist: Scope changes, risk register, progress metrics
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill for complete business modules)
 - Designing database schemas (use database-design skill for normalization and indexing)
 - Writing API endpoint implementations (use api-design skill for REST/GraphQL endpoint patterns)

@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for Product Owners in agile product d
 ## When to Use
 
 **Use this skill when:**
+
 - Creating and maintaining product backlog
 - Writing user stories with acceptance criteria
 - Prioritizing features for sprint planning
@@ -21,6 +22,7 @@ This skill provides comprehensive guidance for Product Owners in agile product d
 - Collaborating with stakeholders on requirements
 
 **Do NOT use this skill when:**
+
 - Writing code implementation
 - Database schema design
 - API endpoint specification
@@ -96,14 +98,14 @@ Priority: High
 
 ### INVEST Principle
 
-| Criterion | Description |
-|-----------|-------------|
-| **I**ndependent | Story is self-contained |
-| **N**egotiable | Details can be discussed |
-| **V**aluable | Delivers business value |
-| **E**stimable | Team can estimate effort |
-| **S**mall | Can be completed in sprint |
-| **T**estable | Acceptance criteria defined |
+| Criterion       | Description                 |
+| --------------- | --------------------------- |
+| **I**ndependent | Story is self-contained     |
+| **N**egotiable  | Details can be discussed    |
+| **V**aluable    | Delivers business value     |
+| **E**stimable   | Team can estimate effort    |
+| **S**mall       | Can be completed in sprint  |
+| **T**estable    | Acceptance criteria defined |
 
 ### Good Acceptance Criteria
 
@@ -116,12 +118,12 @@ Priority: High
 
 ### MoSCoW Method
 
-| Priority | Meaning | Action |
-|----------|---------|--------|
-| **M**ust have | Critical for MVP | Must implement |
-| **S**hould have | Important but not critical | Implement if time |
-| **C**ould have | Nice to have | Implement if extra time |
-| **W**on't have | Not in current scope | Defer to future |
+| Priority        | Meaning                    | Action                  |
+| --------------- | -------------------------- | ----------------------- |
+| **M**ust have   | Critical for MVP           | Must implement          |
+| **S**hould have | Important but not critical | Implement if time       |
+| **C**ould have  | Nice to have               | Implement if extra time |
+| **W**on't have  | Not in current scope       | Defer to future         |
 
 ### Value vs Effort Matrix
 
@@ -229,6 +231,7 @@ So that I can use the app better.
 ```
 
 **Problems:**
+
 - "Better" is not measurable
 - No specific features defined
 - Cannot verify completion
@@ -256,6 +259,7 @@ Priority: High
 ```
 
 **Problems:**
+
 - No clear definition of done
 - Team may implement different features
 - Testing becomes guesswork
@@ -283,12 +287,14 @@ Priority: High
 ## Real-World Impact
 
 **Before this skill:**
+
 - Backlog disorganized
 - Unclear priorities
 - Sprint planning reactive
 - Features miss target
 
 **After this skill:**
+
 - Backlog groomed and prioritized
 - Clear sprint goals
 - Predictable delivery

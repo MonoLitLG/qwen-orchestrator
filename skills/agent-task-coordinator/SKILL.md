@@ -13,6 +13,7 @@ This skill provides guidance for coordinating multiple AI agents, managing agent
 ## When to Use
 
 **Use this skill when:**
+
 - Coordinating multiple agents for complex tasks
 - Managing agent teams with different specializations
 - Delegating work across specialized agents
@@ -38,6 +39,7 @@ This skill provides guidance for coordinating multiple AI agents, managing agent
 - Creating agent team scaling strategies
 
 **Do NOT use this skill when:**
+
 - Single-agent tasks (use specific skill for the task)
 - Simple, linear workflows (use standard workflow patterns)
 - Non-agentic workflows (use standard application development)
@@ -70,13 +72,13 @@ This skill provides guidance for coordinating multiple AI agents, managing agent
 ```dot
 digraph task_decomposition {
     rankdir=TB;
-    
+
     "Complex Task" [shape=box, style=filled, color=lightblue];
     "Task A" [shape=box, style=filled, color=lightgreen];
     "Task B" [shape=box, style=filled, color=lightgreen];
     "Task C" [shape=box, style=filled, color=lightgreen];
     "Synthesis" [shape=box, style=filled, color=lightyellow];
-    
+
     "Complex Task" -> "Task A";
     "Complex Task" -> "Task B";
     "Complex Task" -> "Task C";
@@ -214,6 +216,7 @@ Complex Task
 ```
 
 Problems:
+
 - Coordination overhead
 - Context switching
 - Integration complexity
@@ -228,6 +231,7 @@ Complex Task
 ```
 
 Benefits:
+
 - Focus on strengths
 - Manageable complexity
 - Clear integration points
@@ -239,6 +243,7 @@ Agent 1 ──> ? ──> Agent 2 ──> ? ──> Agent 3
 ```
 
 Problems:
+
 - Unclear expectations
 - No progress tracking
 - Integration issues
@@ -251,6 +256,7 @@ Agent 1 ──[request]──> Agent 2 ──[response]──> Agent 3
 ```
 
 Benefits:
+
 - Clear expectations
 - Progress tracking
 - Smooth integration
@@ -296,12 +302,14 @@ report_progress (start) ──→ in_progress
 ## Real-World Impact
 
 **Before this skill:**
+
 - Agents working in isolation
 - Duplicate effort
 - Integration issues
 - No coordination strategy
 
 **After this skill:**
+
 - Coordinated agent teams
 - Efficient parallel execution
 - Clear communication

@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for designing system architecture, se
 ## When to Use
 
 **Use this skill when:**
+
 - Designing new system architecture from scratch
 - Selecting architectural patterns for specific requirements
 - Making trade-off decisions between different approaches
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for designing system architecture, se
 - Creating domain models with entities and value objects
 
 **Do NOT use this skill when:**
+
 - Writing specific code implementation (use developer skill or specific framework skill)
 - Database schema design (use database design skill)
 - API endpoint specification (use api-design skill)
@@ -62,16 +64,19 @@ This skill provides comprehensive guidance for designing system architecture, se
 ```
 
 **When to Use:**
+
 - Enterprise applications with complex business logic
 - Projects requiring clear module boundaries
 - Teams needing explicit architecture guidance
 
 **Pros:**
+
 - Clear separation of concerns
 - Easy to test each layer independently
 - Dependencies point inward (stability)
 
 **Cons:**
+
 - Can become rigid for complex domains
 - May lead to anemic domain models
 
@@ -98,11 +103,13 @@ This skill provides comprehensive guidance for designing system architecture, se
 ```
 
 **When to Use:**
+
 - Complex business domains
 - Multiple business units with distinct models
 - Need for clear domain boundaries
 
 **Key Concepts:**
+
 - **Bounded Context**: Clear boundary around a domain model
 - **Entities**: Objects with identity and continuity
 - **Value Objects**: Objects defined by their values
@@ -127,16 +134,19 @@ This skill provides comprehensive guidance for designing system architecture, se
 ```
 
 **When to Use:**
+
 - Large organizations with multiple teams
 - Need for independent scaling
 - Different technology requirements per module
 
 **Pros:**
+
 - Independent deployment
 - Technology diversity per service
 - Team autonomy
 
 **Cons:**
+
 - Operational complexity
 - Network latency
 - Distributed transaction challenges
@@ -166,16 +176,19 @@ This skill provides comprehensive guidance for designing system architecture, se
 ```
 
 **When to Use:**
+
 - High-throughput systems
 - Decoupled services
 - Real-time processing needs
 
 **Pros:**
+
 - High scalability
 - Loose coupling
 - Resilience to failures
 
 **Cons:**
+
 - Complex debugging
 - Eventual consistency
 - Operational overhead
@@ -195,16 +208,19 @@ This skill provides comprehensive guidance for designing system architecture, se
 ```
 
 **When to Use:**
+
 - High-read, high-write systems
 - Complex business rules
 - Need for event sourcing
 
 **Pros:**
+
 - Optimized read and write models
 - Better performance for complex domains
 - Clear separation of concerns
 
 **Cons:**
+
 - Increased complexity
 - Eventual consistency
 - Additional infrastructure
@@ -225,16 +241,19 @@ shared/
 ```
 
 **When to Use:**
+
 - Large frontend applications
 - Multiple features managed by different teams
 - Need for feature-level testing
 
 **Pros:**
+
 - Feature-level independence
 - Easier to find related code
 - Clear feature boundaries
 
 **Cons:**
+
 - Can lead to duplication
 - Shared state challenges
 
@@ -277,13 +296,13 @@ shared/
 
 ### Trade-Off Analysis
 
-| Factor | Option A | Option B | Decision |
-|--------|----------|----------|----------|
-| Performance | High | Medium | A if performance critical |
-| Scalability | Medium | High | B if scaling needed |
-| Complexity | Low | High | A if team small |
-| Cost | High | Low | B if budget limited |
-| Team Expertise | High | Low | A if team knows A |
+| Factor         | Option A | Option B | Decision                  |
+| -------------- | -------- | -------- | ------------------------- |
+| Performance    | High     | Medium   | A if performance critical |
+| Scalability    | Medium   | High     | B if scaling needed       |
+| Complexity     | Low      | High     | A if team small           |
+| Cost           | High     | Low      | B if budget limited       |
+| Team Expertise | High     | Low      | A if team knows A         |
 
 ## Cloud Architecture Patterns
 
@@ -309,6 +328,7 @@ shared/
 ```
 
 **Components:**
+
 - Cloud CDN: Static asset delivery
 - Load Balancer: Traffic distribution
 - Cloud Run: Serverless containers
@@ -353,6 +373,7 @@ shared/
 ```
 
 **Problems:**
+
 - No clear boundaries
 - Difficult to maintain
 - Changes ripple through system
@@ -382,6 +403,7 @@ shared/
 ```
 
 **Benefits:**
+
 - Testable business logic
 - Framework independent
 - Maintainable structure
@@ -402,6 +424,7 @@ shared/
 ```
 
 **Problems:**
+
 - Still a monolith at core
 - No independent deployment
 - Operational complexity without benefits
@@ -416,6 +439,7 @@ shared/
 ```
 
 **Benefits:**
+
 - Independent deployment
 - Technology diversity
 - Team autonomy
@@ -423,12 +447,14 @@ shared/
 ## Real-World Impact
 
 **Before this skill:**
+
 - No clear architecture
 - Tight coupling
 - Difficult to scale
 - High maintenance cost
 
 **After this skill:**
+
 - Clear architecture
 - Loose coupling
 - Scalable systems

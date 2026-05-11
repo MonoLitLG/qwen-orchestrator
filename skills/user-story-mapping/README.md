@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for user story mapping, including cre
 ## When to Use
 
 **Use this skill when:**
+
 - Creating user story maps for products
 - Breaking down epics into user stories
 - Organizing features by user workflow
@@ -37,24 +38,28 @@ This skill provides comprehensive guidance for user story mapping, including cre
 ## What It Covers
 
 ### Story Map Structure
+
 - **Activities** - High-level user activities
 - **Tasks** - Specific tasks within activities
 - **Stories** - User stories for tasks
 - **Releases** - Release boundaries
 
 ### Workshop Facilitation
+
 - **Agenda** - 2-4 hour workshops
 - **Materials** - Sticky notes, whiteboards
 - **Participants** - PO, TL, UX, Team
 - **Outcomes** - Story map, release plan
 
 ### Epic Decomposition
+
 - **Breakdown** - Epic to stories
 - **Acceptance Criteria** - Story validation
 - **Estimation** - Story points
 - **Dependencies** - Story relationships
 
 ### Release Planning
+
 - **MoSCoW** - Prioritization
 - **Value vs Effort** - Matrix analysis
 - **RICE Scoring** - Objective scoring
@@ -76,6 +81,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Story map templates
 - Workshop agendas
 - Epic breakdown examples

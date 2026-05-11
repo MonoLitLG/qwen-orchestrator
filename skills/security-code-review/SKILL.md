@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for security code reviews following O
 ## When to Use
 
 **Use this skill when:**
+
 - Performing security code reviews
 - Reviewing code for OWASP Top 10 vulnerabilities
 - Checking authentication and authorization implementations
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for security code reviews following O
 - Analyzing mobile app security patterns
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -287,22 +289,25 @@ const token = jwt.sign({ userId: user.id }, 'secret'); // Weak secret
 
 ```typescript
 // ✅ Good: Secure session handling
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: true,
-    httpOnly: true,
-    sameSite: 'strict',
-    maxAge: 3600000,
-  },
-}));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: true,
+      httpOnly: true,
+      sameSite: 'strict',
+      maxAge: 3600000,
+    },
+  })
+);
 ```
 
 ## Real-World Impact
 
 **Before this skill:**
+
 - Security vulnerabilities in code
 - OWASP Top 10 vulnerabilities present
 - Authentication/authorization issues
@@ -310,6 +315,7 @@ app.use(session({
 - Injection vulnerabilities
 
 **After this skill:**
+
 - Secure code following best practices
 - OWASP Top 10 vulnerabilities addressed
 - Proper authentication/authorization

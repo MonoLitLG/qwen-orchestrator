@@ -16,6 +16,7 @@ This skill covers all aspects of Redis implementation including:
 ## When to Use
 
 Use this skill when working with Redis for:
+
 - Implementing caching layers
 - Managing distributed sessions
 - Building real-time messaging systems
@@ -30,36 +31,36 @@ Use this skill when working with Redis for:
 
 ### Data Structure Selection Guide
 
-| Need | Use |
-|------|-----|
-| Simple key-value cache | **String** |
-| Object storage | **Hash** |
-| Queue or stack | **List** |
-| Unique members, tags | **Set** |
-| Rankings, leaderboards | **Sorted Set** |
-| Message queue, event sourcing | **Stream** |
-| Feature flags, presence tracking | **Bitmap** |
-| Unique counting (approximate) | **HyperLogLog** |
-| Location-based queries | **Geospatial** |
+| Need                             | Use             |
+| -------------------------------- | --------------- |
+| Simple key-value cache           | **String**      |
+| Object storage                   | **Hash**        |
+| Queue or stack                   | **List**        |
+| Unique members, tags             | **Set**         |
+| Rankings, leaderboards           | **Sorted Set**  |
+| Message queue, event sourcing    | **Stream**      |
+| Feature flags, presence tracking | **Bitmap**      |
+| Unique counting (approximate)    | **HyperLogLog** |
+| Location-based queries           | **Geospatial**  |
 
 ### Caching Pattern Selection
 
-| Scenario | Pattern |
-|----------|---------|
-| Most common, simple | **Cache-Aside** |
-| Data consistency critical | **Write-Through** |
-| Write performance critical | **Write-Behind** |
-| Reduce cache pollution | **Write-Around** |
+| Scenario                   | Pattern           |
+| -------------------------- | ----------------- |
+| Most common, simple        | **Cache-Aside**   |
+| Data consistency critical  | **Write-Through** |
+| Write performance critical | **Write-Behind**  |
+| Reduce cache pollution     | **Write-Around**  |
 
 ### Client Library Selection
 
-| Language | Recommended |
-|----------|-------------|
-| Node.js | **ioredis** |
-| Python | **redis-py** |
-| Java | **Lettuce** |
-| Go | **go-redis** |
-| Ruby | **redis-rb** |
+| Language | Recommended  |
+| -------- | ------------ |
+| Node.js  | **ioredis**  |
+| Python   | **redis-py** |
+| Java     | **Lettuce**  |
+| Go       | **go-redis** |
+| Ruby     | **redis-rb** |
 
 ## License
 

@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for **containerizing applications wit
 ## When to Use
 
 **Use this skill when:**
+
 - Containerizing Node.js, Python, PHP, Go, Java, or Rust applications
 - Implementing multi-stage builds for minimal image size
 - Securing Docker containers with non-root users
@@ -30,6 +31,7 @@ This skill provides comprehensive guidance for **containerizing applications wit
 - Configuring Docker resource limits
 
 **Do NOT use this skill when:**
+
 - Deploying to Kubernetes (use kubernetes-orchestration skill)
 - Setting up cloud infrastructure (use terraform-iac skill)
 - Configuring CI/CD pipelines (use devops-pipeline skill)
@@ -44,23 +46,23 @@ This skill provides comprehensive guidance for **containerizing applications wit
 
 ### Multi-Stage Build Patterns
 
-| Pattern | Use Case | Benefits |
-|---------|----------|----------|
-| **Build → Runtime** | Compile languages (Go, Java, Rust) | Minimal runtime image |
-| **Dependencies → Build → Runtime** | Node.js, Python, PHP | Layer caching optimization |
-| **Build → Test → Runtime** | Applications with build-time tests | Test isolation |
-| **Base → Builder → Runner** | Complex applications | Maximum flexibility |
+| Pattern                            | Use Case                           | Benefits                   |
+| ---------------------------------- | ---------------------------------- | -------------------------- |
+| **Build → Runtime**                | Compile languages (Go, Java, Rust) | Minimal runtime image      |
+| **Dependencies → Build → Runtime** | Node.js, Python, PHP               | Layer caching optimization |
+| **Build → Test → Runtime**         | Applications with build-time tests | Test isolation             |
+| **Base → Builder → Runner**        | Complex applications               | Maximum flexibility        |
 
 ### Image Size Targets
 
-| Language/Framework | Target Size | Base Image |
-|-------------------|-------------|------------|
-| Node.js | < 200MB | node:alpine or distroless |
-| Python | < 150MB | python:slim |
-| Go | < 20MB | scratch or distroless |
-| Java | < 300MB | eclipse-temurin:jre-alpine |
-| PHP | < 100MB | php:fpm-alpine |
-| Rust | < 15MB | scratch or distroless |
+| Language/Framework | Target Size | Base Image                 |
+| ------------------ | ----------- | -------------------------- |
+| Node.js            | < 200MB     | node:alpine or distroless  |
+| Python             | < 150MB     | python:slim                |
+| Go                 | < 20MB      | scratch or distroless      |
+| Java               | < 300MB     | eclipse-temurin:jre-alpine |
+| PHP                | < 100MB     | php:fpm-alpine             |
+| Rust               | < 15MB      | scratch or distroless      |
 
 ## Multi-Stage Build Examples
 
@@ -231,7 +233,7 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://postgres:password@db:5432/app
@@ -246,7 +248,7 @@ services:
   db:
     image: postgres:16-alpine
     ports:
-      - "5432:5432"
+      - '5432:5432'
     environment:
       - POSTGRES_DB=app
       - POSTGRES_USER=postgres
@@ -258,15 +260,15 @@ services:
   redis:
     image: redis:7-alpine
     ports:
-      - "6379:6379"
+      - '6379:6379'
     volumes:
       - redis_data:/data
 
   mailpit:
     image: axllent/mailpit
     ports:
-      - "8025:8025"
-      - "1025:1025"
+      - '8025:8025'
+      - '1025:1025'
 
 volumes:
   postgres_data:
@@ -449,6 +451,7 @@ Before deploying to production:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Large Docker images (1GB+)
 - Running as root
 - No health checks
@@ -456,6 +459,7 @@ Before deploying to production:
 - Security vulnerabilities
 
 **After this skill:**
+
 - Optimized images (< 200MB for Node.js)
 - Non-root user for security
 - Health checks for reliability

@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for deploying applications to Cloudfl
 ## When to Use
 
 **Use this skill when:**
+
 - Deploying applications to Cloudflare Pages
 - Configuring edge functions and middleware
 - Setting up global distribution
@@ -21,20 +22,24 @@ This skill provides comprehensive guidance for deploying applications to Cloudfl
 ## What It Covers
 
 ### Deployment Methods
+
 - **Git Integration** - Automated deployments
 - **Direct Upload** - Manual deployments
 - **C3 CLI** - Create and deploy
 
 ### Edge Functions
+
 - Basic edge functions
 - Middleware
 - Routing
 
 ### Caching Strategies
+
 - Cache control headers
 - Edge caching
 
 ### Wrangler CLI
+
 - Development commands
 - Deployment commands
 - Configuration
@@ -52,6 +57,7 @@ npx wrangler pages deploy ./dist --project-name=my-app --branch=preview
 ## Examples
 
 See `examples/` for:
+
 - Edge function examples
 - Caching strategies
 - Wrangler CLI commands

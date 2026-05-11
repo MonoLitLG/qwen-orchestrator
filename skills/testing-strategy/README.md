@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for designing and implementing testin
 ## When to Use
 
 **Use this skill when:**
+
 - Designing test strategy for new projects
 - Setting up CI/CD quality gates
 - Defining test coverage requirements
@@ -21,24 +22,29 @@ This skill provides comprehensive guidance for designing and implementing testin
 ## What It Covers
 
 ### Testing Pyramid
+
 - **Unit Tests** - 60-75% of tests, fast and isolated
 - **Integration Tests** - 20-30% of tests, module interactions
 - **E2E Tests** - 5-10% of tests, comprehensive workflows
 
 ### Coverage Requirements
+
 - **Minimum Thresholds** - 80% unit, 70% integration, 60% E2E
 - **Coverage by Component** - Business logic, API, UI, utilities
 
 ### Test Categories
+
 - **Unit Tests** - Individual functions/classes
 - **Integration Tests** - Component interactions
 - **E2E Tests** - Complete user workflows
 
 ### CI/CD Integration
+
 - **Quality Gates Pipeline** - Automated testing in CI
 - **Coverage Gate Example** - Enforcing coverage thresholds
 
 ### Test Organization
+
 - **File Structure** - Organized by test type
 - **Naming Convention** - What_Condition_ExpectedResult
 - **Test Data Management** - Factories and scenarios
@@ -59,6 +65,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Test file structures
 - Test naming conventions
 - CI/CD pipeline examples

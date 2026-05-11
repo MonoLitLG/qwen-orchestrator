@@ -25,10 +25,7 @@
       "lib/README.md",
       "tests/README.md"
     ],
-    "optional": [
-      "ui/README.md",
-      "config/README.md"
-    ]
+    "optional": ["ui/README.md", "config/README.md"]
   },
   "allowed-dependencies": {
     "presentation": ["application", "shared"],

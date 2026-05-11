@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for building stateful agents and work
 ## When to Use
 
 **Use this skill when:**
+
 - Building stateful agents with LangGraph
 - Implementing graph-based architectures
 - Managing state persistence and checkpoints
@@ -21,21 +22,25 @@ This skill provides comprehensive guidance for building stateful agents and work
 ## What It Covers
 
 ### State Management
+
 - State types and TypedDict
 - Checkpointers (InMemorySaver, SqliteSaver, PostgresSaver)
 - Thread management
 
 ### Graph Patterns
+
 - Sequential patterns
 - Conditional patterns
 - Multi-agent patterns
 
 ### Multi-Agent Systems
+
 - Basic swarm
 - Agent handoffs
 - Active agent router
 
 ### State Persistence
+
 - Checkpointing
 - Human-in-the-loop
 - Thread management
@@ -54,6 +59,7 @@ app = workflow.compile(checkpointer=checkpointer)
 ## Examples
 
 See `examples/` for:
+
 - Graph pattern examples
 - Multi-agent examples
 - State persistence examples

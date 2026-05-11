@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for evaluating and selecting technolo
 ## When to Use
 
 **Use this skill when:**
+
 - Evaluating technology options for projects
 - Comparing technology stacks
 - Conducting technology assessments
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for evaluating and selecting technolo
 - Assessing technology vendor stability
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -246,6 +248,7 @@ This skill provides comprehensive guidance for evaluating and selecting technolo
 ## Real-World Impact
 
 **Before this skill:**
+
 - Ad-hoc technology selection
 - Poor technology choices
 - Integration issues
@@ -253,6 +256,7 @@ This skill provides comprehensive guidance for evaluating and selecting technolo
 - High maintenance costs
 
 **After this skill:**
+
 - Well-evaluated technology choices
 - Right technology for requirements
 - Smooth integration

@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for strategic leadership, team manage
 ## When to Use
 
 **Use this skill when:**
+
 - Leading and managing cross-functional teams
 - Making high-stakes strategic decisions
 - Aligning stakeholders on project vision and goals
@@ -38,30 +39,35 @@ This skill provides comprehensive guidance for strategic leadership, team manage
 ## What It Covers
 
 ### Leadership Styles
+
 - **Situational Leadership** - Adapting style to team development level
 - **Transformational Leadership** - Inspiring and motivating teams
 - **Servant Leadership** - Prioritizing team needs
 - **Democratic Leadership** - Collaborative decision-making
 
 ### Decision-Making Frameworks
+
 - **RACI Matrix** - Role clarity for decisions
 - **Decision Matrix** - Objective evaluation of options
 - **SWOT Analysis** - Strategic planning
 - **Cost-Benefit Analysis** - Economic decision-making
 
 ### Stakeholder Management
+
 - **Power/Interest Grid** - Stakeholder prioritization
 - **Engagement Planning** - Strategic communication
 - **Expectation Management** - Setting realistic expectations
 - **Conflict Resolution** - Managing stakeholder conflicts
 
 ### Crisis Management
+
 - **Response Framework** - Structured crisis response
 - **Communication Planning** - Crisis communications
 - **Recovery Planning** - Post-crisis recovery
 - **Lessons Learned** - Continuous improvement
 
 ### Team Dynamics
+
 - **Tuckman's Model** - Team development stages
 - **Team Charters** - Team foundation documents
 - **Performance Management** - Goal setting and review
@@ -83,6 +89,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Leadership style assessment templates
 - Decision-making frameworks
 - Stakeholder analysis matrices

@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for implementing complete CRUD (Creat
 ## When to Use
 
 **Use this skill when:**
+
 - Implementing complete CRUD operations for resources
 - Designing Create, Read, Update, Delete endpoints
 - Adding validation to CRUD operations
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for implementing complete CRUD (Creat
 ## What It Covers
 
 ### CRUD Operations
+
 - **Create** - POST with validation
 - **Read** - GET with filtering, sorting, pagination
 - **Update** - PATCH and PUT with concurrency
@@ -45,11 +47,13 @@ This skill provides comprehensive guidance for implementing complete CRUD (Creat
 - **Restore** - Recover soft-deleted resources
 
 ### Validation
+
 - **Input validation** - Schema validation
 - **Business validation** - Domain rules
 - **Error responses** - Standardized errors
 
 ### Advanced Patterns
+
 - **Soft delete** - Recoverable deletion
 - **Bulk operations** - Batch processing
 - **Optimistic concurrency** - Version control
@@ -71,6 +75,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - CRUD endpoint patterns
 - Validation schemas
 - Soft delete implementations

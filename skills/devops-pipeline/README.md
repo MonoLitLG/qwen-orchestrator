@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for designing and implementing CI/CD 
 ## When to Use
 
 **Use this skill when:**
+
 - Designing CI/CD pipelines
 - Setting up deployment strategies
 - Configuring infrastructure as code
@@ -21,6 +22,7 @@ This skill provides comprehensive guidance for designing and implementing CI/CD 
 ## What It Covers
 
 ### CI/CD Pipeline Stages
+
 - **Checkout** - Get source code
 - **Install Dependencies** - npm ci, pip install, etc.
 - **Lint & Format Check** - Code quality checks
@@ -33,23 +35,28 @@ This skill provides comprehensive guidance for designing and implementing CI/CD 
 - **Deploy** - Release to environment
 
 ### Deployment Strategies
+
 - **Blue-Green** - Zero-downtime deployments
 - **Canary** - Gradual rollout
 - **Rolling Update** - Incremental updates
 
 ### Infrastructure as Code
+
 - **Terraform** - Declarative IaC
 - **AWS CloudFormation** - AWS resource management
 
 ### Monitoring and Alerting
+
 - **Prometheus** - Metrics collection
 - **Alert Rules** - Automated alerts
 
 ### Docker Best Practices
+
 - **Multi-Stage Builds** - Smaller images
 - **Docker Compose** - Local development
 
 ### Kubernetes Resources
+
 - **Deployment** - Pod management
 - **Service** - Network exposure
 
@@ -69,6 +76,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Complete CI/CD pipelines
 - Deployment strategy examples
 - Infrastructure as code templates

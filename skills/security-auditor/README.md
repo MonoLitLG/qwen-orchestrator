@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for security audits, OWASP compliance
 ## When to Use
 
 **Use this skill when:**
+
 - Performing security audits
 - Checking OWASP compliance
 - Implementing authentication/authorization
@@ -21,6 +22,7 @@ This skill provides comprehensive guidance for security audits, OWASP compliance
 ## What It Covers
 
 ### OWASP Top 10
+
 - **Broken Access Control** - RBAC, ABAC, access checks
 - **Cryptographic Failures** - HTTPS, strong encryption
 - **Injection** - Parameterized queries, validation
@@ -33,17 +35,20 @@ This skill provides comprehensive guidance for security audits, OWASP compliance
 - **SSRF** - Input validation, network controls
 
 ### Security Checklists
+
 - **Authentication** - HTTPS, password policies, MFA, session management
 - **Authorization** - RBAC/ABAC, permission checks, least privilege
 - **Input Validation** - Server-side validation, sanitization
 - **Data Protection** - Encryption, TLS, secure deletion
 
 ### Security Testing
+
 - **Penetration Testing** - Reconnaissance, authentication, authorization
 - **Security Headers** - Helmet, CSP, HSTS
 - **Vulnerability Scanning** - Dependency scanning, SAST, DAST
 
 ### Compliance Frameworks
+
 - **SOC 2** - Security, availability, processing integrity
 - **PCI-DSS** - Firewalls, encryption, access control
 - **HIPAA** - Access controls, audit controls, integrity
@@ -65,6 +70,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Security checklists
 - Penetration testing templates
 - Compliance framework checklists

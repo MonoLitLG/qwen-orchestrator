@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for provisioning and managing infrast
 ## When to Use
 
 **Use this skill when:**
+
 - Provisioning cloud infrastructure (AWS, Azure, GCP) with Terraform
 - Creating reusable Terraform modules with inputs and outputs
 - Managing Terraform state with S3/DynamoDB remote backends
@@ -36,6 +37,7 @@ This skill provides comprehensive guidance for provisioning and managing infrast
 ## What It Covers
 
 ### Workflow Lifecycle
+
 - **Init** - Download providers, modules, configure backend
 - **Validate** - Check configuration syntax and internal consistency
 - **Format** - Auto-format HCL code for consistency
@@ -46,6 +48,7 @@ This skill provides comprehensive guidance for provisioning and managing infrast
 - **Console** - Interactive expression evaluation
 
 ### State Management
+
 - **Local State** - Personal projects and experimentation
 - **Remote S3** - Team collaboration with DynamoDB locking
 - **Terraform Cloud** - Enterprise workflows and team collaboration
@@ -53,6 +56,7 @@ This skill provides comprehensive guidance for provisioning and managing infrast
 - **GCS** - Google Cloud Storage backend
 
 ### Module Design
+
 - **Root Module** - Top-level configuration entry point
 - **Child Module** - Reusable component abstractions
 - **Nested Module** - Complex module compositions
@@ -60,6 +64,7 @@ This skill provides comprehensive guidance for provisioning and managing infrast
 - **Factory Module** - Dynamic resource creation with count/for_each
 
 ### Provider Configuration
+
 - **AWS Provider** - Multi-region with default tags
 - **Azure Provider** - Feature flags and resource management
 - **GCP Provider** - Project and region configuration
@@ -67,12 +72,14 @@ This skill provides comprehensive guidance for provisioning and managing infrast
 - **Version Pinning** - Provider version constraints
 
 ### Backend Configuration
+
 - **S3 + DynamoDB** - Remote state with locking and encryption
 - **Terraform Cloud** - HashiCorp-managed backend
 - **Azure Blob Storage** - Azure-native state storage
 - **Google Cloud Storage** - GCP-native state storage
 
 ### Variables and Outputs
+
 - **Variable Validation** - Custom validation rules
 - **Sensitive Variables** - Secure secret handling
 - **Complex Types** - Objects, maps, lists, sets
@@ -80,47 +87,55 @@ This skill provides comprehensive guidance for provisioning and managing infrast
 - **Local Values** - Computed configuration values
 
 ### Workspaces
+
 - **Workspace Management** - Create, select, delete workspaces
 - **Workspace-Aware Config** - Dynamic environment configuration
 - **Environment Isolation** - Separate state per environment
 
 ### Data Sources
+
 - **AMI Lookup** - Dynamic AMI selection
 - **Caller Identity** - Current AWS context
 - **VPC Lookup** - Existing infrastructure discovery
 - **External Data** - External script integration
 
 ### Provisioners
+
 - **File Provisioner** - Remote file copy
 - **Remote-Exec** - Remote command execution
 - **Local-Exec** - Local side effects
 - **User Data** - Instance bootstrapping
 
 ### Import and State
+
 - **Resource Import** - Existing infrastructure adoption
 - **State Manipulation** - Move, remove, list resources
 - **State Locking** - Concurrent access prevention
 - **Drift Detection** - Configuration drift identification
 
 ### Policy and Testing
+
 - **Sentinel Policies** - Compliance enforcement
 - **Terratest** - Infrastructure testing with Go
 - **TFLint** - Static analysis and linting
 - **Format and Validate** - Code quality enforcement
 
 ### Terraform Cloud/Enterprise
+
 - **Remote Operations** - Plan and apply remotely
 - **Run Tasks** - External validation workflows
 - **Cost Estimation** - Spend prediction and control
 - **Team Collaboration** - Review and approval workflows
 
 ### Security
+
 - **State Encryption** - At-rest and in-transit encryption
 - **Sensitive Variables** - Secret masking in output
 - **Provider Authentication** - Secure credential management
 - **State Access Control** - IAM-based state protection
 
 ### CI/CD Integration
+
 - **GitHub Actions** - Automated validation and deployment
 - **Format Checking** - Pre-commit formatting validation
 - **Plan Review** - Change preview in pull requests
@@ -142,6 +157,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - VPC module with public/private subnets
 - Multi-provider configuration
 - Remote backend setup

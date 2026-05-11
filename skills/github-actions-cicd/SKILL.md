@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for **creating and optimizing GitHub 
 ## When to Use
 
 **Use this skill when:**
+
 - Creating GitHub Actions workflow files (.github/workflows/)
 - Configuring workflow triggers (push, pull_request, schedule, workflow_dispatch, repository_dispatch)
 - Defining jobs and steps with dependencies (needs)
@@ -36,6 +37,7 @@ This skill provides comprehensive guidance for **creating and optimizing GitHub 
 - Implementing production CI/CD best practices
 
 **Do NOT use this skill when:**
+
 - Containerizing applications with Docker (use docker-containerization skill)
 - Deploying to Kubernetes (use kubernetes-orchestration skill)
 - Setting up cloud infrastructure (use terraform-iac skill)
@@ -51,37 +53,37 @@ This skill provides comprehensive guidance for **creating and optimizing GitHub 
 
 ### Workflow Trigger Types
 
-| Trigger | Event | Use Case |
-|---------|-------|----------|
-| **push** | Code pushed to repository | Build, test, deploy on commit |
-| **pull_request** | PR opened/updated/synced | CI checks before merge |
-| **schedule** | Cron expression | Scheduled maintenance, reports |
-| **workflow_dispatch** | Manual trigger | On-demand deployments |
-| **repository_dispatch** | API-triggered | External system integration |
-| **release** | Release created/published | Production deployment |
-| **workflow_run** | Another workflow completes | Post-workflow actions |
-| **page_build** | GitHub Pages build | Documentation deployment |
+| Trigger                 | Event                      | Use Case                       |
+| ----------------------- | -------------------------- | ------------------------------ |
+| **push**                | Code pushed to repository  | Build, test, deploy on commit  |
+| **pull_request**        | PR opened/updated/synced   | CI checks before merge         |
+| **schedule**            | Cron expression            | Scheduled maintenance, reports |
+| **workflow_dispatch**   | Manual trigger             | On-demand deployments          |
+| **repository_dispatch** | API-triggered              | External system integration    |
+| **release**             | Release created/published  | Production deployment          |
+| **workflow_run**        | Another workflow completes | Post-workflow actions          |
+| **page_build**          | GitHub Pages build         | Documentation deployment       |
 
 ### Runner Types
 
-| Runner | OS | Use Case |
-|--------|-----|----------|
-| **ubuntu-latest** | Linux (Ubuntu) | Default, most actions |
-| **windows-latest** | Windows | .NET, Windows-specific builds |
-| **macos-latest** | macOS | iOS, Xcode builds |
-| **self-hosted** | Any | Custom tools, GPU, cost reduction |
-| **ubuntu-22.04** | Linux (specific) | Pinned OS version |
-| **windows-2022** | Windows (specific) | Pinned Windows version |
+| Runner             | OS                 | Use Case                          |
+| ------------------ | ------------------ | --------------------------------- |
+| **ubuntu-latest**  | Linux (Ubuntu)     | Default, most actions             |
+| **windows-latest** | Windows            | .NET, Windows-specific builds     |
+| **macos-latest**   | macOS              | iOS, Xcode builds                 |
+| **self-hosted**    | Any                | Custom tools, GPU, cost reduction |
+| **ubuntu-22.04**   | Linux (specific)   | Pinned OS version                 |
+| **windows-2022**   | Windows (specific) | Pinned Windows version            |
 
 ### Job Dependency Patterns
 
-| Pattern | Configuration | Use Case |
-|---------|--------------|----------|
-| **Sequential** | `needs: [previous_job]` | Build → Test → Deploy |
-| **Parallel** | No `needs` | Lint + Test + Security |
-| **Conditional** | `if: success() && needs.job.result == 'success'` | Deploy only if tests pass |
-| **Matrix** | `strategy.matrix` | Multi-version testing |
-| **Fan-out/Fan-in** | Multiple jobs depend on one | Build → [Test A, Test B, Test C] → Deploy |
+| Pattern            | Configuration                                    | Use Case                                  |
+| ------------------ | ------------------------------------------------ | ----------------------------------------- |
+| **Sequential**     | `needs: [previous_job]`                          | Build → Test → Deploy                     |
+| **Parallel**       | No `needs`                                       | Lint + Test + Security                    |
+| **Conditional**    | `if: success() && needs.job.result == 'success'` | Deploy only if tests pass                 |
+| **Matrix**         | `strategy.matrix`                                | Multi-version testing                     |
+| **Fan-out/Fan-in** | Multiple jobs depend on one                      | Build → [Test A, Test B, Test C] → Deploy |
 
 ## Workflow Examples
 
@@ -664,7 +666,7 @@ environment:
   url: https://example.com
   protection_rules:
     required_reviewers: 2
-    wait_timer: 5  # minutes
+    wait_timer: 5 # minutes
     bypass_actors:
       - type: Team
         name: platform-team
@@ -821,6 +823,7 @@ Before deploying workflows to production:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Manual deployment processes
 - Inconsistent CI/CD pipelines
 - No security scanning
@@ -828,6 +831,7 @@ Before deploying workflows to production:
 - Poor artifact management
 
 **After this skill:**
+
 - Automated CI/CD pipelines
 - Consistent workflow patterns
 - Comprehensive security scanning

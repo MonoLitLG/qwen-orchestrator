@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for building LLM applications with La
 ## When to Use
 
 **Use this skill when:**
+
 - Building LLM applications with LangChain
 - Implementing chains (LLMChain, SequentialChain, RouterChain)
 - Creating agents with tools and capabilities
@@ -35,6 +36,7 @@ This skill provides comprehensive guidance for building LLM applications with La
 - Creating agents with context window management
 
 **Do NOT use this skill when:**
+
 - Building stateful workflows with complex state (use **langgraph** skill)
 - Designing database schema (use **database-design** skill)
 - Creating UI components (use **frontend-design** skill)
@@ -221,14 +223,14 @@ result = chain.invoke({"country": "France"})
 prompt = PromptTemplate.from_template(
     """
     You are a data analyst. Analyze the following data and provide insights.
-    
+
     Data: {data}
-    
+
     Provide:
     1. Summary of key trends
     2. Anomalies detected
     3. Recommendations
-    
+
     Keep your response concise and structured.
     """
 )
@@ -312,7 +314,7 @@ prompt = PromptTemplate.from_template(
     """
     You are a Python expert. Explain the following concept clearly and concisely.
     Provide code examples when relevant.
-    
+
     Concept: {concept}
     """
 )
@@ -373,6 +375,7 @@ prompt = PromptTemplate.from_template("Generate text: {input}")
 ```
 
 **Problems:**
+
 - Unpredictable outputs
 - No control over tone
 - Poor quality results
@@ -384,13 +387,13 @@ prompt = PromptTemplate.from_template("Generate text: {input}")
 prompt = PromptTemplate.from_template(
     """
     You are a professional writer. Generate a blog post about {topic}.
-    
+
     Requirements:
     - 500-700 words
     - Professional tone
     - Include 3 key points
     - Use bullet points for key points
-    
+
     Topic: {topic}
     """
 )
@@ -417,12 +420,14 @@ except Exception as e:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Unpredictable LLM outputs
 - No prompt engineering
 - Difficult to maintain chains
 - No memory management
 
 **After this skill:**
+
 - Consistent LLM outputs
 - Effective prompt engineering
 - Maintainable chains

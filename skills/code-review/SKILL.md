@@ -104,6 +104,7 @@ This skill provides a systematic, evidence-based code review methodology that ca
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Designing database schemas (use database-design skill for normalization and indexing)
 - Writing API endpoint implementations (use api-design skill for REST/GraphQL endpoint patterns)
 - Performing security audits (use security-auditor skill for comprehensive vulnerability analysis)

@@ -386,8 +386,13 @@ export function registerOrchestrationTools(server: any): void {
       let validationPassed = true;
       if (task.validationCommands && task.validationCommands.length > 0) {
         // execSync is imported at the top of the file
-        const results: Array<{ command: string; exitCode: number; stdout: string; stderr: string }> = [];
-        
+        const results: Array<{
+          command: string;
+          exitCode: number;
+          stdout: string;
+          stderr: string;
+        }> = [];
+
         for (const cmd of task.validationCommands) {
           try {
             const stdout = execSync(cmd, {
@@ -405,16 +410,22 @@ export function registerOrchestrationTools(server: any): void {
             });
           }
         }
-        
+
         task.validationResults = results;
         validationPassed = results.every((r) => r.exitCode === 0);
-        
+
         if (!validationPassed) {
           const failedCount = results.filter((r) => r.exitCode !== 0).length;
           return makeResult({
             success: false,
             error: `Validation failed: ${failedCount}/${results.length} commands failed`,
-            results: results.map((r) => ({ command: r.command, passed: r.exitCode === 0, exitCode: r.exitCode, stdout: r.stdout.slice(0, 500), stderr: r.stderr.slice(0, 500) })),
+            results: results.map((r) => ({
+              command: r.command,
+              passed: r.exitCode === 0,
+              exitCode: r.exitCode,
+              stdout: r.stdout.slice(0, 500),
+              stderr: r.stderr.slice(0, 500),
+            })),
             recommendation: 'Fix validation issues before reporting completion',
           });
         }
@@ -461,7 +472,9 @@ export function registerOrchestrationTools(server: any): void {
         reason: z.string().describe('Why the task failed or was cancelled'),
         status: z
           .enum(['failed', 'cancelled'])
-          .describe('Failure type: "failed" for errors, "cancelled" for user stop'),
+          .describe(
+            'Failure type: "failed" for errors, "cancelled" for user stop'
+          ),
       }).shape,
     },
     async ({
@@ -497,7 +510,11 @@ export function registerOrchestrationTools(server: any): void {
         metadata: { taskId, failureType: status },
       });
 
-      return makeResult({ success: false, task, message: 'Task ' + taskId + ' marked as ' + status });
+      return makeResult({
+        success: false,
+        task,
+        message: 'Task ' + taskId + ' marked as ' + status,
+      });
     }
   );
 
@@ -880,7 +897,7 @@ export function registerOrchestrationTools(server: any): void {
       description:
         `Find tasks whose last heartbeat is older than the stale timeout (${HEARTBEAT_STALE_TIMEOUT_MS / 1000}s). ` +
         `These tasks may belong to agents that have stopped, timed out, or crashed. ` +
-        `The commander should use this to detect stuck agents and create continuation tasks. ` +  
+        `The commander should use this to detect stuck agents and create continuation tasks. ` +
         `Returns stale tasks with their computed durations since last heartbeat.`,
       inputSchema: z.object({
         staleTimeoutMs: z

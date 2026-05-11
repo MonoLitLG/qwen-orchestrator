@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for building stateful agents and work
 ## When to Use
 
 **Use this skill when:**
+
 - Building stateful agents with LangGraph
 - Implementing graph-based architectures with StateGraph
 - Managing state persistence and checkpoints
@@ -35,6 +36,7 @@ This skill provides comprehensive guidance for building stateful agents and work
 - Building agents with multi-step reasoning
 
 **Do NOT use this skill when:**
+
 - Building basic LLM applications without state (use **llm-integrations** skill)
 - Designing database schema (use **database-design** skill)
 - Creating UI components (use **frontend-design** skill)
@@ -66,8 +68,8 @@ app = workflow.compile(checkpointer=checkpointer)
 
 ```typescript
 // JavaScript
-import { MemorySaver } from "@langchain/langgraph";
-import { StateGraph } from "@langchain/langgraph";
+import { MemorySaver } from '@langchain/langgraph';
+import { StateGraph } from '@langchain/langgraph';
 
 const checkpointer = new MemorySaver();
 const workflow = new StateGraph(State);
@@ -238,13 +240,13 @@ def compose_essay(topic: str) -> str:
 def review_workflow(topic: str) -> dict:
     essay_future = compose_essay(topic)
     essay = essay_future.result()
-    
+
     # Human review
     human_review = interrupt({
         "question": "Please provide a review",
         "essay": essay
     })
-    
+
     return {
         "essay": essay,
         "review": human_review,
@@ -349,6 +351,7 @@ def process(state: State) -> State:
 ```
 
 **Problems:**
+
 - No state persistence
 - Cannot resume workflows
 - No human-in-the-loop support
@@ -384,6 +387,7 @@ workflow = (
 ```
 
 **Problems:**
+
 - Hard to understand
 - Difficult to debug
 - Maintenance challenges
@@ -405,12 +409,14 @@ workflow = (
 ## Real-World Impact
 
 **Before this skill:**
+
 - No state persistence
 - Difficult multi-agent systems
 - No human-in-the-loop
 - Complex state management
 
 **After this skill:**
+
 - State persistence with checkpoints
 - Easy multi-agent systems
 - Human-in-the-loop support

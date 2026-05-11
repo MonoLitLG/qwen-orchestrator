@@ -20,6 +20,7 @@ This skill covers all aspects of GraphQL API implementation including:
 ## When to Use
 
 Use this skill when working with GraphQL for:
+
 - Designing GraphQL schemas with SDL
 - Implementing queries, mutations, and subscriptions
 - Preventing N+1 queries with DataLoader
@@ -33,42 +34,42 @@ Use this skill when working with GraphQL for:
 
 ### Schema Design Approaches
 
-| Approach | Best For | Tools |
-|----------|----------|-------|
-| **Schema-First (SDL)** | Team collaboration, API contracts | GraphQL Code Generator, graphql-tag |
-| **Code-First** | Rapid prototyping, TypeScript projects | type-graphql, Nexus, GraphQL Tools |
-| **Federation** | Microservices, distributed teams | Apollo Gateway, Apollo Router |
-| **Schema Stitching** | Legacy integration, gradual migration | Apollo Schema Stitching |
+| Approach               | Best For                               | Tools                               |
+| ---------------------- | -------------------------------------- | ----------------------------------- |
+| **Schema-First (SDL)** | Team collaboration, API contracts      | GraphQL Code Generator, graphql-tag |
+| **Code-First**         | Rapid prototyping, TypeScript projects | type-graphql, Nexus, GraphQL Tools  |
+| **Federation**         | Microservices, distributed teams       | Apollo Gateway, Apollo Router       |
+| **Schema Stitching**   | Legacy integration, gradual migration  | Apollo Schema Stitching             |
 
 ### Server Framework Selection
 
-| Framework | Language | Key Features |
-|-----------|----------|--------------|
-| **Apollo Server** | Node.js | Federation, caching, tracing, production-ready |
-| **GraphQL Yoga** | Node.js | Built-in subscriptions, PWA support, lightweight |
-| **Express GraphQL** | Node.js | Minimal, Express middleware integration |
-| **GraphQL Mesh** | Node.js | REST/GraphQL federation, multi-source |
-| **Strawberry** | Python | Python-native, async support, type inference |
-| **Graphene** | Python | Django/Flask integration, schema-first |
+| Framework           | Language | Key Features                                     |
+| ------------------- | -------- | ------------------------------------------------ |
+| **Apollo Server**   | Node.js  | Federation, caching, tracing, production-ready   |
+| **GraphQL Yoga**    | Node.js  | Built-in subscriptions, PWA support, lightweight |
+| **Express GraphQL** | Node.js  | Minimal, Express middleware integration          |
+| **GraphQL Mesh**    | Node.js  | REST/GraphQL federation, multi-source            |
+| **Strawberry**      | Python   | Python-native, async support, type inference     |
+| **Graphene**        | Python   | Django/Flask integration, schema-first           |
 
 ### Pagination Pattern Selection
 
-| Scenario | Pattern |
-|----------|---------|
-| Relay-compliant clients | **Cursor-based pagination** |
-| Simple offset needs | **Offset-based pagination** |
-| Infinite scroll | **Cursor-based with forward pagination** |
-| Traditional paginated UI | **Offset-based with page numbers** |
+| Scenario                 | Pattern                                  |
+| ------------------------ | ---------------------------------------- |
+| Relay-compliant clients  | **Cursor-based pagination**              |
+| Simple offset needs      | **Offset-based pagination**              |
+| Infinite scroll          | **Cursor-based with forward pagination** |
+| Traditional paginated UI | **Offset-based with page numbers**       |
 
 ### Performance Optimization Checklist
 
-| Optimization | Tool/Pattern |
-|--------------|-------------|
-| N+1 prevention | **DataLoader** |
-| Query complexity | **graphql-query-complexity** |
-| Query depth limiting | **graphql-depth-limit** |
-| Response caching | **Apollo response cache plugin** |
-| Persisted queries | **Apollo persisted queries** |
+| Optimization          | Tool/Pattern                        |
+| --------------------- | ----------------------------------- |
+| N+1 prevention        | **DataLoader**                      |
+| Query complexity      | **graphql-query-complexity**        |
+| Query depth limiting  | **graphql-depth-limit**             |
+| Response caching      | **Apollo response cache plugin**    |
+| Persisted queries     | **Apollo persisted queries**        |
 | Introspection control | **Environment-based configuration** |
 
 ## License

@@ -14,47 +14,61 @@ You are creating a Qwen Code skill to encode project-specific knowledge. Follow 
 ## Core Principles (Clean Code for Skills)
 
 ### 1. Single Responsibility
+
 Each skill should focus on **one specific task or pattern**:
+
 - ✅ Good: `react-component-patterns`
 - ✅ Good: `laravel-api-endpoint-structure`
 - ❌ Bad: `coding-best-practices` (too broad)
 
 ### 2. Clear Scope and When to Use
+
 Every skill must clearly state:
+
 - **What** it does
 - **When** to use it
 - **When not** to use it
 
 ### 3. Actionable Instructions
+
 Provide step-by-step guidance, not vague advice:
+
 ```markdown
 # Good
+
 1. Create the component file with .tsx extension
 2. Define the interface with all props
 3. Implement the component function
 4. Add JSDoc comments
 
 # Bad
+
 "Make good components" (not actionable)
 ```
 
 ### 4. Examples Over Theory
+
 Always provide concrete examples:
-```markdown
+
+````markdown
 ## Good Pattern
+
 ```tsx
 interface ButtonProps {
   label: string;
   onClick: () => void;
 }
 ```
+````
 
 ## Bad Pattern
+
 ```tsx
 // Don't do this
 const Button = ({ label }) => { ... }
 ```
-```
+
+````
 
 ## Skill Creation Workflow
 
@@ -125,9 +139,10 @@ When completing this task, output:
 ### Good Pattern
 ```language
 // Good example
-```
+````
 
 ### Bad Pattern
+
 ```language
 // Bad example - don't do this
 ```
@@ -141,10 +156,12 @@ When completing this task, output:
 ## Quality Checklist
 
 Before finishing, verify:
+
 - [ ] Follows project conventions
 - [ ] Includes concrete examples
 - [ ] Specifies output format
 - [ ] References official docs (Context7)
+
 ```
 
 ### Phase 3: Project-Specific Skills (ERP, SaaS, Enterprise)
@@ -171,25 +188,31 @@ For large projects, create skills that capture:
 Always use Context7 to improve your skills:
 
 1. **Before creating a skill**:
-   ```
-   1. Resolve: "Qwen Code" + "skill creation"
-   2. Query: "Best practices for skill creation"
-   3. Learn: Structure, format, content guidelines
-   ```
+```
+
+1.  Resolve: "Qwen Code" + "skill creation"
+2.  Query: "Best practices for skill creation"
+3.  Learn: Structure, format, content guidelines
+
+```
 
 2. **When documenting patterns**:
-   ```
-   1. Resolve: "React" + "component patterns"
-   2. Query: "Best practices for React components"
-   3. Verify: Your skill matches official docs
-   ```
+```
+
+1.  Resolve: "React" + "component patterns"
+2.  Query: "Best practices for React components"
+3.  Verify: Your skill matches official docs
+
+```
 
 3. **When adding examples**:
-   ```
-   1. Resolve: "TypeScript" + "interface definitions"
-   2. Query: "Best practices for TypeScript interfaces"
-   3. Update: Examples to match current best practices
-   ```
+```
+
+1.  Resolve: "TypeScript" + "interface definitions"
+2.  Query: "Best practices for TypeScript interfaces"
+3.  Update: Examples to match current best practices
+
+```
 
 ## Clean Code Principles for Skills
 
@@ -249,3 +272,4 @@ Before finalizing a skill:
 ## Example: Complete Skill
 
 See `skills/synonyms/SKILL.md` for a complete example of a well-structured skill.
+```

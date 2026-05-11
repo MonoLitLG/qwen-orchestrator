@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for strategic leadership, team manage
 ## When to Use
 
 **Use this skill when:**
+
 - Leading and managing cross-functional teams
 - Making high-stakes strategic decisions
 - Aligning stakeholders on project vision and goals
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for strategic leadership, team manage
 - Creating strategic alignment matrices
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -273,6 +275,7 @@ Development Plan:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Teams lack direction and alignment
 - Decisions made reactively
 - Stakeholders frustrated with communication
@@ -280,6 +283,7 @@ Development Plan:
 - Team conflicts unresolved
 
 **After this skill:**
+
 - Clear strategic direction and alignment
 - Decisions made proactively and effectively
 - Stakeholders informed and engaged

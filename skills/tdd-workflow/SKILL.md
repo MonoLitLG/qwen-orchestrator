@@ -126,6 +126,7 @@ describe('calculateTotal', () => {
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Working on existing code without tests (use debugging skill to understand first)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint implementations (use api-design skill)

@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for designing and implementing disast
 ## When to Use
 
 **Use this skill when:**
+
 - Designing disaster recovery plans
 - Implementing backup strategies
 - Creating restore procedures
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for designing and implementing disast
 - Implementing DR communication plans
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -298,6 +300,7 @@ This skill provides comprehensive guidance for designing and implementing disast
 ## Real-World Impact
 
 **Before this skill:**
+
 - No disaster recovery plan
 - Data loss during disasters
 - Extended downtime
@@ -305,6 +308,7 @@ This skill provides comprehensive guidance for designing and implementing disast
 - Unprepared team
 
 **After this skill:**
+
 - Comprehensive DR plan
 - Minimal data loss
 - Fast recovery

@@ -83,7 +83,8 @@ export async function redirectContextToSession(
     if (existingState) {
       writeSessionState(sessionId, {
         sessionId: existingState.sessionId ?? sessionId,
-        createdAt: (existingState.createdAt as string) ?? new Date().toISOString(),
+        createdAt:
+          (existingState.createdAt as string) ?? new Date().toISOString(),
         active: (existingState.active as boolean) ?? true,
       });
     } else {

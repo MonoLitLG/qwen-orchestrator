@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for designing and implementing releas
 ## When to Use
 
 **Use this skill when:**
+
 - Designing release workflows
 - Implementing CI/CD pipelines
 - Managing staging and production environments
@@ -39,20 +40,24 @@ This skill provides comprehensive guidance for designing and implementing releas
 ## What It Covers
 
 ### Release Pipeline
+
 - **Stages** - Build, test, deploy, monitor
 - **Quality Gates** - Code, performance, security
 - **Deployment Strategies** - Blue-green, canary, rolling
 
 ### Release Gates
+
 - **Quality Gate Checklist** - Code, performance, security, testing
 - **Approval Process** - Technical, product, security, compliance
 
 ### Rollback Procedures
+
 - **Trigger Conditions** - Critical bugs, performance issues
 - **Rollback Steps** - Identify, stop, restore, verify
 - **Rollback Automation** - CI/CD scripts
 
 ### Release Documentation
+
 - **Documentation Template** - Release info, changes, deployment
 - **Verification Steps** - Smoke, integration, performance tests
 
@@ -72,6 +77,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Release pipeline examples
 - Quality gate checklists
 - Rollback procedures

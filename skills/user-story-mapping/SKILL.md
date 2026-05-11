@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for user story mapping, including cre
 ## When to Use
 
 **Use this skill when:**
+
 - Creating user story maps for products
 - Breaking down epics into user stories
 - Organizing features by user workflow
@@ -37,6 +38,7 @@ This skill provides comprehensive guidance for user story mapping, including cre
 - Aligning on product goals
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -275,12 +277,14 @@ Epic: User Registration
 ## Real-World Impact
 
 **Before this skill:**
+
 - Disorganized backlog
 - Unclear feature priorities
 - No user workflow visualization
 - Misaligned stakeholders
 
 **After this skill:**
+
 - Organized story map
 - Clear feature priorities
 - User workflow visualization

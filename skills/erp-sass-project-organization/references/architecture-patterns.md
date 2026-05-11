@@ -211,12 +211,12 @@ What are the trade-offs and implications?
 
 ## Pattern Selection Guide
 
-| Project Size | Complexity | Team Size | Recommended Pattern |
-|--------------|------------|-----------|---------------------|
-| Small | Low | 1-3 | Layered + Modular Monolith |
-| Medium | Medium | 3-10 | DDD + Modular Monolith |
-| Large | High | 10+ | Microservices or Modular Monolith |
-| Very Large | Very High | 10+ | Microservices + CQRS |
+| Project Size | Complexity | Team Size | Recommended Pattern               |
+| ------------ | ---------- | --------- | --------------------------------- |
+| Small        | Low        | 1-3       | Layered + Modular Monolith        |
+| Medium       | Medium     | 3-10      | DDD + Modular Monolith            |
+| Large        | High       | 10+       | Microservices or Modular Monolith |
+| Very Large   | Very High  | 10+       | Microservices + CQRS              |
 
 ## Common Anti-Patterns to Avoid
 

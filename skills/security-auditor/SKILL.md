@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for security audits, OWASP compliance
 ## When to Use
 
 **Use this skill when:**
+
 - Performing security audits
 - Checking OWASP compliance
 - Implementing authentication/authorization
@@ -21,6 +22,7 @@ This skill provides comprehensive guidance for security audits, OWASP compliance
 - Ensuring compliance with security frameworks
 
 **Do NOT use this skill when:**
+
 - Writing business logic
 - Database schema design
 - Performance optimization
@@ -29,18 +31,18 @@ This skill provides comprehensive guidance for security audits, OWASP compliance
 
 ### 2021 OWASP Top 10
 
-| # | Vulnerability | Prevention |
-|---|---------------|------------|
-| 1 | Broken Access Control | RBAC, ABAC, access checks |
-| 2 | Cryptographic Failures | HTTPS, strong encryption |
-| 3 | Injection | Parameterized queries, validation |
-| 4 | Insecure Design | Threat modeling, secure patterns |
-| 5 | Security Misconfiguration | Hardening, least privilege |
-| 6 | Vulnerable Components | Dependency updates, scanning |
-| 7 | Identification Failures | MFA, session management |
-| 8 | Software Data Integrity Failures | Signatures, checksums |
-| 9 | Security Logging Failures | Centralized logging, monitoring |
-| 10 | SSRF | Input validation, network controls |
+| #   | Vulnerability                    | Prevention                         |
+| --- | -------------------------------- | ---------------------------------- |
+| 1   | Broken Access Control            | RBAC, ABAC, access checks          |
+| 2   | Cryptographic Failures           | HTTPS, strong encryption           |
+| 3   | Injection                        | Parameterized queries, validation  |
+| 4   | Insecure Design                  | Threat modeling, secure patterns   |
+| 5   | Security Misconfiguration        | Hardening, least privilege         |
+| 6   | Vulnerable Components            | Dependency updates, scanning       |
+| 7   | Identification Failures          | MFA, session management            |
+| 8   | Software Data Integrity Failures | Signatures, checksums              |
+| 9   | Security Logging Failures        | Centralized logging, monitoring    |
+| 10  | SSRF                             | Input validation, network controls |
 
 ## Security Checklist
 
@@ -120,30 +122,35 @@ This skill provides comprehensive guidance for security audits, OWASP compliance
 ## Penetration Testing Checklist
 
 ### Reconnaissance
+
 - [ ] Open ports scanning
 - [ ] Service version detection
 - [ ] Subdomain enumeration
 - [ ] Email harvesting
 
 ### Authentication Testing
+
 - [ ] Brute force protection
 - [ ] Session fixation
 - [ ] Token theft
 - [ ] Password reset vulnerabilities
 
 ### Authorization Testing
+
 - [ ] IDOR testing
 - [ ] Privilege escalation
 - [ ] Bypass authorization
 - [ ] ACL testing
 
 ### Input Validation Testing
+
 - [ ] SQL injection
 - [ ] XSS attacks
 - [ ] Command injection
 - [ ] File upload attacks
 
 ### API Security
+
 - [ ] Rate limiting
 - [ ] Authentication bypass
 - [ ] Data exposure
@@ -154,86 +161,88 @@ This skill provides comprehensive guidance for security audits, OWASP compliance
 
 ```typescript
 // Express security headers
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      imgSrc: ["'self'", 'data:', 'https:'],
-      connectSrc: ["'self'"],
-      fontSrc: ["'self'"],
-      objectSrc: ["'none'"],
-      mediaSrc: ["'self'"],
-      frameSrc: ["'none'"],
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        imgSrc: ["'self'", 'data:', 'https:'],
+        connectSrc: ["'self'"],
+        fontSrc: ["'self'"],
+        objectSrc: ["'none'"],
+        mediaSrc: ["'self'"],
+        frameSrc: ["'none'"],
+      },
     },
-  },
-  crossOriginEmbedderPolicy: true,
-  crossOriginOpenerPolicy: true,
-  crossOriginResourcePolicy: { policy: 'same-site' },
-  dnsPrefetchControl: { allow: false },
-  frameguard: { action: 'deny' },
-  hidePoweredBy: true,
-  hsts: { maxAge: 31536000, includeSubDomains: true },
-  ieNoOpen: true,
-  noSniff: true,
-  originAgentCluster: true,
-  permittedCrossDomainPolicies: { permittedPolicies: 'none' },
-  referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
-  xssFilter: true,
-}));
+    crossOriginEmbedderPolicy: true,
+    crossOriginOpenerPolicy: true,
+    crossOriginResourcePolicy: { policy: 'same-site' },
+    dnsPrefetchControl: { allow: false },
+    frameguard: { action: 'deny' },
+    hidePoweredBy: true,
+    hsts: { maxAge: 31536000, includeSubDomains: true },
+    ieNoOpen: true,
+    noSniff: true,
+    originAgentCluster: true,
+    permittedCrossDomainPolicies: { permittedPolicies: 'none' },
+    referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+    xssFilter: true,
+  })
+);
 ```
 
 ## Compliance Frameworks
 
 ### SOC 2
 
-| Category | Controls |
-|----------|----------|
-| Security | Access control, encryption, monitoring |
-| Availability | System monitoring, redundancy |
-| Processing Integrity | Accuracy, completeness |
-| Confidentiality | Data protection, encryption |
-| Privacy | Data handling, consent |
+| Category             | Controls                               |
+| -------------------- | -------------------------------------- |
+| Security             | Access control, encryption, monitoring |
+| Availability         | System monitoring, redundancy          |
+| Processing Integrity | Accuracy, completeness                 |
+| Confidentiality      | Data protection, encryption            |
+| Privacy              | Data handling, consent                 |
 
 ### PCI-DSS
 
-| Requirement | Implementation |
-|-------------|----------------|
-| 1. Install firewalls | Network segmentation |
-| 2. Don't use defaults | Change passwords, remove defaults |
-| 3. Protect stored data | Encryption, tokenization |
-| 4. Encrypt transmission | TLS 1.2+ |
-| 5. Use antivirus | Endpoint protection |
-| 6. Develop secure systems | Secure coding, code review |
-| 7. Restrict access | Least privilege |
-| 8. Identify users | MFA, strong auth |
-| 9. Restrict physical access | Physical security |
-| 10. Monitor systems | Logging, monitoring |
-| 11. Test security | Pen testing, vuln scanning |
-| 12. Maintain policy | Security policy, training |
+| Requirement                 | Implementation                    |
+| --------------------------- | --------------------------------- |
+| 1. Install firewalls        | Network segmentation              |
+| 2. Don't use defaults       | Change passwords, remove defaults |
+| 3. Protect stored data      | Encryption, tokenization          |
+| 4. Encrypt transmission     | TLS 1.2+                          |
+| 5. Use antivirus            | Endpoint protection               |
+| 6. Develop secure systems   | Secure coding, code review        |
+| 7. Restrict access          | Least privilege                   |
+| 8. Identify users           | MFA, strong auth                  |
+| 9. Restrict physical access | Physical security                 |
+| 10. Monitor systems         | Logging, monitoring               |
+| 11. Test security           | Pen testing, vuln scanning        |
+| 12. Maintain policy         | Security policy, training         |
 
 ### HIPAA
 
-| Requirement | Implementation |
-|-------------|----------------|
-| Access Controls | User authentication, encryption |
-| Audit Controls | Audit trails, monitoring |
-| Integrity | Data validation, checksums |
-| Person or Entity Authentication | Authentication procedures |
-| Transmission Security | Encryption, integrity controls |
+| Requirement                     | Implementation                  |
+| ------------------------------- | ------------------------------- |
+| Access Controls                 | User authentication, encryption |
+| Audit Controls                  | Audit trails, monitoring        |
+| Integrity                       | Data validation, checksums      |
+| Person or Entity Authentication | Authentication procedures       |
+| Transmission Security           | Encryption, integrity controls  |
 
 ### GDPR
 
-| Requirement | Implementation |
-|-------------|----------------|
-| Lawfulness | Consent, legal basis |
-| Purpose limitation | Data minimization |
-| Data minimization | Only collect what needed |
-| Accuracy | Data correction mechanisms |
-| Storage limitation | Data retention policies |
-| Integrity and confidentiality | Security measures |
-| Accountability | Documentation, policies |
+| Requirement                   | Implementation             |
+| ----------------------------- | -------------------------- |
+| Lawfulness                    | Consent, legal basis       |
+| Purpose limitation            | Data minimization          |
+| Data minimization             | Only collect what needed   |
+| Accuracy                      | Data correction mechanisms |
+| Storage limitation            | Data retention policies    |
+| Integrity and confidentiality | Security measures          |
+| Accountability                | Documentation, policies    |
 
 ## Vulnerability Scanning
 
@@ -307,9 +316,10 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({
     error: {
       code: 'INTERNAL_ERROR',
-      message: process.env.NODE_ENV === 'development'
-        ? err.message
-        : 'An unexpected error occurred',
+      message:
+        process.env.NODE_ENV === 'development'
+          ? err.message
+          : 'An unexpected error occurred',
       requestId,
     },
   });
@@ -363,12 +373,14 @@ app.use('/api/', limiter);
 ## Real-World Impact
 
 **Before this skill:**
+
 - Security vulnerabilities in production
 - Data breaches
 - Non-compliance fines
 - Reputational damage
 
 **After this skill:**
+
 - Secure applications
 - Compliance with frameworks
 - Protection against attacks

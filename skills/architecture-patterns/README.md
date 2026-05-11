@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for designing system architecture, se
 ## When to Use
 
 **Use this skill when:**
+
 - Designing new system architecture
 - Selecting architectural patterns
 - Making trade-off decisions
@@ -21,6 +22,7 @@ This skill provides comprehensive guidance for designing system architecture, se
 ## What It Covers
 
 ### Architectural Patterns
+
 - **Layered Architecture** - Presentation, Application, Domain, Infrastructure
 - **Domain-Driven Design (DDD)** - Bounded contexts, entities, value objects
 - **Microservices** - Independent services, API gateway
@@ -29,10 +31,12 @@ This skill provides comprehensive guidance for designing system architecture, se
 - **Feature-Sliced Design** - Feature-based organization
 
 ### Decision Making
+
 - **Architecture Decision Flow** - Requirements → Alternatives → Evaluation → Decision
 - **Trade-Off Analysis** - Performance, scalability, complexity, cost, expertise
 
 ### Cloud Architecture Patterns
+
 - **Serverless Web** - CDN, Load Balancer, Cloud Run, Database
 - **Event-Driven Microservices** - Event bus, multiple services
 
@@ -52,6 +56,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Architecture diagrams
 - Pattern implementations
 - Trade-off analysis examples

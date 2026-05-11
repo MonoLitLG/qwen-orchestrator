@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for deploying applications to Cloudfl
 ## When to Use
 
 **Use this skill when:**
+
 - Deploying applications to Cloudflare Pages
 - Configuring edge functions and middleware for Pages
 - Setting up global distribution with Cloudflare's edge network
@@ -32,6 +33,7 @@ This skill provides comprehensive guidance for deploying applications to Cloudfl
 - Using Cloudflare AI for edge processing
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use **developer skill** or specific framework skill)
 - Designing database schema (use **database-design** skill)
 - Creating UI components (use **frontend-design** skill)
@@ -98,14 +100,14 @@ npx wrangler pages deploy ./dist
 // functions/[...].ts
 export async function onRequest(context) {
   const { request, env, execution } = context;
-  
+
   // Modify request
   const url = new URL(request.url);
-  
+
   // Add custom headers
   const response = await fetch(request);
   response.headers.set('X-Custom-Header', 'value');
-  
+
   return response;
 }
 ```
@@ -116,13 +118,13 @@ export async function onRequest(context) {
 // middleware.ts
 export async function onRequest(context, next) {
   const { request, env } = context;
-  
+
   // Authentication check
   const token = request.headers.get('Authorization');
   if (!token && request.url.includes('/api')) {
     return new Response('Unauthorized', { status: 401 });
   }
-  
+
   // Continue to next handler
   return next();
 }
@@ -134,7 +136,7 @@ export async function onRequest(context, next) {
 // functions/api/users.ts
 export async function onRequest(context) {
   const { request, env } = context;
-  
+
   switch (request.method) {
     case 'GET':
       return getUsers(request, env);
@@ -162,10 +164,10 @@ async function getUsers(request, env) {
 // Cache static assets
 export async function onRequest(context) {
   const response = await fetch(context.request);
-  
+
   // Cache for 1 year (immutable)
   response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
-  
+
   return response;
 }
 ```
@@ -176,28 +178,26 @@ export async function onRequest(context) {
 // Cache API responses at edge
 export async function onRequest(context) {
   const url = new URL(context.request.url);
-  
+
   if (url.pathname === '/api/data') {
     // Cache for 1 hour
     const cacheControl = 'public, max-age=3600';
-    
+
     // Try to serve from cache
     const cached = await caches.default.match(context.request);
     if (cached) {
       return cached;
     }
-    
+
     // Fetch and cache
     const response = await fetch(context.request);
     response.headers.set('Cache-Control', cacheControl);
-    
-    context.waitUntil(
-      caches.default.put(context.request, response.clone())
-    );
-    
+
+    context.waitUntil(caches.default.put(context.request, response.clone()));
+
     return response;
   }
-  
+
   return fetch(context.request);
 }
 ```
@@ -278,17 +278,17 @@ npx wrangler pages environment delete VARIABLE_NAME
 // Edge function with region-specific logic
 export async function onRequest(context) {
   const { cf } = context.request;
-  
+
   // Get client country
   const country = cf.country;
-  
+
   // Serve region-specific content
   if (country === 'US') {
     return new Response('US Content');
   } else if (country === 'EU') {
     return new Response('EU Content');
   }
-  
+
   return new Response('Global Content');
 }
 ```
@@ -317,7 +317,7 @@ npx wrangler pages deploy ./dist \
 // Image optimization at edge
 export async function onRequest(context) {
   const url = new URL(context.request.url);
-  
+
   if (url.pathname.startsWith('/images/')) {
     // Optimize image at edge
     const optimized = await optimizeImage(url.pathname);
@@ -328,7 +328,7 @@ export async function onRequest(context) {
       },
     });
   }
-  
+
   return fetch(context.request);
 }
 ```
@@ -347,6 +347,7 @@ export async function onRequest(context) {
 ```
 
 **Problems:**
+
 - High latency
 - Origin server load
 - No global distribution
@@ -361,15 +362,13 @@ export async function onRequest(context) {
   if (cached) {
     return cached;
   }
-  
+
   // Fetch from origin
   const response = await fetch(context.request);
-  
+
   // Cache at edge
-  context.waitUntil(
-    caches.default.put(context.request, response.clone())
-  );
-  
+  context.waitUntil(caches.default.put(context.request, response.clone()));
+
   return response;
 }
 ```
@@ -388,6 +387,7 @@ export async function onRequest(context) {
 ```
 
 **Problems:**
+
 - Slow cold starts
 - High memory usage
 - Expensive execution
@@ -411,12 +411,14 @@ function processRequest(request) {
 ## Real-World Impact
 
 **Before this skill:**
+
 - High latency
 - Origin server load
 - No global distribution
 - Poor caching
 
 **After this skill:**
+
 - Low latency
 - Edge processing
 - Global distribution

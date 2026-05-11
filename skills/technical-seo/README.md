@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for implementing technical SEO strate
 ## When to Use
 
 **Use this skill when:**
+
 - Conducting technical SEO audits
 - Optimizing site speed and performance
 - Implementing mobile-first design
@@ -38,23 +39,27 @@ This skill provides comprehensive guidance for implementing technical SEO strate
 ## What It Covers
 
 ### SEO Core Principles
+
 - **Google SEO Principles** - User-focused approach
 - **E-E-A-T** - Expertise, Experience, Authoritativeness, Trustworthiness
 - **Core Web Vitals** - LCP, FID, CLS
 
 ### Site Speed
+
 - **Image Optimization** - Compression, lazy loading
 - **Code Optimization** - Minification, deferring
 - **Caching** - Browser, CDN, service workers
 - **Server Optimization** - Compression, HTTP/2
 
 ### Mobile Optimization
+
 - **Responsive Design** - Mobile-first approach
 - **Touch Targets** - Size and spacing
 - **Mobile Usability** - Interstitials, fonts
 - **Mobile Performance** - Requests, images
 
 ### Structured Data
+
 - **Schema Markup** - JSON-LD implementation
 - **Schema Types** - Article, Product, Local Business
 - **Breadcrumbs** - BreadcrumbList
@@ -75,6 +80,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - SEO audit checklists
 - Performance optimization examples
 - Schema markup examples

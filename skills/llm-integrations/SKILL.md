@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for integrating LLM providers (OpenAI
 ## When to Use
 
 **Use this skill when:**
+
 - Integrating LLM providers (OpenAI, DeepSeek, OpenRouter, Anthropic, Google, Qwen)
 - Configuring API keys and authentication for multiple providers
 - Optimizing LLM costs across projects
@@ -35,6 +36,7 @@ This skill provides comprehensive guidance for integrating LLM providers (OpenAI
 - Managing rate limits across providers
 
 **Do NOT use this skill when:**
+
 - Building stateful workflows with complex state (use **langgraph** skill)
 - Designing database schema (use **database-design** skill)
 - Creating UI components (use **frontend-design** skill)
@@ -153,13 +155,13 @@ llm = ChatGoogleGenerativeAI(
 
 ### Model Selection Matrix
 
-| Task | Recommended Model | Cost Estimate |
-|------|-------------------|---------------|
-| Simple queries | GPT-3.5-turbo / Qwen-Turbo | $0.50/1M tokens |
-| General tasks | GPT-4 / Qwen-Plus | $30/1M tokens |
-| Complex reasoning | GPT-4o / Qwen-Max | $125/1M tokens |
-| Coding tasks | Claude-3-5-Sonnet | $3/1M tokens |
-| Embeddings | text-embedding-3-small | $0.02/1M tokens |
+| Task              | Recommended Model          | Cost Estimate   |
+| ----------------- | -------------------------- | --------------- |
+| Simple queries    | GPT-3.5-turbo / Qwen-Turbo | $0.50/1M tokens |
+| General tasks     | GPT-4 / Qwen-Plus          | $30/1M tokens   |
+| Complex reasoning | GPT-4o / Qwen-Max          | $125/1M tokens  |
+| Coding tasks      | Claude-3-5-Sonnet          | $3/1M tokens    |
+| Embeddings        | text-embedding-3-small     | $0.02/1M tokens |
 
 ### Cost Tracking
 
@@ -171,12 +173,12 @@ class CostTracker:
         self.total_cost = 0
         self.total_tokens = 0
         self.call_count = 0
-    
+
     def track_call(self, prompt_tokens: int, completion_tokens: int, model: str):
         """Track API call costs."""
         self.total_tokens += prompt_tokens + completion_tokens
         self.call_count += 1
-        
+
         # Cost per 1M tokens (approximate)
         costs = {
             "gpt-3.5-turbo": 0.50,
@@ -188,11 +190,11 @@ class CostTracker:
             "qwen-plus": 2.00,
             "qwen-max": 120.00
         }
-        
+
         cost_per_million = costs.get(model, 10.00)
         cost = (prompt_tokens + completion_tokens) / 1_000_000 * cost_per_million
         self.total_cost += cost
-    
+
     def get_stats(self):
         """Get cost statistics."""
         return {
@@ -220,7 +222,7 @@ print(f"Total tokens: {stats['total_tokens']}")
 # ✅ GOOD: Use cost-effective models
 def call_llm(prompt: str, task_type: str) -> str:
     """Call LLM with cost-effective model selection."""
-    
+
     models = {
         "simple": "gpt-3.5-turbo",  # $0.50/1M tokens
         "general": "deepseek-chat",  # $0.14/1M tokens (very cost-effective)
@@ -228,7 +230,7 @@ def call_llm(prompt: str, task_type: str) -> str:
         "coding": "claude-3-5-sonnet",  # $3/1M tokens
         "embedding": "text-embedding-3-small"  # $0.02/1M tokens
     }
-    
+
     model = models.get(task_type, "deepseek-chat")
     return call_api(prompt, model)
 ```
@@ -245,19 +247,19 @@ class RateLimiter:
         self.time_window = time_window
         self.requests = []
         self.lock = Lock()
-    
+
     def acquire(self):
         """Acquire permission to make a request, waiting if necessary."""
         while True:
             with self.lock:
                 current_time = time.time()
-                self.requests = [req_time for req_time in self.requests 
+                self.requests = [req_time for req_time in self.requests
                                if current_time - req_time < self.time_window]
-                
+
                 if len(self.requests) < self.max_requests:
                     self.requests.append(current_time)
                     return
-                
+
             # Wait before retrying
             time.sleep(0.1)
 
@@ -306,7 +308,7 @@ def get_secret(secret_name: str) -> str:
     """Get secret from AWS Secrets Manager."""
     session = boto3.session.Session()
     client = session.client(service_name="secretsmanager")
-    
+
     try:
         get_secret_value_response = client.get_secret_value(SecretId=secret_name)
         return get_secret_value_response["SecretString"]
@@ -331,24 +333,24 @@ class MultiProviderLLM:
             "deepseek": os.getenv("DEEPSEEK_API_KEY"),
             "openrouter": os.getenv("OPENROUTER_API_KEY")
         }
-    
+
     def call(self, prompt: str, model: str, provider: str = None) -> str:
         """Call LLM with fallback strategy."""
         providers = [provider] if provider else list(self.providers.values())
-        
+
         for provider in providers:
             try:
                 return self._call_provider(prompt, model, provider)
             except Exception as e:
                 print(f"Provider {provider} failed: {e}")
                 continue
-        
+
         raise Exception("All providers failed")
-    
+
     def _call_provider(self, prompt: str, model: str, provider: str) -> str:
         """Call specific provider."""
         api_key = self.api_keys[provider]
-        
+
         if provider == "openai":
             return call_openai(prompt, model, api_key)
         elif provider == "deepseek":
@@ -365,7 +367,7 @@ class MultiProviderLLM:
 # ✅ GOOD: Appropriate model selection
 def call_llm(prompt: str, task_type: str) -> str:
     """Call LLM with appropriate model selection."""
-    
+
     models = {
         "simple": "gpt-3.5-turbo",
         "general": "deepseek-chat",
@@ -373,7 +375,7 @@ def call_llm(prompt: str, task_type: str) -> str:
         "coding": "claude-3-5-sonnet",
         "embedding": "text-embedding-3-small"
     }
-    
+
     model = models.get(task_type, "deepseek-chat")
     return call_api(prompt, model)
 ```
@@ -409,15 +411,15 @@ result = cached_call("What's 2+2?", "gpt-3.5-turbo")
 class UsageMonitor:
     def __init__(self):
         self.usage = {}
-    
+
     def track(self, provider: str, tokens: int, cost: float):
         """Track usage."""
         if provider not in self.usage:
             self.usage[provider] = {"tokens": 0, "cost": 0.0}
-        
+
         self.usage[provider]["tokens"] += tokens
         self.usage[provider]["cost"] += cost
-    
+
     def get_report(self):
         """Get usage report."""
         return self.usage
@@ -442,6 +444,7 @@ def call_openai(prompt: str) -> str:
 ```
 
 **Problems:**
+
 - Security risk
 - Difficult to manage
 - Hard to rotate keys
@@ -499,12 +502,14 @@ except Exception as e:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Hardcoded API keys
 - No rate limiting
 - Poor cost management
 - No error handling
 
 **After this skill:**
+
 - Secure API key management
 - Rate limiting implemented
 - Cost optimization

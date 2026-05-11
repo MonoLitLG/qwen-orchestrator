@@ -13,6 +13,7 @@ python -m reranking
 ## When to Use
 
 **Use this skill when:**
+
 - Optimizing content for ChatGPT, Perplexity, Gemini, Claude, Bing AI, or Qwen search
 - Implementing RAG optimization for AI search visibility
 - Creating content that ranks in AI-powered search results
@@ -20,6 +21,7 @@ python -m reranking
 - Optimizing for ChatGPT SEO, Perplexity Authority, Gemini Rich Results, or Claude Source Attribution
 
 **Do NOT use this skill when:**
+
 - Optimizing for traditional search engines (Google, Bing, Yahoo) — use traditional SEO skills
 - Designing database schema (use **database-design** skill)
 - Creating UI components (use **frontend-design** skill)
@@ -30,14 +32,14 @@ python -m reranking
 
 ### AI Search Engine Landscape
 
-| Search Engine | Key Optimization Factor | Best For |
-|---------------|------------------------|----------|
-| ChatGPT | Authority, recency, relevance | Conversational search, Q&A |
-| Perplexity | Authority, citations, depth | Research, detailed answers |
-| Gemini | Rich results, structured data | Visual search, multimodal |
-| Claude | Source attribution, credibility | Trust-based search |
-| Bing AI | Microsoft ecosystem integration | Enterprise search |
-| Qwen | Alibaba ecosystem, Chinese market | Chinese language search |
+| Search Engine | Key Optimization Factor           | Best For                   |
+| ------------- | --------------------------------- | -------------------------- |
+| ChatGPT       | Authority, recency, relevance     | Conversational search, Q&A |
+| Perplexity    | Authority, citations, depth       | Research, detailed answers |
+| Gemini        | Rich results, structured data     | Visual search, multimodal  |
+| Claude        | Source attribution, credibility   | Trust-based search         |
+| Bing AI       | Microsoft ecosystem integration   | Enterprise search          |
+| Qwen          | Alibaba ecosystem, Chinese market | Chinese language search    |
 
 ### RAG Optimization
 
@@ -65,7 +67,7 @@ def create_search_optimized_prompt(topic: str, intent: str = "informational") ->
     prompts = {
         "informational": f"""
         You are an expert on {topic}. Provide a comprehensive, well-structured answer.
-        
+
         Requirements:
         1. Start with a clear, direct answer
         2. Provide detailed explanations with examples
@@ -125,6 +127,7 @@ def create_search_optimized_prompt(topic: str, intent: str = "informational") ->
 ## Examples
 
 See `SKILL.md` for comprehensive examples including:
+
 - RAG optimization with reranking
 - ChatGPT SEO optimization
 - Perplexity Authority patterns

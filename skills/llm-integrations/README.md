@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for integrating LLM providers (OpenAI
 ## When to Use
 
 **Use this skill when:**
+
 - Integrating LLM providers (OpenAI, DeepSeek, OpenRouter, Anthropic, Google)
 - Configuring API keys and authentication
 - Optimizing LLM costs
@@ -21,6 +22,7 @@ This skill provides comprehensive guidance for integrating LLM providers (OpenAI
 ## What It Covers
 
 ### Provider Integration
+
 - OpenAI (GPT-4, GPT-3.5)
 - DeepSeek (cost-effective)
 - OpenRouter (multi-provider)
@@ -28,16 +30,19 @@ This skill provides comprehensive guidance for integrating LLM providers (OpenAI
 - Google Gemini
 
 ### Cost Optimization
+
 - Model selection matrix
 - Cost tracking
 - Cost-saving strategies
 
 ### API Key Management
+
 - Environment variables
 - Secret management
 - Fallback strategy
 
 ### Rate Limiting
+
 - Rate limiter implementation
 - Request throttling
 
@@ -57,6 +62,7 @@ llm = ChatOpenAI(
 ## Examples
 
 See `examples/` for:
+
 - Provider integration examples
 - Cost tracking examples
 - Rate limiting examples

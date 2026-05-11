@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for creating and maintaining project 
 ## When to Use
 
 **Use this skill when:**
+
 - Creating project documentation
 - Writing README files
 - Documenting APIs
@@ -21,21 +22,25 @@ This skill provides comprehensive guidance for creating and maintaining project 
 ## What It Covers
 
 ### Documentation Types
+
 - **README Files** - Project overviews, quick starts, structure
 - **API Documentation** - Endpoints, request/response examples, errors
 - **Architecture Decision Records (ADRs)** - Architecture decisions, rationale, consequences
 - **Module Documentation** - Domain models, API, integration, testing
 
 ### Documentation Standards
+
 - **Markdown Style** - Headers, lists, code blocks, tables
 - **File Naming** - README.md, API.md, ADR-001.md
 - **Documentation Locations** - docs/ directory structure
 
 ### Documentation Maintenance
+
 - **When to Update** - After decisions, API changes, behavior changes
 - **Documentation Review** - PR reviews, outdated docs flagged
 
 ### Documentation Tools
+
 - **Static Site Generators** - Docusaurus, MkDocs, Sphinx
 - **API Documentation** - Swagger/OpenAPI, Postman
 - **Documentation Automation** - TypeDoc, Swagger UI
@@ -56,6 +61,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - README templates
 - API documentation examples
 - ADR templates

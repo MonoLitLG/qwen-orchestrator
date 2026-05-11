@@ -98,6 +98,7 @@ This skill provides comprehensive architecture design guidance with evidence-bas
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill for complete business modules with all sub-modules)
 - Designing database schemas (use database-design skill for normalization, indexing, and query optimization)
 - Reviewing code for quality issues (use code-review skill for comprehensive code audits)

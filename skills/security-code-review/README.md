@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for security code reviews following O
 ## When to Use
 
 **Use this skill when:**
+
 - Performing security code reviews
 - Reviewing code for OWASP Top 10 vulnerabilities
 - Checking authentication and authorization implementations
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for security code reviews following O
 ## What It Covers
 
 ### OWASP Top 10 Review
+
 - **A01: Broken Access Control** - Authorization checks
 - **A02: Cryptographic Failures** - Encryption and hashing
 - **A03: Injection** - SQL, OS, LDAP injection
@@ -50,6 +52,7 @@ This skill provides comprehensive guidance for security code reviews following O
 - **A10: SSRF** - Server-side request forgery
 
 ### Secure Coding Standards
+
 - **Input Validation** - Validation patterns
 - **Output Encoding** - XSS prevention
 - **Password Security** - Hashing and storage
@@ -57,6 +60,7 @@ This skill provides comprehensive guidance for security code reviews following O
 - **JWT Security** - Token handling
 
 ### Security Controls
+
 - **Security Headers** - HTTP security headers
 - **Rate Limiting** - DDoS protection
 - **CORS Configuration** - Cross-origin security
@@ -78,6 +82,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - OWASP Top 10 checklists
 - Secure coding examples
 - Vulnerability patterns

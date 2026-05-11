@@ -27,12 +27,12 @@ Effective collaboration is critical for large-scale ERP/SaaS projects. This docu
 
 ### Team Size Guidelines
 
-| Team Size | Structure | Communication |
-|-----------|-----------|---------------|
-| 1-3 developers | Generalists | Informal, daily sync |
-| 4-8 developers | Feature teams | Weekly planning, daily standup |
+| Team Size       | Structure       | Communication                     |
+| --------------- | --------------- | --------------------------------- |
+| 1-3 developers  | Generalists     | Informal, daily sync              |
+| 4-8 developers  | Feature teams   | Weekly planning, daily standup    |
 | 9-15 developers | Component teams | Bi-weekly planning, daily standup |
-| 15+ developers | Domain teams | Monthly planning, daily standup |
+| 15+ developers  | Domain teams    | Monthly planning, daily standup   |
 
 ## Development Workflow
 
@@ -54,13 +54,13 @@ main (production)
 
 ### Branch Naming Conventions
 
-| Branch Type | Pattern | Example |
-|-------------|---------|---------|
-| Feature | `feature/description` | `feature/user-auth` |
-| Bugfix | `bugfix/description` | `bugfix/login-error` |
-| Hotfix | `hotfix/description` | `hotfix/payment-crash` |
-| Release | `release/version` | `release/1.0.0` |
-| Document | `docs/description` | `docs/api-reference` |
+| Branch Type | Pattern               | Example                |
+| ----------- | --------------------- | ---------------------- |
+| Feature     | `feature/description` | `feature/user-auth`    |
+| Bugfix      | `bugfix/description`  | `bugfix/login-error`   |
+| Hotfix      | `hotfix/description`  | `hotfix/payment-crash` |
+| Release     | `release/version`     | `release/1.0.0`        |
+| Document    | `docs/description`    | `docs/api-reference`   |
 
 ### Pull Request Process
 
@@ -116,12 +116,12 @@ graph TD
 
 ### Review Types
 
-| Type | When | Duration |
-|------|------|----------|
-| Quick | Small changes | < 15 minutes |
-| Standard | Medium changes | < 1 hour |
-| Deep | Large/complex | < 2 hours |
-| Security | Security changes | < 4 hours |
+| Type     | When             | Duration     |
+| -------- | ---------------- | ------------ |
+| Quick    | Small changes    | < 15 minutes |
+| Standard | Medium changes   | < 1 hour     |
+| Deep     | Large/complex    | < 2 hours    |
+| Security | Security changes | < 4 hours    |
 
 ### Review Checklist
 
@@ -129,26 +129,31 @@ graph TD
 ## Code Review Checklist
 
 ### Functionality
+
 - [ ] Does it work as expected?
 - [ ] Are edge cases handled?
 - [ ] Are errors handled properly?
 
 ### Code Quality
+
 - [ ] Follows project conventions?
 - [ ] Is it readable and maintainable?
 - [ ] Are comments helpful?
 
 ### Performance
+
 - [ ] No obvious performance issues?
 - [ ] Efficient algorithms?
 - [ ] Memory usage considered?
 
 ### Security
+
 - [ ] No sensitive data exposure?
 - [ ] Input validation?
 - [ ] Authentication/authorization?
 
 ### Testing
+
 - [ ] Tests added/updated?
 - [ ] Test coverage sufficient?
 - [ ] Edge cases covered?
@@ -159,11 +164,13 @@ graph TD
 ### Daily Standup
 
 **Format (15 minutes max):**
+
 1. What did you do yesterday?
 2. What will you do today?
 3. Any blockers?
 
 **Rules:**
+
 - Be concise
 - Focus on progress
 - Note blockers immediately
@@ -171,6 +178,7 @@ graph TD
 ### Weekly Planning
 
 **Agenda (60 minutes):**
+
 1. Review completed work
 2. Plan upcoming sprint
 3. Assign tasks
@@ -179,6 +187,7 @@ graph TD
 ### Monthly Retrospective
 
 **Focus Areas:**
+
 1. What went well?
 2. What could improve?
 3. Action items
@@ -200,11 +209,13 @@ graph TD
 ### Code Walkthroughs
 
 **When to Conduct:**
+
 - Large feature implementation
 - Complex refactoring
 - New team members onboarding
 
 **Format:**
+
 1. Presenter explains the code
 2. Team asks questions
 3. Discuss alternatives
@@ -215,18 +226,21 @@ graph TD
 ### Week 1 Checklist
 
 **Day 1:**
+
 - [ ] Set up development environment
 - [ ] Run project locally
 - [ ] Understand project structure
 - [ ] Meet team members
 
 **Day 2-3:**
+
 - [ ] Read architecture documentation
 - [ ] Review codebase structure
 - [ ] Run tests
 - [ ] Understand CI/CD pipeline
 
 **Day 4-5:**
+
 - [ ] Complete onboarding task
 - [ ] Review pull requests
 - [ ] Attend team meetings
@@ -283,22 +297,22 @@ graph TD
 
 ### Essential Tools
 
-| Purpose | Tool |
-|---------|------|
-| Version Control | Git, GitHub/GitLab |
-| Communication | Slack, Microsoft Teams |
-| Documentation | Confluence, Notion |
-| Project Management | Jira, Linear |
-| Code Review | GitHub PR, GitLab MR |
+| Purpose            | Tool                   |
+| ------------------ | ---------------------- |
+| Version Control    | Git, GitHub/GitLab     |
+| Communication      | Slack, Microsoft Teams |
+| Documentation      | Confluence, Notion     |
+| Project Management | Jira, Linear           |
+| Code Review        | GitHub PR, GitLab MR   |
 
 ### Productivity Tools
 
-| Purpose | Tool |
-|---------|------|
-| Terminal | VS Code, iTerm2, Windows Terminal |
-| Database | TablePlus, DBeaver |
-| API Testing | Postman, Insomnia |
-| Monitoring | Datadog, New Relic |
+| Purpose     | Tool                              |
+| ----------- | --------------------------------- |
+| Terminal    | VS Code, iTerm2, Windows Terminal |
+| Database    | TablePlus, DBeaver                |
+| API Testing | Postman, Insomnia                 |
+| Monitoring  | Datadog, New Relic                |
 
 ## Anti-Patterns
 

@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for designing and implementing disast
 ## When to Use
 
 **Use this skill when:**
+
 - Designing disaster recovery plans
 - Implementing backup strategies
 - Creating restore procedures
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for designing and implementing disast
 ## What It Covers
 
 ### DR Planning
+
 - **Business Impact Analysis** - RTO/RPO determination
 - **Risk Assessment** - Threat identification
 - **Strategy Development** - Recovery planning
@@ -45,17 +47,20 @@ This skill provides comprehensive guidance for designing and implementing disast
 - **Testing and Maintenance** - DR validation
 
 ### Backup Strategies
+
 - **Backup Types** - Full, incremental, differential, snapshot
 - **Retention Policies** - Backup lifecycle
 - **Backup Encryption** - Data protection
 - **Backup Automation** - Scheduled backups
 
 ### Failover Strategies
+
 - **Failover Types** - Hot, warm, cold, cloud
 - **Failover Process** - Detection to validation
 - **Failback Procedures** - Recovery restoration
 
 ### DR Testing
+
 - **Testing Types** - Checklist, tabletop, partial, full, parallel
 - **Testing Schedule** - Monthly to annual
 - **Testing Documentation** - Results tracking
@@ -76,6 +81,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - DR plan templates
 - Backup strategy examples
 - Failover procedures

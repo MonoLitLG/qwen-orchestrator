@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for designing and implementing CI/CD 
 ## When to Use
 
 **Use this skill when:**
+
 - Designing CI/CD pipelines for any project
 - Setting up deployment strategies (blue-green, canary, rolling)
 - Configuring infrastructure as code (Terraform, CloudFormation)
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for designing and implementing CI/CD 
 - Creating deployment automation scripts
 
 **Do NOT use this skill when:**
+
 - Writing application code (use developer skill or specific framework skill)
 - Database schema design (use database design skill)
 - UI/UX design (use frontend design skill)
@@ -237,8 +239,8 @@ spec:
   template:
     spec:
       containers:
-      - name: app
-        image: myapp:2.0.0
+        - name: app
+          image: myapp:2.0.0
 ```
 
 ## Infrastructure as Code
@@ -358,8 +360,8 @@ groups:
         labels:
           severity: critical
         annotations:
-          summary: "High error rate detected"
-          description: "Error rate is above 5% for the last 5 minutes"
+          summary: 'High error rate detected'
+          description: 'Error rate is above 5% for the last 5 minutes'
 
       - alert: HighLatency
         expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) > 1
@@ -367,8 +369,8 @@ groups:
         labels:
           severity: warning
         annotations:
-          summary: "High latency detected"
-          description: "95th percentile latency is above 1 second"
+          summary: 'High latency detected'
+          description: '95th percentile latency is above 1 second'
 ```
 
 ## Docker Best Practices
@@ -404,7 +406,7 @@ services:
   app:
     build: .
     ports:
-      - "3000:3000"
+      - '3000:3000'
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/app
@@ -452,11 +454,11 @@ spec:
             - containerPort: 3000
           resources:
             requests:
-              memory: "128Mi"
-              cpu: "100m"
+              memory: '128Mi'
+              cpu: '100m'
             limits:
-              memory: "256Mi"
-              cpu: "500m"
+              memory: '256Mi'
+              cpu: '500m'
           livenessProbe:
             httpGet:
               path: /health
@@ -506,6 +508,7 @@ jobs:
 ```
 
 **Problems:**
+
 - No parallelization
 - Hard to debug
 - No quality gates
@@ -543,7 +546,7 @@ jobs:
   build:
     steps:
       - uses: actions/checkout@v3
-      - run: npm ci  # Always downloads
+      - run: npm ci # Always downloads
       - run: npm run build
 ```
 
@@ -568,12 +571,14 @@ jobs:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Manual deployments
 - Frequent failures
 - No testing gates
 - Difficult rollbacks
 
 **After this skill:**
+
 - Automated CI/CD pipelines
 - Reliable deployments
 - Quality gates

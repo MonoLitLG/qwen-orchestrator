@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for designing and implementing releas
 ## When to Use
 
 **Use this skill when:**
+
 - Designing release workflows
 - Implementing CI/CD pipelines
 - Managing staging and production environments
@@ -39,6 +40,7 @@ This skill provides comprehensive guidance for designing and implementing releas
 - Implementing release optimization
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -297,6 +299,7 @@ rollback:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Ad-hoc release processes
 - Manual deployments
 - No rollback procedures
@@ -304,6 +307,7 @@ rollback:
 - Poor communication
 
 **After this skill:**
+
 - Automated release workflows
 - Reliable deployments
 - Comprehensive rollback procedures

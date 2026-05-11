@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for Scrum Masters in facilitating Agi
 ## When to Use
 
 **Use this skill when:**
+
 - Facilitating sprint planning meetings
 - Conducting daily standups
 - Leading sprint reviews and demos
@@ -23,22 +24,26 @@ This skill provides comprehensive guidance for Scrum Masters in facilitating Agi
 ## What It Covers
 
 ### Agile Ceremonies
+
 - **Sprint Planning** - 2-4 hour sessions for sprint goal and backlog selection
 - **Daily Standups** - 15-minute daily syncs
 - **Sprint Reviews** - 1-2 hour demos with stakeholders
 - **Sprint Retrospectives** - 60-90 minute team reflections
 
 ### Retrospective Formats
+
 - **4Ls Format** - Liked, Learned, Liking, Longing
 - **Start-Stop-Continue** - Actions to start, stop, and continue
 - **Sailboat Format** - Wind, Anchor, Island metaphor
 
 ### Impediment Removal
+
 - **Categories** - Technical, Process, Resource, People, External
 - **Tracking Template** - For impediment management
 - **Resolution Process** - From identification to resolution
 
 ### Team Coaching
+
 - **Agile Mindset** - Inspect and adapt, empirical process control
 - **Coaching Techniques** - Socratic questioning, active listening
 
@@ -58,6 +63,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Sprint planning templates
 - Retrospective formats
 - Impediment tracking

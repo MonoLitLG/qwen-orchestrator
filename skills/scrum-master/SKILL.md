@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for Scrum Masters in facilitating Agi
 ## When to Use
 
 **Use this skill when:**
+
 - Facilitating sprint planning meetings
 - Conducting daily standups
 - Leading sprint reviews and demos
@@ -23,6 +24,7 @@ This skill provides comprehensive guidance for Scrum Masters in facilitating Agi
 - Improving team dynamics
 
 **Do NOT use this skill when:**
+
 - Writing user stories (Product Owner)
 - Writing code implementation (Developer)
 - Managing project budget (Project Manager)
@@ -57,11 +59,13 @@ This skill provides comprehensive guidance for Scrum Masters in facilitating Agi
 **Objective**: Sync team, identify blockers
 
 **Format**:
+
 1. What did you do yesterday?
 2. What will you do today?
 3. Any blockers?
 
 **Rules**:
+
 - Stand up (physically or virtually)
 - Timebox: 15 minutes max
 - Focus on team, not individual
@@ -96,6 +100,7 @@ This skill provides comprehensive guidance for Scrum Masters in facilitating Agi
 **Objective**: Reflect and improve team processes
 
 **Format**:
+
 ```
 1. Set the Stage (5 min)
 2. Gather Data (10 min)
@@ -155,13 +160,13 @@ This skill provides comprehensive guidance for Scrum Masters in facilitating Agi
 
 ### Impediment Categories
 
-| Category | Examples | Scrum Master Action |
-|----------|----------|---------------------|
-| **Technical** | Build failures, flaky tests | Organize fix session |
-| **Process** | Unclear requirements, slow reviews | Facilitate clarification |
-| **Resource** | Missing tools, environment issues | Procure or escalate |
-| **People** | Team conflicts, burnout | Mediate and support |
-| **External** | Dependencies, stakeholder delays | Manage expectations |
+| Category      | Examples                           | Scrum Master Action      |
+| ------------- | ---------------------------------- | ------------------------ |
+| **Technical** | Build failures, flaky tests        | Organize fix session     |
+| **Process**   | Unclear requirements, slow reviews | Facilitate clarification |
+| **Resource**  | Missing tools, environment issues  | Procure or escalate      |
+| **People**    | Team conflicts, burnout            | Mediate and support      |
+| **External**  | Dependencies, stakeholder delays   | Manage expectations      |
 
 ### Impediment Tracking Template
 
@@ -329,12 +334,14 @@ Actions:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Meetings run too long
 - Impediments pile up
 - Team morale low
 - No process improvement
 
 **After this skill:**
+
 - Efficient ceremonies (timeboxed)
 - Impediments removed quickly
 - Team continuously improves
@@ -355,6 +362,7 @@ Actions:
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint implementations (use api-design skill)

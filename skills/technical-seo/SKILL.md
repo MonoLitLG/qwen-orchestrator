@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for implementing technical SEO strate
 ## When to Use
 
 **Use this skill when:**
+
 - Conducting technical SEO audits
 - Optimizing site speed and performance
 - Implementing mobile-first design
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for implementing technical SEO strate
 - Implementing SEO testing
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -195,26 +197,26 @@ This skill provides comprehensive guidance for implementing technical SEO strate
 ```html
 <!-- ✅ Good: JSON-LD structured data -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Article Title",
-  "description": "Article description",
-  "datePublished": "2024-01-15",
-  "dateModified": "2024-01-16",
-  "author": {
-    "@type": "Person",
-    "name": "Author Name"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Site Name",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://example.com/logo.png"
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Article Title",
+    "description": "Article description",
+    "datePublished": "2024-01-15",
+    "dateModified": "2024-01-16",
+    "author": {
+      "@type": "Person",
+      "name": "Author Name"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Site Name",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://example.com/logo.png"
+      }
     }
   }
-}
 </script>
 ```
 
@@ -275,6 +277,7 @@ This skill provides comprehensive guidance for implementing technical SEO strate
 ## Real-World Impact
 
 **Before this skill:**
+
 - Poor site speed
 - Not mobile-friendly
 - Missing structured data
@@ -282,6 +285,7 @@ This skill provides comprehensive guidance for implementing technical SEO strate
 - Low search rankings
 
 **After this skill:**
+
 - Fast site performance
 - Fully mobile-optimized
 - Proper structured data

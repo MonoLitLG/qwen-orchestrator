@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for **provisioning and managing infra
 ## When to Use
 
 **Use this skill when:**
+
 - Provisioning cloud infrastructure (AWS, Azure, GCP) with Terraform
 - Creating reusable Terraform modules with inputs and outputs
 - Managing Terraform state with S3/DynamoDB remote backends
@@ -36,6 +37,7 @@ This skill provides comprehensive guidance for **provisioning and managing infra
 - Destroying infrastructure safely with dependency awareness
 
 **Do NOT use this skill when:**
+
 - Deploying containerized applications (use docker-containerization skill)
 - Orchestrating Kubernetes workloads (use kubernetes-orchestration skill)
 - Writing application code (use backend-developer or frontend-developer skill)
@@ -51,36 +53,36 @@ This skill provides comprehensive guidance for **provisioning and managing infra
 
 ### Terraform Workflow Lifecycle
 
-| Phase | Command | Purpose |
-|-------|---------|---------|
-| **Initialize** | `terraform init` | Download providers, modules, configure backend |
-| **Validate** | `terraform validate` | Check configuration syntax and internal consistency |
-| **Format** | `terraform fmt` | Auto-format HCL code for consistency |
-| **Plan** | `terraform plan` | Preview changes without applying |
-| **Apply** | `terraform apply` | Create/update/delete resources |
-| **Destroy** | `terraform destroy` | Remove all managed resources |
-| **Import** | `terraform import` | Add existing resources to state |
-| **Console** | `terraform console` | Interactive expression evaluation |
+| Phase          | Command              | Purpose                                             |
+| -------------- | -------------------- | --------------------------------------------------- |
+| **Initialize** | `terraform init`     | Download providers, modules, configure backend      |
+| **Validate**   | `terraform validate` | Check configuration syntax and internal consistency |
+| **Format**     | `terraform fmt`      | Auto-format HCL code for consistency                |
+| **Plan**       | `terraform plan`     | Preview changes without applying                    |
+| **Apply**      | `terraform apply`    | Create/update/delete resources                      |
+| **Destroy**    | `terraform destroy`  | Remove all managed resources                        |
+| **Import**     | `terraform import`   | Add existing resources to state                     |
+| **Console**    | `terraform console`  | Interactive expression evaluation                   |
 
 ### State Management Strategies
 
-| Strategy | Use Case | Backend |
-|----------|----------|---------|
-| **Local State** | Personal projects, experimentation | `terraform.tfstate` (local file) |
-| **Remote S3** | Team collaboration, production | AWS S3 + DynamoDB locking |
-| **Terraform Cloud** | Enterprise workflows, team collaboration | HashiCorp-managed backend |
-| **Azure RM** | Azure-native deployments | Azure Blob Storage |
-| **GCS** | GCP-native deployments | Google Cloud Storage |
+| Strategy            | Use Case                                 | Backend                          |
+| ------------------- | ---------------------------------------- | -------------------------------- |
+| **Local State**     | Personal projects, experimentation       | `terraform.tfstate` (local file) |
+| **Remote S3**       | Team collaboration, production           | AWS S3 + DynamoDB locking        |
+| **Terraform Cloud** | Enterprise workflows, team collaboration | HashiCorp-managed backend        |
+| **Azure RM**        | Azure-native deployments                 | Azure Blob Storage               |
+| **GCS**             | GCP-native deployments                   | Google Cloud Storage             |
 
 ### Module Design Patterns
 
-| Pattern | Description | When to Use |
-|---------|-------------|-------------|
-| **Root Module** | Top-level configuration | Entry point for `terraform apply` |
-| **Child Module** | Reusable component | Network, compute, storage abstractions |
-| **Nested Module** | Module calling another module | Complex compositions |
-| **Wrapper Module** | Registry module with defaults | Customizing community modules |
-| **Factory Module** | Dynamic resource creation | Count/for_each driven resources |
+| Pattern            | Description                   | When to Use                            |
+| ------------------ | ----------------------------- | -------------------------------------- |
+| **Root Module**    | Top-level configuration       | Entry point for `terraform apply`      |
+| **Child Module**   | Reusable component            | Network, compute, storage abstractions |
+| **Nested Module**  | Module calling another module | Complex compositions                   |
+| **Wrapper Module** | Registry module with defaults | Customizing community modules          |
+| **Factory Module** | Dynamic resource creation     | Count/for_each driven resources        |
 
 ## Provider Configuration
 
@@ -1044,7 +1046,7 @@ name: Terraform CI/CD
 on:
   pull_request:
     paths:
-      - "infrastructure/**"
+      - 'infrastructure/**'
 
 jobs:
   validate:
@@ -1054,7 +1056,7 @@ jobs:
 
       - uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "1.5.0"
+          terraform_version: '1.5.0'
 
       - name: Terraform Format Check
         run: terraform fmt -check -recursive
@@ -1229,6 +1231,7 @@ Before deploying to production:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Manual cloud console clicks for infrastructure
 - No version control for infrastructure changes
 - State file conflicts between team members
@@ -1238,6 +1241,7 @@ Before deploying to production:
 - Configuration drift goes undetected
 
 **After this skill:**
+
 - Infrastructure defined as version-controlled code
 - Automated validation and linting in CI/CD
 - Remote state with locking for team collaboration

@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for designing and implementing micros
 ## When to Use
 
 **Use this skill when:**
+
 - Designing microservices architecture
 - Defining service boundaries and domains
 - Implementing domain-driven design patterns
@@ -38,24 +39,28 @@ This skill provides comprehensive guidance for designing and implementing micros
 ## What It Covers
 
 ### Microservices Principles
+
 - **12-Factor App** - Cloud-native application principles
 - **Service Boundaries** - Defining domains and boundaries
 - **Domain-Driven Design** - Bounded contexts, aggregates, events
 - **Communication Patterns** - Synchronous and asynchronous
 
 ### Architecture Patterns
+
 - **CQRS** - Command and Query Responsibility Segregation
 - **Saga Pattern** - Distributed transaction management
 - **Circuit Breaker** - Fault tolerance
 - **Sidecar** - Sidecar pattern for cross-cutting concerns
 
 ### Infrastructure
+
 - **Service Discovery** - Dynamic service discovery
 - **API Gateway** - Centralized entry point
 - **Service Mesh** - Service-to-service communication
 - **Container Orchestration** - Kubernetes management
 
 ### Resilience
+
 - **Circuit Breakers** - Fail fast, recover
 - **Retry Patterns** - Automatic retries
 - **Bulkheads** - Isolate failures
@@ -77,6 +82,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Service boundary examples
 - Domain event patterns
 - CQRS implementation

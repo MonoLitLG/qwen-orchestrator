@@ -9,12 +9,14 @@ This skill provides production-ready patterns for GitHub Actions CI/CD based on 
 ## What's Included
 
 ### Workflow Fundamentals
+
 - **Triggers**: push, pull_request, schedule, workflow_dispatch, repository_dispatch, release, workflow_run
 - **Jobs and Steps**: Sequential, parallel, conditional execution with `needs` dependencies
 - **Runners**: ubuntu-latest, windows-latest, macos-latest, self-hosted with version pinning
 - **Matrix Builds**: Multi-version testing across Node.js, Python, OS combinations
 
 ### Advanced Features
+
 - **Environments**: Protection rules, required reviewers, wait timers, deployment URLs
 - **Secrets**: Scoped injection, rotation patterns, environment-specific secrets
 - **Artifacts**: Upload/download between jobs with retention policies
@@ -22,12 +24,14 @@ This skill provides production-ready patterns for GitHub Actions CI/CD based on 
 - **Concurrency**: Group-based controls with cancel-in-progress for duplicate prevention
 
 ### Action Development
+
 - **Composite Actions**: Step reuse within repositories with input/output passing
 - **Docker Actions**: Container-based actions with Dockerfile and action.yml configuration
 - **npm Actions**: JavaScript/TypeScript actions published to npm registry
 - **Marketplace**: Discovery, evaluation, and integration of community actions
 
 ### Security and Optimization
+
 - **Security Hardening**: Dependency review, CodeQL analysis, secret scanning
 - **Permission Scoping**: Least privilege principle with workflow and job-level permissions
 - **Workflow Optimization**: Parallel execution, path filtering, conditional runs
@@ -61,6 +65,7 @@ jobs:
 ### Complete CI/CD Pipeline
 
 See SKILL.md for comprehensive examples including:
+
 - Multi-stage CI/CD with security scanning
 - Matrix builds across multiple environments
 - Docker image building and registry pushing
@@ -69,18 +74,18 @@ See SKILL.md for comprehensive examples including:
 
 ## Key Concepts
 
-| Concept | Description |
-|---------|-------------|
-| **Workflow** | YAML file defining the complete CI/CD pipeline |
-| **Job** | A set of steps executed on the same runner |
-| **Step** | Individual command or action within a job |
-| **Runner** | Machine that executes jobs (GitHub-hosted or self-hosted) |
-| **Action** | Reusable unit of work (Docker, npm, or composite) |
-| **Artifact** | File(s) persisted between jobs or after workflow completion |
-| **Cache** | Cached dependencies to speed up subsequent runs |
-| **Environment** | Named deployment target with protection rules |
-| **Secret** | Encrypted variable accessible to workflows |
-| **Matrix** | Strategy to run jobs across multiple parameter combinations |
+| Concept         | Description                                                 |
+| --------------- | ----------------------------------------------------------- |
+| **Workflow**    | YAML file defining the complete CI/CD pipeline              |
+| **Job**         | A set of steps executed on the same runner                  |
+| **Step**        | Individual command or action within a job                   |
+| **Runner**      | Machine that executes jobs (GitHub-hosted or self-hosted)   |
+| **Action**      | Reusable unit of work (Docker, npm, or composite)           |
+| **Artifact**    | File(s) persisted between jobs or after workflow completion |
+| **Cache**       | Cached dependencies to speed up subsequent runs             |
+| **Environment** | Named deployment target with protection rules               |
+| **Secret**      | Encrypted variable accessible to workflows                  |
+| **Matrix**      | Strategy to run jobs across multiple parameter combinations |
 
 ## File Structure
 

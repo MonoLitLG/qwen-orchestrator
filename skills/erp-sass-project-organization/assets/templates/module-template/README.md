@@ -2,7 +2,7 @@
 
 **Version:** 1.0.0  
 **Domain:** business-domain  
-**Bounded Context:** context-name  
+**Bounded Context:** context-name
 
 ## Overview
 

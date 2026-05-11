@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for developing Qwen-specific agents, 
 ## When to Use
 
 **Use this skill when:**
+
 - Developing Qwen-specific agents
 - Implementing Qwen model integrations (Qwen-Turbo, Qwen-Plus, Qwen-Max, Qwen-VL)
 - Optimizing Qwen performance and cost management
@@ -35,6 +36,7 @@ This skill provides comprehensive guidance for developing Qwen-specific agents, 
 - Building agents with multimodal capabilities (Qwen-VL)
 
 **Do NOT use this skill when:**
+
 - Building stateful workflows with complex state (use **langgraph** skill)
 - Designing database schema (use **database-design** skill)
 - Creating UI components (use **frontend-design** skill)
@@ -49,12 +51,12 @@ This skill provides comprehensive guidance for developing Qwen-specific agents, 
 
 ### Model Selection
 
-| Model | Speed | Intelligence | Use Case |
-|-------|-------|--------------|----------|
-| **Qwen-Turbo** | Fastest | Lower | Simple tasks, high volume |
-| **Qwen-Plus** | Medium | Medium | Balanced tasks, moderate complexity |
-| **Qwen-Max** | Slowest | Highest | Complex tasks, high intelligence |
-| **Qwen-VL** | Medium | High | Vision tasks, image analysis |
+| Model          | Speed   | Intelligence | Use Case                            |
+| -------------- | ------- | ------------ | ----------------------------------- |
+| **Qwen-Turbo** | Fastest | Lower        | Simple tasks, high volume           |
+| **Qwen-Plus**  | Medium  | Medium       | Balanced tasks, moderate complexity |
+| **Qwen-Max**   | Slowest | Highest      | Complex tasks, high intelligence    |
+| **Qwen-VL**    | Medium  | High         | Vision tasks, image analysis        |
 
 ### Model Configuration
 
@@ -99,7 +101,7 @@ def call_qwen(prompt: str, model: str = "qwen-plus") -> str:
         top_p=0.8,
         result_format="text"
     )
-    
+
     if response.status_code == 200:
         return response.output.text
     else:
@@ -118,7 +120,7 @@ def stream_qwen(prompt: str, model: str = "qwen-plus"):
         max_tokens=2048,
         stream=True
     )
-    
+
     for response in responses:
         if response.status_code == 200:
             yield response.output.text
@@ -139,7 +141,7 @@ def call_qwen_chat(messages: list, model: str = "qwen-plus") -> str:
         top_p=0.8,
         result_format="text"
     )
-    
+
     if response.status_code == 200:
         return response.output.text
     else:
@@ -165,19 +167,19 @@ class QwenAgent:
         self.model = model
         self.api_key = "your-api-key"
         self.conversation_history = []
-    
+
     def invoke(self, user_input: str) -> str:
         """Invoke the agent with user input."""
         self.conversation_history.append({"role": "user", "content": user_input})
-        
+
         response = call_qwen_chat(
             self.conversation_history,
             self.model
         )
-        
+
         self.conversation_history.append({"role": "assistant", "content": response})
         return response
-    
+
     def reset(self):
         """Reset conversation history."""
         self.conversation_history = []
@@ -196,12 +198,12 @@ class QwenAgentWithTools:
             "calculate": self.calculate,
             "translate": self.translate
         }
-    
+
     def search(self, query: str) -> str:
         """Search the web for information."""
         # Your search implementation
         return f"Search results for: {query}"
-    
+
     def calculate(self, expression: str) -> str:
         """Calculate a mathematical expression."""
         try:
@@ -209,16 +211,16 @@ class QwenAgentWithTools:
             return f"The result is: {result}"
         except Exception as e:
             return f"Error: {str(e)}"
-    
+
     def translate(self, text: str, target_lang: str) -> str:
         """Translate text to target language."""
         # Your translation implementation
         return f"Translation to {target_lang}: {text}"
-    
+
     def invoke(self, user_input: str) -> str:
         """Invoke the agent with user input."""
         self.conversation_history.append({"role": "user", "content": user_input})
-        
+
         # Check if user wants to use a tool
         if user_input.startswith("/search"):
             query = user_input[7:].strip()
@@ -236,7 +238,7 @@ class QwenAgentWithTools:
                 self.conversation_history,
                 self.model
             )
-        
+
         self.conversation_history.append({"role": "assistant", "content": response})
         return response
 ```
@@ -251,28 +253,28 @@ class QwenAgentWithMemory:
         self.model = model
         self.api_key = "your-api-key"
         self.memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
-    
+
     def invoke(self, user_input: str) -> str:
         """Invoke the agent with user input."""
         # Get memory
         memory_context = self.memory.load_memory_variables({})
-        
+
         # Build prompt with memory
         prompt = f"""
         You are a helpful assistant.
-        
+
         Previous conversation:
         {memory_context['chat_history']}
-        
+
         User: {user_input}
         Assistant:
         """
-        
+
         response = call_qwen(prompt, self.model)
-        
+
         # Save to memory
         self.memory.save_context({"input": user_input}, {"output": response})
-        
+
         return response
 ```
 
@@ -329,25 +331,25 @@ class RateLimitedQwen:
         self.time_window = time_window
         self.requests = []
         self.lock = Lock()
-    
+
     def _check_rate_limit(self) -> bool:
         """Check if rate limit is exceeded."""
         with self.lock:
             current_time = time.time()
-            self.requests = [req_time for req_time in self.requests 
+            self.requests = [req_time for req_time in self.requests
                            if current_time - req_time < self.time_window]
             return len(self.requests) < self.max_requests
-    
+
     def _record_request(self):
         """Record a request."""
         with self.lock:
             self.requests.append(time.time())
-    
+
     def call(self, prompt: str, model: str = "qwen-plus") -> str:
         """Call Qwen with rate limiting."""
         while not self._check_rate_limit():
             time.sleep(1)  # Wait before retrying
-        
+
         self._record_request()
         return call_qwen(prompt, model)
 
@@ -436,6 +438,7 @@ result = response.output.text  # Can crash
 ```
 
 **Problems:**
+
 - Unhandled exceptions
 - Poor user experience
 - Difficult debugging
@@ -481,12 +484,14 @@ def call_qwen(prompt: str, model: str = "qwen-plus") -> str:
 ## Real-World Impact
 
 **Before this skill:**
+
 - Poor model selection
 - No error handling
 - Inefficient API usage
 - Unoptimized performance
 
 **After this skill:**
+
 - Optimal model selection
 - Robust error handling
 - Efficient API usage

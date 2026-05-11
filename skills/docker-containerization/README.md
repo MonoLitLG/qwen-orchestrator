@@ -21,13 +21,13 @@ Comprehensive guide for containerizing applications with Docker, implementing mu
 
 ## What It Covers
 
-| Section | Topics |
-|---------|--------|
-| Multi-Stage Builds | Build → Runtime, Dependencies → Build → Runtime patterns |
-| Security | Non-root users, minimal base images, health checks, .dockerignore |
-| Image Optimization | Layer caching, build cache mounts, image size targets |
-| Docker Compose | Development and production environment configurations |
-| Production | Resource limits, logging, monitoring, deployment checklist |
+| Section            | Topics                                                            |
+| ------------------ | ----------------------------------------------------------------- |
+| Multi-Stage Builds | Build → Runtime, Dependencies → Build → Runtime patterns          |
+| Security           | Non-root users, minimal base images, health checks, .dockerignore |
+| Image Optimization | Layer caching, build cache mounts, image size targets             |
+| Docker Compose     | Development and production environment configurations             |
+| Production         | Resource limits, logging, monitoring, deployment checklist        |
 
 ## Quick Start
 

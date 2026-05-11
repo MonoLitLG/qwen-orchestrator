@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for evaluating and selecting technolo
 ## When to Use
 
 **Use this skill when:**
+
 - Evaluating technology options for projects
 - Comparing technology stacks
 - Conducting technology assessments
@@ -38,21 +39,25 @@ This skill provides comprehensive guidance for evaluating and selecting technolo
 ## What It Covers
 
 ### Evaluation Framework
+
 - **Checklist** - Comprehensive evaluation criteria
 - **Matrix** - Technology comparison matrix
 - **Scoring** - Weighted scoring system
 
 ### Technology Comparison
+
 - **Pros/Cons Analysis** - Detailed comparison
 - **Template** - Standardized evaluation
 - **Recommendations** - Clear guidance
 
 ### Proof of Concept
+
 - **Template** - PoC structure
 - **Success Criteria** - Defined metrics
 - **Deliverables** - Expected outputs
 
 ### Technology Roadmap
+
 - **Current State** - Assessment
 - **Target State** - Goals
 - **Migration Strategy** - Phased approach
@@ -73,6 +78,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Technology evaluation checklists
 - Comparison matrix examples
 - PoC templates

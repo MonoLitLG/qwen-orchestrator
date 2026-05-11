@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for preventing and detecting AI hallu
 ## When to Use
 
 **Use this skill when:**
+
 - Verifying AI-generated content accuracy
 - Checking source credibility and citations
 - Validating claims with evidence
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for preventing and detecting AI hallu
 ## What It Covers
 
 ### Hallucination Types
+
 - **Factual Hallucinations** - Incorrect dates, names, numbers
 - **Technical Hallucinations** - Incorrect API usage, fake functions
 - **Logical Hallucinations** - Invalid reasoning, false cause-effect
@@ -45,12 +47,14 @@ This skill provides comprehensive guidance for preventing and detecting AI hallu
 - **Pseudo-Quantification** - Made-up statistics, unsubstantiated percentages
 
 ### Source Verification
+
 - **CREDIBLE Checklist** - Currency, relevance, expertise
 - **Source Evaluation Matrix** - Reliability ratings
 - **URL Verification** - Domain, SSL, suspicious patterns
 - **Quote Verification** - Original source, context
 
 ### Fact-Checking Techniques
+
 - **Reverse Image Search** - Image verification
 - **URL Verification** - Domain and security checks
 - **Quote Verification** - Original source and context
@@ -72,6 +76,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Source verification examples
 - Fact-checking workflows
 - Claim validation frameworks

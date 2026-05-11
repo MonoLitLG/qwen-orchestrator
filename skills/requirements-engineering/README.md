@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for requirements engineering, includi
 ## When to Use
 
 **Use this skill when:**
+
 - Gathering requirements from stakeholders
 - Creating use cases and user stories
 - Defining acceptance criteria for features
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for requirements engineering, includi
 ## What It Covers
 
 ### Requirements Elicitation
+
 - **Interviews** - Stakeholder interviews
 - **Workshops** - Facilitated sessions
 - **Surveys** - Questionnaires
@@ -45,18 +47,21 @@ This skill provides comprehensive guidance for requirements engineering, includi
 - **Document Analysis** - Review existing documents
 
 ### Requirements Specification
+
 - **Use Cases** - Functional descriptions
 - **User Stories** - Agile requirements
 - **Acceptance Criteria** - Validation conditions
 - **Non-functional Requirements** - Quality attributes
 
 ### Requirements Management
+
 - **Traceability** - Requirements tracking
 - **Versioning** - Change management
 - **Prioritization** - Value-based ordering
 - **Validation** - Quality assurance
 
 ### Requirements Analysis
+
 - **Gap Analysis** - Identify missing requirements
 - **Consistency Check** - Detect conflicts
 - **Feasibility Study** - Technical assessment
@@ -78,6 +83,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Use case templates
 - User story examples
 - Acceptance criteria patterns

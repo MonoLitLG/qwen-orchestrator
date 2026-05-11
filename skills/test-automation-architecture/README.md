@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for designing and implementing test a
 ## When to Use
 
 **Use this skill when:**
+
 - Designing test automation frameworks
 - Implementing page object patterns
 - Creating test reporting and dashboards
@@ -39,18 +40,21 @@ This skill provides comprehensive guidance for designing and implementing test a
 ## What It Covers
 
 ### Test Framework Design
+
 - **Layered Architecture** - Separation of concerns
 - **Page Object Pattern** - Maintainable test code
 - **Test Data Management** - Builder patterns, isolation
 - **Test Reporting** - Dashboards, metrics
 
 ### Test Execution
+
 - **Parallel Execution** - Worker management
 - **Test Organization** - Suite splitting
 - **Flaky Test Reduction** - Retry logic, stability
 - **Resource Isolation** - Database, test data
 
 ### Quality Assurance
+
 - **Test Coverage** - Metrics and reporting
 - **Quality Gates** - Pass/fail criteria
 - **Test Performance** - Execution time optimization
@@ -72,6 +76,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Page object patterns
 - Test data builders
 - Parallel execution examples

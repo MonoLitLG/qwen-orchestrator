@@ -13,6 +13,7 @@ This skill provides guidance for writing, optimizing, and debugging SQL queries 
 ## When to Use
 
 **Use this skill when:**
+
 - Writing complex SQL queries for reporting and analytics
 - Optimizing slow database queries (performance tuning)
 - Debugging query performance issues with EXPLAIN plans
@@ -39,6 +40,7 @@ This skill provides guidance for writing, optimizing, and debugging SQL queries 
 - Setting up database partitioning strategies
 
 **Do NOT use this skill when:**
+
 - Simple CRUD operations that can use an ORM
 - Using an ORM for basic queries (use ORM-specific skill)
 - Database administration tasks (backup, restore, user management)
@@ -77,7 +79,7 @@ ORDER BY created_at DESC
 LIMIT 50 OFFSET 0;
 
 -- Window functions
-SELECT 
+SELECT
   name,
   salary,
   RANK() OVER (ORDER BY salary DESC) as rank
@@ -159,12 +161,14 @@ SELECT * FROM users WHERE email = 'test@example.com';
 ## Real-World Impact
 
 **Before this skill:**
+
 - Queries taking 10+ seconds
 - No understanding of execution plans
 - N+1 query patterns
 - Missing indexes
 
 **After this skill:**
+
 - Queries under 100ms
 - Understanding of query plans
 - Proper JOIN usage
@@ -198,6 +202,7 @@ select p.id, p.name, p.email, r.name as role_name from users p inner join roles 
 ```
 
 **Rules:**
+
 - Keywords: UPPERCASE (SELECT, FROM, WHERE, JOIN, AND, OR, ORDER BY, etc.)
 - Columns: One per line with trailing comma
 - JOINs: Indented under FROM clause

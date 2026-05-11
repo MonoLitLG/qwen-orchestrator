@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for managing agile projects following
 ## When to Use
 
 **Use this skill when:**
+
 - Managing agile projects using Scrum
 - Facilitating Scrum ceremonies (standups, planning, reviews, retrospectives)
 - Conducting backlog grooming and refinement
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for managing agile projects following
 - Implementing agile project portfolio management
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -285,6 +287,7 @@ This skill provides comprehensive guidance for managing agile projects following
 ## Real-World Impact
 
 **Before this skill:**
+
 - Unstructured project management
 - Missed deadlines
 - Scope creep
@@ -292,6 +295,7 @@ This skill provides comprehensive guidance for managing agile projects following
 - No visibility
 
 **After this skill:**
+
 - Structured agile project management
 - On-time delivery
 - Clear scope and priorities

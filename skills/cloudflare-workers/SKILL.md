@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for developing and deploying Cloudfla
 ## When to Use
 
 **Use this skill when:**
+
 - Developing Cloudflare Workers for edge computing
 - Implementing edge computing logic (authentication, routing, caching)
 - Optimizing performance and cold starts for Workers
@@ -34,6 +35,7 @@ This skill provides comprehensive guidance for developing and deploying Cloudfla
 - Using R2 storage for edge data
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use **developer skill** or specific framework skill)
 - Designing database schema (use **database-design** skill)
 - Creating UI components (use **frontend-design** skill)
@@ -63,14 +65,18 @@ export default {
 ```typescript
 // worker.ts
 export default {
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  async fetch(
+    request: Request,
+    env: Env,
+    ctx: ExecutionContext
+  ): Promise<Response> {
     const url = new URL(request.url);
-    
+
     // Route requests
     if (url.pathname === '/api/data') {
       return handleData(request, env);
     }
-    
+
     return new Response('Not Found', { status: 404 });
   },
 };
@@ -95,7 +101,7 @@ export default {
     if (!cachedData) {
       cachedData = await env.DB.prepare('SELECT * FROM data').all();
     }
-    
+
     return new Response(JSON.stringify(cachedData));
   },
 };
@@ -132,7 +138,7 @@ export default {
         controller.close();
       },
     });
-    
+
     return new Response(stream, {
       headers: { 'Content-Type': 'text/event-stream' },
     });
@@ -149,10 +155,10 @@ export default {
 export default {
   async fetch(request, env, ctx) {
     const { KV } = env;
-    
+
     // Fast read from KV
     const value = await KV.get('key');
-    
+
     return new Response(value);
   },
 };
@@ -165,14 +171,14 @@ export default {
 export default {
   async fetch(request, env, ctx) {
     const { DO } = env;
-    
+
     // Create durable object stub
     const id = env.DO.idFromName('my-object');
     const stub = env.DO.get(id);
-    
+
     // Perform stateful operations
     const response = await stub.fetch(request);
-    
+
     return response;
   },
 };
@@ -185,10 +191,10 @@ export default {
 export default {
   async fetch(request, env, ctx) {
     const { D1 } = env;
-    
+
     // Query D1 database
     const result = await D1.prepare('SELECT * FROM users').all();
-    
+
     return new Response(JSON.stringify(result));
   },
 };
@@ -203,20 +209,20 @@ export default {
 export default {
   async fetch(request, env, ctx) {
     const authHeader = request.headers.get('Authorization');
-    
+
     if (!authHeader) {
       return new Response('Unauthorized', { status: 401 });
     }
-    
+
     const token = authHeader.replace('Bearer ', '');
-    
+
     try {
       // Validate JWT at edge
       const payload = await validateJWT(token, env.JWT_SECRET);
-      
+
       // Add user info to request
       request.headers.set('X-User-ID', payload.userId);
-      
+
       // Continue to next handler
       return fetch(request);
     } catch (error) {
@@ -238,11 +244,11 @@ async function validateJWT(token, secret) {
 export default {
   async fetch(request, env, ctx) {
     const session = await getSession(request, env);
-    
+
     if (!session && request.url.includes('/api')) {
       return new Response('Unauthorized', { status: 401 });
     }
-    
+
     // Continue to next handler
     return fetch(request);
   },
@@ -252,11 +258,11 @@ async function getSession(request, env) {
   // Get session from KV
   const cookie = request.headers.get('Cookie');
   const sessionId = parseCookie(cookie, 'session_id');
-  
+
   if (!sessionId) {
     return null;
   }
-  
+
   return await env.KV.get(`session:${sessionId}`);
 }
 ```
@@ -270,7 +276,7 @@ async function getSession(request, env) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    
+
     switch (url.pathname) {
       case '/api/users':
         return handleUsers(request, env);
@@ -304,7 +310,7 @@ async function handleOrders(request, env) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    
+
     if (url.pathname === '/api/data') {
       switch (request.method) {
         case 'GET':
@@ -319,7 +325,7 @@ export default {
           return new Response('Method Not Allowed', { status: 405 });
       }
     }
-    
+
     return new Response('Not Found', { status: 404 });
   },
 };
@@ -359,6 +365,7 @@ export default {
 ```
 
 **Problems:**
+
 - Slow cold starts
 - High memory usage
 - Expensive execution
@@ -395,6 +402,7 @@ export default {
 ```
 
 **Problems:**
+
 - High latency
 - Origin server load
 - No global distribution
@@ -410,15 +418,13 @@ export default {
     if (cached) {
       return cached;
     }
-    
+
     // Fetch from origin
     const response = await fetch(request);
-    
+
     // Cache at edge
-    ctx.waitUntil(
-      caches.default.put(request, response.clone())
-    );
-    
+    ctx.waitUntil(caches.default.put(request, response.clone()));
+
     return response;
   },
 };
@@ -427,12 +433,14 @@ export default {
 ## Real-World Impact
 
 **Before this skill:**
+
 - Slow cold starts
 - High latency
 - Origin server load
 - No global distribution
 
 **After this skill:**
+
 - Fast cold starts
 - Low latency
 - Edge processing

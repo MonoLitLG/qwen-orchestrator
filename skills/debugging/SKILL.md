@@ -146,6 +146,7 @@ console.log('[DEBUG] Transform:', { input, output, duration });
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Designing new features from scratch (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint implementations (use api-design skill)

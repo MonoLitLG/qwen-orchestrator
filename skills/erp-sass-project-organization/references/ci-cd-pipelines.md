@@ -149,8 +149,8 @@ stages:
   - deploy
 
 variables:
-  NODE_VERSION: "18"
-  NPM_VERSION: "9"
+  NODE_VERSION: '18'
+  NPM_VERSION: '9'
 
 lint:
   stage: lint
@@ -174,7 +174,7 @@ test-integration:
   services:
     - postgres:15
   variables:
-    DATABASE_URL: "postgresql://postgres:test@postgres:5432/test"
+    DATABASE_URL: 'postgresql://postgres:test@postgres:5432/test'
   script:
     - npm ci
     - npm run test:integration
@@ -402,7 +402,7 @@ name: Deployment Alerts
 
 on:
   workflow_run:
-    workflows: ["CI/CD Pipeline"]
+    workflows: ['CI/CD Pipeline']
     types:
       - completed
 

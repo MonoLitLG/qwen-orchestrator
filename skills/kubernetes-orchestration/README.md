@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for deploying and managing applicatio
 ## When to Use
 
 **Use this skill when:**
+
 - Deploying applications to Kubernetes clusters
 - Implementing deployment strategies (rolling, blue-green, canary)
 - Configuring pod security and Pod Security Admission
@@ -33,6 +34,7 @@ This skill provides comprehensive guidance for deploying and managing applicatio
 ## What It Covers
 
 ### Workload Types
+
 - **Deployment** - Stateless application management
 - **StatefulSet** - Stateful application orchestration
 - **DaemonSet** - Node-level agent deployment
@@ -40,6 +42,7 @@ This skill provides comprehensive guidance for deploying and managing applicatio
 - **CronJob** - Scheduled batch processing
 
 ### Deployment Strategies
+
 - **Rolling Update** - Zero-downtime incremental updates
 - **Blue-Green** - Instant rollback capability
 - **Canary** - Gradual traffic shifting
@@ -47,6 +50,7 @@ This skill provides comprehensive guidance for deploying and managing applicatio
 - **Shadow** - Production traffic mirroring
 
 ### Resource Management
+
 - **Resource Requests/Limits** - Container resource guarantees
 - **Horizontal Pod Autoscaler** - CPU/memory-based scaling
 - **Vertical Pod Autoscaler** - Automatic resource adjustment
@@ -55,6 +59,7 @@ This skill provides comprehensive guidance for deploying and managing applicatio
 - **Limit Ranges** - Default container limits
 
 ### Security
+
 - **Pod Security Admission** - Pod-level security enforcement
 - **RBAC** - Role-based access control
 - **Service Accounts** - Pod identity management
@@ -66,18 +71,21 @@ This skill provides comprehensive guidance for deploying and managing applicatio
 - **Trivy** - Image vulnerability scanning
 
 ### Networking
+
 - **Ingress Controllers** - NGINX, Traefik, AWS ALB
 - **Service Mesh** - Istio, Linkerd
 - **Network Policies** - Pod-level firewall rules
 - **Load Balancing** - Service traffic distribution
 
 ### Storage
+
 - **Persistent Volumes** - Cluster storage management
 - **Persistent Volume Claims** - Pod storage requests
 - **Storage Classes** - Dynamic provisioning
 - **Volume Mounts** - Container storage access
 
 ### Configuration Management
+
 - **ConfigMaps** - Non-sensitive configuration
 - **Secrets** - Sensitive data storage
 - **Helm Charts** - Application packaging
@@ -85,6 +93,7 @@ This skill provides comprehensive guidance for deploying and managing applicatio
 - **GitOps** - ArgoCD, Flux CD
 
 ### Scheduling
+
 - **Node Affinity** - Node selection rules
 - **Pod Anti-Affinity** - Pod distribution
 - **Taints and Tolerations** - Node restrictions
@@ -92,6 +101,7 @@ This skill provides comprehensive guidance for deploying and managing applicatio
 - **Pod Disruption Budgets** - Availability guarantees
 
 ### Monitoring and Logging
+
 - **Prometheus** - Metrics collection
 - **Grafana** - Dashboard visualization
 - **ServiceMonitor** - Prometheus service discovery
@@ -114,6 +124,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Deployment strategy implementations
 - Pod security configurations
 - Resource management templates

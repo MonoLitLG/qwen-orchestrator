@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for implementing translation workflow
 ## When to Use
 
 **Use this skill when:**
+
 - Implementing translation workflows
 - Setting up translation management systems (TMS)
 - Managing translation memory (TM)
@@ -39,6 +40,7 @@ This skill provides comprehensive guidance for implementing translation workflow
 - Implementing translation testing
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -287,6 +289,7 @@ This skill provides comprehensive guidance for implementing translation workflow
 ## Real-World Impact
 
 **Before this skill:**
+
 - Ad-hoc translation processes
 - Inconsistent translations
 - High costs
@@ -294,6 +297,7 @@ This skill provides comprehensive guidance for implementing translation workflow
 - No translation memory
 
 **After this skill:**
+
 - Streamlined translation workflows
 - Consistent translations
 - Cost savings

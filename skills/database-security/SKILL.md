@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for implementing database security co
 ## When to Use
 
 **Use this skill when:**
+
 - Implementing database encryption
 - Setting up access control and RBAC
 - Creating audit logging for databases
@@ -39,6 +40,7 @@ This skill provides comprehensive guidance for implementing database security co
 - Implementing database security architecture
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -167,22 +169,22 @@ $$ LANGUAGE plpgsql;
 ```sql
 -- Mask credit card numbers
 ALTER TABLE customers
-ALTER COLUMN credit_card ADD MASKED FUNCTION = 
+ALTER COLUMN credit_card ADD MASKED FUNCTION =
     'partial(4,"XXXX-XXXX-XXXX-",4)';
 
 -- Mask email addresses
 ALTER TABLE customers
-ALTER COLUMN email ADD MASKED FUNCTION = 
+ALTER COLUMN email ADD MASKED FUNCTION =
     'email()';
 
 -- Mask phone numbers
 ALTER TABLE customers
-ALTER COLUMN phone ADD MASKED FUNCTION = 
+ALTER COLUMN phone ADD MASKED FUNCTION =
     'partial(3,"XXX-XXX-",4)';
 
 -- Mask social security numbers
 ALTER TABLE customers
-ALTER COLUMN ssn ADD MASKED FUNCTION = 
+ALTER COLUMN ssn ADD MASKED FUNCTION =
     'partial(0,"XXX-XX-",4)';
 ```
 
@@ -288,6 +290,7 @@ SET email = CONCAT('user', id, '@example.com'),
 ## Real-World Impact
 
 **Before this skill:**
+
 - Unencrypted sensitive data
 - Weak access controls
 - No audit logging
@@ -295,6 +298,7 @@ SET email = CONCAT('user', id, '@example.com'),
 - Data breaches
 
 **After this skill:**
+
 - Encrypted data at rest and in transit
 - Proper access controls
 - Comprehensive audit logging

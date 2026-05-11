@@ -21,19 +21,20 @@ Every project, module, and package needs a README.
 Brief description of what this module does and why it exists.
 
 ## Structure
-
 ```
+
 module-name/
 ├── src/
 ├── tests/
 └── README.md
-```
+
+````
 
 ## Installation
 
 ```bash
 npm install module-name
-```
+````
 
 ## Usage
 
@@ -70,9 +71,9 @@ const result = await module.processAsync(data);
 
 ## Configuration
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| debug | boolean | false | Enable debug mode |
+| Option | Type    | Default | Description       |
+| ------ | ------- | ------- | ----------------- |
+| debug  | boolean | false   | Enable debug mode |
 
 ## Testing
 
@@ -84,7 +85,8 @@ npm run test:coverage
 ## License
 
 MIT
-```
+
+````
 
 ### 2. API Documentation
 
@@ -115,13 +117,14 @@ Retrieve a list of users.
     "total": 100
   }
 }
-```
+````
 
 ### POST /api/v1/users
 
 Create a new user.
 
 **Request Body:**
+
 ```json
 {
   "name": "string (required)",
@@ -131,6 +134,7 @@ Create a new user.
 ```
 
 **Response:**
+
 ```json
 {
   "id": "uuid",
@@ -154,14 +158,15 @@ Authorization: Bearer <token>
 
 ## Error Responses
 
-| Status | Code | Description |
-|--------|------|-------------|
-| 400 | INVALID_INPUT | Request validation failed |
-| 401 | UNAUTHORIZED | Authentication required |
-| 403 | FORBIDDEN | Insufficient permissions |
-| 404 | NOT_FOUND | Resource not found |
-| 500 | SERVER_ERROR | Internal server error |
-```
+| Status | Code          | Description               |
+| ------ | ------------- | ------------------------- |
+| 400    | INVALID_INPUT | Request validation failed |
+| 401    | UNAUTHORIZED  | Authentication required   |
+| 403    | FORBIDDEN     | Insufficient permissions  |
+| 404    | NOT_FOUND     | Resource not found        |
+| 500    | SERVER_ERROR  | Internal server error     |
+
+````
 
 ### 3. Architecture Decision Records (ADRs)
 
@@ -258,7 +263,7 @@ We need to choose a database for our ERP system. The system requires:
 
 - [PostgreSQL Documentation](https://www.postgresql.org/docs/)
 - [Database Selection Study](https://example.com/study)
-```
+````
 
 ### 4. Module Documentation
 
@@ -274,6 +279,7 @@ Document each business module.
 ## Overview
 
 The Inventory module manages product inventory across warehouses. It handles:
+
 - Stock levels
 - Warehouse operations
 - Reordering
@@ -342,18 +348,20 @@ The Inventory module manages product inventory across warehouses. It handles:
 
 ```markdown
 # Headers (PascalCase)
+
 ## Section Headers
+
 ### Subsections
 
 - Bullet lists
 - Numbered lists
 
-```code blocks```
+`code blocks`
 
-| Tables | Are | Good |
-|--------|-----|------|
-| Use    | them| for  |
-| Data   | tables |   |
+| Tables | Are    | Good |
+| ------ | ------ | ---- |
+| Use    | them   | for  |
+| Data   | tables |      |
 
 > Quotes for emphasis
 ```
@@ -417,38 +425,42 @@ docs/
 
 ### Static Site Generators
 
-| Tool | Purpose |
-|------|---------|
-| Docusaurus | React-based docs site |
-| MkDocs | Python-based docs site |
-| Sphinx | Python API docs |
-| JSDoc | JavaScript API docs |
+| Tool       | Purpose                |
+| ---------- | ---------------------- |
+| Docusaurus | React-based docs site  |
+| MkDocs     | Python-based docs site |
+| Sphinx     | Python API docs        |
+| JSDoc      | JavaScript API docs    |
 
 ### API Documentation
 
-| Tool | Purpose |
-|------|---------|
-| Swagger/OpenAPI | REST API docs |
-| Postman | API testing & docs |
-| GraphQL Schema | GraphQL docs |
+| Tool            | Purpose            |
+| --------------- | ------------------ |
+| Swagger/OpenAPI | REST API docs      |
+| Postman         | API testing & docs |
+| GraphQL Schema  | GraphQL docs       |
 
 ## Anti-Patterns
 
 ### Outdated Documentation
 
-```markdown
+````markdown
 # ❌ BAD: Outdated example
+
 ```typescript
 // This example is outdated
 const result = oldFunction();
 ```
+````
 
 # ✅ GOOD: Updated example
+
 ```typescript
 // Current example
 const result = newFunction();
 ```
-```
+
+````
 
 ### No Examples
 
@@ -461,8 +473,9 @@ The function processes data:
 
 ```typescript
 const result = processor.process(data);
-```
-```
+````
+
+````
 
 ### Too Much Detail
 
@@ -476,7 +489,7 @@ const result = processor.process(data);
 
 # ✅ GOOD: Appropriate detail
 The function reads and parses a JSON file.
-```
+````
 
 ## References
 

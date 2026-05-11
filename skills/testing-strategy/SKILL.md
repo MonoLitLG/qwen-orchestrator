@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for designing and implementing testin
 ## When to Use
 
 **Use this skill when:**
+
 - Designing test strategy for new projects
 - Setting up CI/CD quality gates
 - Defining test coverage requirements
@@ -39,6 +40,7 @@ This skill provides comprehensive guidance for designing and implementing testin
 - Creating test team structure and roles
 
 **Do NOT use this skill when:**
+
 - Writing specific test cases (use TDD workflow skill)
 - Debugging specific test failures (use debugging skill)
 - Writing production code (use implementer agent or specific framework skill)
@@ -61,30 +63,30 @@ This skill provides comprehensive guidance for designing and implementing testin
 
 ### Rationale
 
-| Layer | Speed | Cost | Coverage | Reliability |
-|-------|-------|------|----------|-------------|
-| Unit | Fast | Low | High | High |
-| Integration | Medium | Medium | Medium | Medium |
-| E2E | Slow | High | Low | Low |
+| Layer       | Speed  | Cost   | Coverage | Reliability |
+| ----------- | ------ | ------ | -------- | ----------- |
+| Unit        | Fast   | Low    | High     | High        |
+| Integration | Medium | Medium | Medium   | Medium      |
+| E2E         | Slow   | High   | Low      | Low         |
 
 ## Coverage Requirements
 
 ### Minimum Thresholds
 
-| Layer | Minimum Coverage | Critical Paths |
-|-------|------------------|----------------|
-| Unit | 80% | 90%+ |
-| Integration | 70% | 85%+ |
-| E2E | 60% | 80%+ |
+| Layer       | Minimum Coverage | Critical Paths |
+| ----------- | ---------------- | -------------- |
+| Unit        | 80%              | 90%+           |
+| Integration | 70%              | 85%+           |
+| E2E         | 60%              | 80%+           |
 
 ### Coverage by Component
 
-| Component Type | Coverage Target | Rationale |
-|----------------|-----------------|-----------|
-| Business Logic | 90%+ | Critical path |
-| API Layer | 85%+ | Integration points |
-| UI Components | 70%+ | Visual regression |
-| Utilities | 80%+ | Reusable logic |
+| Component Type | Coverage Target | Rationale          |
+| -------------- | --------------- | ------------------ |
+| Business Logic | 90%+            | Critical path      |
+| API Layer      | 85%+            | Integration points |
+| UI Components  | 70%+            | Visual regression  |
+| Utilities      | 80%+            | Reusable logic     |
 
 ## Test Categories
 
@@ -93,12 +95,14 @@ This skill provides comprehensive guidance for designing and implementing testin
 **Purpose**: Test individual functions/classes in isolation
 
 **Characteristics**:
+
 - Fast execution (ms to seconds)
 - No external dependencies
 - Mock all external calls
 - High coverage target
 
 **Example Structure**:
+
 ```typescript
 describe('UserService', () => {
   let service: UserService;
@@ -140,12 +144,14 @@ describe('UserService', () => {
 **Purpose**: Test interactions between components
 
 **Characteristics**:
+
 - Medium execution time (seconds)
 - May use real dependencies
 - Test module boundaries
 - Clean up after tests
 
 **Example Structure**:
+
 ```typescript
 describe('User API Integration', () => {
   let app: INestApplication;
@@ -184,12 +190,14 @@ describe('User API Integration', () => {
 **Purpose**: Test complete user workflows
 
 **Characteristics**:
+
 - Slow execution (minutes)
 - Real external dependencies
 - Test user journeys
 - High maintenance cost
 
 **Example Structure**:
+
 ```typescript
 describe('User Registration Flow', () => {
   beforeAll(async () => {
@@ -210,7 +218,10 @@ describe('User Registration Flow', () => {
 
     // Verify success
     await page.waitForSelector('.success-message');
-    const successText = await page.$eval('.success-message', el => el.textContent);
+    const successText = await page.$eval(
+      '.success-message',
+      (el) => el.textContent
+    );
     expect(successText).toContain('Welcome');
   });
 });
@@ -361,12 +372,12 @@ export const userScenarios = {
 
 ### Mocking Tools
 
-| Tool | Purpose |
-|------|---------|
-| Vitest | Testing framework |
-| ts-mockito | Object mocking |
-| nock | HTTP mocking |
-| jest-date-mock | Time mocking |
+| Tool           | Purpose           |
+| -------------- | ----------------- |
+| Vitest         | Testing framework |
+| ts-mockito     | Object mocking    |
+| nock           | HTTP mocking      |
+| jest-date-mock | Time mocking      |
 
 ## Common Anti-Patterns
 
@@ -408,23 +419,33 @@ it('should process order', () => {
 
 ```typescript
 // ❌ BAD: Tests depend on each other
-it('should create user', () => { /* ... */ });
-it('should update user', () => { /* uses user from prev test */ });
+it('should create user', () => {
+  /* ... */
+});
+it('should update user', () => {
+  /* uses user from prev test */
+});
 
 // ✅ GOOD: Independent tests
-it('should create user', () => { /* ... */ });
-it('should update user', () => { /* ... */ });
+it('should create user', () => {
+  /* ... */
+});
+it('should update user', () => {
+  /* ... */
+});
 ```
 
 ## Real-World Impact
 
 **Before this skill:**
+
 - No test coverage targets
 - Flaky tests in CI
 - Slow test execution
 - Low confidence in deployments
 
 **After this skill:**
+
 - Clear coverage targets (80%+)
 - Fast, reliable tests
 - CI/CD quality gates

@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for **developing applications that wo
 ## When to Use
 
 **Use this skill when:**
+
 - Writing shell scripts that must run on Windows, Linux, and macOS
 - Handling file paths across different operating systems
 - Managing line endings (CRLF vs LF) in cross-platform projects
@@ -35,6 +36,7 @@ This skill provides comprehensive guidance for **developing applications that wo
 - Configuring cross-platform Docker environments
 
 **Do NOT use this skill when:**
+
 - Building native OS-specific applications (use platform-specific SDK)
 - Writing kernel-level code (use OS-specific documentation)
 - Developing mobile apps (use mobile-engineer skill)
@@ -49,32 +51,32 @@ This skill provides comprehensive guidance for **developing applications that wo
 
 ### Platform Detection
 
-| Platform | Node.js | Python | Shell | PowerShell |
-|----------|---------|--------|-------|------------|
-| **Windows** | `process.platform === 'win32'` | `sys.platform == 'win32'` | N/A | `$true` |
-| **Linux** | `process.platform === 'linux'` | `sys.platform == 'linux'` | `$true` | `$false` |
-| **macOS** | `process.platform === 'darwin'` | `sys.platform == 'darwin'` | `$true` | `$false` |
+| Platform    | Node.js                         | Python                     | Shell   | PowerShell |
+| ----------- | ------------------------------- | -------------------------- | ------- | ---------- |
+| **Windows** | `process.platform === 'win32'`  | `sys.platform == 'win32'`  | N/A     | `$true`    |
+| **Linux**   | `process.platform === 'linux'`  | `sys.platform == 'linux'`  | `$true` | `$false`   |
+| **macOS**   | `process.platform === 'darwin'` | `sys.platform == 'darwin'` | `$true` | `$false`   |
 
 ### Shell Command Differences
 
-| Operation | Linux/macOS (Bash) | Windows (CMD) | Windows (PowerShell) |
-|-----------|-------------------|---------------|---------------------|
-| **List files** | `ls -la` | `dir /a` | `Get-ChildItem -Force` |
-| **Change directory** | `cd /path` | `cd C:\path` | `Set-Location C:\path` |
-| **Copy file** | `cp src dst` | `copy src dst` | `Copy-Item src dst` |
-| **Copy directory** | `cp -r src dst` | `xcopy src dst /E /I` | `Copy-Item src dst -Recurse` |
-| **Delete file** | `rm file` | `del file` | `Remove-Item file` |
-| **Delete directory** | `rm -rf dir` | `rmdir /s /q dir` | `Remove-Item dir -Recurse -Force` |
-| **Make directory** | `mkdir -p dir` | `mkdir dir` | `New-Item -ItemType Directory -Path dir` |
-| **Show current dir** | `pwd` | `cd` | `Get-Location` |
-| **Search text** | `grep "pattern" file` | `findstr "pattern" file` | `Select-String "pattern" file` |
-| **Pipe output** | `cmd1 \| cmd2` | `cmd1 \| cmd2` | `cmd1 \| cmd2` |
-| **Redirect output** | `cmd > file` | `cmd > file` | `cmd > file` |
-| **Environment var** | `$VAR` or `${VAR}` | `%VAR%` | `$env:VAR` |
-| **Execute script** | `./script.sh` | `script.bat` | `.\script.ps1` |
-| **Clear screen** | `clear` | `cls` | `Clear-Host` |
-| **Show process** | `ps aux` | `tasklist` | `Get-Process` |
-| **Kill process** | `kill PID` | `taskkill /PID PID /F` | `Stop-Process -Id PID -Force` |
+| Operation            | Linux/macOS (Bash)    | Windows (CMD)            | Windows (PowerShell)                     |
+| -------------------- | --------------------- | ------------------------ | ---------------------------------------- |
+| **List files**       | `ls -la`              | `dir /a`                 | `Get-ChildItem -Force`                   |
+| **Change directory** | `cd /path`            | `cd C:\path`             | `Set-Location C:\path`                   |
+| **Copy file**        | `cp src dst`          | `copy src dst`           | `Copy-Item src dst`                      |
+| **Copy directory**   | `cp -r src dst`       | `xcopy src dst /E /I`    | `Copy-Item src dst -Recurse`             |
+| **Delete file**      | `rm file`             | `del file`               | `Remove-Item file`                       |
+| **Delete directory** | `rm -rf dir`          | `rmdir /s /q dir`        | `Remove-Item dir -Recurse -Force`        |
+| **Make directory**   | `mkdir -p dir`        | `mkdir dir`              | `New-Item -ItemType Directory -Path dir` |
+| **Show current dir** | `pwd`                 | `cd`                     | `Get-Location`                           |
+| **Search text**      | `grep "pattern" file` | `findstr "pattern" file` | `Select-String "pattern" file`           |
+| **Pipe output**      | `cmd1 \| cmd2`        | `cmd1 \| cmd2`           | `cmd1 \| cmd2`                           |
+| **Redirect output**  | `cmd > file`          | `cmd > file`             | `cmd > file`                             |
+| **Environment var**  | `$VAR` or `${VAR}`    | `%VAR%`                  | `$env:VAR`                               |
+| **Execute script**   | `./script.sh`         | `script.bat`             | `.\script.ps1`                           |
+| **Clear screen**     | `clear`               | `cls`                    | `Clear-Host`                             |
+| **Show process**     | `ps aux`              | `tasklist`               | `Get-Process`                            |
+| **Kill process**     | `kill PID`            | `taskkill /PID PID /F`   | `Stop-Process -Id PID -Force`            |
 
 ### Path Handling
 
@@ -91,8 +93,8 @@ const filePath = path.join('data', 'files', 'document.txt');
 const separator = path.sep; // '\\' on Windows, '/' on Linux/macOS
 
 // ❌ BAD: Hardcoded paths
-const badPath = '/home/user/data/file.txt';  // Fails on Windows
-const badPath2 = 'C:\\Users\\user\\data\\file.txt';  // Fails on Linux/macOS
+const badPath = '/home/user/data/file.txt'; // Fails on Windows
+const badPath2 = 'C:\\Users\\user\\data\\file.txt'; // Fails on Linux/macOS
 ```
 
 ```python
@@ -117,10 +119,10 @@ bad_path = '/home/user/data/file.txt'  # Fails on Windows
 
 ### Line Endings
 
-| Platform | Line Ending | Bytes | Git Config |
-|----------|-------------|-------|------------|
-| **Windows** | CRLF | `\r\n` (0x0D 0x0A) | `core.autocrlf=true` |
-| **Linux/macOS** | LF | `\n` (0x0A) | `core.autocrlf=input` |
+| Platform        | Line Ending | Bytes              | Git Config            |
+| --------------- | ----------- | ------------------ | --------------------- |
+| **Windows**     | CRLF        | `\r\n` (0x0D 0x0A) | `core.autocrlf=true`  |
+| **Linux/macOS** | LF          | `\n` (0x0A)        | `core.autocrlf=input` |
 
 ```git
 # .gitconfig (Global settings)
@@ -272,13 +274,13 @@ exec('ls -la');  // Fails on Windows without Git Bash/WSL
 
 ### Cross-Platform Package Management
 
-| Task | npm/yarn/pnpm | pip | apt (Debian/Ubuntu) | brew (macOS) | chocolatey (Windows) |
-|------|---------------|-----|---------------------|--------------|---------------------|
-| **Install package** | `npm install pkg` | `pip install pkg` | `sudo apt install pkg` | `brew install pkg` | `choco install pkg` |
-| **Update package** | `npm update pkg` | `pip install --upgrade pkg` | `sudo apt update && sudo apt upgrade pkg` | `brew upgrade pkg` | `choco upgrade pkg` |
-| **Remove package** | `npm uninstall pkg` | `pip uninstall pkg` | `sudo apt remove pkg` | `brew uninstall pkg` | `choco uninstall pkg` |
-| **List packages** | `npm list` | `pip list` | `dpkg --list` | `brew list` | `choco list --local-only` |
-| **Search packages** | `npm search query` | `pip search query` | `apt search query` | `brew search query` | `choco search query` |
+| Task                | npm/yarn/pnpm       | pip                         | apt (Debian/Ubuntu)                       | brew (macOS)         | chocolatey (Windows)      |
+| ------------------- | ------------------- | --------------------------- | ----------------------------------------- | -------------------- | ------------------------- |
+| **Install package** | `npm install pkg`   | `pip install pkg`           | `sudo apt install pkg`                    | `brew install pkg`   | `choco install pkg`       |
+| **Update package**  | `npm update pkg`    | `pip install --upgrade pkg` | `sudo apt update && sudo apt upgrade pkg` | `brew upgrade pkg`   | `choco upgrade pkg`       |
+| **Remove package**  | `npm uninstall pkg` | `pip uninstall pkg`         | `sudo apt remove pkg`                     | `brew uninstall pkg` | `choco uninstall pkg`     |
+| **List packages**   | `npm list`          | `pip list`                  | `dpkg --list`                             | `brew list`          | `choco list --local-only` |
+| **Search packages** | `npm search query`  | `pip search query`          | `apt search query`                        | `brew search query`  | `choco search query`      |
 
 ### Development Environment Setup
 
@@ -316,29 +318,29 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node-version: [18, 20, 22]
     runs-on: ${{ matrix.os }}
-    
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Run tests
         run: npm test
-      
+
       - name: Build
         run: npm run build
-      
+
       - name: Platform-specific tests
         if: matrix.os == 'windows-latest'
         run: npm run test:windows
-        
+
       - name: Platform-specific tests
         if: matrix.os == 'ubuntu-latest'
         run: npm run test:linux
@@ -352,18 +354,18 @@ jobs:
 // Jest test with platform detection
 describe('File operations', () => {
   const isWindows = process.platform === 'win32';
-  
+
   test('should handle paths correctly', () => {
     const path = require('path');
     const testPath = path.join('data', 'test.txt');
-    
+
     if (isWindows) {
       expect(testPath).toMatch(/\\/);
     } else {
       expect(testPath).toMatch(/\//);
     }
   });
-  
+
   // Skip tests that don't work on Windows
   test.skipIf(isWindows)('should set file permissions', () => {
     // chmod tests only on Linux/macOS
@@ -379,7 +381,7 @@ class TestCrossPlatform(unittest.TestCase):
         from pathlib import Path
         path = Path('data') / 'test.txt'
         self.assertTrue(isinstance(path, Path))
-    
+
     @unittest.skipIf(sys.platform == 'win32', "Linux/macOS only")
     def test_file_permissions(self):
         # chmod tests only on Linux/macOS
@@ -410,6 +412,7 @@ Before deploying cross-platform applications:
 ## Real-World Impact
 
 **Before this skill:**
+
 - "Works on my machine" bugs
 - Shell scripts failing on Windows
 - Path errors in production
@@ -417,6 +420,7 @@ Before deploying cross-platform applications:
 - Platform-specific assumptions in code
 
 **After this skill:**
+
 - Cross-platform compatibility from day one
 - Shell scripts working on all platforms
 - Path handling that never fails

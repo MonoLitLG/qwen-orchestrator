@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for implementing translation workflow
 ## When to Use
 
 **Use this skill when:**
+
 - Implementing translation workflows
 - Setting up translation management systems (TMS)
 - Managing translation memory (TM)
@@ -39,16 +40,19 @@ This skill provides comprehensive guidance for implementing translation workflow
 ## What It Covers
 
 ### Translation Workflow
+
 - **Process** - Extraction, translation, QA, integration
 - **Memory Analysis** - TM matching, fuzzy matches
 - **Quality Assurance** - Automated and human checks
 
 ### Translation Memory
+
 - **Benefits** - Cost savings, consistency, time savings
 - **Formats** - TMX, XLIFF, SDL Trados, MemoQ
 - **Management** - Updates, quality, de-duplication
 
 ### Machine Translation
+
 - **Options** - Google, Amazon, DeepL, Microsoft
 - **Post-Editing** - Light, full, quality assurance
 - **Integration** - API-based, self-hosted
@@ -69,6 +73,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Translation workflow examples
 - TM management examples
 - MT integration examples

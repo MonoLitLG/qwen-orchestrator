@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for load testing and performance test
 ## When to Use
 
 **Use this skill when:**
+
 - Designing load testing strategies
 - Creating load test scripts
 - Executing load tests
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for load testing and performance test
 - Creating performance optimization recommendations
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -287,6 +289,7 @@ This skill provides comprehensive guidance for load testing and performance test
 ## Real-World Impact
 
 **Before this skill:**
+
 - No performance testing
 - Unexpected performance issues
 - Poor user experience
@@ -294,6 +297,7 @@ This skill provides comprehensive guidance for load testing and performance test
 - No capacity planning
 
 **After this skill:**
+
 - Comprehensive performance testing
 - Predictable performance
 - Excellent user experience

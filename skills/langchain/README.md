@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for building LLM applications with La
 ## When to Use
 
 **Use this skill when:**
+
 - Building LLM applications with LangChain
 - Implementing chains and agents
 - Integrating tools and external APIs
@@ -21,26 +22,31 @@ This skill provides comprehensive guidance for building LLM applications with La
 ## What It Covers
 
 ### LLM Integration
+
 - OpenAI
 - Google Gemini
 - Custom providers
 
 ### Chains
+
 - LLMChain
 - SequentialChain
 - RouterChain
 
 ### Agents
+
 - create_agent
 - ConversationalAgent
 - Tools integration
 
 ### Memory
+
 - ConversationBufferMemory
 - ConversationSummaryMemory
 - VectorStoreRetrieverMemory
 
 ### Prompts & Templates
+
 - PromptTemplate
 - FewShotPromptTemplate
 - ChatPromptTemplate
@@ -59,6 +65,7 @@ result = chain.run("France")
 ## Examples
 
 See `examples/` for:
+
 - Chain examples
 - Agent examples
 - Prompt examples

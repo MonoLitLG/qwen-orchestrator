@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for threat modeling and security anal
 ## When to Use
 
 **Use this skill when:**
+
 - Performing threat modeling for systems
 - Identifying security threats and vulnerabilities
 - Analyzing attack vectors and attack paths
@@ -39,6 +40,7 @@ This skill provides comprehensive guidance for threat modeling and security anal
 - Creating threat models for databases
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -258,6 +260,7 @@ This skill provides comprehensive guidance for threat modeling and security anal
 ## Real-World Impact
 
 **Before this skill:**
+
 - No threat modeling
 - Security vulnerabilities discovered late
 - Reactive security approach
@@ -265,6 +268,7 @@ This skill provides comprehensive guidance for threat modeling and security anal
 - Security gaps in design
 
 **After this skill:**
+
 - Proactive threat identification
 - Security integrated in design
 - Threat-informed decisions

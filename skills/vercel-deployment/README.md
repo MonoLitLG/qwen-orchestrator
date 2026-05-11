@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for deploying applications to Vercel,
 ## When to Use
 
 **Use this skill when:**
+
 - Deploying Next.js applications to Vercel
 - Configuring serverless functions
 - Setting up edge computing with Edge Functions
@@ -21,20 +22,24 @@ This skill provides comprehensive guidance for deploying applications to Vercel,
 ## What It Covers
 
 ### Deployment Targets
+
 - **Serverless Functions** - Optimized Lambda functions
 - **Edge Functions** - Global distribution with low latency
 
 ### Vercel CLI
+
 - Development commands
 - Deployment commands
 - Configuration
 
 ### Performance Optimization
+
 - Caching strategies
 - Image optimization
 - Edge caching
 
 ### Environment Variables
+
 - Project settings
 - Vercel dashboard configuration
 
@@ -51,6 +56,7 @@ vercel --prod
 ## Examples
 
 See `examples/` for:
+
 - Serverless function examples
 - Edge function examples
 - Caching strategies

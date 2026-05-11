@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for designing and implementing micros
 ## When to Use
 
 **Use this skill when:**
+
 - Designing microservices architecture
 - Defining service boundaries and domains
 - Implementing domain-driven design patterns
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for designing and implementing micros
 - Designing fault tolerance patterns
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -141,14 +143,11 @@ interface OrderPlaced extends DomainEvent {
 class OrderPlacedHandler {
   async handle(event: OrderPlaced) {
     // Send confirmation email
-    await emailService.sendOrderConfirmation(
-      event.customerId,
-      event.orderId
-    );
-    
+    await emailService.sendOrderConfirmation(event.customerId, event.orderId);
+
     // Update inventory
     await inventoryService.reserveStock(event.items);
-    
+
     // Log for analytics
     await analyticsService.trackOrderPlaced(event);
   }
@@ -253,12 +252,12 @@ class CircuitBreaker {
   private state: 'closed' | 'open' | 'half-open' = 'closed';
   private failureCount = 0;
   private successCount = 0;
-  
+
   async execute<T>(fn: () => Promise<T>): Promise<T> {
     if (this.state === 'open') {
       throw new Error('Circuit breaker is open');
     }
-    
+
     try {
       const result = await fn();
       this.onSuccess();
@@ -268,19 +267,19 @@ class CircuitBreaker {
       throw error;
     }
   }
-  
+
   private onSuccess() {
     this.failureCount = 0;
     this.successCount++;
-    
+
     if (this.state === 'half-open') {
       this.state = 'closed';
     }
   }
-  
+
   private onFailure() {
     this.failureCount++;
-    
+
     if (this.failureCount >= this.threshold) {
       this.state = 'open';
       setTimeout(() => {
@@ -294,6 +293,7 @@ class CircuitBreaker {
 ## Real-World Impact
 
 **Before this skill:**
+
 - Monolithic architecture
 - Tight coupling between components
 - Deployment bottlenecks
@@ -301,6 +301,7 @@ class CircuitBreaker {
 - Scaling challenges
 
 **After this skill:**
+
 - Well-designed microservices
 - Loose coupling and high cohesion
 - Independent deployments

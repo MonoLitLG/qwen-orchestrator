@@ -12,6 +12,7 @@ license: MIT
 This skill provides a comprehensive framework for organizing large-scale ERP, SaaS, and enterprise applications. It establishes rules, workflows, module boundaries, and maintainability standards to ensure teams can scale effectively while maintaining code quality.
 
 **Core Principles:**
+
 - Single Responsibility per Module
 - Clear Boundaries and Contracts
 - Convention over Configuration
@@ -23,6 +24,7 @@ Based on enterprise software architecture certifications and industry best pract
 ## When to Use
 
 **Use this skill when:**
+
 - Setting up a new ERP, SaaS, or enterprise project
 - Refactoring a legacy codebase with organizational issues
 - Scaling the team and need clear boundaries
@@ -45,6 +47,7 @@ Based on enterprise software architecture certifications and industry best pract
 - Creating deployment strategies for enterprise applications
 
 **Do NOT use this skill when:**
+
 - Working on small projects (< 50k lines)
 - One-off scripts or prototypes
 - Projects with established patterns you're happy with
@@ -98,12 +101,12 @@ Each module should represent a business domain:
 ```dot
 digraph module_boundaries {
     rankdir=TB;
-    
+
     "Inventory" [shape=box, style=filled, color=lightblue];
     "Sales" [shape=box, style=filled, color=lightgreen];
     "Accounting" [shape=box, style=filled, color=lightyellow];
     "Customers" [shape=box, style=filled, color=lightpink];
-    
+
     "Inventory" -> "Sales" [label="fulfills"];
     "Sales" -> "Accounting" [label="creates invoices"];
     "Customers" -> "Sales" [label="places orders"];
@@ -111,6 +114,7 @@ digraph module_boundaries {
 ```
 
 **Module Contract Requirements:**
+
 - Clear input/output interfaces
 - Versioned APIs
 - Dependency documentation
@@ -152,14 +156,14 @@ shared/
 
 ### Naming Conventions
 
-| Item | Convention | Example |
-|------|------------|---------|
-| Files | PascalCase | `InventoryManager.ts` |
-| Folders | kebab-case | `inventory-management/` |
-| Variables | camelCase | `inventoryItems` |
-| Constants | UPPER_SNAKE_CASE | `MAX_INVENTORY_LEVEL` |
-| Interfaces | Prefix I | `IInventoryItem` |
-| Types | PascalCase | `InventoryItemId` |
+| Item       | Convention       | Example                 |
+| ---------- | ---------------- | ----------------------- |
+| Files      | PascalCase       | `InventoryManager.ts`   |
+| Folders    | kebab-case       | `inventory-management/` |
+| Variables  | camelCase        | `inventoryItems`        |
+| Constants  | UPPER_SNAKE_CASE | `MAX_INVENTORY_LEVEL`   |
+| Interfaces | Prefix I         | `IInventoryItem`        |
+| Types      | PascalCase       | `InventoryItemId`       |
 
 ### Module Boundaries
 
@@ -179,6 +183,7 @@ shared/
 ### Documentation Requirements
 
 **Every module must have:**
+
 - `README.md` with purpose and usage
 - `API.md` documenting interfaces
 - `DECISIONS.md` recording architecture decisions
@@ -212,13 +217,13 @@ See `scripts/` for tools to:
 // Mixing concerns
 class InventoryController {
   // Business logic
-  calculateReorderPoint() { }
-  
+  calculateReorderPoint() {}
+
   // API logic
-  handleRequest() { }
-  
+  handleRequest() {}
+
   // Database logic
-  saveToDb() { }
+  saveToDb() {}
 }
 ```
 
@@ -228,7 +233,7 @@ class InventoryController {
 // Separate by responsibility
 class InventoryController {
   constructor(private service: InventoryService) {}
-  
+
   handleRequest() {
     return this.service.processRequest();
   }
@@ -236,7 +241,7 @@ class InventoryController {
 
 class InventoryService {
   constructor(private repository: InventoryRepository) {}
-  
+
   processRequest() {
     return this.repository.save(...);
   }
@@ -274,12 +279,14 @@ class InventoryController {
 ## Real-World Impact
 
 **Before this skill:**
+
 - 40% of time spent finding code
 - Mixed concerns throughout codebase
 - Difficulty onboarding new developers
 - Unclear module responsibilities
 
 **After this skill:**
+
 - 15% of time spent finding code
 - Clear separation of concerns
 - New developers productive in 1 week

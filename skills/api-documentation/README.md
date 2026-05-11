@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for creating comprehensive API docume
 ## When to Use
 
 **Use this skill when:**
+
 - Creating API documentation
 - Implementing OpenAPI specifications
 - Writing Swagger documentation
@@ -38,16 +39,19 @@ This skill provides comprehensive guidance for creating comprehensive API docume
 ## What It Covers
 
 ### OpenAPI Specification
+
 - **Structure** - Info, servers, paths, components
 - **Best Practices** - Naming, versioning, authentication
 - **Examples** - Request/response examples
 
 ### GraphQL Schema
+
 - **Schema Structure** - Types, queries, mutations
 - **Best Practices** - Naming, pagination, validation
 - **Documentation** - Field descriptions, examples
 
 ### Documentation Tools
+
 - **Swagger UI** - Interactive documentation
 - **Redoc** - Beautiful documentation
 - **Postman** - Collection documentation
@@ -70,6 +74,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - OpenAPI specification examples
 - GraphQL schema examples
 - Documentation templates

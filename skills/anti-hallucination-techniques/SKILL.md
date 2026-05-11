@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for preventing and detecting AI hallu
 ## When to Use
 
 **Use this skill when:**
+
 - Verifying AI-generated content accuracy
 - Checking source credibility and citations
 - Validating claims with evidence
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for preventing and detecting AI hallu
 - Validating contact information
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -230,6 +232,7 @@ This skill provides comprehensive guidance for preventing and detecting AI hallu
 ## Real-World Impact
 
 **Before this skill:**
+
 - Unverified AI claims
 - Incorrect information presented as fact
 - Fake citations and sources
@@ -237,6 +240,7 @@ This skill provides comprehensive guidance for preventing and detecting AI hallu
 - Misleading statistics
 
 **After this skill:**
+
 - Verified, evidence-based content
 - Proper source citations
 - Accurate technical information

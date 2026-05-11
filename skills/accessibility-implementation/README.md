@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for implementing accessible web conte
 ## When to Use
 
 **Use this skill when:**
+
 - Implementing accessible web interfaces
 - Ensuring WCAG 2.1 AA compliance
 - Adding ARIA attributes to components
@@ -38,29 +39,34 @@ This skill provides comprehensive guidance for implementing accessible web conte
 ## What It Covers
 
 ### WCAG Principles
+
 - **Perceivable** - Content presented in ways users can perceive
 - **Operable** - Interface and navigation are operable
 - **Understandable** - Information and operation are understandable
 - **Robust** - Content is robust across technologies
 
 ### Semantic HTML
+
 - **Proper element usage** - Use native HTML elements
 - **Landmark roles** - Header, nav, main, footer
 - **Interactive elements** - Buttons, links, form controls
 
 ### ARIA Attributes
+
 - **Landmark roles** - Banner, navigation, main, complementary
 - **Live regions** - Polite, assertive, off
 - **Widget roles** - Button, checkbox, combobox
 - **State attributes** - aria-expanded, aria-selected
 
 ### Keyboard Navigation
+
 - **Focus management** - Visible, logical, trap when needed
 - **Tab order** - Natural document order
 - **Skip links** - Skip to main content
 - **Escape hatches** - Close modals with Escape
 
 ### Testing
+
 - **Automated tools** - axe, Lighthouse, WAVE
 - **Manual testing** - Keyboard only, screen readers
 - **Color contrast** - 4.5:1 for normal text
@@ -82,6 +88,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Semantic HTML examples
 - ARIA attribute patterns
 - Keyboard navigation examples

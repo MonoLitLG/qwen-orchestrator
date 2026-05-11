@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for developing Qwen-specific agents, 
 ## When to Use
 
 **Use this skill when:**
+
 - Developing Qwen-specific agents
 - Implementing Qwen model integrations
 - Optimizing Qwen performance
@@ -21,22 +22,26 @@ This skill provides comprehensive guidance for developing Qwen-specific agents, 
 ## What It Covers
 
 ### Qwen Model Options
+
 - Qwen-Turbo (fastest)
 - Qwen-Plus (balanced)
 - Qwen-Max (most intelligent)
 - Qwen-VL (vision)
 
 ### Qwen API Integration
+
 - Basic API call
 - Streaming response
 - Multiple messages
 
 ### Agent Development
+
 - Basic agent
 - Agent with tools
 - Agent with memory
 
 ### Performance Optimization
+
 - Caching
 - Batching
 - Rate limiting
@@ -62,6 +67,7 @@ print(response.output.text)
 ## Examples
 
 See `examples/` for:
+
 - API integration examples
 - Agent examples
 - Performance optimization examples

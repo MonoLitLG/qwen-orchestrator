@@ -192,6 +192,7 @@ Before ANY deliverable is marked complete:
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Performing general code quality reviews (use code-review skill for broader analysis)
 - Designing database schemas (use database-design skill for schema planning)
 - Writing application business logic (use domain-driven skill for complete modules)

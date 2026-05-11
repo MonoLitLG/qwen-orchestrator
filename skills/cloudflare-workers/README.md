@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for developing and deploying Cloudfla
 ## When to Use
 
 **Use this skill when:**
+
 - Developing Cloudflare Workers
 - Implementing edge computing logic
 - Optimizing performance and cold starts
@@ -21,24 +22,29 @@ This skill provides comprehensive guidance for developing and deploying Cloudfla
 ## What It Covers
 
 ### Workers Architecture
+
 - Basic Workers
 - Edge Functions
 
 ### Performance Optimization
+
 - Cold start optimization
 - Minimal dependencies
 - Streaming
 
 ### Storage Options
+
 - KV Storage
 - Durable Objects
 - D1 Database
 
 ### Authentication at Edge
+
 - JWT validation
 - Session management
 
 ### Routing Strategies
+
 - Path-based routing
 - Method-based routing
 
@@ -55,6 +61,7 @@ npx wrangler pages deploy ./dist --project-name=my-app
 ## Examples
 
 See `examples/` for:
+
 - Worker examples
 - Storage examples
 - Authentication examples

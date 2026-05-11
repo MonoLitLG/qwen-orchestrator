@@ -14,6 +14,7 @@ This skill provides systematic security review following industry-standard frame
 ## When to Use
 
 **Use this skill when:**
+
 - Performing security audits following OWASP Top 10 checklist
 - Reviewing code for common vulnerabilities (SQL injection, XSS, CSRF)
 - Implementing authentication and authorization systems
@@ -35,6 +36,7 @@ This skill provides systematic security review following industry-standard frame
 - Implementing security compliance frameworks (GDPR, HIPAA, PCI-DSS)
 
 **Do NOT use this skill when:**
+
 - Writing application business logic (use developer skill)
 - Designing database schema (use database design skill)
 - Creating UI components (use frontend design skill)

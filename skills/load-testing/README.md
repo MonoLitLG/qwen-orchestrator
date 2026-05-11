@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for load testing and performance test
 ## When to Use
 
 **Use this skill when:**
+
 - Designing load testing strategies
 - Creating load test scripts
 - Executing load tests
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for load testing and performance test
 ## What It Covers
 
 ### Load Testing Types
+
 - **Load Testing** - Normal load simulation
 - **Stress Testing** - Beyond capacity testing
 - **Endurance Testing** - Long-duration testing
@@ -45,6 +47,7 @@ This skill provides comprehensive guidance for load testing and performance test
 - **Volume Testing** - Large data handling
 
 ### Test Metrics
+
 - **Response Time** - Average, percentiles
 - **Throughput** - Requests per second
 - **Error Rate** - HTTP and application errors
@@ -52,6 +55,7 @@ This skill provides comprehensive guidance for load testing and performance test
 - **Concurrency** - Active users, sessions
 
 ### Tools
+
 - **k6** - Modern, developer-friendly
 - **JMeter** - Mature, GUI/CLI
 - **Locust** - Python-based
@@ -74,6 +78,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Test plan templates
 - Load test scripts
 - Result analysis examples

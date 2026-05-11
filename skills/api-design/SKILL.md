@@ -152,6 +152,7 @@ Every endpoint must document:
 ## When NOT to Use
 
 **Do NOT use this skill when:**
+
 - Designing database schemas (use database-design skill for table structures and relationships)
 - Writing application business logic (use domain-driven skill for complete business modules)
 - Reviewing existing code for quality issues (use code-review skill for comprehensive audits)

@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for implementing offline-first applic
 ## When to Use
 
 **Use this skill when:**
+
 - Implementing offline-first applications
 - Managing local storage (IndexedDB, localStorage)
 - Implementing data synchronization
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for implementing offline-first applic
 ## What It Covers
 
 ### Offline-First Principles
+
 - **Always Available** - Application works offline
 - **Data Persistence** - Local storage
 - **Automatic Sync** - Transparent synchronization
@@ -45,12 +47,14 @@ This skill provides comprehensive guidance for implementing offline-first applic
 - **Offline UI** - Clear status indicators
 
 ### Local Storage
+
 - **localStorage** - Key-value storage
 - **sessionStorage** - Session-scoped storage
 - **IndexedDB** - Database-style storage
 - **Cache API** - HTTP response caching
 
 ### Sync Strategies
+
 - **Last Write Wins** - Timestamp-based
 - **Operational Transform** - Collaborative editing
 - **CRDT** - Automatic conflict resolution
@@ -73,6 +77,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Offline sync implementations
 - Service worker examples
 - Offline UI patterns

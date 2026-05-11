@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for detecting and preventing infinite
 ## When to Use
 
 **Use this skill when:**
+
 - Identifying potential infinite loops in code
 - Detecting loop patterns in algorithms
 - Implementing loop exit strategies
@@ -38,11 +39,13 @@ This skill provides comprehensive guidance for detecting and preventing infinite
 ## What It Covers
 
 ### Loop Patterns
+
 - **While, For, Do-While** - Loop types
 - **Nested Loops** - Loop nesting
 - **Infinite Loops** - Loop safety
 
 ### Exit Strategies
+
 - **Counter-Based** - Iteration limits
 - **Condition-Based** - State checks
 - **Timeout-Based** - Time limits
@@ -50,6 +53,7 @@ This skill provides comprehensive guidance for detecting and preventing infinite
 - **Resource-Based** - Availability checks
 
 ### Safety Mechanisms
+
 - **Timeout Patterns** - Time limits
 - **Counter Patterns** - Iteration limits
 - **Backoff Patterns** - Retry strategies
@@ -72,6 +76,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - Loop safety patterns
 - Timeout implementations
 - Counter patterns

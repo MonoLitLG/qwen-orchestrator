@@ -62,30 +62,30 @@ license: MIT
 
 ### Core Mobile Metrics
 
-| Metric | Target | Measurement Tool |
-|--------|--------|------------------|
-| **Time to Interactive (TTI)** | < 3s (4G), < 8s (3G) | Chrome DevTools, Lighthouse |
-| **First Contentful Paint (FCP)** | < 1.8s | Chrome DevTools, Web Vitals |
-| **Largest Contentful Paint (LCP)** | < 2.5s | Chrome DevTools, Web Vitals |
-| **First Input Delay (FID)** | < 100ms | Chrome DevTools, Web Vitals |
-| **Cumulative Layout Shift (CLS)** | < 0.1 | Chrome DevTools, Web Vitals |
-| **Total Blocking Time (TBT)** | < 300ms | Chrome DevTools, Lighthouse |
-| **Memory Usage** | < 150MB (iOS), < 200MB (Android) | Xcode Instruments, Android Profiler |
-| **Battery Impact** | < 5% per hour | Device battery stats, battery-historian |
-| **Frame Rate** | 60fps (target), 120fps (high refresh) | FPS counter, Performance Monitor |
-| **App Bundle Size** | < 50MB (initial), < 100MB (total) | App Store Connect, Play Console |
+| Metric                             | Target                                | Measurement Tool                        |
+| ---------------------------------- | ------------------------------------- | --------------------------------------- |
+| **Time to Interactive (TTI)**      | < 3s (4G), < 8s (3G)                  | Chrome DevTools, Lighthouse             |
+| **First Contentful Paint (FCP)**   | < 1.8s                                | Chrome DevTools, Web Vitals             |
+| **Largest Contentful Paint (LCP)** | < 2.5s                                | Chrome DevTools, Web Vitals             |
+| **First Input Delay (FID)**        | < 100ms                               | Chrome DevTools, Web Vitals             |
+| **Cumulative Layout Shift (CLS)**  | < 0.1                                 | Chrome DevTools, Web Vitals             |
+| **Total Blocking Time (TBT)**      | < 300ms                               | Chrome DevTools, Lighthouse             |
+| **Memory Usage**                   | < 150MB (iOS), < 200MB (Android)      | Xcode Instruments, Android Profiler     |
+| **Battery Impact**                 | < 5% per hour                         | Device battery stats, battery-historian |
+| **Frame Rate**                     | 60fps (target), 120fps (high refresh) | FPS counter, Performance Monitor        |
+| **App Bundle Size**                | < 50MB (initial), < 100MB (total)     | App Store Connect, Play Console         |
 
 ### Mobile-Specific Metrics
 
-| Metric | Description | Target |
-|--------|-------------|--------|
-| **Jank Rate** | Percentage of dropped frames | < 1% |
-| **Touch Response Time** | Time from touch to visual feedback | < 100ms |
-| **Scroll Smoothness** | Consistency of scroll frame rate | 60fps sustained |
-| **Memory Leak Rate** | Memory growth per navigation cycle | 0MB growth |
-| **Network Request Time** | Average request completion time | < 500ms (cached), < 2s (network) |
-| **Image Load Time** | Time to display optimized images | < 1s |
-| **Animation Frame Budget** | Time available per frame | 16.67ms (60fps) |
+| Metric                     | Description                        | Target                           |
+| -------------------------- | ---------------------------------- | -------------------------------- |
+| **Jank Rate**              | Percentage of dropped frames       | < 1%                             |
+| **Touch Response Time**    | Time from touch to visual feedback | < 100ms                          |
+| **Scroll Smoothness**      | Consistency of scroll frame rate   | 60fps sustained                  |
+| **Memory Leak Rate**       | Memory growth per navigation cycle | 0MB growth                       |
+| **Network Request Time**   | Average request completion time    | < 500ms (cached), < 2s (network) |
+| **Image Load Time**        | Time to display optimized images   | < 1s                             |
+| **Animation Frame Budget** | Time available per frame           | 16.67ms (60fps)                  |
 
 ## Startup Time Optimization
 
@@ -109,15 +109,15 @@ class App extends Component {
   componentDidMount() {
     // Phase 1: Show splash screen immediately
     this.showSplashScreen();
-    
+
     // Phase 2: Critical initialization (parallel)
     Promise.all([
       this.initializeCoreServices(),
-      this.loadUserPreferences()
+      this.loadUserPreferences(),
     ]).then(() => {
       // Phase 3: Navigate to main screen
       this.navigateToMainScreen();
-      
+
       // Phase 4: Background tasks (non-blocking)
       this.initializeAnalytics();
       this.fetchNotifications();
@@ -131,21 +131,23 @@ class App extends Component {
 
 ```javascript
 // App.js - Optimized startup
-import React, {lazy, Suspense} from 'react';
-import {ActivityIndicator, View} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import React, { lazy, Suspense } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 // Lazy load heavy screens
 const Dashboard = lazy(() => import('./screens/Dashboard'));
 const Settings = lazy(() => import('./screens/Settings'));
 const Profile = lazy(() => import('./screens/Profile'));
 
-const LazyScreen = ({screen}) => (
-  <Suspense fallback={
-    <View style={styles.loadingContainer}>
-      <ActivityIndicator size="large"/>
-    </View>
-  }>
+const LazyScreen = ({ screen }) => (
+  <Suspense
+    fallback={
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" />
+      </View>
+    }
+  >
     {screen}
   </Suspense>
 );
@@ -154,17 +156,17 @@ export default function App() {
   return (
     <NavigationContainer>
       {/* Heavy screens are only loaded when navigated to */}
-      <Stack.Screen 
-        name="Dashboard" 
-        component={() => <LazyScreen screen={<Dashboard/>}/>} 
+      <Stack.Screen
+        name="Dashboard"
+        component={() => <LazyScreen screen={<Dashboard />} />}
       />
-      <Stack.Screen 
-        name="Settings" 
-        component={() => <LazyScreen screen={<Settings/>}/>} 
+      <Stack.Screen
+        name="Settings"
+        component={() => <LazyScreen screen={<Settings />} />}
       />
-      <Stack.Screen 
-        name="Profile" 
-        component={() => <LazyScreen screen={<Profile/>}/>} 
+      <Stack.Screen
+        name="Profile"
+        component={() => <LazyScreen screen={<Profile />} />}
       />
     </NavigationContainer>
   );
@@ -180,16 +182,16 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Pre-warm cache in background
   DefaultCacheManager().getFileFromCache('banner.jpg').then((_) {
     // Cache warmed, navigate to main app
   });
-  
+
   // Initialize services without blocking
   unawaited(initializeAnalytics());
   unawaited(syncLocalDatabase());
-  
+
   runApp(const MyApp());
 }
 
@@ -200,7 +202,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isLoading = true;
-  
+
   @override
   void initState() {
     super.initState();
@@ -211,7 +213,7 @@ class _MyAppState extends State<MyApp> {
       });
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
@@ -233,10 +235,12 @@ class Component extends React.Component {
     EventEmitter.on('data', this.handleData);
     setInterval(this.pollData, 5000);
   }
-  
+
   // Missing cleanup!
-  
-  render() { return <View/>; }
+
+  render() {
+    return <View />;
+  }
 }
 
 // ✅ GOOD: Proper cleanup
@@ -245,13 +249,15 @@ class Component extends React.Component {
     EventEmitter.on('data', this.handleData);
     this.intervalId = setInterval(this.pollData, 5000);
   }
-  
+
   componentWillUnmount() {
     EventEmitter.off('data', this.handleData);
     clearInterval(this.intervalId);
   }
-  
-  render() { return <View/>; }
+
+  render() {
+    return <View />;
+  }
 }
 ```
 
@@ -366,31 +372,32 @@ Widget optimizedList(List<Item> items) {
 
 ```javascript
 // React Native - Battery-efficient polling
-import {AppState} from 'react-native';
+import { AppState } from 'react-native';
 
 class BatteryEfficientComponent extends Component {
-  state = {appState: AppState.currentState};
-  
+  state = { appState: AppState.currentState };
+
   componentDidMount() {
     this.appStateSubscription = AppState.addEventListener(
-      'change', this.handleAppStateChange
+      'change',
+      this.handleAppStateChange
     );
-    
+
     // Only poll when app is in foreground
     if (this.state.appState === 'active') {
       this.startPolling();
     }
   }
-  
+
   handleAppStateChange = (nextAppState) => {
     if (this.state.appState === 'active' && nextAppState === 'inactive') {
       this.stopPolling(); // App went to background
     } else if (nextAppState === 'active') {
       this.startPolling(); // App came to foreground
     }
-    this.setState({appState: nextAppState});
-  }
-  
+    this.setState({ appState: nextAppState });
+  };
+
   componentWillUnmount() {
     this.appStateSubscription?.remove();
     this.stopPolling();
@@ -404,7 +411,7 @@ class BatteryEfficientComponent extends Component {
 
 ```javascript
 // React Native - Dynamic imports
-import React, {lazy, Suspense} from 'react';
+import React, { lazy, Suspense } from 'react';
 
 // Split by feature
 const ChatFeature = lazy(() => import('./features/Chat'));
@@ -416,8 +423,8 @@ const Dashboard = lazy(() => import('./screens/Dashboard'));
 const Profile = lazy(() => import('./screens/Profile'));
 
 // Split by platform
-const PlatformSpecific = lazy(() => 
-  Platform.OS === 'ios' 
+const PlatformSpecific = lazy(() =>
+  Platform.OS === 'ios'
     ? import('./components/IOSComponent')
     : import('./components/AndroidComponent')
 );
@@ -438,22 +445,22 @@ import debounce from 'lodash/debounce';
 
 ### React Native
 
-| Tool | Purpose | URL |
-|------|---------|-----|
-| **React DevTools** | Component hierarchy, render timing | https://facebook.github.io/react-native/react-devtools |
-| **Hermes Profiler** | JavaScript execution profiling | Built into React Native |
-| **Flipper** | Network, layout, plugin debugging | https://fbflipper.com |
-| **Android Profiler** | Memory, CPU, network | Android Studio |
-| **Instruments** | Memory leaks, energy impact | Xcode |
+| Tool                 | Purpose                            | URL                                                    |
+| -------------------- | ---------------------------------- | ------------------------------------------------------ |
+| **React DevTools**   | Component hierarchy, render timing | https://facebook.github.io/react-native/react-devtools |
+| **Hermes Profiler**  | JavaScript execution profiling     | Built into React Native                                |
+| **Flipper**          | Network, layout, plugin debugging  | https://fbflipper.com                                  |
+| **Android Profiler** | Memory, CPU, network               | Android Studio                                         |
+| **Instruments**      | Memory leaks, energy impact        | Xcode                                                  |
 
 ### Flutter
 
-| Tool | Purpose | URL |
-|------|---------|-----|
+| Tool                 | Purpose                      | URL                                     |
+| -------------------- | ---------------------------- | --------------------------------------- |
 | **Flutter DevTools** | Performance, memory, network | https://docs.flutter.dev/tools/devtools |
-| **Timeline** | Frame rendering analysis | Built into Flutter |
-| **Memory View** | Heap analysis | Flutter DevTools |
-| **Network View** | Request monitoring | Flutter DevTools |
+| **Timeline**         | Frame rendering analysis     | Built into Flutter                      |
+| **Memory View**      | Heap analysis                | Flutter DevTools                        |
+| **Network View**     | Request monitoring           | Flutter DevTools                        |
 
 ## Production Checklist
 

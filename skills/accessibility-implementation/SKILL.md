@@ -13,6 +13,7 @@ This skill provides comprehensive guidance for implementing accessible web conte
 ## When to Use
 
 **Use this skill when:**
+
 - Implementing accessible web interfaces
 - Ensuring WCAG 2.1 AA compliance
 - Adding ARIA attributes to components
@@ -38,6 +39,7 @@ This skill provides comprehensive guidance for implementing accessible web conte
 - Ensuring accessible dark mode
 
 **Do NOT use this skill when:**
+
 - Writing backend business logic (use domain-driven skill)
 - Designing database schemas (use database-design skill)
 - Writing API endpoint specifications (use api-design skill)
@@ -137,8 +139,10 @@ This skill provides comprehensive guidance for implementing accessible web conte
 <!-- ✅ Good: Native interactive elements -->
 <button>Click me</button>
 <a href="/page">Link text</a>
-<input type="text" placeholder="Enter text">
-<select><option>Option 1</option></select>
+<input type="text" placeholder="Enter text" />
+<select>
+  <option>Option 1</option>
+</select>
 
 <!-- ❌ Bad: Non-interactive elements with click handlers -->
 <div onclick="handleClick()">Click me</div>
@@ -175,7 +179,8 @@ This skill provides comprehensive guidance for implementing accessible web conte
 </div>
 
 <!-- ❌ Bad: No live region for dynamic content -->
-<div id="status">...</div> <!-- Updates not announced -->
+<div id="status">...</div>
+<!-- Updates not announced -->
 ```
 
 ### Form Accessibility
@@ -183,7 +188,7 @@ This skill provides comprehensive guidance for implementing accessible web conte
 ```html
 <!-- ✅ Good: Accessible forms -->
 <label for="email">Email address</label>
-<input type="email" id="email" name="email" aria-describedby="email-hint">
+<input type="email" id="email" name="email" aria-describedby="email-hint" />
 <span id="email-hint">We'll never share your email</span>
 
 <!-- Error message with aria-live -->
@@ -192,7 +197,8 @@ This skill provides comprehensive guidance for implementing accessible web conte
 </div>
 
 <!-- ❌ Bad: Missing labels -->
-<input type="email" placeholder="Email"> <!-- No label -->
+<input type="email" placeholder="Email" />
+<!-- No label -->
 ```
 
 ## Keyboard Navigation
@@ -318,6 +324,7 @@ function trapFocus(event) {
 ## Real-World Impact
 
 **Before this skill:**
+
 - Inaccessible web content
 - Keyboard users can't navigate
 - Screen reader users miss content
@@ -325,6 +332,7 @@ function trapFocus(event) {
 - Form accessibility problems
 
 **After this skill:**
+
 - Fully accessible web content
 - Keyboard navigation works
 - Screen readers announce correctly

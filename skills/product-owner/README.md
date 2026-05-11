@@ -11,6 +11,7 @@ This skill provides comprehensive guidance for Product Owners in agile product d
 ## When to Use
 
 **Use this skill when:**
+
 - Creating and maintaining product backlog
 - Writing user stories with acceptance criteria
 - Prioritizing features for sprint planning
@@ -21,21 +22,25 @@ This skill provides comprehensive guidance for Product Owners in agile product d
 ## What It Covers
 
 ### Agile Methodologies
+
 - **Scrum Framework** - Sprint cycles, ceremonies, and roles
 - **Kanban Methodology** - Visual workflow, WIP limits
 - **Hybrid Approaches** - Scrumban and other combinations
 
 ### User Stories
+
 - **Standard Template** - As a [user], I want [goal] So that [reason]
 - **Acceptance Criteria** - INVEST principle, specific and testable
 - **Examples** - Real-world user story examples
 
 ### Prioritization
+
 - **MoSCoW Method** - Must have, Should have, Could have, Won't have
 - **Value vs Effort Matrix** - Prioritize high-value, low-effort items
 - **RICE Scoring** - Reach, Impact, Confidence, Effort
 
 ### Sprint Planning
+
 - **Pre-Planning Checklist** - Prepare for planning meetings
 - **Planning Meeting Agenda** - 4 stages of planning
 - **Velocity Tracking** - Calculate and use team velocity
@@ -56,6 +61,7 @@ cat references/*.md
 ## Examples
 
 See `examples/` for:
+
 - User story templates
 - Acceptance criteria examples
 - Sprint planning outputs

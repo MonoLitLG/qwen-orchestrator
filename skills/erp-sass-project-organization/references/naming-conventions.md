@@ -15,14 +15,14 @@ Consistent naming is critical for code readability and maintainability. This doc
 
 ### File Type Conventions
 
-| File Type | Convention | Example |
-|-----------|------------|---------|
-| Class/Type | PascalCase.ts | `InventoryManager.ts` |
-| Interface | IPascalCase.ts | `IRepository.ts` |
-| Enum | PascalCase.ts | `OrderStatus.ts` |
-| Test | PascalCase.test.ts | `InventoryManager.test.ts` |
-| Config | kebab-case.json/yaml | `tsconfig.json` |
-| Module | kebab-case.ts | `inventory-module.ts` |
+| File Type  | Convention           | Example                    |
+| ---------- | -------------------- | -------------------------- |
+| Class/Type | PascalCase.ts        | `InventoryManager.ts`      |
+| Interface  | IPascalCase.ts       | `IRepository.ts`           |
+| Enum       | PascalCase.ts        | `OrderStatus.ts`           |
+| Test       | PascalCase.test.ts   | `InventoryManager.test.ts` |
+| Config     | kebab-case.json/yaml | `tsconfig.json`            |
+| Module     | kebab-case.ts        | `inventory-module.ts`      |
 
 ### Folder Naming
 
@@ -30,12 +30,12 @@ Consistent naming is critical for code readability and maintainability. This doc
 - Be descriptive but concise
 - Avoid abbreviations unless standard
 
-| Purpose | Example |
-|---------|---------|
+| Purpose         | Example                 |
+| --------------- | ----------------------- |
 | Business module | `inventory-management/` |
-| Feature | `order-processing/` |
-| Shared code | `shared-utils/` |
-| Infrastructure | `database-adapters/` |
+| Feature         | `order-processing/`     |
+| Shared code     | `shared-utils/`         |
+| Infrastructure  | `database-adapters/`    |
 
 ## Variable Naming
 
@@ -48,13 +48,13 @@ Consistent naming is critical for code readability and maintainability. This doc
 
 ### Variable Types
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Primitive | camelCase | `userName`, `totalCount` |
-| Object | camelCase | `userProfile`, `orderDetails` |
-| Array | plural camelCase | `users`, `orderItems` |
-| Boolean | is/can/has prefix | `isValid`, `canEdit`, `hasErrors` |
-| Constant | UPPER_SNAKE_CASE | `MAX_RETRY_COUNT` |
+| Type      | Convention        | Example                           |
+| --------- | ----------------- | --------------------------------- |
+| Primitive | camelCase         | `userName`, `totalCount`          |
+| Object    | camelCase         | `userProfile`, `orderDetails`     |
+| Array     | plural camelCase  | `users`, `orderItems`             |
+| Boolean   | is/can/has prefix | `isValid`, `canEdit`, `hasErrors` |
+| Constant  | UPPER_SNAKE_CASE  | `MAX_RETRY_COUNT`                 |
 
 ### Boolean Naming
 
@@ -65,9 +65,9 @@ const canEdit = user.permissions.edit;
 const hasErrors = errors.length > 0;
 
 // ❌ BAD
-const valid = validateInput(input);  // Unclear
-const editable = user.permissions.edit;  // Ambiguous
-const errors = errors.length > 0;  // Not boolean
+const valid = validateInput(input); // Unclear
+const editable = user.permissions.edit; // Ambiguous
+const errors = errors.length > 0; // Not boolean
 ```
 
 ## Function Naming
@@ -81,26 +81,26 @@ const errors = errors.length > 0;  // Not boolean
 
 ### Function Types
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Action | verbNoun | `getUser()`, `saveOrder()` |
-| Query | get/set/add/remove | `getById()`, `setActive()` |
-| Validation | is/can/has | `isValid()`, `canDelete()` |
-| Event handler | handleEvent | `handleSubmit()`, `handleError()` |
+| Type          | Convention         | Example                           |
+| ------------- | ------------------ | --------------------------------- |
+| Action        | verbNoun           | `getUser()`, `saveOrder()`        |
+| Query         | get/set/add/remove | `getById()`, `setActive()`        |
+| Validation    | is/can/has         | `isValid()`, `canDelete()`        |
+| Event handler | handleEvent        | `handleSubmit()`, `handleError()` |
 
 ### Naming Examples
 
 ```typescript
 // ✅ GOOD
-function getUserById(id: string): Promise<User> { }
-function saveOrder(order: Order): Promise<void> { }
-function isValidEmail(email: string): boolean { }
-function handleFormSubmit(event: SubmitEvent): void { }
+function getUserById(id: string): Promise<User> {}
+function saveOrder(order: Order): Promise<void> {}
+function isValidEmail(email: string): boolean {}
+function handleFormSubmit(event: SubmitEvent): void {}
 
 // ❌ BAD
-function get(id: string): Promise<User> { }  // Unclear what is being got
-function save(data: Order): Promise<void> { }  // Unclear what is being saved
-function valid(email: string): boolean { }  // Not clear what is being validated
+function get(id: string): Promise<User> {} // Unclear what is being got
+function save(data: Order): Promise<void> {} // Unclear what is being saved
+function valid(email: string): boolean {} // Not clear what is being validated
 ```
 
 ## Class Naming
@@ -113,27 +113,27 @@ function valid(email: string): boolean { }  // Not clear what is being validated
 
 ### Class Types
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Entity | singular noun | `User`, `Order`, `Product` |
-| Service | noun + Service | `OrderService`, `EmailService` |
+| Type       | Convention        | Example                             |
+| ---------- | ----------------- | ----------------------------------- |
+| Entity     | singular noun     | `User`, `Order`, `Product`          |
+| Service    | noun + Service    | `OrderService`, `EmailService`      |
 | Controller | noun + Controller | `UserController`, `OrderController` |
 | Repository | noun + Repository | `UserRepository`, `OrderRepository` |
-| DTO | noun + DTO | `UserDto`, `OrderDto` |
+| DTO        | noun + DTO        | `UserDto`, `OrderDto`               |
 
 ### Naming Examples
 
 ```typescript
 // ✅ GOOD
-class OrderProcessor { }
-class InventoryRepository { }
-class EmailNotificationService { }
-class CreateUserDto { }
+class OrderProcessor {}
+class InventoryRepository {}
+class EmailNotificationService {}
+class CreateUserDto {}
 
 // ❌ BAD
-class OrderProcessorClass { }  // Redundant suffix
-class UserClass { }  // Redundant suffix
-class Data { }  // Too generic
+class OrderProcessorClass {} // Redundant suffix
+class UserClass {} // Redundant suffix
+class Data {} // Too generic
 ```
 
 ## Interface Naming
@@ -146,26 +146,26 @@ class Data { }  // Too generic
 
 ### Interface Types
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Contract | I + noun | `IRepository`, `IService` |
-| Configuration | noun + Config | `DatabaseConfig` |
-| Event | noun + Event | `OrderCreatedEvent` |
-| Result | noun + Result | `QueryResult` |
+| Type          | Convention    | Example                   |
+| ------------- | ------------- | ------------------------- |
+| Contract      | I + noun      | `IRepository`, `IService` |
+| Configuration | noun + Config | `DatabaseConfig`          |
+| Event         | noun + Event  | `OrderCreatedEvent`       |
+| Result        | noun + Result | `QueryResult`             |
 
 ### Naming Examples
 
 ```typescript
 // ✅ GOOD
-interface IRepository<T> { }
-interface IAuthService { }
-interface DatabaseConfig { }
-interface OrderCreatedEvent { }
+interface IRepository<T> {}
+interface IAuthService {}
+interface DatabaseConfig {}
+interface OrderCreatedEvent {}
 
 // ❌ BAD
-interface Repository<T> { }  // Missing I prefix (if using convention)
-interface Data { }  // Too generic
-interface Handler { }  // Too generic
+interface Repository<T> {} // Missing I prefix (if using convention)
+interface Data {} // Too generic
+interface Handler {} // Too generic
 ```
 
 ## Enum Naming
@@ -184,19 +184,19 @@ enum OrderStatus {
   Pending = 'pending',
   Processing = 'processing',
   Completed = 'completed',
-  Cancelled = 'cancelled'
+  Cancelled = 'cancelled',
 }
 
 enum UserRole {
   Admin = 'admin',
   User = 'user',
-  Guest = 'guest'
+  Guest = 'guest',
 }
 
 // ❌ BAD
-enum order_status { }  // Wrong case
-enum Status { }  // Too generic
-enum E { }  // Non-descriptive
+enum order_status {} // Wrong case
+enum Status {} // Too generic
+enum E {} // Non-descriptive
 ```
 
 ## API Endpoint Naming
@@ -209,29 +209,29 @@ enum E { }  // Non-descriptive
 
 ### Endpoint Patterns
 
-| Action | Method | Path |
-|--------|--------|------|
-| List | GET | `/users` |
-| Get by ID | GET | `/users/{id}` |
-| Create | POST | `/users` |
-| Update | PUT | `/users/{id}` |
-| Partial update | PATCH | `/users/{id}` |
-| Delete | DELETE | `/users/{id}` |
+| Action         | Method | Path          |
+| -------------- | ------ | ------------- |
+| List           | GET    | `/users`      |
+| Get by ID      | GET    | `/users/{id}` |
+| Create         | POST   | `/users`      |
+| Update         | PUT    | `/users/{id}` |
+| Partial update | PATCH  | `/users/{id}` |
+| Delete         | DELETE | `/users/{id}` |
 
 ### Naming Examples
 
 ```typescript
 // ✅ GOOD
-GET    /api/v1/users
-GET    /api/v1/users/{id}
-POST   /api/v1/users
-PUT    /api/v1/users/{id}
-DELETE /api/v1/users/{id}
+GET / api / v1 / users;
+GET / api / v1 / users / { id };
+POST / api / v1 / users;
+PUT / api / v1 / users / { id };
+DELETE / api / v1 / users / { id };
 
 // ❌ BAD
-GET    /api/v1/get-user
-POST   /api/v1/createUser
-PUT    /api/v1/update_user
+GET / api / v1 / get - user;
+POST / api / v1 / createUser;
+PUT / api / v1 / update_user;
 ```
 
 ## Database Object Naming
@@ -242,10 +242,10 @@ PUT    /api/v1/update_user
 - Use snake_case
 - Be descriptive
 
-| Example |
-|---------|
-| `users` |
-| `orders` |
+| Example       |
+| ------------- |
+| `users`       |
+| `orders`      |
 | `order_items` |
 
 ### Column Naming
@@ -254,20 +254,20 @@ PUT    /api/v1/update_user
 - Be descriptive
 - Include type hints when helpful
 
-| Example |
-|---------|
-| `user_id` |
+| Example      |
+| ------------ |
+| `user_id`    |
 | `order_date` |
-| `is_active` |
+| `is_active`  |
 
 ### Index Naming
 
 - Use table name + column name
 - Be descriptive
 
-| Example |
-|---------|
-| `idx_users_email` |
+| Example              |
+| -------------------- |
+| `idx_users_email`    |
 | `idx_orders_user_id` |
 
 ## Configuration Naming
@@ -278,10 +278,10 @@ PUT    /api/v1/update_user
 - Be descriptive
 - Use prefix for module-specific
 
-| Example |
-|---------|
-| `APP_NAME` |
-| `DATABASE_HOST` |
+| Example             |
+| ------------------- |
+| `APP_NAME`          |
+| `DATABASE_HOST`     |
 | `INVENTORY_API_URL` |
 
 ### Configuration Files
@@ -289,22 +289,22 @@ PUT    /api/v1/update_user
 - Use kebab-case
 - Be descriptive
 
-| Example |
-|---------|
-| `tsconfig.json` |
-| `eslint.config.js` |
+| Example                |
+| ---------------------- |
+| `tsconfig.json`        |
+| `eslint.config.js`     |
 | `database.config.yaml` |
 
 ## Common Abbreviations
 
-| Full Word | Abbreviation |
-|-----------|--------------|
-| configuration | config |
-| database | db |
-| information | info |
-| number | num |
-| temporary | temp |
-| identifier | id |
+| Full Word     | Abbreviation |
+| ------------- | ------------ |
+| configuration | config       |
+| database      | db           |
+| information   | info         |
+| number        | num          |
+| temporary     | temp         |
+| identifier    | id           |
 
 ## Anti-Patterns
 
@@ -314,7 +314,7 @@ PUT    /api/v1/update_user
 // ❌ BAD
 const a = 1;
 const b = 2;
-function x() { }
+function x() {}
 ```
 
 ### Too Long
