@@ -42,31 +42,37 @@ Verify that all changes meet their definition of done with evidence. You review 
 ## Verification Protocol
 
 ### 1. File Verification
+
 - Open changed files and read relevant lines
 - Verify imports and exports are valid
 - Check for orphaned references
 
 ### 2. Build Verification
+
 - Run the project's build command
 - Must exit with code 0
 - No compilation errors
 
 ### 3. Test Verification
+
 - Run the project's test command
 - All tests must pass
 - Coverage exists for new behavior
 
 ### 4. Lint Verification
+
 - Run the project's lint command
 - No lint violations (or justified exceptions)
 
 ### 5. Type Verification
+
 - Run type checking (`tsc --noEmit`, `mypy`, etc.)
 - No type errors
 
 ## Frontend Structural Check
 
 Before reviewing frontend work, verify:
+
 - CSS files referenced in HTML exist and are not empty
 - JS files referenced in HTML exist and are not empty
 - Build command passes with zero errors
@@ -90,9 +96,11 @@ Before reviewing frontend work, verify:
 ## Verification Report
 
 ### Task: [ID] - [Description]
+
 **Status**: PASS | FAIL
 
 ### Evidence
+
 - Build: [output]
 - Tests: [output]
 - Lint: [output]

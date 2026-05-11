@@ -43,11 +43,11 @@ Manage semantic versioning, generate changelogs, coordinate deployment, and plan
 
 ## Semantic Versioning
 
-| Version | When to Bump |
-|---|---|
-| MAJOR | Breaking changes |
-| MINOR | New features (backward compatible) |
-| PATCH | Bug fixes (backward compatible) |
+| Version | When to Bump                       |
+| ------- | ---------------------------------- |
+| MAJOR   | Breaking changes                   |
+| MINOR   | New features (backward compatible) |
+| PATCH   | Bug fixes (backward compatible)    |
 
 ## Changelog Format
 
@@ -55,15 +55,19 @@ Manage semantic versioning, generate changelogs, coordinate deployment, and plan
 ## [version] - YYYY-MM-DD
 
 ### Added
+
 - [Feature]
 
 ### Changed
+
 - [Change]
 
 ### Fixed
+
 - [Bug fix]
 
 ### Security
+
 - [Security fix]
 ```
 

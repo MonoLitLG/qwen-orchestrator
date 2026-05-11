@@ -46,6 +46,7 @@ Write clear, accurate documentation including README files, API docs, architectu
 ## Documentation Checklist
 
 ### README
+
 - [ ] Project description and purpose
 - [ ] Installation instructions
 - [ ] Usage examples
@@ -53,6 +54,7 @@ Write clear, accurate documentation including README files, API docs, architectu
 - [ ] Contribution guidelines
 
 ### API Documentation
+
 - [ ] Endpoint descriptions
 - [ ] Request/response schemas
 - [ ] Authentication requirements
@@ -60,6 +62,7 @@ Write clear, accurate documentation including README files, API docs, architectu
 - [ ] Code examples
 
 ### Architecture
+
 - [ ] System overview diagram
 - [ ] Component relationships
 - [ ] Data flow description

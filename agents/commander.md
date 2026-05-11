@@ -100,20 +100,20 @@ Use `AskUserQuestion` to clarify scope, tech stack, or acceptance criteria befor
 
 ## Agent Roster
 
-| Agent | Use For |
-|-------|---------|
-| `Explore` | Fast codebase exploration (built-in) |
-| `general-purpose` | Research, multi-step search tasks |
-| `frontend-developer` | UI components, styling, responsive design |
-| `backend-developer` | APIs, database, auth, server logic |
-| `reviewer` | Code review, verification, quality gates |
-| `qa-engineer` | Test strategy, coverage, edge cases |
-| `devops-engineer` | Docker, CI/CD, deployment |
-| `cybersecurity-engineer` | OWASP, threat modeling, secure coding |
-| `performance-engineer` | Profiling, caching, optimization |
-| `code-quality-guard` | Lint, typecheck, syntax validation |
-| `database-architect` | Schema design, migrations, queries |
-| `planner` | Architecture research, design docs |
+| Agent                    | Use For                                   |
+| ------------------------ | ----------------------------------------- |
+| `Explore`                | Fast codebase exploration (built-in)      |
+| `general-purpose`        | Research, multi-step search tasks         |
+| `frontend-developer`     | UI components, styling, responsive design |
+| `backend-developer`      | APIs, database, auth, server logic        |
+| `reviewer`               | Code review, verification, quality gates  |
+| `qa-engineer`            | Test strategy, coverage, edge cases       |
+| `devops-engineer`        | Docker, CI/CD, deployment                 |
+| `cybersecurity-engineer` | OWASP, threat modeling, secure coding     |
+| `performance-engineer`   | Profiling, caching, optimization          |
+| `code-quality-guard`     | Lint, typecheck, syntax validation        |
+| `database-architect`     | Schema design, migrations, queries        |
+| `planner`                | Architecture research, design docs        |
 
 ## Background Agent Completion Protocol
 

@@ -44,6 +44,7 @@ Review architectural decisions, enforce code standards, validate technology choi
 ## Technology Evaluation
 
 When evaluating a technology:
+
 1. **Problem Fit** — does it solve the actual problem?
 2. **Complexity Cost** — is the added complexity worth it?
 3. **Team Knowledge** — can the team maintain it?
@@ -61,11 +62,11 @@ When evaluating a technology:
 
 ## Decision Framework
 
-| Decision | Criteria |
-|---|---|
-| New dependency | Solves real problem, maintained, team knows it |
-| Architecture change | Clear benefit, reversible, tested |
-| Refactor | No behavior change, tests pass, incremental |
+| Decision            | Criteria                                       |
+| ------------------- | ---------------------------------------------- |
+| New dependency      | Solves real problem, maintained, team knows it |
+| Architecture change | Clear benefit, reversible, tested              |
+| Refactor            | No behavior change, tests pass, incremental    |
 
 ## Before Reporting Complete
 

@@ -44,15 +44,16 @@ Identify performance bottlenecks, optimize slow queries, implement caching, and 
 
 ## Core Web Vitals Targets
 
-| Metric | Target | Measure |
-|---|---|---|
-| LCP | < 2.5s | Largest Contentful Paint |
-| INP | < 200ms | Interaction to Next Paint |
-| CLS | < 0.1 | Cumulative Layout Shift |
+| Metric | Target  | Measure                   |
+| ------ | ------- | ------------------------- |
+| LCP    | < 2.5s  | Largest Contentful Paint  |
+| INP    | < 200ms | Interaction to Next Paint |
+| CLS    | < 0.1   | Cumulative Layout Shift   |
 
 ## Optimization Checklist
 
 ### Frontend
+
 - Lazy loading for images and components
 - Code splitting per route
 - Image optimization (WebP/AVIF, srcset)
@@ -60,6 +61,7 @@ Identify performance bottlenecks, optimize slow queries, implement caching, and 
 - CDN for static assets
 
 ### Backend
+
 - Database query optimization (EXPLAIN, indexes)
 - Connection pooling
 - Response caching (Redis, HTTP cache)
@@ -67,6 +69,7 @@ Identify performance bottlenecks, optimize slow queries, implement caching, and 
 - Pagination on all list endpoints
 
 ### Database
+
 - Index columns used in WHERE, JOIN, ORDER BY
 - Eager loading to prevent N+1
 - Query result caching

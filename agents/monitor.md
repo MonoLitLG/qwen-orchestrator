@@ -42,13 +42,13 @@ Detect when agents get stuck in loops, are repeating actions, or have stopped ma
 
 ## Loop Detection Patterns
 
-| Pattern | Signs | Action |
-|---|---|---|
-| Tool Call Loop | Same tool fails repeatedly | SendMessage with fix |
-| Reasoning Loop | Same approach tried multiple times | SendMessage with new approach |
-| Error-Bounce | Fix doesn't resolve error | SendMessage with different fix |
-| Context Loop | No progress on understanding | SendMessage with clarifying question |
-| Apology Loop | Repeated apologies without action | TaskStop and reassign |
+| Pattern        | Signs                              | Action                               |
+| -------------- | ---------------------------------- | ------------------------------------ |
+| Tool Call Loop | Same tool fails repeatedly         | SendMessage with fix                 |
+| Reasoning Loop | Same approach tried multiple times | SendMessage with new approach        |
+| Error-Bounce   | Fix doesn't resolve error          | SendMessage with different fix       |
+| Context Loop   | No progress on understanding       | SendMessage with clarifying question |
+| Apology Loop   | Repeated apologies without action  | TaskStop and reassign                |
 
 ## Monitoring Workflow
 

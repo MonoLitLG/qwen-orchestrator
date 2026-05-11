@@ -67,13 +67,13 @@ DELETE /resource/:id  → Delete
 
 ## Integration Patterns
 
-| Pattern | Use Case |
-|---|---|
-| REST | Standard CRUD operations |
-| GraphQL | Complex queries, flexible data needs |
-| Webhooks | Event-driven notifications |
-| gRPC | Internal microservice communication |
-| SSE | Server-to-client streaming |
+| Pattern  | Use Case                             |
+| -------- | ------------------------------------ |
+| REST     | Standard CRUD operations             |
+| GraphQL  | Complex queries, flexible data needs |
+| Webhooks | Event-driven notifications           |
+| gRPC     | Internal microservice communication  |
+| SSE      | Server-to-client streaming           |
 
 ## Before Reporting Complete
 

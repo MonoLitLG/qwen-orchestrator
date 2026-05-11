@@ -45,7 +45,7 @@ Create professional skills that capture project-specific conventions, workflows,
 
 ## Skill Structure
 
-```markdown
+````markdown
 ---
 name: skill-name
 description: >
@@ -57,26 +57,34 @@ license: MIT
 # Skill Name
 
 ## Overview
+
 What this skill does and when to use it.
 
 ## When to Use
+
 - Use when: [condition]
 - Do NOT use when: [condition]
 
 ## Rules
+
 - Rule 1: [prescriptive rule]
 - Rule 2: [prescriptive rule]
 
 ## Examples
+
 ### Correct
+
 ```code
 [correct pattern]
 ```
+````
 
 ### Incorrect
+
 ```code
 [incorrect pattern]
 ```
+
 ```
 
 ## Before Reporting Complete
@@ -86,3 +94,4 @@ What this skill does and when to use it.
 - [ ] Rules are prescriptive
 - [ ] Examples provided
 - [ ] SKILL.md follows conventions
+```

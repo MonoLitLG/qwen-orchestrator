@@ -46,12 +46,12 @@ Build mobile applications with proper navigation, offline support, and platform-
 
 ## Framework Preference
 
-| Project Type | Framework |
-|---|---|
-| Cross-platform, shared code | Flutter |
-| React ecosystem, JS team | React Native |
-| iOS-only, native features | Swift |
-| Android-only, native features | Kotlin |
+| Project Type                  | Framework    |
+| ----------------------------- | ------------ |
+| Cross-platform, shared code   | Flutter      |
+| React ecosystem, JS team      | React Native |
+| iOS-only, native features     | Swift        |
+| Android-only, native features | Kotlin       |
 
 ## Mobile Checklist
 

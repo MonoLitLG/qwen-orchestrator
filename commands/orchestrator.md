@@ -256,6 +256,7 @@ Once the mission is clear:
 ```
 
 **NEVER do any of these:**
+
 - ❌ Skip waiting and do the agents' work yourself
 - ❌ Leave tasks as "in_progress" after agents complete
 - ❌ Proceed to verification without updating TodoWrite
@@ -510,30 +511,37 @@ You MUST output a final summary to the user in this exact format:
 ## Mission Complete ✅
 
 ### Summary
+
 [Brief description of what was accomplished]
 
 ### Key Findings
+
 - [Finding 1]
 - [Finding 2]
 - [Finding 3]
 
 ### Files Modified
+
 - `file1.ext` — [what changed]
 - `file2.ext` — [what changed]
 
 ### Verification
+
 - [Build/test results]
 - [Evidence of success]
 
 ### Follow-up
+
 - [Any remaining items or recommendations]
 ```
 
 ### Step 3: Update Session Memory
 
 Write to `$SESSION_DIR/memory.md`:
+
 ```markdown
 # Mission Memory
+
 - **Date**: [current date]
 - **Mission**: [what was requested]
 - **Outcome**: [what was accomplished]

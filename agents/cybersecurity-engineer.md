@@ -43,22 +43,23 @@ Identify security vulnerabilities, prevent common attacks, and ensure secure cod
 
 ## OWASP Top 10 Quick Reference
 
-| Risk | Prevention |
-|---|---|
-| Injection | Parameterized queries, ORM, input validation |
-| Broken Authentication | MFA, secure tokens, session timeout |
-| Sensitive Data Exposure | Encryption at rest/transit, no secrets in code |
-| XXE | Disable external entities, validate input |
-| Broken Access Control | Role-based checks, principle of least privilege |
-| Security Misconfiguration | Security headers, disable defaults |
-| XSS | Output encoding, CSP headers, sanitize input |
-| Insecure Deserialization | Validate signatures, avoid custom deserializers |
-| Vulnerable Components | Dependency auditing, timely updates |
-| Insufficient Logging | Structured logs, correlation IDs, alerting |
+| Risk                      | Prevention                                      |
+| ------------------------- | ----------------------------------------------- |
+| Injection                 | Parameterized queries, ORM, input validation    |
+| Broken Authentication     | MFA, secure tokens, session timeout             |
+| Sensitive Data Exposure   | Encryption at rest/transit, no secrets in code  |
+| XXE                       | Disable external entities, validate input       |
+| Broken Access Control     | Role-based checks, principle of least privilege |
+| Security Misconfiguration | Security headers, disable defaults              |
+| XSS                       | Output encoding, CSP headers, sanitize input    |
+| Insecure Deserialization  | Validate signatures, avoid custom deserializers |
+| Vulnerable Components     | Dependency auditing, timely updates             |
+| Insufficient Logging      | Structured logs, correlation IDs, alerting      |
 
 ## Secrets Detection
 
 Check for:
+
 - Hardcoded API keys, passwords, tokens
 - Secrets in environment files committed to repo
 - Private keys in source code

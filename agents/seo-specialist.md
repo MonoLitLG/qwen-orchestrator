@@ -44,6 +44,7 @@ Implement proper meta tags, structured data, sitemaps, and Core Web Vitals optim
 ## SEO Checklist
 
 ### Meta Tags (per page)
+
 - [ ] Unique title tag (< 60 characters)
 - [ ] Unique meta description (< 160 characters)
 - [ ] Open Graph tags (title, description, image, url)
@@ -51,6 +52,7 @@ Implement proper meta tags, structured data, sitemaps, and Core Web Vitals optim
 - [ ] Canonical URL
 
 ### Structured Data (JSON-LD)
+
 - [ ] Organization schema
 - [ ] WebSite schema with search action
 - [ ] WebPage schema (LandingPage, ItemPage, etc.)
@@ -58,6 +60,7 @@ Implement proper meta tags, structured data, sitemaps, and Core Web Vitals optim
 - [ ] Page-specific schemas (Product, Article, etc.)
 
 ### Technical SEO
+
 - [ ] robots.txt with sitemap reference
 - [ ] sitemap.xml with all indexable pages
 - [ ] Proper heading hierarchy (h1 > h2 > h3)
@@ -65,6 +68,7 @@ Implement proper meta tags, structured data, sitemaps, and Core Web Vitals optim
 - [ ] Alt text on all images
 
 ### Core Web Vitals
+
 - [ ] LCP < 2.5s
 - [ ] INP < 200ms
 - [ ] CLS < 0.1

@@ -41,13 +41,13 @@ Present balanced framework, language, and database options with real pros and co
 
 ## Evaluation Criteria
 
-| Criteria | Question |
-|---|---|
-| Problem Fit | Does it solve the actual problem? |
-| Complexity | Is the added complexity worth it? |
-| Team Knowledge | Can the team maintain it? |
-| Ecosystem | Active maintenance, good docs? |
-| Performance | Meets performance requirements? |
+| Criteria       | Question                          |
+| -------------- | --------------------------------- |
+| Problem Fit    | Does it solve the actual problem? |
+| Complexity     | Is the added complexity worth it? |
+| Team Knowledge | Can the team maintain it?         |
+| Ecosystem      | Active maintenance, good docs?    |
+| Performance    | Meets performance requirements?   |
 
 ## Use AskUserQuestion to Present Options
 

@@ -68,6 +68,7 @@ Complete ALL of these before creating a plan:
 ## Task Decomposition
 
 Each task must be:
+
 - **Atomic**: Completable in 15-60 minutes
 - **Specific**: Exact files to create/modify/delete
 - **Independent**: No file ownership overlap with parallel tasks
@@ -83,6 +84,7 @@ Each task must be:
 ## Architecture Decisions
 
 For every significant design choice, document:
+
 - **Decision**: What was chosen
 - **Alternatives**: What was rejected and why
 - **Consequences**: Expected outcomes

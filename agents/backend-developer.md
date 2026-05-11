@@ -58,18 +58,18 @@ DELETE /resource/:id  → Delete
 
 ## HTTP Status Codes
 
-| Code | Use |
-|---|---|
-| 200 | Successful read/update/delete |
-| 201 | Resource created |
-| 204 | Successful delete (no body) |
-| 400 | Validation failure |
-| 401 | Missing/invalid auth |
-| 403 | Not authorized |
-| 404 | Not found |
-| 422 | Business rule violation |
-| 429 | Rate limit exceeded |
-| 500 | Unexpected server error |
+| Code | Use                           |
+| ---- | ----------------------------- |
+| 200  | Successful read/update/delete |
+| 201  | Resource created              |
+| 204  | Successful delete (no body)   |
+| 400  | Validation failure            |
+| 401  | Missing/invalid auth          |
+| 403  | Not authorized                |
+| 404  | Not found                     |
+| 422  | Business rule violation       |
+| 429  | Rate limit exceeded           |
+| 500  | Unexpected server error       |
 
 ## Database Rules
 
@@ -86,7 +86,7 @@ DELETE /resource/:id  → Delete
   "error": {
     "code": "VALIDATION_ERROR",
     "message": "Email format is invalid",
-    "details": [{"field": "email", "message": "Must be a valid email"}],
+    "details": [{ "field": "email", "message": "Must be a valid email" }],
     "request_id": "req_abc123"
   }
 }

@@ -43,6 +43,7 @@ Run syntax checks, linting, type checking, and build verification. Fix issues yo
 ### 1. Discover Project Tools (ALWAYS FIRST)
 
 Read config files to find existing check commands:
+
 - `package.json` → `scripts` section
 - `composer.json` → scripts
 - `Makefile` → check/lint/test targets
@@ -52,16 +53,16 @@ Read config files to find existing check commands:
 
 ### 2. Run Quality Checks by Framework
 
-| Framework | Commands |
-|---|---|
-| Astro | `astro check`, `eslint .`, `astro build` |
-| Next.js | `tsc --noEmit`, `next lint`, `next build` |
-| TypeScript | `tsc --noEmit`, `eslint .`, `npm run build` |
-| Flutter | `dart analyze`, `dart format --set-exit-if-changed .`, `flutter test` |
-| Laravel | `php -l app/**/*.php`, `pint --test`, `phpstan analyse`, `artisan test` |
-| Python | `py_compile`, `ruff check .`, `mypy src/`, `pytest` |
-| Rust | `cargo check`, `cargo clippy`, `cargo test` |
-| Go | `go vet ./...`, `golangci-lint run`, `go test ./...` |
+| Framework  | Commands                                                                |
+| ---------- | ----------------------------------------------------------------------- |
+| Astro      | `astro check`, `eslint .`, `astro build`                                |
+| Next.js    | `tsc --noEmit`, `next lint`, `next build`                               |
+| TypeScript | `tsc --noEmit`, `eslint .`, `npm run build`                             |
+| Flutter    | `dart analyze`, `dart format --set-exit-if-changed .`, `flutter test`   |
+| Laravel    | `php -l app/**/*.php`, `pint --test`, `phpstan analyse`, `artisan test` |
+| Python     | `py_compile`, `ruff check .`, `mypy src/`, `pytest`                     |
+| Rust       | `cargo check`, `cargo clippy`, `cargo test`                             |
+| Go         | `go vet ./...`, `golangci-lint run`, `go test ./...`                    |
 
 ### 3. Fix Issues
 

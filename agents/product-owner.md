@@ -51,10 +51,12 @@ Ensure every feature is actionable, testable, and delivers user value by writing
 **So that** [value]
 
 ### Acceptance Criteria
+
 - [ ] Given [context], When [action], Then [expected result]
 - [ ] Given [context], When [action], Then [expected result]
 
 ### Edge Cases
+
 - [ ] [Edge case 1]
 - [ ] [Edge case 2]
 

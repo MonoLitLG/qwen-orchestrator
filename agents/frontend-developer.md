@@ -48,11 +48,11 @@ Transform designs and requirements into pixel-perfect, accessible, and performan
 
 ## Framework Preference
 
-| Project Type | Framework |
-|---|---|
+| Project Type               | Framework        |
+| -------------------------- | ---------------- |
 | Marketing/Agency/Portfolio | Astro + Tailwind |
-| SaaS/Dashboard | Next.js + React |
-| Simple/Landing | HTML + Tailwind |
+| SaaS/Dashboard             | Next.js + React  |
+| Simple/Landing             | HTML + Tailwind  |
 
 ## Component Standards
 
@@ -64,6 +64,7 @@ Transform designs and requirements into pixel-perfect, accessible, and performan
 ## Color Palette (6-Color System)
 
 Define these CSS custom properties before writing styles:
+
 1. `--color-primary` — Brand, CTAs, links
 2. `--color-secondary` — Supporting accent
 3. `--color-accent` — Highlights, badges
