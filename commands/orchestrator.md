@@ -236,10 +236,30 @@ Once the mission is clear:
 ## Phase 3: EXECUTE
 
 1. **LAUNCH** independent tasks in parallel (background agents)
-2. **MONITOR** progress — track completed vs pending tasks
-3. **HANDLE** failures — re-plan, retry, or reassign as needed
-4. **COMMUNICATE** — use `SendMessage` to redirect agents mid-task if requirements change
-5. **REPEAT** until all tasks are `status: "completed"`
+2. **WAIT for ALL background agents to complete** — do NOT skip ahead or do their work yourself
+3. **After EACH agent completes**: Call TodoWrite to mark that task `status: "completed"`
+4. **MONITOR** progress — track completed vs pending tasks
+5. **HANDLE** failures — re-plan, retry, or reassign as needed
+6. **COMMUNICATE** — use `SendMessage` to redirect agents mid-task if requirements change
+7. **REPEAT** until all tasks are `status: "completed"`
+
+### Background Agent Completion Protocol (CRITICAL)
+
+```
+1. Launch all independent agents (run_in_background: true)
+2. Wait for completion notifications (system will notify you)
+3. For EACH agent that completes:
+   a. Read the agent's result/summary
+   b. Call TodoWrite to mark the corresponding task as "completed"
+   c. Save key findings to $SESSION_DIR/ for later compilation
+4. Only proceed to Phase 4 when ALL background agents have completed
+```
+
+**NEVER do any of these:**
+- ❌ Skip waiting and do the agents' work yourself
+- ❌ Leave tasks as "in_progress" after agents complete
+- ❌ Proceed to verification without updating TodoWrite
+- ❌ Forget to compile a final summary
 
 ### Parallel Execution Rules
 
@@ -464,15 +484,66 @@ When an agent stops (detected via `get_stale_tasks`):
 
 ---
 
-## Phase 5: DELIVER
+## Phase 5: DELIVER (MANDATORY — Cannot Skip)
 
-When ALL work is verified:
+**You MUST complete this phase before ending the mission. This is not optional.**
 
-1. **SUMMARIZE** what was built, changed, and why
-2. **LIST** all modified files with brief descriptions
-3. **REPORT** test results and verification evidence
-4. **HIGHLIGHT** any remaining risks or follow-up items
-5. **UPDATE** `$SESSION_DIR/memory.md` for session continuity
+### Step 1: Final TodoWrite (Required)
+
+Call TodoWrite one final time with ALL tasks marked `status: "completed"`. This ensures the UI shows all tasks as `●` (completed with strikethrough).
+
+```
+TodoWrite({
+  todos: [
+    { id: "t1", content: "...", status: "completed" },
+    { id: "t2", content: "...", status: "completed" },
+    // ... all tasks completed
+  ]
+})
+```
+
+### Step 2: Provide Structured Summary
+
+You MUST output a final summary to the user in this exact format:
+
+```markdown
+## Mission Complete ✅
+
+### Summary
+[Brief description of what was accomplished]
+
+### Key Findings
+- [Finding 1]
+- [Finding 2]
+- [Finding 3]
+
+### Files Modified
+- `file1.ext` — [what changed]
+- `file2.ext` — [what changed]
+
+### Verification
+- [Build/test results]
+- [Evidence of success]
+
+### Follow-up
+- [Any remaining items or recommendations]
+```
+
+### Step 3: Update Session Memory
+
+Write to `$SESSION_DIR/memory.md`:
+```markdown
+# Mission Memory
+- **Date**: [current date]
+- **Mission**: [what was requested]
+- **Outcome**: [what was accomplished]
+- **Key Decisions**: [any architectural/technical decisions]
+- **Follow-up**: [any pending items]
+```
+
+### Step 4: Archive Session
+
+Call `archive_session` to preserve the session for future reference.
 
 ---
 
