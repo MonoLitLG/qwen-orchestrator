@@ -1,42 +1,6 @@
 {
   "name": "qwen-orchestrator",
   "version": "0.0.5",
-  "displayName": "Qwen Orchestrator — Professional AI Dev Team",
-  "description": "Multi-agent orchestration for Qwen Code. 24 agents, 82 skills, 6 commands, MCP orchestration tools. Single-task focus, heartbeat monitoring, continuation protocol, stale agent detection, delivery validation. Session isolation with MCP hooks. By Omar-Obando.",
-  "author": "Omar-Obando",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Omar-Obando/qwen-orchestrator"
-  },
-  "keywords": [
-    "qwen",
-    "orchestrator",
-    "multi-agent",
-    "no-mockup",
-    "tdd",
-    "n-plus-1",
-    "context7",
-    "crud-complete",
-    "compaction-recovery",
-    "multi-language",
-    "sql-best-practices",
-    "security-first",
-    "session-isolation",
-    "hooks",
-    "heartbeat",
-    "stale-detection",
-    "continuation-protocol",
-    "single-task",
-    "validation",
-    "delivery-check",
-    "docker",
-    "kubernetes",
-    "terraform",
-    "github-actions",
-    "redis",
-    "graphql"
-  ],
   "mcpServers": {
     "qwen-orchestrator": {
       "command": "node",
@@ -45,8 +9,7 @@
     },
     "memory": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "description": "Knowledge Graph for persistent context — entities, relations, decisions across sessions"
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
     }
   },
   "contextFileName": "context/QWEN.md"
