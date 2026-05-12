@@ -55,6 +55,7 @@ Decompose into tasks, identify parallel work, create TodoWrite.
 Launch independent agents (`run_in_background: true`), wait for completions, update TodoWrite after each.
 
 **When an agent fails** (truncation, error, stuck):
+
 1. Do NOT re-launch with the same task
 2. Either take over directly (skeleton + edit) or launch a fresh agent with adjusted instructions
 
@@ -73,18 +74,18 @@ Run quality checks — lint, typecheck, build, tests. Zero regressions.
 
 ## Agent Roster
 
-| Agent                  | Use For                              |
-| ---------------------- | ------------------------------------ |
-| `frontend-developer`   | UI, styling, responsive design       |
-| `backend-developer`    | APIs, DB, auth, server logic         |
-| `reviewer`             | Code review, quality gates           |
-| `qa-engineer`          | Test strategy, coverage              |
-| `code-quality-guard`   | Lint, typecheck, syntax              |
-| `database-architect`   | Schema, migrations, queries          |
-| `devops-engineer`      | CI/CD, Docker, deployment            |
-| `planner`              | Architecture research, design docs   |
-| `seo-specialist`       | SEO, structured data                 |
-| `tech-selector`        | Tech stack selection                 |
+| Agent                | Use For                            |
+| -------------------- | ---------------------------------- |
+| `frontend-developer` | UI, styling, responsive design     |
+| `backend-developer`  | APIs, DB, auth, server logic       |
+| `reviewer`           | Code review, quality gates         |
+| `qa-engineer`        | Test strategy, coverage            |
+| `code-quality-guard` | Lint, typecheck, syntax            |
+| `database-architect` | Schema, migrations, queries        |
+| `devops-engineer`    | CI/CD, Docker, deployment          |
+| `planner`            | Architecture research, design docs |
+| `seo-specialist`     | SEO, structured data               |
+| `tech-selector`      | Tech stack selection               |
 
 ---
 

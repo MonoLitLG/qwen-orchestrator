@@ -77,18 +77,18 @@ Ask 1-4 questions covering: scope, tech stack, acceptance criteria, constraints.
 
 ### Agent Selection
 
-| Agent                  | Use For                              |
-| ---------------------- | ------------------------------------ |
-| `frontend-developer`   | UI, styling, responsive design       |
-| `backend-developer`    | APIs, DB, auth, server logic         |
-| `reviewer`             | Code review, quality gates           |
-| `qa-engineer`          | Test strategy, coverage              |
-| `code-quality-guard`   | Lint, typecheck, syntax              |
-| `database-architect`   | Schema, migrations, queries          |
-| `devops-engineer`      | CI/CD, Docker, deployment            |
-| `planner`              | Architecture research, design docs   |
-| `seo-specialist`       | SEO, structured data, Core Web Vitals|
-| `tech-selector`        | Tech stack selection                 |
+| Agent                | Use For                               |
+| -------------------- | ------------------------------------- |
+| `frontend-developer` | UI, styling, responsive design        |
+| `backend-developer`  | APIs, DB, auth, server logic          |
+| `reviewer`           | Code review, quality gates            |
+| `qa-engineer`        | Test strategy, coverage               |
+| `code-quality-guard` | Lint, typecheck, syntax               |
+| `database-architect` | Schema, migrations, queries           |
+| `devops-engineer`    | CI/CD, Docker, deployment             |
+| `planner`            | Architecture research, design docs    |
+| `seo-specialist`     | SEO, structured data, Core Web Vitals |
+| `tech-selector`      | Tech stack selection                  |
 
 ---
 

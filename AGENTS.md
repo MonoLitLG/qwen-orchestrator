@@ -38,17 +38,17 @@ Professional websites never use emojis. Use SVG icons from Lucide, Heroicons, or
 
 Before marking any task complete, run the appropriate checks for the project's framework:
 
-| Framework        | Check Commands                              |
-| ---------------- | ------------------------------------------- |
-| Astro            | `astro check` · `eslint .` · `tsc --noEmit` · `astro build` |
-| Next.js          | `next lint` · `eslint .` · `tsc --noEmit` · `next build` |
-| TypeScript       | `tsc --noEmit` · `eslint .` · `npm run build` |
-| Flutter          | `dart analyze` · `flutter build web`        |
-| Laravel/PHP      | `php -l app/**/*.php` · `pint --test` · `phpstan analyse` · `php artisan test` |
-| React            | `tsc --noEmit` · `eslint .` · `npm run build` |
-| Python           | `python -m py_compile` · `ruff check .` · `mypy src/` · `pytest` |
-| Rust             | `cargo check` · `cargo clippy` · `cargo test` |
-| Go               | `go vet` · `golangci-lint` · `go test ./...` |
+| Framework   | Check Commands                                                                 |
+| ----------- | ------------------------------------------------------------------------------ |
+| Astro       | `astro check` · `eslint .` · `tsc --noEmit` · `astro build`                    |
+| Next.js     | `next lint` · `eslint .` · `tsc --noEmit` · `next build`                       |
+| TypeScript  | `tsc --noEmit` · `eslint .` · `npm run build`                                  |
+| Flutter     | `dart analyze` · `flutter build web`                                           |
+| Laravel/PHP | `php -l app/**/*.php` · `pint --test` · `phpstan analyse` · `php artisan test` |
+| React       | `tsc --noEmit` · `eslint .` · `npm run build`                                  |
+| Python      | `python -m py_compile` · `ruff check .` · `mypy src/` · `pytest`               |
+| Rust        | `cargo check` · `cargo clippy` · `cargo test`                                  |
+| Go          | `go vet` · `golangci-lint` · `go test ./...`                                   |
 
 Always read `package.json`, `composer.json`, `pubspec.yaml` first to discover project-specific scripts.
 
@@ -109,12 +109,14 @@ LIMIT 20 OFFSET 0;
 ## Anti-Patterns
 
 **Never write:**
+
 - `return []; // TODO: implement` or `throw new Error('Not implemented')`
 - Mock/hardcoded data in production code paths
 - Empty function bodies or stubs returning static values
 - N+1 queries or raw SQL with string concatenation
 
 **Always write:**
+
 - Full implementation with real logic, validation, and error handling
 - Parameterized queries only
 - Input validation on every endpoint
@@ -133,6 +135,7 @@ LIMIT 20 OFFSET 0;
 ## Parallel Agent Rules
 
 Only parallelize when:
+
 - File ownership does not overlap
 - One agent's output is not another's required input
 - No shared state is modified concurrently
@@ -152,6 +155,7 @@ Update `$SESSION_DIR/memory.md` at session end with: current task, last complete
 ## Completion
 
 Before declaring completion:
+
 - Changed files re-read and verified
 - Build + tests executed with observed results
 - Side effects reviewed, artifacts synchronized
