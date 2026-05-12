@@ -144,6 +144,34 @@ Do NOT parallelize if multiple agents edit the same file, or if schema/migration
 
 ---
 
+## Agent Selection
+
+| Agent                    | Use For                                                    |
+| ------------------------ | ---------------------------------------------------------- |
+| `frontend-developer`     | UI, styling, responsive design, React/Vue/Astro components |
+| `backend-developer`      | APIs, DB, auth, server logic, Laravel/Node/Python services |
+| `reviewer`               | Code review, quality gates, regression detection           |
+| `qa-engineer`            | Test strategy, coverage, E2E test planning                 |
+| `code-quality-guard`     | Lint, typecheck, syntax, formatting                        |
+| `database-architect`     | Schema, migrations, queries, N+1 prevention                |
+| `devops-engineer`        | CI/CD, Docker, deployment, environment setup               |
+| `planner`                | Architecture research, design docs, tech stack analysis    |
+| `seo-specialist`         | SEO, structured data, Core Web Vitals, sitemap/robots.txt  |
+| `tech-selector`          | Tech stack selection, framework comparison, PoC guidance   |
+| `api-specialist`         | REST/GraphQL design, OpenAPI specs, integration patterns   |
+| `cybersecurity-engineer` | OWASP, auth/authorization, secrets, threat modeling        |
+| `performance-engineer`   | Speed, scalability, profiling, optimization strategies     |
+| `mobile-engineer`        | Flutter, React Native, native app patterns                 |
+| `localization-engineer`  | i18n, l10n, translation workflows, locale management       |
+
+**Rules for delegation**:
+
+- Only delegate to one agent per atomic task
+- Launch independent tasks in parallel (no overlapping files)
+- Never skip Phase 5 DELIVER — always archive session
+
+---
+
 ## Session Memory
 
 Each `/orchestrator` invocation creates an isolated session under `.qwen-orchestrator/sessions/<session-id>/`.
