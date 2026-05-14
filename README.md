@@ -12,7 +12,7 @@
 >
 > Turn your AI coding assistant into a full **software development department** — with 24 specialized agents, 82 professional skills, 6 slash commands, persistent memory, and MCP tool integration.
 >
-> **Author:** [Omar-Obando](https://github.com/Omar-Obando) · **License:** MIT · **Version:** 0.0.5
+> **Author:** [Omar-Obando](https://github.com/Omar-Obando) · **License:** MIT · **Version:** 0.0.6
 
 ---
 
