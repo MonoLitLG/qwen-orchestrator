@@ -52,7 +52,7 @@ server.registerTool(
   async ({ projectPath }) => {
     const status = {
       orchestrator: 'qwen-orchestrator',
-      version: '0.0.3',
+      version: getExtensionVersion(),
       author: 'Omar-Obando',
       projectPath,
       agents: [
